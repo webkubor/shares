@@ -1,13 +1,6 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <router-view></router-view>
 </template>
-
-<script setup>
-// 直接导入组件
-import HelloWorld from 'comps/HelloWorld.vue'
-</script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
