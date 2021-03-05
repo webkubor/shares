@@ -18,9 +18,10 @@ export default defineConfig({
     alias:{
       '@': resolve(__dirname, "src"),
       'comps': resolve(__dirname, "src/components"),
-      'apis': resolve(__dirname, "src/api"),
-      'assets': resolve(__dirname, "src/assets"),
+      'api': resolve(__dirname, "src/api"),
       'views': resolve(__dirname, "src/views"),
+      'utils': resolve(__dirname, "src/utils"),
+      'styles': resolve(__dirname, "src/styles")
     }
   },
   plugins: [vue(), viteMockServe({supportTs: false })]

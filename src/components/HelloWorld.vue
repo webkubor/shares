@@ -1,11 +1,11 @@
 <template>
   <h1>{{ msg }}</h1>
   <button @click="state.count++">count is: {{ state.count }}</button>
-  <p>
+  <a>
     Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  </a>
   <button @click="emit('myclick')">emit</button>
+  <button @click="$store.commit('add')">提交时间-{{$store.state.counter}}</button>
 </template>
 
 <script setup>
@@ -23,8 +23,3 @@ fetch('/api/createUser').then((res)=>res.json()).then((data) => {
 
 </script>
 
-<style scoped>
-a {
-  color: #42b983;
-}
-</style>
