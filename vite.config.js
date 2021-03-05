@@ -21,7 +21,8 @@ export default defineConfig({
       'api': resolve(__dirname, "src/api"),
       'views': resolve(__dirname, "src/views"),
       'utils': resolve(__dirname, "src/utils"),
-      'styles': resolve(__dirname, "src/styles")
+      'styles': resolve(__dirname, "src/styles"),
+      'plugins': resolve(__dirname, "src/plugins") 
     }
   },
   plugins: [vue(), viteMockServe({supportTs: false })]

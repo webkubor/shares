@@ -1,9 +1,6 @@
 <template>
   <h1>{{ msg }}</h1>
-  <button @click="state.count++">count is: {{ state.count }}</button>
-  <a>
-    Edit
-  </a>
+  <el-button @click="state.count++">count is: {{ state.count }}</el-button>
   <button @click="emit('myclick')">emit</button>
   <button @click="$store.commit('add')">提交时间-{{$store.state.counter}}</button>
 </template>
