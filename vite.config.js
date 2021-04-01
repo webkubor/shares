@@ -9,9 +9,9 @@ export default defineConfig({
   css:{
 
   },
+  base: '/vite-admin/',
   // 打包配置
   esbuild:{
-
   },
   // 别名
   resolve: {
