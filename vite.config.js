@@ -19,7 +19,7 @@ export default defineConfig({
       '@': resolve(__dirname, "src"),
       'comps': resolve(__dirname, "src/components"),
       'api': resolve(__dirname, "src/api"),
-      'layout': resolve(__dirname, "src/layout"),
+      'layouts': resolve(__dirname, "src/layouts"),
       'views': resolve(__dirname, "src/views"),
       'utils': resolve(__dirname, "src/utils"),
       'styles': resolve(__dirname, "src/styles"),
