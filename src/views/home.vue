@@ -4,7 +4,7 @@
       <el-button type="primary" @click="$router.push('/user')">users</el-button>
   <el-button type="success" @click="$router.push('/center')">center</el-button>
   <el-button type="info" @click="$router.push('/test')">test</el-button>
-  <el-button type="warning">测试跳转4</el-button>
+  <el-button type="warning" @click="$router.push('/layout')">测试跳转4</el-button>
   <el-button type="danger">危险按钮</el-button>
     <el-row :gutter="10">
       <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
