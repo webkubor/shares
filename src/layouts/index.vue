@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h4>layout</h4>
     <el-row :gutter="10">
       <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
         ><div class="grid-content bg-purple">
@@ -20,9 +21,10 @@
           4</div
       ></el-col>
     </el-row>
+  <router-view></router-view>
   </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .el-col {
     border-radius: 4px;
   }
