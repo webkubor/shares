@@ -12,5 +12,5 @@ import 'element-plus/lib/theme-chalk/index.css'
 export default function(app) {
   // app.use(ElButton)
   // app.use(ElInput)
-  app.use(element)
+  app.use(element, { size: 'small', zIndex: 3000 })
 }
