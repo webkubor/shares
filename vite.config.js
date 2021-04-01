@@ -9,7 +9,7 @@ export default defineConfig({
   css:{
 
   },
-  base: '/vite-admin/',
+  base: '/vite-vue-admin/',
   // 打包配置
   esbuild:{
   },
