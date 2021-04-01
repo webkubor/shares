@@ -9,10 +9,10 @@ const routes =[
     meta: {
       auth: 'all'
     },
-    redirect: '/layout'
+    redirect: '/'
   },
   {
-    path: '/layout',
+    path: '/',
     component: () => import('layouts/index.vue'),
     children: RouterMap, //所有的主要组件内容
     redirect: '/home' //layout布局下的默认首页
