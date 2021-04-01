@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>layout</h4>
+    <h2>全局组件配置</h2>
     <el-row :gutter="10">
       <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
         ><div class="grid-content bg-purple">
