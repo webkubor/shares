@@ -9,7 +9,8 @@ export default defineConfig({
   css:{
 
   },
-  base: '/vite-vue-admin/',
+  base: '/vite-vue-admin/', // assets
+  publicDir: '/vite-vue-admin/',
   // 打包配置
   esbuild:{
   },
