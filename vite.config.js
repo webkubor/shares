@@ -10,7 +10,7 @@ export default defineConfig({
 
   },
   base: '/vite-vue-admin/', // assets
-  publicDir: '/vite-vue-admin/',
+  publicDir: '/vite-vue-admin/', //js和静态文件同样的前缀
   // 打包配置
   esbuild:{
   },
