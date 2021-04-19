@@ -8,9 +8,9 @@ import element from 'plugins/element3'
 import 'styles/index.scss'
 
 // Vue.prototype.Web3 = Web3
-// console.log(import.meta.env.VITE_APP_ASSETS, import.meta.env.VITE_APP_CONTEXT, '.env') // 打印出 VITE_APP_ASSETS
-// console.log(import.meta.env.VITE_APP_AGE, 'dev.local') // 打印出 dev.local
-// console.log(import.meta.env.VITE_APP_NAME, 'dev') // 打印出 dev
+console.log(import.meta.env.VITE_APP_ASSETS, import.meta.env.VITE_APP_CONTEXT, '.env') // 打印出 VITE_APP_ASSETS
+console.log(import.meta.env.VITE_APP_AGE, 'dev.local') // 打印出 dev.local
+console.log(import.meta.env.VITE_APP_NAME, 'dev') // 打印出 dev
 
 createApp(App)
 .use(router)
