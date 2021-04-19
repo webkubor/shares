@@ -6,13 +6,6 @@
  * utils工具包
  */
 
-
-export function is_wechat () {
-  var ua = navigator.userAgent.toLowerCase()
-  return ua.match(/MicroMessenger/i) == 'micromessenger';
-}
-
-
 // 类型判断-小写
 // number
 // string

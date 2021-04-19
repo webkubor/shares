@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <h1>{{ msg }}</h1>
   <el-button @click="state.count++">count is: {{ state.count }}</el-button>
   <button @click="emit('myclick')">emit</button>
@@ -18,5 +18,5 @@ fetch('/api/createUser').then((res)=>res.json()).then((data) => {
   console.log(data)
 })
 
-</script>
+</script> -->
 
