@@ -6,14 +6,11 @@ import {viteMockServe}from 'vite-plugin-mock'
 // https://vitejs.dev/config/
 // defineConfig有代码提示
 export default defineConfig({
-  css:{
-
-  },
+  css:{},
   base: '/vite-vue-admin/', // assets
   publicDir: '/vite-vue-admin/', //js和静态文件同样的前缀
   // 打包配置
-  esbuild:{
-  },
+  esbuild:{},
   // 别名
   resolve: {
     alias:{

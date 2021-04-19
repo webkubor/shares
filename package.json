@@ -2,9 +2,9 @@
   "name": "vite-new-vue",
   "version": "0.0.0",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development vite",
+    "serve": "cross-env NODE_ENV=development vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "show": "vite preview"
   },
   "dependencies": {
     "element-plus": "^1.0.2-beta.33",

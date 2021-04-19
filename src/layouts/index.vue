@@ -1,26 +1,6 @@
 <template>
   <div>
-    <h2>全局组件配置</h2>
-    <el-row :gutter="10">
-      <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
-        ><div class="grid-content bg-purple">
-            1
-          </div
-      ></el-col>
-      <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"
-        ><div class="grid-content bg-purple-light">
-          2
-          </div
-      ></el-col>
-      <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"
-        ><div class="grid-content bg-purple">
-          3</div
-      ></el-col>
-      <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
-        ><div class="grid-content bg-purple-light">
-          4</div
-      ></el-col>
-    </el-row>
+    <h2>compond模拟市场</h2>
   <router-view></router-view>
   </div>
 </template>

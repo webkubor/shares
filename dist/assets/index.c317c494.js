@@ -1,0 +1,1 @@
+import{p as a,f as c,r as o,o as s,c as t,g as r,w as n}from"./vendor.f71ca662.js";const d={},e=n("data-v-320c6c50");a("data-v-320c6c50");const v=r("h2",null,"compond模拟市场",-1);c();const l=e(((a,c)=>{const n=o("router-view");return s(),t("div",null,[v,r(n)])}));d.render=l,d.__scopeId="data-v-320c6c50";export default d;
