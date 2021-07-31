@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-07-31 19:18:50
+ * @LastEditTime: 2021-07-31 19:42:45
  */
 import {
   create,
@@ -15,10 +15,17 @@ import {
   NSkeleton,
   NGrid,
   NGridItem,
+  NTimeline,
+  NImage,
+  NSpace,
+  NImageGroup,
+  NTimelineItem
 } from "naive-ui";
 
 const naive = create({
-  components: [NButton, NCard, NDialog, NGrid,
+  components: [NButton, NCard, NDialog, NGrid, NTimeline, NImage,NSpace,
+    NImageGroup,
+    NTimelineItem,
     NGridItem, NDivider, NIcon, NTag, NEllipsis, NLayout,NSkeleton],
 });
 

@@ -1,11 +1,10 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-07-31 19:08:55
+ * @LastEditTime: 2021-07-31 19:41:00
 -->
 <template>
 <!-- 自定义主题配置 -->
  <n-config-provider :theme="darkTheme">
-   <h2>webkubor的项目分享</h2>
     <router-view></router-view>
  </n-config-provider>
   <!-- <n-config-provider :theme-overrides="themeOverrides">
