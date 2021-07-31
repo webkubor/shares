@@ -1,12 +1,10 @@
+<!--
+ * @Date: 2021-07-20 16:07:16
+ * @LastEditTime: 2021-07-31 18:35:39
+-->
 <template>
   <div>
     <h4>测试快捷访问的相对路径</h4>
-    <!-- <div class='metamask-info'>
-   <p>Metamask: {{ web3.isInjected }}</p>
-   <p>Network: {{ web3.networkId }}</p>
-   <p>Account: {{ web3.coinbase }}</p>
-   <p>Balance: {{ web3.balance }}</p>
- </div> -->
     <el-button type="primary" @click="$router.push('/user')">users</el-button>
     <el-button type="success" @click="$router.push('/center')"
       >center</el-button

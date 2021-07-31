@@ -1,7 +1,11 @@
+<!--
+ * @Date: 2021-07-20 16:07:16
+ * @LastEditTime: 2021-07-31 18:36:59
+-->
 <template>
   <div>
     <h2>compond模拟市场</h2>
-  <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 <style lang="scss" scoped>

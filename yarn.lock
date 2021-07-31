@@ -268,11 +268,6 @@ colorette@^1.2.2:
   resolved "https://registry.npm.taobao.org/colorette/download/colorette-1.2.2.tgz?cache=0&sync_timestamp=1614259838969&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcolorette%2Fdownload%2Fcolorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
   integrity sha1-y8x51emcrqLb8Q6zom/Ys+as+pQ=
 
-commander@*:
-  version "7.1.0"
-  resolved "https://registry.npm.taobao.org/commander/download/commander-7.1.0.tgz#f2eaecf131f10e36e07d894698226e36ae0eb5ff"
-  integrity sha1-8urs8THxDjbgfYlGmCJuNq4Otf8=
-
 connect@^3.7.0:
   version "3.7.0"
   resolved "https://registry.npm.taobao.org/connect/download/connect-3.7.0.tgz#5d49348910caa5e07a01800b030d0c35f20484f8"
@@ -604,13 +599,6 @@ mitt@^2.1.0:
   resolved "https://registry.npm.taobao.org/mitt/download/mitt-2.1.0.tgz#f740577c23176c6205b121b2973514eade1b2230"
   integrity sha1-90BXfCMXbGIFsSGylzUU6t4bIjA=
 
-mockjs@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npm.taobao.org/mockjs/download/mockjs-1.1.0.tgz#e6a0c378e91906dbaff20911cc0273b3c7d75b06"
-  integrity sha1-5qDDeOkZBtuv8gkRzAJzs8fXWwY=
-  dependencies:
-    commander "*"
-
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/ms/download/ms-2.0.0.tgz?cache=0&sync_timestamp=1607433899126&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fms%2Fdownload%2Fms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -906,11 +894,6 @@ vue@^3.0.5:
     "@vue/compiler-dom" "3.0.7"
     "@vue/runtime-dom" "3.0.7"
     "@vue/shared" "3.0.7"
-
-vuex@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npm.taobao.org/vuex/download/vuex-4.0.0.tgz#ac877aa76a9c45368c979471e461b520d38e6cf5"
-  integrity sha1-rId6p2qcRTaMl5Rx5GG1INOObPU=
 
 which@^2.0.1:
   version "2.0.2"
