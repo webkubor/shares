@@ -1,29 +1,41 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-07-31 18:36:59
+ * @LastEditTime: 2021-07-31 19:08:55
 -->
 <template>
-  <div>
-    <h2>compond模拟市场</h2>
+<!-- 自定义主题配置 -->
+ <n-config-provider :theme="darkTheme">
+   <h2>webkubor的项目分享</h2>
     <router-view></router-view>
-  </div>
+ </n-config-provider>
+  <!-- <n-config-provider :theme-overrides="themeOverrides">
+  </n-config-provider> -->
 </template>
-<style lang="scss" scoped>
-.el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-</style>
-
+<script>
+ import { darkTheme } from 'naive-ui'
+export default {
+  setup() {
+    /**
+     * @type import('naive-ui').GlobalThemeOverrides
+     */
+    // const themeOverrides = {
+    //   common: {
+    //     primaryColor: "#FF0000",
+    //   },
+    //   Button: {
+    //     textColor: "#FF0000",
+    //   },
+    //   Select: {
+    //     peers: {
+    //       InternalSelection: {
+    //         textColor: "#FF0000",
+    //       },
+    //     },
+    //   },
+    // };
+    return {
+      darkTheme
+    };
+  },
+};
+</script>
