@@ -1,23 +1,20 @@
-# vite + vue3 + element3+ admin
+<!--
+ * @Date: 2021-07-20 16:07:16
+ * @LastEditTime: 2021-07-31 18:52:25
+-->
+# webkubor项目展示
 
 #### 介绍
-vite这几天用下来太香了，做个实验性项目， vue3 + element 3 + vite，看看技术框架革新后的组合效果
+赶上vue3 + vite的最佳搭档,正好可以总结一下,当前在前端领域的积累
 
-#### 软件架构
-软件架构说明-提交测试
+#### 项目架构
 
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
+采用基于vue3的技术栈
+路由-vue-router
+项目打包,渲染更新-vite
+工具函数 - lodash
+UI - native UI
+数据状态存储采用compotions API支持的hooks写法
 
 #### 参与贡献
 

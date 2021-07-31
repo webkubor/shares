@@ -1,11 +1,11 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-07-31 18:37:46
+ * @LastEditTime: 2021-07-31 18:46:42
  */
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-// import element from 'plugins/element3'
+import nativeUI from 'plugins/nativeUI'
 // 全局样式
 import 'styles/index.scss'
 
@@ -15,4 +15,5 @@ import 'styles/index.scss'
 
 createApp(App)
 .use(router)
+.use(nativeUI)
 .mount('#app')
