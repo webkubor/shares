@@ -1,3 +1,7 @@
+/*
+ * @Date: 2021-07-20 16:07:16
+ * @LastEditTime: 2021-07-31 18:54:21
+ */
 import { defineConfig } from 'vite'
 import {resolve} from 'path'
 import vue from '@vitejs/plugin-vue'
@@ -7,8 +11,8 @@ import {viteMockServe}from 'vite-plugin-mock'
 // defineConfig有代码提示
 export default defineConfig({
   css:{},
-  base: '/vite-vue-admin/', // assets
-  publicDir: '/vite-vue-admin/', //js和静态文件同样的前缀
+  base: '/webkubor-shares/', // assets
+  publicDir: '/webkubor-shares/', //js和静态文件同样的前缀
   // 打包配置
   esbuild:{},
   // 别名
