@@ -7,7 +7,6 @@
     "show": "vite preview"
   },
   "dependencies": {
-    "loadash": "^1.0.0",
     "vue": "^3.0.5",
     "vue-router": "^4.0.4"
   },
