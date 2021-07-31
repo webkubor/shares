@@ -1,11 +1,10 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-07-31 18:58:38
+ * @LastEditTime: 2021-07-31 19:49:22
  */
 import { defineConfig } from 'vite'
 import {resolve} from 'path'
 import vue from '@vitejs/plugin-vue'
-import {viteMockServe}from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
 // defineConfig有代码提示
@@ -28,5 +27,5 @@ export default defineConfig({
       'plugins': resolve(__dirname, "src/plugins") 
     }
   },
-  plugins: [vue(), viteMockServe({supportTs: false })]
+  plugins: [vue()]
 })
