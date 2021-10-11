@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-07-31 19:49:22
+ * @LastEditTime: 2021-10-11 15:58:13
  */
 import { defineConfig } from 'vite'
 import {resolve} from 'path'
@@ -24,7 +24,8 @@ export default defineConfig({
       'views': resolve(__dirname, "src/views"),
       'utils': resolve(__dirname, "src/utils"),
       'styles': resolve(__dirname, "src/styles"),
-      'plugins': resolve(__dirname, "src/plugins") 
+      'plugins': resolve(__dirname, "src/plugins"),
+      'directives': resolve(__dirname, "src/directives")
     }
   },
   plugins: [vue()]
