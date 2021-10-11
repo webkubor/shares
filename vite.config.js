@@ -1,13 +1,11 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-11 16:16:30
+ * @LastEditTime: 2021-10-11 16:34:30
  */
 import { defineConfig } from 'vite'
 import {resolve} from 'path'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
-// defineConfig有代码提示
 export default defineConfig({
   css:{},
   base: '/webkubor-shares/', // assets
