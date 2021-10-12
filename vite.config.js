@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-12 14:02:43
+ * @LastEditTime: 2021-10-12 14:04:58
  */
 import { defineConfig } from 'vite'
 import {resolve} from 'path'
@@ -25,6 +25,7 @@ export default defineConfig({
       'api': resolve(__dirname, "src/api"),
       'layouts': resolve(__dirname, "src/layouts"),
       'views': resolve(__dirname, "src/views"),
+      'hooks':  resolve(__dirname, "src/hooks"),
       'utils': resolve(__dirname, "src/utils"),
       'styles': resolve(__dirname, "src/styles"),
       'plugins': resolve(__dirname, "src/plugins"),
