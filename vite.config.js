@@ -1,37 +1,43 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-12 14:04:58
+ * @LastEditTime: 2021-10-12 14:28:35
  */
-import { defineConfig } from 'vite'
-import {resolve} from 'path'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import { resolve } from "path";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
-  css:{},
-  base: '/webkubor-shares/', // assets
-  publicDir: '/webkubor-shares/', //js和静态文件同样的前缀
+  css: {},
+  base: "/webkubor-shares/", // assets
+  publicDir: "/webkubor-shares/", //js和静态文件同样的前缀
   // 打包配置
-  esbuild:{
-    target: 'modules',
-    assetsDir: 'assets', 
-    outDir: 'dist', //指定输出路径
-    minify: 'terser' // 混淆器，terser构建后文件体积更小
+  esbuild: {
+    target: "modules",
+    assetsDir: "assets",
+    outDir: "dist", //指定输出路径,
+    minify: "terser", // 混淆器，terser构建后文件体积更小,
+    // 启用代码css代码分割,当启用时，在异步 chunk 中导入的 CSS 将内联到异步 chunk 本身，并在其被加载时插入。
+    cssCodeSplit: true,
+    cssTarget: "chrome61",
+    sourcemap: false,
+    // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能
+    brotliSize:false
   },
   // 别名
   resolve: {
-    alias:{
-      '@': resolve(__dirname, "src"),
-      'comps': resolve(__dirname, "src/components"),
-      'api': resolve(__dirname, "src/api"),
-      'layouts': resolve(__dirname, "src/layouts"),
-      'views': resolve(__dirname, "src/views"),
-      'hooks':  resolve(__dirname, "src/hooks"),
-      'utils': resolve(__dirname, "src/utils"),
-      'styles': resolve(__dirname, "src/styles"),
-      'plugins': resolve(__dirname, "src/plugins"),
-      'directives': resolve(__dirname, "src/directives"),
-      'images': resolve(__dirname, "src/assets/images")
-    }
+    alias: {
+      "@": resolve(__dirname, "src"),
+      comps: resolve(__dirname, "src/components"),
+      api: resolve(__dirname, "src/api"),
+      layouts: resolve(__dirname, "src/layouts"),
+      views: resolve(__dirname, "src/views"),
+      hooks: resolve(__dirname, "src/hooks"),
+      utils: resolve(__dirname, "src/utils"),
+      styles: resolve(__dirname, "src/styles"),
+      plugins: resolve(__dirname, "src/plugins"),
+      directives: resolve(__dirname, "src/directives"),
+      images: resolve(__dirname, "src/assets/images"),
+    },
   },
   plugins: [vue()],
   // 本地运行配置，及反向代理配置
@@ -46,5 +52,5 @@ export default defineConfig({
     //         rewrite: (path) => path.replace(/^\/api/, '')
     //   }
     // }
-  }
-})
+  },
+});

@@ -1,11 +1,13 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-07-31 18:52:25
+ * @LastEditTime: 2021-10-12 14:17:00
 -->
 # webkubor项目展示
 
 #### 介绍
 赶上vue3 + vite的最佳搭档,正好可以总结一下,当前在前端领域的积累
+
+
 
 #### 项目架构
 
@@ -15,6 +17,11 @@
 工具函数 - lodash
 UI - native UI
 数据状态存储采用compotions API支持的hooks写法
+
+#### 架构细节说明
+基于vite的特殊性, vite在开发时期作为服务器在根目录,而不是在public文件夹里(vue2);
+Vite 内置了 HMR 到 Vue 单文件组件（SFC） 和 React Fast Refresh 中。
+也通过 @prefresh/vite 对 Preact 实现了官方集成
 
 #### 参与贡献
 
