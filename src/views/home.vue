@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-13 18:01:50
+ * @LastEditTime: 2021-10-13 18:07:12
 -->
 <template>
    <h2>Hello ,this is {{user.name}}</h2>
@@ -25,7 +25,7 @@ export default {
     let {user} = useUser()
    fetchHotCommit()
     function fetchHotCommit() {
-      getHotCommit().then(res => {
+      getHotCommit({name: "爱情"}).then(res => {
         console.log(res, "fetchHotCommit")
       }).catch(err=> console.error(err))
     }
