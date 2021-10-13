@@ -1,11 +1,12 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-12 13:56:46
+ * @LastEditTime: 2021-10-13 15:12:11
  */
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import nativeUI from 'plugins/nativeUI'
+import "plugins/dayjs"
 
 // gloabal
 import 'styles/index.scss'
