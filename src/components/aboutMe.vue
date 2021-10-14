@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2021-10-14 18:06:18
+ * @LastEditTime: 2021-10-14 18:10:26
 -->
 <template>
   <n-avatar round  :size="48" :src="user.avatar" @click="swtichTheme"/>
@@ -37,7 +37,6 @@ export default {
       let index  = Math.floor(Math.random() * typeList.length)
        return typeList[index]
     }
-
 
     return {
       getRandomType,

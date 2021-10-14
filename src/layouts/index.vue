@@ -1,39 +1,25 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-14 17:34:18
+ * @LastEditTime: 2021-10-14 18:17:43
 -->
 <template>
-<!-- 自定义主题配置 -->
  <n-config-provider :theme="theme">
     <router-view></router-view>
  </n-config-provider>
+<!-- 自定义主题配置 -->
   <!-- <n-config-provider :theme-overrides="themeOverrides">
   </n-config-provider> -->
 </template>
 <script>
 import {useTheme} from "hooks/useTheme"
-
+import DefaultTheme from "theme/default.json"
 export default {
   setup() {
     let {theme} = useTheme()
     /**
      * @type import('naive-ui').GlobalThemeOverrides
      */
-    const themeOverrides = {
-      common: {
-        primaryColor: "#FF0000",
-      },
-      Button: {
-        textColor: "#FF0000",
-      },
-      Select: {
-        peers: {
-          InternalSelection: {
-            textColor: "#FF0000",
-          },
-        },
-      },
-    };
+    const themeOverrides = DefaultTheme;
     return {
       theme
     };
