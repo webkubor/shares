@@ -1,12 +1,14 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2021-10-13 14:51:55
+ * @LastEditTime: 2021-10-14 15:58:18
 -->
 <template>
+    <h2>Hello ,this is {{ user.name }}</h2>
   <n-divider title-placement="left">关于我</n-divider>
   <n-space>
     <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()"> {{item}} </n-tag>
   </n-space>
+
 </template>
 <script>
 import { useUser } from "hooks/useUser";
