@@ -1,9 +1,10 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2021-10-14 15:58:18
+ * @LastEditTime: 2021-10-14 16:27:06
 -->
 <template>
-    <h2>Hello ,this is {{ user.name }}</h2>
+  <n-avatar round  :size="48" :src="user.avatar"/>
+  <h2>Hello ,this is {{ user.name }} ,今年 {{user.age}}</h2>
   <n-divider title-placement="left">关于我</n-divider>
   <n-space>
     <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()"> {{item}} </n-tag>

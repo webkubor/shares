@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-14 15:49:39
+ * @LastEditTime: 2021-10-14 16:51:08
  */
 import {
   create,
@@ -10,8 +10,10 @@ import {
   NIcon,
   NTag,
   NEllipsis,
+  NAvatar,
   NCard,
   NLayout,
+  NSwitch,
   NSkeleton,
   NGrid,
   NGridItem,
@@ -28,6 +30,8 @@ const naive = create({
     NImageGroup,
     NTimelineItem,
     NCarousel,
+    NSwitch,
+    NAvatar,
     NGridItem, NDivider, NIcon, NTag, NEllipsis, NLayout,NSkeleton],
 });
 
