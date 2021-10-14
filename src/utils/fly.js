@@ -1,10 +1,9 @@
 /*
  * @Date: 2021-10-13 17:51:35
- * @LastEditTime: 2021-10-13 18:17:59
+ * @LastEditTime: 2021-10-13 18:22:06
  */
 import fly from "flyio"
-var newFly = new Fly;
-newFly.config.headers = {"x-tag": "flyio"}
+fly.config.headers = {"x-tag": "flyio"}
 //添加请求拦截器
 fly.interceptors.request.use((request)=>{
     //给所有请求添加自定义header
@@ -27,8 +26,8 @@ fly.interceptors.response.use(
     },
     (err) => {
         //发生网络错误后会走到这里
-        //return Promise.resolve("ssss")
+        return Promise.resolve(err)
     }
 )
 
-export default newFly
+export default fly

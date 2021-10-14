@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-13 18:12:22
+ * @LastEditTime: 2021-10-14 14:25:37
  */
 import { defineConfig } from "vite";
 import { resolve } from "path";
@@ -21,7 +21,7 @@ export default defineConfig({
     cssTarget: "chrome61",
     sourcemap: false,
     // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能
-    brotliSize:false
+    brotliSize: false,
   },
   // 别名
   resolve: {
@@ -44,13 +44,15 @@ export default defineConfig({
   server: {
     cors: true, // 默认启用并允许任何源
     open: true, // 在服务器启动时自动在浏览器中打开应用程序
+    host: "0.0.0.0",
+    port: 9999,
     //反向代理配置，注意rewrite写法，开始没看文档在这里踩了坑
     proxy: {
-        '/api': {
-            target: 'https://api.66mz8.com/',   //代理接口
-            changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
+      "/api": {
+        target: "https://api.66mz8.com/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   },
 });

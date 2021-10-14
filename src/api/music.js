@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-13 17:43:29
- * @LastEditTime: 2021-10-13 18:18:04
+ * @LastEditTime: 2021-10-14 14:32:58
  */
 import fly from "utils/fly.js"
 fly.config.baseURL = "https://api.66mz8.com/"
