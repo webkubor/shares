@@ -1,14 +1,20 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2021-10-14 17:31:06
+ * @LastEditTime: 2021-10-14 18:06:18
 -->
 <template>
   <n-avatar round  :size="48" :src="user.avatar" @click="swtichTheme"/>
   <h2>Hello ,this is {{ user.name }} ,今年 {{user.age}}</h2>
   <n-divider title-placement="left">关于我</n-divider>
   <n-space>
-    <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()"> {{item}} </n-tag>
+    <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round> {{item}} </n-tag>
   </n-space>
+  <n-space>
+ <n-gradient-text :size="24" type="warning">
+   座右铭: {{user.personalSign}}
+  </n-gradient-text>
+  </n-space>
+
 
 </template>
 <script>

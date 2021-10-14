@@ -1,13 +1,10 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-14 17:43:38
+ * @LastEditTime: 2021-10-14 17:54:41
 -->
 <template>
   <n-carousel autoplay>
-    <img
-      class="carousel-img"
-      src="https://s.anw.red/fav/1623979004.jpg!/fw/600/quality/77/ignore-error/true"
-    />
+    <img class="carousel-img" src="https://s.anw.red/fav/1623979004.jpg!/fw/600/quality/77/ignore-error/true"  />
     <img
       class="carousel-img"
       src="https://s.anw.red/news/1623372884.jpg!/both/800x450/quality/78/progressive/true/ignore-error/true"
@@ -68,7 +65,7 @@ export default {
 }
 .carousel-img {
   width: 100%;
-  height: 240px;
+  height: 400px;
   object-fit: cover;
 }
 </style>

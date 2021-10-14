@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:26:47
- * @LastEditTime: 2021-10-14 16:13:48
+ * @LastEditTime: 2021-10-14 18:00:55
 -->
 <template>
   <n-divider title-placement="left">关于项目</n-divider>
@@ -11,7 +11,7 @@
           <img :src="item.pic" />
         </template>
         <div class="content">
-          <n-tag>{{ item.type }}</n-tag>
+          <n-tag  type="warning">{{ item.type }}</n-tag>
           <div>description: {{ item.description }}</div>
           <div>time: {{ item.time }}</div>
         </div>

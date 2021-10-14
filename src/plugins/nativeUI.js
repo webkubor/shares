@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-14 17:35:17
+ * @LastEditTime: 2021-10-14 18:05:23
  */
 import {
   create,
@@ -25,17 +25,34 @@ import {
   NBackTop,
   NTimelineItem,
   NConfigProvider,
+  NGradientText,
 } from "naive-ui";
 
 const naive = create({
-  components: [NButton,NBackTop,NCard, NDialog, NGrid, NTimeline, NImage,NSpace,
+  components: [
+    NButton,
+    NBackTop,
+    NCard,
+    NDialog,
+    NGrid,
+    NTimeline,
+    NImage,
+    NSpace,
     NConfigProvider,
+    NGradientText,
     NImageGroup,
     NTimelineItem,
     NCarousel,
     NSwitch,
     NAvatar,
-    NGridItem, NDivider, NIcon, NTag, NEllipsis, NLayout,NSkeleton],
+    NGridItem,
+    NDivider,
+    NIcon,
+    NTag,
+    NEllipsis,
+    NLayout,
+    NSkeleton,
+  ],
 });
 
 // 通用字体
