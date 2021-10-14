@@ -1,52 +1,35 @@
 <!--
  * @Date: 2021-07-31 19:26:47
- * @LastEditTime: 2021-10-14 15:59:10
+ * @LastEditTime: 2021-10-14 16:13:48
 -->
 <template>
-    <n-divider title-placement="left">关于项目</n-divider>
-    <n-grid :x-gap="12" :y-gap="8" :cols="3">
-      <n-grid-item>
-        <n-card title="带封面的卡片">
-          <template #cover>
-            <img
-              src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
-            />
-          </template>
-          卡片内容
-        </n-card>
-      </n-grid-item>
-      <n-grid-item>
-        <n-card title="带封面的卡片">
-          <template #cover>
-            <img
-              src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
-            />
-          </template>
-          卡片内容
-        </n-card>
-      </n-grid-item>
-      <n-grid-item>
-        <n-card title="带封面的卡片">
-          <template #cover>
-            <img
-              src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
-            />
-          </template>
-          卡片内容
-        </n-card>
-      </n-grid-item>
-      <n-grid-item>
-        <n-card title="带封面的卡片">
-          <template #cover>
-            <img
-              src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
-            />
-          </template>
-          卡片内容
-        </n-card>
-      </n-grid-item>
-    </n-grid>
+  <n-divider title-placement="left">关于项目</n-divider>
+  <n-grid :x-gap="12" :y-gap="8" :cols="3">
+    <n-grid-item v-for="(item, index) in projects.list">
+      <n-card :title="item.title">
+        <template #cover>
+          <img :src="item.pic" />
+        </template>
+        <div class="content">
+          <n-tag>{{ item.type }}</n-tag>
+          <div>description: {{ item.description }}</div>
+          <div>time: {{ item.time }}</div>
+        </div>
+      </n-card>
+    </n-grid-item>
+  </n-grid>
 </template>
+<script>
+import { useProject } from "hooks/useProject";
+export default {
+  setup() {
+    let { projects } = useProject();
+    return {
+      projects,
+    };
+  },
+};
+</script>
 <style lang="scss" scoped>
 .n-card {
   max-width: 800px;

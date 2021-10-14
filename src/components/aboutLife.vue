@@ -1,5 +1,5 @@
 <template>
-    <n-divider title-placement="left">关于生活</n-divider>
+    <n-divider title-placement="left">关于我近期的生活</n-divider>
     <div class="mylife">
       <div class="left">
         <n-timeline item-placement="left" size="large">

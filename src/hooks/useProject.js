@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-13 14:46:53
- * @LastEditTime: 2021-10-13 14:56:45
+ * @LastEditTime: 2021-10-14 16:07:21
  */
 import {reactive} from "vue"
 
@@ -11,18 +11,21 @@ const projects = reactive({
          title: "test",
          pic: "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg",
          descrition: "desc",
+         type: "business",
          time: "2018-2020"
      },
      {
         title: "test",
         pic: "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg",
         descrition: "desc",
+        type: "persnal",
         time: "2018-2020"
     },
     {
         title: "test",
         pic: "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg",
         descrition: "desc",
+        type: "persnal",
         time: "2018-2020"
     }
     ],
@@ -32,7 +35,6 @@ const projects = reactive({
 
 
 export function  useProject() {
-     
     function initDetail() {
         projects.detail = null
         
