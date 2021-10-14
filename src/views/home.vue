@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-14 17:05:24
+ * @LastEditTime: 2021-10-14 17:43:38
 -->
 <template>
   <n-carousel autoplay>
@@ -21,7 +21,7 @@
       src="https://s.anw.red/news/1623152423.jpg!/both/800x450/quality/78/progressive/true/ignore-error/true"
     />
   </n-carousel>
-  <div class="my-share">
+  <div class="my-share" :class="{'dark-theme':theme}">
     <AboutMe />
     <AboutProject />
     <AboutLife />
@@ -33,6 +33,8 @@ import AboutMe from "comps/aboutMe.vue";
 import AboutProject from "comps/aboutProjects.vue";
 import AboutLife from "comps/aboutLife.vue";
 import { getHotCommit } from "api/music";
+import {useTheme} from "hooks/useTheme"
+
 export default {
   components: {
     AboutMe,
@@ -41,6 +43,7 @@ export default {
   },
 
   setup() {
+    let {theme} = useTheme()
     fetchHotCommit();
     function fetchHotCommit() {
       getHotCommit({ name: "爱情" })
@@ -49,12 +52,19 @@ export default {
         })
         .catch((err) => console.error(err));
     }
+    return {
+      theme
+    }
   },
 };
 </script>
 <style lang="scss" scoped>
 .my-share {
   padding: 1rem;
+}
+.dark-theme {
+    background: hsl(0deg 0% 0%);
+    color: hsl(0deg 0% 100%);
 }
 .carousel-img {
   width: 100%;

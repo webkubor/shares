@@ -1,9 +1,9 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2021-10-14 16:27:06
+ * @LastEditTime: 2021-10-14 17:31:06
 -->
 <template>
-  <n-avatar round  :size="48" :src="user.avatar"/>
+  <n-avatar round  :size="48" :src="user.avatar" @click="swtichTheme"/>
   <h2>Hello ,this is {{ user.name }} ,今年 {{user.age}}</h2>
   <n-divider title-placement="left">关于我</n-divider>
   <n-space>
@@ -13,9 +13,11 @@
 </template>
 <script>
 import { useUser } from "hooks/useUser";
+import {useTheme} from "hooks/useTheme";
 export default {
   setup() {
     let { user, updateAge } = useUser();
+    let { swtichTheme} = useTheme()
     console.log(user, "test");
     updateAge()
 
@@ -30,8 +32,10 @@ export default {
        return typeList[index]
     }
 
+
     return {
       getRandomType,
+      swtichTheme,
       user
     };
   },
