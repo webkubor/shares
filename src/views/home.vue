@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-14 16:00:39
+ * @LastEditTime: 2021-10-14 17:05:24
 -->
 <template>
   <n-carousel autoplay>
@@ -25,6 +25,7 @@
     <AboutMe />
     <AboutProject />
     <AboutLife />
+    <n-back-top :right="300" />
   </div>
 </template>
 <script>
