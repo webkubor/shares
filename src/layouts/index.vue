@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-15 11:22:10
+ * @LastEditTime: 2021-10-15 13:30:54
 -->
 <template>
   <n-config-provider :theme="theme">
@@ -12,7 +12,7 @@
 </template>
 <script>
 import { useTheme } from "hooks/useTheme";
-import DefaultTheme from "theme/default.json";
+// import DefaultTheme from "theme/default.json";
 export default {
   setup() {
     let { theme } = useTheme();
