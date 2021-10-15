@@ -1,13 +1,13 @@
 /*
  * @Date: 2021-10-14 17:25:02
- * @LastEditTime: 2021-10-15 11:26:08
+ * @LastEditTime: 2021-10-15 16:17:05
  */
 import { useMessage, darkTheme } from "naive-ui";
 import { ref } from "vue";
 let theme = ref(null);
+
 export function useTheme() {
   const message = useMessage();
-
   function swtichTheme() {
     if (theme.value) {
       theme.value = null;

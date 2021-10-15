@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-15 14:31:36
+ * @LastEditTime: 2021-10-15 14:42:27
  */
 import { defineConfig } from "vite";
 import { resolve } from "path";
@@ -25,6 +25,7 @@ export default defineConfig({
   },
   // 自定义构建配置
   build: {
+    cssTarget: "chrome61",
     terserOptions:{
       compress: {
         // 生产环境下移除console

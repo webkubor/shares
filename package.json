@@ -4,6 +4,7 @@
   "scripts": {
     "serve": "cross-env NODE_ENV=development vite",
     "build": "vite build",
+    "depoly": "sh -x ./build_depoly.sh ",
     "show": "vite preview"
   },
   "dependencies": {
