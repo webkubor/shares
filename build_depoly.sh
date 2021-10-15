@@ -1,6 +1,6 @@
 ###
  # @Date: 2021-10-15 16:18:09
- # @LastEditTime: 2021-10-15 16:33:32
+ # @LastEditTime: 2021-10-15 16:34:38
 ### 
 # 发生任何错误时终止
 set -e
@@ -18,6 +18,4 @@ git commit -m "构建生产环境打包"
 
 #echo "----------deploy project...----------"
 git push origin HEAD
-
-
-cd -
+#echo "----------depolying success----------"
