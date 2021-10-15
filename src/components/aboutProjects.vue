@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:26:47
- * @LastEditTime: 2021-10-15 10:46:53
+ * @LastEditTime: 2021-10-15 11:44:24
 -->
 <template>
   <n-divider title-placement="center">关于项目</n-divider>
@@ -11,9 +11,16 @@
           <img :src="item.pic" />
         </template>
         <div class="content">
-          <n-tag  type="warning">{{ item.type }}</n-tag>
-          <div>description: {{ item.description }}</div>
-          <div>time: {{ item.time }}</div>
+          <n-tag
+            v-for="(item, index) in item.tags"
+            :key="item + index"
+            :type="getRandomType()"
+            round
+          >
+            {{ item }}
+          </n-tag>
+          <div class="item">description: {{ item.descrition }}</div>
+          <div class="item">time: {{ item.time }}</div>
         </div>
       </n-card>
     </n-grid-item>
@@ -21,11 +28,14 @@
 </template>
 <script>
 import { useProject } from "hooks/useProject";
+import { getRandomType } from "utils/random";
+
 export default {
   setup() {
     let { projects } = useProject();
     return {
       projects,
+      getRandomType,
     };
   },
 };
@@ -34,5 +44,14 @@ export default {
 .n-card {
   max-width: 800px;
   max-height: 350px;
+}
+.content {
+  font-size: 18px;
+  .n-tag {
+    margin-right: 4px;
+  }
+  .item {
+    padding-top: 10px;
+  }
 }
 </style>

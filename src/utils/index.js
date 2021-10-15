@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-11 15:47:11
- * @LastEditTime: 2021-10-11 15:53:52
+ * @LastEditTime: 2021-10-15 11:39:55
  */
 import _ from "lodash";
 
@@ -15,22 +15,6 @@ import _ from "lodash";
  }
 
 
-/**
- * @description: return RandomStr
- * @param {*}
- * @return {*}
- */
-export function createRandomStr(len = 6) {
-  var rdmString = "";
-  for (
-    ;
-    rdmString.length < len;
-    rdmString += Math.random()
-      .toString(36)
-      .substr(2)
-  );
-  return rdmString.substr(0, len);
-}
 
 /**
  * @description: 长文本省略中间部分

@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2021-10-15 10:45:58
+ * @LastEditTime: 2021-10-15 11:41:09
 -->
 <template>
   <div class="about-me column-center">
@@ -32,23 +32,13 @@
 <script>
 import { useUser } from "hooks/useUser";
 import { useTheme } from "hooks/useTheme";
+import {getRandomType} from "utils/random"
 export default {
   setup() {
     let { user, updateAge } = useUser();
     let { swtichTheme } = useTheme();
-    console.log(user, "test");
+    console.log(user, "我的");
     updateAge();
-
-    /**
-     * @description: 获取随机状态
-     * @param {*}
-     * @return {*}
-     */
-    function getRandomType() {
-      let typeList = ["success", "warning", "error", "info", ""];
-      let index = Math.floor(Math.random() * typeList.length);
-      return typeList[index];
-    }
 
     return {
       getRandomType,
@@ -74,13 +64,15 @@ export default {
     padding: 1rem 0 0;
     .n-avatar {
       cursor: pointer;
-      animation: rotating 1.2s linear infinite;
+      transition: transform 0.5s ease-in-out 0s;
+      &:hover {
+         transform: rotate(720deg);
+      }
     }
   }
   .sign {
     font-weight: 500;
     font-size: 20px;
-      animation: rotating 1.2s linear infinite;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 }
