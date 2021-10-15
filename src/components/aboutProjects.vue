@@ -1,9 +1,9 @@
 <!--
  * @Date: 2021-07-31 19:26:47
- * @LastEditTime: 2021-10-14 18:00:55
+ * @LastEditTime: 2021-10-15 10:46:53
 -->
 <template>
-  <n-divider title-placement="left">关于项目</n-divider>
+  <n-divider title-placement="center">关于项目</n-divider>
   <n-grid :x-gap="12" :y-gap="8" :cols="3">
     <n-grid-item v-for="(item, index) in projects.list">
       <n-card :title="item.title">

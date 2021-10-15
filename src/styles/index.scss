@@ -1,3 +1,6 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -6,4 +9,22 @@
   a {
     color: #42b983;
   }
+}
+
+.column-center {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+.flex {
+  @include flex;
+}
+.flex-center {
+  @include flex-center;
+}
+.flex-center-v {
+  @include flex-center-v;
+}
+.flex-center-h {
+  @include flex-center-h;
 }

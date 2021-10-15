@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-14 18:05:23
+ * @LastEditTime: 2021-10-15 10:23:02
  */
 import {
   create,
@@ -20,6 +20,7 @@ import {
   NTimeline,
   NImage,
   NSpace,
+  NPopover,
   NImageGroup,
   NCarousel,
   NBackTop,
@@ -31,6 +32,7 @@ import {
 const naive = create({
   components: [
     NButton,
+    NPopover,
     NBackTop,
     NCard,
     NDialog,

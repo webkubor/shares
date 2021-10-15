@@ -1,48 +1,88 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2021-10-14 18:10:26
+ * @LastEditTime: 2021-10-15 10:45:58
 -->
 <template>
-  <n-avatar round  :size="48" :src="user.avatar" @click="swtichTheme"/>
-  <h2>Hello ,this is {{ user.name }} ,今年 {{user.age}}</h2>
-  <n-divider title-placement="left">关于我</n-divider>
-  <n-space>
-    <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round> {{item}} </n-tag>
-  </n-space>
-  <n-space>
- <n-gradient-text :size="24" type="warning">
-   座右铭: {{user.personalSign}}
-  </n-gradient-text>
-  </n-space>
-
-
+  <div class="about-me column-center">
+    <div class="show-item">
+      <n-popover trigger="hover">
+        <template #trigger>
+          <n-avatar round :size="100" :src="user.avatar" @click="swtichTheme" />
+        </template>
+        <span>来换个心情呗</span>
+      </n-popover>
+    </div>
+    <h1>{{ user.name }}</h1>
+    <n-space>
+      <n-tag
+        v-for="(item, index) in user.tags"
+        :key="item + index"
+        :type="getRandomType()"
+        round
+      >
+        {{ item }}
+      </n-tag>
+    </n-space>
+    <n-divider title-placement="center">签名</n-divider>
+    <div class="sign">
+      {{ user.personalSign }}
+    </div>
+  </div>
 </template>
 <script>
 import { useUser } from "hooks/useUser";
-import {useTheme} from "hooks/useTheme";
+import { useTheme } from "hooks/useTheme";
 export default {
   setup() {
     let { user, updateAge } = useUser();
-    let { swtichTheme} = useTheme()
+    let { swtichTheme } = useTheme();
     console.log(user, "test");
-    updateAge()
+    updateAge();
 
     /**
      * @description: 获取随机状态
      * @param {*}
      * @return {*}
-     */    
+     */
     function getRandomType() {
-      let typeList = ["success", "warning", "error","info", ""]
-      let index  = Math.floor(Math.random() * typeList.length)
-       return typeList[index]
+      let typeList = ["success", "warning", "error", "info", ""];
+      let index = Math.floor(Math.random() * typeList.length);
+      return typeList[index];
     }
 
     return {
       getRandomType,
       swtichTheme,
-      user
+      user,
     };
   },
 };
 </script>
+<style lang="scss" scoped>
+
+@keyframes rotating {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.about-me {
+  padding: 1rem 0 1rem;
+  .show-item {
+    padding: 1rem 0 0;
+    .n-avatar {
+      cursor: pointer;
+      animation: rotating 1.2s linear infinite;
+    }
+  }
+  .sign {
+    font-weight: 500;
+    font-size: 20px;
+      animation: rotating 1.2s linear infinite;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+}
+
+</style>
