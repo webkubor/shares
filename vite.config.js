@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-14 18:16:44
+ * @LastEditTime: 2021-10-15 14:31:36
  */
 import { defineConfig } from "vite";
 import { resolve } from "path";
@@ -10,7 +10,7 @@ export default defineConfig({
   css: {},
   base: "/webkubor-shares/", // assets
   publicDir: "/webkubor-shares/", //js和静态文件同样的前缀
-  // 打包配置
+  // 预构建这一步由 esbuild 执行，这使得 Vite 的冷启动时间比任何基于 JavaScript 的打包器都要快得多。
   esbuild: {
     target: "modules",
     assetsDir: "assets",
@@ -22,6 +22,16 @@ export default defineConfig({
     sourcemap: false,
     // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能
     brotliSize: false,
+  },
+  // 自定义构建配置
+  build: {
+    terserOptions:{
+      compress: {
+        // 生产环境下移除console
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
   },
   // 别名
   resolve: {
