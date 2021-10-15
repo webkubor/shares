@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:26:47
- * @LastEditTime: 2021-10-15 11:44:24
+ * @LastEditTime: 2021-10-15 11:48:03
 -->
 <template>
   <n-divider title-placement="center">关于项目</n-divider>
@@ -8,7 +8,7 @@
     <n-grid-item v-for="(item, index) in projects.list">
       <n-card :title="item.title">
         <template #cover>
-          <img :src="item.pic" />
+          <n-image :src="item.pic" />
         </template>
         <div class="content">
           <n-tag
