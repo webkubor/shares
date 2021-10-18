@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-15 10:44:06
+ * @LastEditTime: 2021-10-18 10:55:05
 -->
 <template>
   <div class="my-share" :class="{'dark-theme':theme}">
@@ -41,13 +41,15 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.my-share {
+  padding: 1rem;
+}
 .dark-theme {
     background: hsl(0deg 0% 0%);
     color: hsl(0deg 0% 100%);
 }
 .carousel-img {
   width: 100%;
-  height: 400px;
   object-fit: cover;
 }
 </style>

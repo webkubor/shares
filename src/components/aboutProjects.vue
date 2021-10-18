@@ -1,10 +1,10 @@
 <!--
  * @Date: 2021-07-31 19:26:47
- * @LastEditTime: 2021-10-15 11:48:03
+ * @LastEditTime: 2021-10-18 11:07:23
 -->
 <template>
   <n-divider title-placement="center">关于项目</n-divider>
-  <n-grid :x-gap="12" :y-gap="8" :cols="3">
+  <n-grid cols="1 s:1 m:1 l:2 xl:3 2xl:3" x-gap="15" y-gap="15" responsive="screen">
     <n-grid-item v-for="(item, index) in projects.list">
       <n-card :title="item.title">
         <template #cover>
