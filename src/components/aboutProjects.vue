@@ -1,14 +1,19 @@
 <!--
  * @Date: 2021-07-31 19:26:47
- * @LastEditTime: 2021-10-18 11:07:23
+ * @LastEditTime: 2021-10-18 13:54:07
 -->
 <template>
   <n-divider title-placement="center">关于项目</n-divider>
-  <n-grid cols="1 s:1 m:1 l:2 xl:3 2xl:3" x-gap="15" y-gap="15" responsive="screen">
+  <n-grid
+    cols="1 s:1 m:1 l:2 xl:3 2xl:3"
+    x-gap="15"
+    y-gap="15"
+    responsive="screen"
+  >
     <n-grid-item v-for="(item, index) in projects.list">
       <n-card :title="item.title">
         <template #cover>
-          <n-image :src="item.pic" />
+          <n-image :src="item.pic" object-fit="scale-down" />
         </template>
         <div class="content">
           <n-tag
@@ -19,8 +24,8 @@
           >
             {{ item }}
           </n-tag>
-          <div class="item">description: {{ item.descrition }}</div>
-          <div class="item">time: {{ item.time }}</div>
+          <div class="item">{{ item.descrition }}</div>
+          <div class="item link" @click="openUrl(item.source, item.title + index)">{{ item.source }}</div>
         </div>
       </n-card>
     </n-grid-item>
@@ -29,12 +34,13 @@
 <script>
 import { useProject } from "hooks/useProject";
 import { getRandomType } from "utils/random";
-
+import {openUrl} from "utils/index"
 export default {
   setup() {
     let { projects } = useProject();
     return {
       projects,
+      openUrl,
       getRandomType,
     };
   },
@@ -52,6 +58,12 @@ export default {
   }
   .item {
     padding-top: 10px;
+  }
+  .link {
+    text-decoration: underline;
+    text-decoration-color: lightseagreen;
+    color: lightseagreen;
+    cursor: pointer;
   }
 }
 </style>
