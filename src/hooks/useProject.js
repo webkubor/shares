@@ -1,10 +1,8 @@
 /*
  * @Date: 2021-10-13 14:46:53
- * @LastEditTime: 2021-10-18 13:46:07
+ * @LastEditTime: 2021-10-21 11:50:57
  */
 import {reactive} from "vue"
-
-
 const projects = reactive({
     list: [
      {
@@ -41,7 +39,28 @@ const projects = reactive({
         descrition: "当前工业可视化在前端的解决方案落地, 不同尺寸超大屏适配等功能,图表可视化",
         tags: ["persnal", "工业可视化的探索", "echarts"],
         source: "https://web-kubor.gitee.io/vue-echarts"
-    }
+    },
+    {
+        title: "原生TS开发的音视频组件",
+        pic: "https://gitee.com/web-kubor/oss/raw/master/uPic/IIUHZq.png",
+        descrition: "基于webpack构建的 ,使用ts开发的视频组件",
+        tags: ["persnal", "TS", "video"],
+        source: "https://web-kubor.gitee.io/ts-mi-video/"
+    },
+     {
+         title: "3D渲染入门到渐入佳境",
+        pic: "https://gitee.com/web-kubor/oss/raw/master/uPic/fBXktq.png",
+        tags: ["babylon", "canvas", "HTML5"],
+        descrition: "Babylon.JS是一种使用HTML5 canvas元素在Web上对3D环境进行编码的好方法",
+        source: "https://web-kubor.gitee.io/babylon-3d"
+     },
+     {
+         title: "美控家小程序",
+         pic: "https://gitee.com/web-kubor/oss/raw/master/uPic/15501634788295_.pic.jpg",
+         tags: ["mpvue", "fltio", "vue", "vant", "微信小程序"],
+         descrition: "基于最初小程序混合框架Mpvue的精简构建版, 已经在线上运营2年多的电商小程序",
+         source: "微信小程序搜:美控星选"
+     }
     ],
     detail: null
 

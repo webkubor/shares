@@ -1,1 +1,0 @@
-import{u as e}from"./useTheme.27578c61.js";import{o as t,c as r,r as o,w as s,a as m}from"./vendor.cf209d9f.js";import"./index.46d76607.js";const n={setup(){let{theme:t}=e();return{theme:t}}};n.render=function(e,n,a,u,d,f){const i=o("router-view"),c=o("n-config-provider");return t(),r(c,{theme:u.theme},{default:s((()=>[m(i)])),_:1},8,["theme"])};export default n;
