@@ -10,6 +10,10 @@ const indexMap = [
   {
     path: '/home',
     component: () => import('views/home.vue')
+  },
+  {
+    path: '/project/:id',
+    component:() => import("views/project/detail.vue")
   }
 ]
 

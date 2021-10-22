@@ -1,29 +1,27 @@
-import {createRouter, createWebHashHistory} from 'vue-router'
-import RouterMap from './routerMap'
+import { createRouter, createWebHashHistory } from "vue-router";
+import RouterMap from "./routerMap";
 
-
-
-const routes =[
+const routes = [
   {
-    path: '/*/',
+    path: "/*/",
     meta: {
-      auth: 'all'
+      auth: "all",
     },
-    redirect: '/'
+    redirect: "/",
   },
   {
-    path: '/',
-    component: () => import('layouts/index.vue'),
+    path: "/",
+    component: () => import("layouts/index.vue"),
     children: RouterMap, //所有的主要组件内容
-    redirect: '/home' //layout布局下的默认首页
+    redirect: "/home", //layout布局下的默认首页
   },
-]
+];
 
 // 第一步抽离router
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes,
+});
 
-export  default router
+export default router;
