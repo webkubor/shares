@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-13 14:03:05
- * @LastEditTime: 2021-10-15 16:17:17
+ * @LastEditTime: 2021-10-22 14:02:04
  */
 import { reactive } from "vue";
 import dayjs from "dayjs";
@@ -12,6 +12,32 @@ const user = reactive({
   avatar: "https://gitee.com/web-kubor/oss/raw/master/uPic/WechatIMG1543.jpeg",
   personalSign: "Unkillable makes you stronger",
   tags: [ "开朗", "社交NB症", "民族音乐爱好者"],
+  timeLine: [
+    {
+      title: "成功",
+      content: "哪里成功",
+      time: "2018-04-03 20:46",
+      show:"https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg",
+    },
+    {
+      title: "成功",
+      content: "哪里成功",
+      time: "2018-04-03 20:46",
+      show:"https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
+    },
+    {
+      title: "成功",
+      content: "哪里成功",
+      time: "2018-04-03 20:46",
+      show:"https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
+    },
+    {
+      title: "成功",
+      content: "哪里成功",
+      time: "2018-04-03 20:46",
+      show:"https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
+    }
+  ]
 });
 
 export function useUser() {

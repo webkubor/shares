@@ -3,42 +3,35 @@
     <div class="mylife">
       <div class="left">
         <n-timeline item-placement="left" size="large">
-          <n-timeline-item content="啊" />
           <n-timeline-item
+           v-for="(item, index) in user.timeLine"
             type="success"
-            title="成功"
-            content="哪里成功"
-            time="2018-04-03 20:46"
-          />
-          <n-timeline-item
-            type="error"
-            content="哪里错误"
-            time="2018-04-03 20:46"
-          />
-          <n-timeline-item
-            type="warning"
-            title="警告"
-            content="哪里警告"
-            time="2018-04-03 20:46"
-          />
-          <n-timeline-item
-            type="info"
-            title="信息"
-            content="是的"
-            time="2018-04-03 20:46"
+            :key="index"
+            :title="item.title"
+            :content="item.content"
+            :time="item.time"
           />
         </n-timeline>
       </div>
       <div class="right">
-        <n-image-group>
             <n-image
               width="100"
               src="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
             />
-        </n-image-group>
       </div>
     </div>
 </template>
+<script>
+import { useUser } from "hooks/useUser";
+export default {
+  setup() {
+    let { user } = useUser();
+    return {
+      user
+    }
+  },
+}
+</script>
 <style lang="scss" scoped>
 .mylife {
   display: flex;
