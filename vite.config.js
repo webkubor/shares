@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-15 14:42:27
+ * @LastEditTime: 2021-10-25 09:57:59
  */
 import { defineConfig } from "vite";
 import { resolve } from "path";
@@ -13,19 +13,26 @@ export default defineConfig({
   // 预构建这一步由 esbuild 执行，这使得 Vite 的冷启动时间比任何基于 JavaScript 的打包器都要快得多。
   esbuild: {
     target: "modules",
-    assetsDir: "assets",
     outDir: "dist", //指定输出路径,
     minify: "terser", // 混淆器，terser构建后文件体积更小,
     // 启用代码css代码分割,当启用时，在异步 chunk 中导入的 CSS 将内联到异步 chunk 本身，并在其被加载时插入。
     cssCodeSplit: true,
-    cssTarget: "chrome61",
     sourcemap: false,
-    // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能
-    brotliSize: false,
   },
   // 自定义构建配置
   build: {
     cssTarget: "chrome61",
+    assetsDir: "assets/img/",
+     // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能
+    brotliSize: false,
+    rollupOptions: {
+      output: {
+        chunkFileNames: "assets/js/[name]-[hash].js",
+        entryFileNames: "assets/js/[name]-[hash].js",
+        assetFileNames: "assets/[ext]/[name]-[hash].[ext]"
+      }
+    },
+
     terserOptions:{
       compress: {
         // 生产环境下移除console
