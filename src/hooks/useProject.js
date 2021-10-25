@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-13 14:46:53
- * @LastEditTime: 2021-10-22 13:32:42
+ * @LastEditTime: 2021-10-25 14:16:07
  */
 import { reactive } from "vue";
 const projects = reactive({
@@ -78,7 +78,7 @@ const projects = reactive({
     {
       id: 9,
       title: "原:海马体士多(海马体商城)小程序",
-      pic: "https://gitee.com/web-kubor/oss/raw/master/uPic/15501634788295_.pic.jpg",
+      pic: "https://gitee.com/web-kubor/oss/raw/master/uPic/15661635141947_.pic.jpg",
       tags: ["wepy", "fly", "原生开发", "weapp", "business"],
       descrition:
         "基于微信官方框架wepy开发的微信小程序, 已经在线上运营3年多的电商小程序",
@@ -87,11 +87,11 @@ const projects = reactive({
     {
       id: 10,
       title: "eomai-工业可视化",
-      pic: "https://gitee.com/web-kubor/oss/raw/master/uPic/15501634788295_.pic.jpg",
+      pic: "https://gitee.com/web-kubor/oss/raw/master/uPic/FbtucN.png",
       tags: ["wepy", "fly", "原生开发", "weapp", "business"],
       descrition:
-        "基于微信官方框架wepy开发的微信小程序, 已经在线上运营3年多的电商小程序",
-      source: "微信小程序搜:海马体商城",
+        "优麦是一款部署在优海云工业互联网平台上的——基于TOC及JIT、TQM等精益管理理论，将优海信息20多年的软件技术封装成适用于中小微型企业应用的工业APP, 是通过不断追求在制品的“快速流动、均衡生产、产能满负荷、质量可追溯性”，达到提高生产效率的目的。",
+      source: "http://eome.eohicloud.com/#/login",
     },
   ],
   detail: null,
