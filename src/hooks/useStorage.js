@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-22 14:30:45
- * @LastEditTime: 2021-10-22 15:10:32
+ * @LastEditTime: 2021-11-15 10:23:35
  */
 import { judgeTypes } from "utils/index.js";
 
@@ -10,6 +10,7 @@ import { judgeTypes } from "utils/index.js";
  * @return {*}
  */
 export function useStorage() {
+  
   function clearAll() {
     window.localStorage.clear();
   }
@@ -20,18 +21,16 @@ export function useStorage() {
    * @return {*}
    */
   function setData(key, value) {
+    if (!key) return
     let storageVal = value;
-    if (judgeTypes(storageVal) === "function") {
-      console.warn("暂不支持保存函数");
-      return;
-    }
-    if (judgeTypes(storageVal) === "array") {
+    if (judgeTypes(value) !== "string") {
       storageVal = JSON.stringify(storageVal);
     }
     window.localStorage.setItem(key, storageVal);
   }
 
   function getData(key) {
+    if (!key) return
     if (localStorage.getItem(key)) {
       let myData = localStorage.getItem(key);
       if (
@@ -53,6 +52,7 @@ export function useStorage() {
    * @return {*}
    */
   function removeData(key) {
+    if (!key) return
     if (localStorage.getItem(key)) localStorage.removeItem(key);
   }
 
