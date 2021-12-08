@@ -1,1 +1,0 @@
-import{O as e,P as a,o as s,c as t,S as d}from"./vendor-36e7c3a2.js";const o={setup(){}},c=d("data-v-71150eee");e("data-v-71150eee");const r={class:"detail-age"};a();const n=c(((e,a,d,o,c,n)=>(s(),t("div",r))));o.render=n,o.__scopeId="data-v-71150eee";export default o;
