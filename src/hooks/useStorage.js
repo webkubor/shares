@@ -1,15 +1,10 @@
 /*
  * @Date: 2021-10-22 14:30:45
- * @LastEditTime: 2021-11-15 10:23:35
+ * @LastEditTime: 2021-12-08 16:32:52
  */
 import { judgeTypes } from "utils/index.js";
 
-/**
- * @description: clear all storage
- * @param {*}
- * @return {*}
- */
-export function useStorage() {
+
   
   function clearAll() {
     window.localStorage.clear();
@@ -62,4 +57,3 @@ export function useStorage() {
     getData,
     removeData,
   };
-}
