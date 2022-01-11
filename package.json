@@ -4,6 +4,7 @@
   "scripts": {
     "serve": "cross-env NODE_ENV=development vite",
     "build": "vite build",
+    "test": "jest",
     "depoly": "sh -x ./build_depoly.sh ",
     "show": "vite preview"
   },
@@ -17,6 +18,8 @@
     "@vitejs/plugin-vue": "^1.1.5",
     "@vue/compiler-sfc": "^3.0.5",
     "cross-env": "^7.0.3",
+    "jsdom": "^19.0.0",
+    "jsdom-global": "^3.0.2",
     "naive-ui": "^2.15.11",
     "sass": "^1.32.8",
     "vfonts": "^0.1.0",

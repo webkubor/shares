@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-12 14:17:00
+ * @LastEditTime: 2022-01-11 15:14:55
 -->
 # webkubor项目展示
 
@@ -18,10 +18,31 @@
 UI - native UI
 数据状态存储采用compotions API支持的hooks写法
 
+加入vue单元测试 
+
 #### 架构细节说明
 基于vite的特殊性, vite在开发时期作为服务器在根目录,而不是在public文件夹里(vue2);
 Vite 内置了 HMR 到 Vue 单文件组件（SFC） 和 React Fast Refresh 中。
 也通过 @prefresh/vite 对 Preact 实现了官方集成
+
+
+### 关于测试
+参考文档: https://vue-test-utils.vuejs.org/
+
+主流的 JavaScript 测试运行器有很多，但 Vue Test Utils 都能够支持。它是与测试运行器无关的
+Vue Test Utils 依赖浏览器环境。技术上讲你可以将其运行在一个真实的浏览器，但是我们并不推荐，因为在不同的平台上都启动真实的浏览器是很复杂的。我们推荐取而代之的是用 JSDOM 在 Node 虚拟浏览器环境运行测试。
+
+Jest 测试运行器自动设置了 JSDOM。对于其它测试运行器来说，你可以在你的测试入口处使用 jsdom-global 手动设置 JSDOM。
+
+```
+npm install --save-dev jsdom jsdom-global
+```
+
+```js
+// 在测试的设置 / 入口中
+require('jsdom-global')()
+
+```
 
 #### 参与贡献
 
