@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-15 13:30:54
+ * @LastEditTime: 2022-03-05 12:25:09
 -->
 <template>
   <n-config-provider :theme="theme">
@@ -11,8 +11,8 @@
   </n-config-provider> -->
 </template>
 <script>
-import { useTheme } from "hooks/useTheme";
-// import DefaultTheme from "theme/default.json";
+import { useTheme } from "@/hooks/useTheme";
+// import DefaultTheme from "@/theme/default.json";
 export default {
   setup() {
     let { theme } = useTheme();

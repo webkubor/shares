@@ -1,17 +1,17 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-13 15:12:11
+ * @LastEditTime: 2022-03-05 12:27:49
  */
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import nativeUI from 'plugins/nativeUI'
-import "plugins/dayjs"
+import nativeUI from '@/plugins/nativeUI'
+import "@/plugins/dayjs"
 
 // gloabal
-import 'styles/index.scss'
+import '@/styles/index.scss'
 
-import copy from "./directivies/copy";
+import copy from "@/directivies/copy";
 
 
 console.log('%c%s', 'color: #ff0000', import.meta.env.MODE, 'mode');

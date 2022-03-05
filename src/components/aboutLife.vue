@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import { useUser } from "hooks/useUser";
+import { useUser } from "@/hooks/useUser";
 export default {
   setup() {
     let { user } = useUser();

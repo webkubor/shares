@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-22 13:52:19
+ * @LastEditTime: 2022-03-05 12:23:25
 -->
 <template>
   <div class="my-share" :class="{'dark-theme':theme}">
@@ -11,11 +11,11 @@
   </div>
 </template>
 <script>
-import AboutMe from "comps/aboutMe.vue";
-import AboutProject from "comps/aboutProjects.vue";
-import AboutLife from "comps/aboutLife.vue";
-import { getHotCommit } from "api/music";
-import {useTheme} from "hooks/useTheme"
+import AboutMe from "@/components/aboutMe.vue";
+import AboutProject from "@/components/aboutProjects.vue";
+import AboutLife from "@/components/aboutLife.vue";
+import { getHotCommit } from "@/api/music";
+import {useTheme} from "@/hooks/useTheme"
 
 export default {
   components: {

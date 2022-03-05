@@ -1,10 +1,15 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2021-10-25 09:57:59
+ * @LastEditTime: 2022-03-05 12:44:51
  */
 import { defineConfig } from "vite";
-import { resolve } from "path";
 import vue from "@vitejs/plugin-vue";
+import AutoImports from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { dirResolver, DirResolverHelper } from 'vite-auto-import-resolvers'
+import path from 'path'
+const pathSrc = path.resolve(__dirname, 'src')
 
 export default defineConfig({
   css: {},
@@ -21,7 +26,6 @@ export default defineConfig({
   },
   // 自定义构建配置
   build: {
-    cssTarget: "chrome61",
     assetsDir: "assets/img/",
      // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能
     brotliSize: false,
@@ -44,21 +48,19 @@ export default defineConfig({
   // 别名
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src"),
-      comps: resolve(__dirname, "src/components"),
-      api: resolve(__dirname, "src/api"),
-      layouts: resolve(__dirname, "src/layouts"),
-      views: resolve(__dirname, "src/views"),
-      hooks: resolve(__dirname, "src/hooks"),
-      utils: resolve(__dirname, "src/utils"),
-      styles: resolve(__dirname, "src/styles"),
-      plugins: resolve(__dirname, "src/plugins"),
-      directives: resolve(__dirname, "src/directives"),
-      images: resolve(__dirname, "src/assets/images"),
-      theme: resolve(__dirname, "src/assets/theme")
+      '@/': `${pathSrc}/`,
     },
   },
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    DirResolverHelper(), // 辅助模块-模块化
+    AutoImports({
+      imports: ['vue'],
+      resolvers: [
+          dirResolver()  // 模块全局自动导入
+      ]
+  })
+  ],
   // 本地运行配置，及反向代理配置
   server: {
     cors: true, // 默认启用并允许任何源

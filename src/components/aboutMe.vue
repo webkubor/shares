@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2021-10-15 11:41:09
+ * @LastEditTime: 2022-03-05 12:24:42
 -->
 <template>
   <div class="about-me column-center">
@@ -30,9 +30,9 @@
   </div>
 </template>
 <script>
-import { useUser } from "hooks/useUser";
-import { useTheme } from "hooks/useTheme";
-import {getRandomType} from "utils/random"
+import { useUser } from "@/hooks/useUser";
+import { useTheme } from "@/hooks/useTheme";
+import {getRandomType} from "@/utils/random"
 export default {
   setup() {
     let { user, updateAge } = useUser();

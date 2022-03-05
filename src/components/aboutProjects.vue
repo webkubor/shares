@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:26:47
- * @LastEditTime: 2021-10-18 13:54:07
+ * @LastEditTime: 2022-03-05 12:24:30
 -->
 <template>
   <n-divider title-placement="center">关于项目</n-divider>
@@ -32,9 +32,9 @@
   </n-grid>
 </template>
 <script>
-import { useProject } from "hooks/useProject";
-import { getRandomType } from "utils/random";
-import {openUrl} from "utils/index"
+import { useProject } from "@/hooks/useProject";
+import { getRandomType } from "@/utils/random";
+import {openUrl} from "@/utils/index"
 export default {
   setup() {
     let { projects } = useProject();
