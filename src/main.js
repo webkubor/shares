@@ -1,12 +1,12 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-03-06 09:19:36
+ * @LastEditTime: 2022-03-06 09:25:06
  */
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import nativeUI from '@/plugins/nativeUI'
-// import i18n from '@/plugins/i18n'
+import i18n from '@/plugins/i18n'
 
 // gloabal
 import '@/styles/index.scss'
@@ -26,7 +26,7 @@ console.log(import.meta.env.VITE_APP_NAME, 'dev args')
 
 createApp(App)
 .use(copy)
-// .use(i18n)
+.use(i18n)
 .use(router)
 .use(nativeUI)
 .mount('#app')
