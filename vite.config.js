@@ -1,15 +1,16 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-03-05 12:44:51
+ * @LastEditTime: 2022-03-06 08:58:10
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import AutoImports from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import { dirResolver, DirResolverHelper } from 'vite-auto-import-resolvers'
-import path from 'path'
-const pathSrc = path.resolve(__dirname, 'src')
+import AutoImports from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import I18n from "@intlify/vite-plugin-vue-i18n";
+import { dirResolver, DirResolverHelper } from "vite-auto-import-resolvers";
+import path from "path";
+const pathSrc = path.resolve(__dirname, "src");
 
 export default defineConfig({
   css: {},
@@ -27,39 +28,45 @@ export default defineConfig({
   // 自定义构建配置
   build: {
     assetsDir: "assets/img/",
-     // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能
+    // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能
     brotliSize: false,
     rollupOptions: {
       output: {
         chunkFileNames: "assets/js/[name]-[hash].js",
         entryFileNames: "assets/js/[name]-[hash].js",
-        assetFileNames: "assets/[ext]/[name]-[hash].[ext]"
-      }
+        assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
+      },
     },
 
-    terserOptions:{
+    terserOptions: {
       compress: {
         // 生产环境下移除console
         drop_console: true,
-        drop_debugger: true
-      }
-    }
+        drop_debugger: true,
+      },
+    },
   },
   // 别名
   resolve: {
     alias: {
-      '@/': `${pathSrc}/`,
+      "@/": `${pathSrc}/`,
     },
   },
   plugins: [
     vue(),
     DirResolverHelper(), // 辅助模块-模块化
     AutoImports({
-      imports: ['vue'],
+      imports: ["vue", "vue-i18n", "vue-router"],
       resolvers: [
-          dirResolver()  // 模块全局自动导入
-      ]
-  })
+        dirResolver({ prefix: "use" }), // 模块全局自动导入
+      ],
+    }),
+    	// i18n 国际化支持
+		I18n({
+			runtimeOnly: true,
+			compositionOnly: true,
+			include: [path.resolve(__dirname, '../locales/**')]
+		})
   ],
   // 本地运行配置，及反向代理配置
   server: {

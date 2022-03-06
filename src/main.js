@@ -1,12 +1,12 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-03-05 12:27:49
+ * @LastEditTime: 2022-03-06 09:19:36
  */
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import nativeUI from '@/plugins/nativeUI'
-import "@/plugins/dayjs"
+// import i18n from '@/plugins/i18n'
 
 // gloabal
 import '@/styles/index.scss'
@@ -23,8 +23,10 @@ console.log('%c%s', 'color: #00a3cc', import.meta.env.PROD, "应用是否运行�
 console.log('%c%s', 'color: #aa00ff',import.meta.env.DEV,  "应用是否运行在开发环境");
 console.log(import.meta.env.VITE_APP_NAME, 'dev args')
 
+
 createApp(App)
 .use(copy)
+// .use(i18n)
 .use(router)
 .use(nativeUI)
 .mount('#app')

@@ -1,9 +1,9 @@
 /*
  * @Date: 2021-10-13 14:03:05
- * @LastEditTime: 2021-10-22 14:02:04
+ * @LastEditTime: 2022-03-06 09:21:31
  */
 import { reactive } from "vue";
-import dayjs from "dayjs";
+import dayjs from "@/utils/dayjs";
 
 const user = reactive({
   name: "webkubor",
@@ -11,7 +11,7 @@ const user = reactive({
   birthday: "1995-11-13",
   avatar: "https://gitee.com/web-kubor/oss/raw/master/uPic/WechatIMG1543.jpeg",
   personalSign: "Unkillable makes you stronger",
-  tags: [ "开朗", "社交NB症", "民族音乐爱好者"],
+  tags: [ "开朗", "社交NB症", "民族音乐爱好者", "爱国"],
   timeLine: [
     {
       title: "成功",

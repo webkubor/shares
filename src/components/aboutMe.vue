@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2022-03-05 12:24:42
+ * @LastEditTime: 2022-03-06 09:22:08
 -->
 <template>
   <div class="about-me column-center">
@@ -9,10 +9,11 @@
         <template #trigger>
           <n-avatar round :size="100" :src="user.avatar" @click="swtichTheme" />
         </template>
-        <span>来换个心情呗</span>
+        <span>来换个心情呗 </span>
       </n-popover>
     </div>
     <h1>{{ user.name }}</h1>
+        <div>language: {{ language }}</div>
     <n-space>
       <n-tag
         v-for="(item, index) in user.tags"
@@ -35,10 +36,12 @@ import { useTheme } from "@/hooks/useTheme";
 import {getRandomType} from "@/utils/random"
 export default {
   setup() {
+// const { t, locale } = useI18n()ss
     let { user, updateAge } = useUser();
     let { swtichTheme } = useTheme();
     console.log(user, "我的");
     updateAge();
+const language = computed(() => locale.value === 'zh-CN' ? '中文' : 'English')
 
     return {
       getRandomType,
