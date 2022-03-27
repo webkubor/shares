@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-03-06 08:58:10
+ * @LastEditTime: 2022-03-27 14:04:10
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -17,6 +17,11 @@ export default defineConfig({
   base: "/webkubor-shares/", // assets
   publicDir: "/webkubor-shares/", //js和静态文件同样的前缀
   // 预构建这一步由 esbuild 执行，这使得 Vite 的冷启动时间比任何基于 JavaScript 的打包器都要快得多。
+  resolve: {
+    alias: {
+      "@/": `${pathSrc}/`,
+    },
+  },
   esbuild: {
     target: "modules",
     outDir: "dist", //指定输出路径,
@@ -46,12 +51,7 @@ export default defineConfig({
       },
     },
   },
-  // 别名
-  resolve: {
-    alias: {
-      "@/": `${pathSrc}/`,
-    },
-  },
+ 
   plugins: [
     vue(),
     DirResolverHelper(), // 辅助模块-模块化

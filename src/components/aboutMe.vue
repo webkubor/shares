@@ -1,19 +1,32 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2022-03-06 09:44:11
+ * @LastEditTime: 2022-03-27 14:01:43
 -->
 <template>
   <div class="about-me column-center">
     <div class="show-item">
       <n-popover trigger="hover">
         <template #trigger>
-          <n-avatar round :size="100" :src="user.avatar" @click="swtichTheme" />
+          <div>
+            <n-avatar
+              round
+              :size="100"
+              :src="user.avatar"
+              @click="swtichTheme"
+            />
+            <!-- <n-avatar
+              round
+              :size="100"
+              :src="getImage(logo.jpeg)"
+              @click="swtichTheme"
+            /> -->
+          </div>
         </template>
         <span>来换个心情呗 {{ t("about") }}</span>
       </n-popover>
     </div>
-    <h1>{{ user.name }}</h1>
-    <div @click="toggleLocale">language: {{ language }}</div>
+    <h1>{{ user.name }} and {{ user.name2 }}</h1>
+    <!-- <div @click="toggleLocale">语言切换: {{ language }}</div> -->
     <n-space>
       <n-tag
         v-for="(item, index) in user.tags"
@@ -30,12 +43,10 @@
     </div>
   </div>
 </template>
-<script>
+<script  setup>
 import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
-export default {
-  setup() {
     const { t, locale } = useI18n();
     let { user, updateAge } = useUser();
     let { swtichTheme } = useTheme();
@@ -48,18 +59,20 @@ export default {
     const toggleLocale = () => {
       locale.value = locale.value === "zh-CN" ? "en" : "zh-CN";
     };
-
-    return {
-      getRandomType,
-      swtichTheme,
-      toggleLocale,
-      user,
-      t,
-      language,
+    /**
+     * @description: 将图片导为模块
+     * @param {*} name
+     * @return {*}
+     */
+    const getImage = (name) => {
+      const picModules = import.meta.globEager("/src/assets/*");
+ 
+      const path = `/src/assets/${name}`;
+      return picModules[path].default;
     };
-  },
-};
+
 </script>
+
 <style lang="scss" scoped>
 @keyframes rotating {
   from {
