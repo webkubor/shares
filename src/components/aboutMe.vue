@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2022-03-27 14:30:37
+ * @LastEditTime: 2022-03-27 14:43:36
 -->
 <template>
   <div class="about-me column-center">
@@ -11,7 +11,7 @@
             <n-avatar
               round
               :size="100"
-              :src="user.avatar"
+              :src="getImage('me.jpeg')"
               @click="swtichTheme"
             />
             <n-icon
@@ -23,6 +23,7 @@
             <n-avatar
               round
               :size="100"
+              object-fit="contain"
               :src="getImage('today.jpeg')"
               @click="swtichTheme"
             />
@@ -31,7 +32,16 @@
         <span>来换个心情呗 {{ t("about") }}</span>
       </n-popover>
     </div>
-    <h1>{{ user.name }} and {{ user.name2 }}</h1>
+
+    <h1>
+      <n-gradient-text type="info">
+        {{ user.name }}
+      </n-gradient-text>
+      and
+      <n-gradient-text type="danger">
+        {{ user.name2 }}
+      </n-gradient-text>
+    </h1>
     <!-- <div @click="toggleLocale">语言切换: {{ language }}</div> -->
     <n-space>
       <n-tag

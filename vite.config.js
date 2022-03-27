@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-03-27 14:32:56
+ * @LastEditTime: 2022-03-27 14:37:51
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -34,14 +34,7 @@ export default defineConfig({
         assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
       },
     },
-
-    terserOptions: {
-      compress: {
-        // 生产环境下移除console
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+   
   },
  
   plugins: [
