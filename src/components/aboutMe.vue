@@ -1,25 +1,26 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2022-03-27 14:01:43
+ * @LastEditTime: 2022-03-27 14:18:16
 -->
 <template>
   <div class="about-me column-center">
     <div class="show-item">
       <n-popover trigger="hover">
         <template #trigger>
-          <div>
+          <div class="love-headers">
             <n-avatar
               round
               :size="100"
               :src="user.avatar"
               @click="swtichTheme"
             />
-            <!-- <n-avatar
+            <n-icon  size="50" color="#FC8E99" class="iconfont" :component="HeartSharp" />
+            <n-avatar
               round
               :size="100"
-              :src="getImage(logo.jpeg)"
+              :src="getImage('logo.jpeg')"
               @click="swtichTheme"
-            /> -->
+            />
           </div>
         </template>
         <span>来换个心情呗 {{ t("about") }}</span>
@@ -43,34 +44,28 @@
     </div>
   </div>
 </template>
-<script  setup>
+<script setup>
 import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
-    const { t, locale } = useI18n();
-    let { user, updateAge } = useUser();
-    let { swtichTheme } = useTheme();
-    console.log(user, "我的");
-    updateAge();
-    const language = computed(() =>
-      locale.value === "zh-CN" ? "中文" : "English"
-    );
+import { HeartSharp } from "@vicons/ionicons5";
+const { t, locale } = useI18n();
+let { user, updateAge } = useUser();
+let { swtichTheme } = useTheme();
+console.log(user, "我的");
+updateAge("logo.jpeg");
+const language = computed(() =>
+  locale.value === "zh-CN" ? "中文" : "English"
+);
 
-    const toggleLocale = () => {
-      locale.value = locale.value === "zh-CN" ? "en" : "zh-CN";
-    };
-    /**
-     * @description: 将图片导为模块
-     * @param {*} name
-     * @return {*}
-     */
-    const getImage = (name) => {
-      const picModules = import.meta.globEager("/src/assets/*");
- 
-      const path = `/src/assets/${name}`;
-      return picModules[path].default;
-    };
-
+const toggleLocale = () => {
+  locale.value = locale.value === "zh-CN" ? "en" : "zh-CN";
+};
+const getImage = (name) => {
+  const picModules = import.meta.globEager("/src/assets/*");
+  const path = `/src/assets/${name}`;
+  return picModules[path].default;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -86,6 +81,13 @@ import { getRandomType } from "@/utils/random";
   padding: 1rem 0 1rem;
   .show-item {
     padding: 1rem 0 0;
+    .love-headers {
+      display: flex;
+      align-items: center;
+      .n-icon {
+        margin: 0 10px;
+      }
+    }
     .n-avatar {
       cursor: pointer;
       transition: transform 0.5s ease-in-out 0s;
