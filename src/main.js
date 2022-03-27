@@ -1,13 +1,13 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-03-06 09:25:06
+ * @LastEditTime: 2022-03-27 14:24:22
  */
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import nativeUI from '@/plugins/nativeUI'
 import i18n from '@/plugins/i18n'
-
+import 'animate.css';
 // gloabal
 import '@/styles/index.scss'
 

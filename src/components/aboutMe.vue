@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2022-03-27 14:18:16
+ * @LastEditTime: 2022-03-27 14:30:37
 -->
 <template>
   <div class="about-me column-center">
@@ -14,11 +14,16 @@
               :src="user.avatar"
               @click="swtichTheme"
             />
-            <n-icon  size="50" color="#FC8E99" class="iconfont" :component="HeartSharp" />
+            <n-icon
+              size="50"
+              color="#FC8E99"
+              class="animate__animated animate__heartBeat"
+              :component="HeartSharp"
+            />
             <n-avatar
               round
               :size="100"
-              :src="getImage('logo.jpeg')"
+              :src="getImage('today.jpeg')"
               @click="swtichTheme"
             />
           </div>
@@ -86,6 +91,10 @@ const getImage = (name) => {
       align-items: center;
       .n-icon {
         margin: 0 10px;
+      }
+      .n-icon:active {
+        animation: bounce; /* referring directly to the animation's @keyframe declaration */
+        animation-duration: 2s; /* don't forget to set a duration! */
       }
     }
     .n-avatar {

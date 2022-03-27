@@ -9,6 +9,7 @@
     "show": "vite preview"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "dayjs": "^1.10.7",
     "flyio": "^0.6.14",
     "vue": "^3.2.25",

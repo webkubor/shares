@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-03-27 14:04:10
+ * @LastEditTime: 2022-03-27 14:32:56
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -21,14 +21,6 @@ export default defineConfig({
     alias: {
       "@/": `${pathSrc}/`,
     },
-  },
-  esbuild: {
-    target: "modules",
-    outDir: "dist", //指定输出路径,
-    minify: "terser", // 混淆器，terser构建后文件体积更小,
-    // 启用代码css代码分割,当启用时，在异步 chunk 中导入的 CSS 将内联到异步 chunk 本身，并在其被加载时插入。
-    cssCodeSplit: true,
-    sourcemap: false,
   },
   // 自定义构建配置
   build: {
