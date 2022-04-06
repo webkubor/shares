@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2022-03-27 14:43:36
+ * @LastEditTime: 2022-04-06 20:29:38
 -->
 <template>
   <div class="about-me column-center">
@@ -14,7 +14,7 @@
               :src="getImage('me.jpeg')"
               @click="swtichTheme"
             />
-            <n-icon
+            <!-- <n-icon
               size="50"
               color="#FC8E99"
               class="animate__animated animate__heartBeat"
@@ -26,7 +26,7 @@
               object-fit="contain"
               :src="getImage('today.jpeg')"
               @click="swtichTheme"
-            />
+            /> -->
           </div>
         </template>
         <span>来换个心情呗 {{ t("about") }}</span>
@@ -37,12 +37,12 @@
       <n-gradient-text type="info">
         {{ user.name }}
       </n-gradient-text>
-      and
+      <!-- and
       <n-gradient-text type="danger">
         {{ user.name2 }}
-      </n-gradient-text>
+      </n-gradient-text> -->
     </h1>
-    <!-- <div @click="toggleLocale">语言切换: {{ language }}</div> -->
+    <div @click="toggleLocale">语言切换: {{ language }}</div>
     <n-space>
       <n-tag
         v-for="(item, index) in user.tags"

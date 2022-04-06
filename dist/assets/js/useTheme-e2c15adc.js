@@ -1,1 +1,0 @@
-import{H as l,I as a,J as t}from"./vendor-d70628a1.js";let e=l(null);function o(){const s=a();function u(){e.value?e.value=null:(e.value=t,s.success("\u767D\u5929\u4E0D\u61C2\u591C\u7684\u9ED1")),console.log("theme, \u5207\u6362\u4E3B\u9898")}return{theme:e,swtichTheme:u}}export{o as u};
