@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2022-04-06 20:29:38
+ * @LastEditTime: 2022-04-15 17:09:47
 -->
 <template>
   <div class="about-me column-center">
@@ -14,19 +14,6 @@
               :src="getImage('me.jpeg')"
               @click="swtichTheme"
             />
-            <!-- <n-icon
-              size="50"
-              color="#FC8E99"
-              class="animate__animated animate__heartBeat"
-              :component="HeartSharp"
-            />
-            <n-avatar
-              round
-              :size="100"
-              object-fit="contain"
-              :src="getImage('today.jpeg')"
-              @click="swtichTheme"
-            /> -->
           </div>
         </template>
         <span>来换个心情呗 {{ t("about") }}</span>
@@ -37,11 +24,8 @@
       <n-gradient-text type="info">
         {{ user.name }}
       </n-gradient-text>
-      <!-- and
-      <n-gradient-text type="danger">
-        {{ user.name2 }}
-      </n-gradient-text> -->
     </h1>
+    <n-button @click="googleSignIn">谷歌登录</n-button>
     <div @click="toggleLocale">语言切换: {{ language }}</div>
     <n-space>
       <n-tag
@@ -63,11 +47,62 @@
 import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
-import { HeartSharp } from "@vicons/ionicons5";
 const { t, locale } = useI18n();
 let { user, updateAge } = useUser();
 let { swtichTheme } = useTheme();
 console.log(user, "我的");
+
+
+onInitGoogle();
+
+/**
+ * @description: 配置初始化-加载auth2的库
+ * @param {*}
+ * @return {*}
+ */
+function onInitGoogle() {
+  let baseOptions = {
+    client_id:
+      "675793533606-2udrroc6jhkr0k9ucas051900qg4n5sb.apps.googleusercontent.com",
+    cookiepolicy: "single_host_origin",
+  };
+
+  gapi.load("auth2", function () {
+    console.log("%c%s", "color: #00e600", "auth2-ready");
+    gapi.auth2
+      .init(baseOptions)
+      .then((res) => {
+        console.log("google init complete...", res);
+        window.getAuthInstance = gapi.auth2.getAuthInstance(); //获取GoogleAuth对象
+        let isSignedIn = getAuthInstance.isSignedIn.get(); //存储登录状态
+        let GoogleUser = getAuthInstance.currentUser.get(); //这个方法获取返回的响应对象
+        if (isSignedIn) {
+          console.log(
+            "%c%s",
+            "color: #00a3cc",
+            "window.getAuthInstance",
+            GoogleUser
+          );
+        }
+      })
+      .catch((err) => console.log(err));
+  });
+}
+
+/**
+ *google登录
+ */
+function googleSignIn() {
+  window.getAuthInstance
+    .signIn()
+    .then((res) => {
+      let user = res.Qu? res.Qu: res.Iu
+      console.log(res, "googleSignIn");
+      window.$message?.success(user?.sf + "欢迎回来");
+    })
+    .catch((err) => console.log(err));
+}
+
 updateAge("logo.jpeg");
 const language = computed(() =>
   locale.value === "zh-CN" ? "中文" : "English"
@@ -76,22 +111,18 @@ const language = computed(() =>
 const toggleLocale = () => {
   locale.value = locale.value === "zh-CN" ? "en" : "zh-CN";
 };
+
+
 const getImage = (name) => {
   const picModules = import.meta.globEager("/src/assets/*");
   const path = `/src/assets/${name}`;
   return picModules[path].default;
 };
+
+
 </script>
 
 <style lang="scss" scoped>
-@keyframes rotating {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .about-me {
   padding: 1rem 0 1rem;
   .show-item {
