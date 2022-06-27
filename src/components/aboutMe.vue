@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2022-04-15 17:09:47
+ * @LastEditTime: 2022-04-15 17:16:18
 -->
 <template>
   <div class="about-me column-center">
@@ -72,8 +72,9 @@ function onInitGoogle() {
     gapi.auth2
       .init(baseOptions)
       .then((res) => {
-        console.log("google init complete...", res);
         window.getAuthInstance = gapi.auth2.getAuthInstance(); //获取GoogleAuth对象
+        console.log("google init complete...",  window.getAuthInstance);
+
         let isSignedIn = getAuthInstance.isSignedIn.get(); //存储登录状态
         let GoogleUser = getAuthInstance.currentUser.get(); //这个方法获取返回的响应对象
         if (isSignedIn) {

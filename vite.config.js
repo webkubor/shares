@@ -1,14 +1,13 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-03-27 14:37:51
+ * @LastEditTime: 2022-06-27 19:17:26
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImports from "unplugin-auto-import/vite";
-import Components from "unplugin-vue-components/vite";
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import I18n from "@intlify/vite-plugin-vue-i18n";
 import { dirResolver, DirResolverHelper } from "vite-auto-import-resolvers";
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import path from "path";
 const pathSrc = path.resolve(__dirname, "src");
 
@@ -46,6 +45,7 @@ export default defineConfig({
         dirResolver({ prefix: "use" }), // 模块全局自动导入
       ],
     }),
+    vueJsx(),
     	// i18n 国际化支持
 		I18n({
 			runtimeOnly: true,
