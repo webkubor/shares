@@ -1,13 +1,22 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-01-11 15:14:55
+ * @LastEditTime: 2022-09-05 11:34:04
 -->
 # webkubor项目展示
 
 #### 介绍
 赶上vue3 + vite的最佳搭档,正好可以总结一下,当前在前端领域的积累
 
+```
+console.log(import.meta.env.VITE_APP_NAME, 'dev args')
+console.log('%c%s', 'color: #ff0000', import.meta.env.MODE, 'mode');
 
+console.log('%c%s', 'color: #00e600', import.meta.env.BASE_URL, "部署应用时的基本 URL");
+
+console.log('%c%s', 'color: #00a3cc', import.meta.env.PROD, "应用是否运行在生产环境");
+
+console.log('%c%s', 'color: #aa00ff',import.meta.env.DEV,  "应用是否运行在开发环境");
+```
 
 #### 项目架构
 
@@ -26,23 +35,6 @@ Vite 内置了 HMR 到 Vue 单文件组件（SFC） 和 React Fast Refresh 中�
 也通过 @prefresh/vite 对 Preact 实现了官方集成
 
 
-### 关于测试
-参考文档: https://vue-test-utils.vuejs.org/
-
-主流的 JavaScript 测试运行器有很多，但 Vue Test Utils 都能够支持。它是与测试运行器无关的
-Vue Test Utils 依赖浏览器环境。技术上讲你可以将其运行在一个真实的浏览器，但是我们并不推荐，因为在不同的平台上都启动真实的浏览器是很复杂的。我们推荐取而代之的是用 JSDOM 在 Node 虚拟浏览器环境运行测试。
-
-Jest 测试运行器自动设置了 JSDOM。对于其它测试运行器来说，你可以在你的测试入口处使用 jsdom-global 手动设置 JSDOM。
-
-```
-npm install --save-dev jsdom jsdom-global
-```
-
-```js
-// 在测试的设置 / 入口中
-require('jsdom-global')()
-
-```
 
 #### 参与贡献
 

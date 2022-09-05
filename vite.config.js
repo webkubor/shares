@@ -1,11 +1,12 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-09-05 11:07:29
+ * @LastEditTime: 2022-09-05 11:37:43
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import I18n from "@intlify/vite-plugin-vue-i18n";
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import Components from 'unplugin-vue-components/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import path from "path";
 const pathSrc = path.resolve(__dirname, "src");
 
@@ -36,8 +37,9 @@ export default defineConfig({
  
   plugins: [
     vue(),
-    vueJsx(),
-    	// i18n 国际化支持
+      Components({
+        resolvers: [NaiveUiResolver()]
+      }),
 		I18n({
 			runtimeOnly: true,
 			compositionOnly: true,
