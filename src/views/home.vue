@@ -1,12 +1,12 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-03-27 14:02:39
+ * @LastEditTime: 2022-09-05 11:18:19
 -->
 <template>
   <div class="my-share" :class="{'dark-theme':theme}">
     <AboutMe />
-    <AboutLife />
     <AboutProject />
+    <AboutLife />
     <n-back-top :right="300" />
   </div>
 </template>

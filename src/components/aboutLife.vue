@@ -2,18 +2,11 @@
   <n-divider title-placement="center"> 关于我近期的生活 </n-divider>
   <div class="mylife">
     <n-grid
-      cols="1 s:1 m:1 l:2 xl:2 2xl:2"
+      cols="1 s:1 m:1 l:1 xl:1 2xl:1"
       x-gap="15"
       y-gap="15"
       responsive="screen"
     >
-      <n-grid-item>
-        <iframe
-          class="yuque"
-          src="https://www.yuque.com/webkubor"
-          frameborder="0"
-        ></iframe>
-      </n-grid-item>
       <n-grid-item>
         <iframe
           class="weibo"

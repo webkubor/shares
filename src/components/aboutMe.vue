@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2022-04-15 17:16:18
+ * @LastEditTime: 2022-09-05 11:21:00
 -->
 <template>
   <div class="about-me column-center">
@@ -25,8 +25,7 @@
         {{ user.name }}
       </n-gradient-text>
     </h1>
-    <n-button @click="googleSignIn">谷歌登录</n-button>
-    <div @click="toggleLocale">语言切换: {{ language }}</div>
+    <div style="margin-bottom: 20px;" @click="toggleLocale">语言切换: {{ language }}</div>
     <n-space>
       <n-tag
         v-for="(item, index) in user.tags"
@@ -47,62 +46,13 @@
 import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
+import { useI18n } from "vue-i18n";
+import {computed}  from "vue"
 const { t, locale } = useI18n();
 let { user, updateAge } = useUser();
 let { swtichTheme } = useTheme();
 console.log(user, "我的");
 
-
-onInitGoogle();
-
-/**
- * @description: 配置初始化-加载auth2的库
- * @param {*}
- * @return {*}
- */
-function onInitGoogle() {
-  let baseOptions = {
-    client_id:
-      "675793533606-2udrroc6jhkr0k9ucas051900qg4n5sb.apps.googleusercontent.com",
-    cookiepolicy: "single_host_origin",
-  };
-
-  gapi.load("auth2", function () {
-    console.log("%c%s", "color: #00e600", "auth2-ready");
-    gapi.auth2
-      .init(baseOptions)
-      .then((res) => {
-        window.getAuthInstance = gapi.auth2.getAuthInstance(); //获取GoogleAuth对象
-        console.log("google init complete...",  window.getAuthInstance);
-
-        let isSignedIn = getAuthInstance.isSignedIn.get(); //存储登录状态
-        let GoogleUser = getAuthInstance.currentUser.get(); //这个方法获取返回的响应对象
-        if (isSignedIn) {
-          console.log(
-            "%c%s",
-            "color: #00a3cc",
-            "window.getAuthInstance",
-            GoogleUser
-          );
-        }
-      })
-      .catch((err) => console.log(err));
-  });
-}
-
-/**
- *google登录
- */
-function googleSignIn() {
-  window.getAuthInstance
-    .signIn()
-    .then((res) => {
-      let user = res.Qu? res.Qu: res.Iu
-      console.log(res, "googleSignIn");
-      window.$message?.success(user?.sf + "欢迎回来");
-    })
-    .catch((err) => console.log(err));
-}
 
 updateAge("logo.jpeg");
 const language = computed(() =>
