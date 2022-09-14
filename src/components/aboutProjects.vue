@@ -1,7 +1,4 @@
-<!--
- * @Date: 2021-07-31 19:26:47
- * @LastEditTime: 2022-03-05 12:24:30
--->
+
 <template>
   <n-divider title-placement="center">关于项目</n-divider>
   <n-grid
@@ -24,8 +21,17 @@
           >
             {{ item }}
           </n-tag>
-          <div class="item">{{ item.descrition }}</div>
-          <div class="item link" @click="openUrl(item.source, item.title + index)">{{ item.source }}</div>
+          <div class="item">
+            <n-ellipsis :line-clamp="3">
+              {{ item.descrition }}
+            </n-ellipsis>
+          </div>
+          <div
+            class="item link"
+            @click="openUrl(item.source, item.title + index)"
+          >
+            {{ item.source }}
+          </div>
         </div>
       </n-card>
     </n-grid-item>
@@ -34,7 +40,7 @@
 <script>
 import { useProject } from "@/hooks/useProject";
 import { getRandomType } from "@/utils/random";
-import {openUrl} from "@/utils/index"
+import { openUrl } from "@/utils/index";
 export default {
   setup() {
     let { projects } = useProject();
@@ -50,6 +56,7 @@ export default {
 .n-card {
   max-width: 800px;
   max-height: 350px;
+  cursor: pointer;
 }
 .content {
   font-size: 18px;

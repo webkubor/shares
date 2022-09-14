@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext", //TypeScript 保留 import() 语句，该语句用于 Webpack Code Splitting
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,  // 生成目标文件的sourceMap文件
+    "allowJs": true,    // 支持js的引用
+    "removeComments": true,     // 删除注释 
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "declaration":true, //自动生成第三方库的声明文件
+    "lib": ["esnext", "dom"],
+    "paths": {
+      "@/*": ["src/*"],
+      "/src/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/utils/render.js", ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

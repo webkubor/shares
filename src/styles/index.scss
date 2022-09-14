@@ -5,9 +5,8 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
   a {
-    color: #42b983;
+    color: $blue;
   }
 }
 
@@ -27,4 +26,21 @@
 }
 .flex-center-h {
   @include flex-center-h;
+}
+
+
+
+.demo-button {
+  width: 144px;
+  height: 44px;
+  background-color: #A04CF8;
+  color: #ffffff;
+  border-radius: 12px;
+  text-align: center;
+  line-height: 44px;
+  &:hover {
+    cursor: pointer;
+    filter: drop-shadow(0 0 1em #646cffaa);
+    user-select: none;
+  }
 }

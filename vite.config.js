@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-09-05 11:37:43
+ * @LastEditTime: 2022-09-14 13:35:57
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -8,7 +8,7 @@ import I18n from "@intlify/vite-plugin-vue-i18n";
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import path from "path";
-const pathSrc = path.resolve(__dirname, "src");
+const pathSrc = path.resolve(__dirname, 'src')
 
 export default defineConfig({
   css: {},
@@ -25,14 +25,13 @@ export default defineConfig({
     assetsDir: "assets/img/",
     // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能
     brotliSize: false,
-    rollupOptions: {
-      output: {
-        chunkFileNames: "assets/js/[name]-[hash].js",
-        entryFileNames: "assets/js/[name]-[hash].js",
-        assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
-      },
-    },
-   
+    // rollupOptions: {
+    //   output: {
+    //     chunkFileNames: "assets/js/[name]-[hash].js",
+    //     entryFileNames: "assets/js/[name]-[hash].js",
+    //     assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
+    //   },
+    // },
   },
  
   plugins: [
@@ -50,8 +49,6 @@ export default defineConfig({
   server: {
     cors: true, // 默认启用并允许任何源
     open: true, // 在服务器启动时自动在浏览器中打开应用程序
-    host: "0.0.0.0",
-    port: 9999,
     //反向代理配置，注意rewrite写法，开始没看文档在这里踩了坑
     proxy: {
       "/api": {
