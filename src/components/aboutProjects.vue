@@ -8,11 +8,11 @@
     responsive="screen"
   >
     <n-grid-item v-for="(item, index) in projects.list">
-      <n-card :title="item.title">
+      <n-card :title="item.title" v-ripple="{ color: '#5e7ce0',duration: 500, delay: 300 }">
         <template #cover>
           <n-image :src="item.pic" object-fit="scale-down" />
         </template>
-        <div class="content">
+        <div class="content"  >
           <n-tag
             v-for="(item, index) in item.tags"
             :key="item + index"

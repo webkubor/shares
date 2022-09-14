@@ -97,7 +97,7 @@ const DEFAULT_PLUGIN_OPTIONS: IRipplePluginOptions = {
   initialOpacity: 0.1, //可选，初始交互效果透明度大小
   finalOpacity: 0.2,  //可选，结束交互效果长按透明度大小
   duration: 350, // 可选，持续时间
-  easing: 'ease-out', //可选，缓动动画
+  easing: 'ease-in-out', //可选，规定以慢速开始和结束的过渡效果
   delay: 60, // 可选，延迟 debouceTime 时间后调用
   disabled: false, // 可选，禁止水波效果
   center: false // 是否从中间开始

@@ -1,4 +1,3 @@
-import { IRippleDirectiveOptions } from "./options";
 import { getDistanceToFurthestCorner } from "./utils/get-element-position-utils";
 import { createContainer } from "./utils/create-container-element";
 import { createRippleElement } from "./utils/create-ripple-element";
@@ -8,6 +7,7 @@ import {
   getRippleCount,
   incrementRippleCount,
 } from "./utils/ripple-count";
+import { IRippleDirectiveOptions } from "./options";
 
 const MULTIPLE_NUMBER = 1.05;
 
@@ -38,7 +38,7 @@ const ripple = (
   let originalPositionValue = "";
   // 是否需要移除ripple Do you need to remove ripple
   let shouldDissolveRipple = false;
-  let token: any = undefined;
+  let token: undefined | number = undefined
 
   // remove ripple
   function dissolveRipple() {

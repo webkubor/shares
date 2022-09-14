@@ -1,7 +1,3 @@
-<!--
- * @Date: 2021-07-31 19:27:24
- * @LastEditTime: 2022-09-14 13:38:30
--->
 <template>
   <div class="about-me column-center">
     <div class="show-item">
@@ -37,7 +33,7 @@
       </n-tag>
     </n-space>
     <n-divider title-placement="center">签名</n-divider>
-    <div class="sign">
+    <div class="sign" >
       {{ user.personalSign }}
     </div>
   </div>
@@ -100,7 +96,6 @@ const getImage = (name) => {
   .sign {
     font-weight: 500;
     font-size: 20px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 }
 </style>
