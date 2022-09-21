@@ -1,21 +1,17 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-03-27 13:35:38
+ * @LastEditTime: 2022-09-21 10:51:01
 -->
 <template>
-  <n-config-provider :theme="theme">
+  <n-config-provider   :theme="local.theme"
+    :theme-overrides="allThemeOverrides">
       <router-view></router-view>
   </n-config-provider>
-
 </template>
-<script>
+<script setup>
 import { useTheme } from "@/hooks/useTheme";
-export default {
-  setup() {
-    let { theme } = useTheme();
-    return {
-      theme,
-    };
-  },
-};
+let { allThemeOverrides, local, initTheme } = useTheme();
+initTheme();
+
+
 </script>

@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-13 14:03:05
- * @LastEditTime: 2022-03-27 14:43:44
+ * @LastEditTime: 2022-09-21 09:51:15
  */
 import { reactive } from "vue";
 import dayjs from "@/utils/dayjs";
@@ -10,6 +10,8 @@ const user = reactive({
   name2: "stacy",
   age: "18",
   birthday: "1995-11-13",
+  Guideline: 1,
+  isfirstLogin:true,
   personalSign: "Unkillable makes you stronger",
   tags: [ "开朗", "社交NB症", "民族音乐爱好者", "爱国"],
   timeLine: [

@@ -38,9 +38,10 @@
   border-radius: 12px;
   text-align: center;
   line-height: 44px;
+  font-family: PingFangSC-Regular,Microsoft Yahei,\\5FAE\8F6F\96C5\9ED1,sans-serif;
   &:hover {
     cursor: pointer;
-    filter: drop-shadow(0 0 1em #646cffaa);
+    filter: drop-shadow(0 0 1em #a04cf7);
     user-select: none;
   }
 }
