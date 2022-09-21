@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-10-22 13:33:57
- * @LastEditTime: 2022-03-05 12:30:54
+ * @LastEditTime: 2022-09-21 11:01:28
 -->
 <template>
   <div class="detail-age">
@@ -8,17 +8,10 @@
     <div class="body"></div>
   </div>
 </template>
-<script>
+<script setup>
 import { reactive } from "vue";
-
-export default {
-  setup() {
-    let detail = reactive({});
-    detail = window.localStorage.project_detail;
-
-    return { detail };
-  },
-};
+let detail = reactive({});
+detail = window.localStorage.project_detail;
 </script>
 <style lang="scss" scoped>
 .detail-age {

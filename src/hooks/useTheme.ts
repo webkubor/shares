@@ -190,9 +190,6 @@ const themeOverridesDark: GlobalThemeOverrides = reactive({
   }
 });
 export function useTheme() {
-  const message = useMessage();
-
-
   function swtichTheme() {
     if (local.osTheme === "dark") {
       local.theme = lightTheme;
@@ -207,6 +204,7 @@ export function useTheme() {
       local.osTheme = "dark";
       document.body.classList.remove("light_theme");
       document.body.classList.add("dark_theme");
+  const message = useMessage();
       message.success("白天不懂夜的黑~~")
       allThemeOverrides.value = Object.assign(themeOverridesDark,themeOverrides);
     }
