@@ -103,8 +103,7 @@ const projects = reactive({
       title: "Shorter Docs",
       pic: "https://tva1.sinaimg.cn/large/e6c9d24ely1h6e2lm7jbhj21j60u042u.jpg",
       tags: ["Shorter", "vite-press", "vite", "blog"],
-      descrition:
-        "document for Shorter",
+      descrition: "document for Shorter",
       source: "https://docs.shorter.finance/",
     },
     {
@@ -122,13 +121,12 @@ const projects = reactive({
       tags: ["美元", "一站式", "支付", "web3"],
       descrition: "国际专业系统服务商",
       source: "https://tarspay.com/",
-    }
+    },
   ],
   detail: null,
 });
 
 export function useProject() {
-  // 初始化项目
   function initDetail() {
     projects.detail = null;
   }
