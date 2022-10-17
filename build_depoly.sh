@@ -1,6 +1,6 @@
 ###
  # @Date: 2021-10-15 16:18:09
- # @LastEditTime: 2021-10-15 16:34:38
+ # @LastEditTime: 2022-09-21 11:41:51
 ### 
 # 发生任何错误时终止
 set -e
@@ -14,7 +14,7 @@ git pull
 yarn build
 
 git add -A
-git commit -m "构建生产环境打包"
+git commit -m "core/build 构建生产环境打包"
 
 #echo "----------deploy project...----------"
 git push origin HEAD

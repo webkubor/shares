@@ -107,6 +107,22 @@ const projects = reactive({
         "document for Shorter",
       source: "https://docs.shorter.finance/",
     },
+    {
+      id: 12,
+      title: "Defipay",
+      pic: "https://tva1.sinaimg.cn/large/008vxvgGly1h78doyvqirj30u022b42q.jpg",
+      tags: ["区块链", "Defipay", "ethers", "web3"],
+      descrition: "处理全球支付问题",
+      source: "https://www.defipay.biz/#/",
+    },
+    {
+      id: 13,
+      title: "Tarspay",
+      pic: "https://tva1.sinaimg.cn/large/008vxvgGly1h78dtjvgzej30u01knq6n.jpg",
+      tags: ["美元", "一站式", "支付", "web3"],
+      descrition: "国际专业系统服务商",
+      source: "https://tarspay.com/",
+    }
   ],
   detail: null,
 });
