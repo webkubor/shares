@@ -1,7 +1,4 @@
-/*
- * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-09-14 13:35:57
- */
+
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import I18n from "@intlify/vite-plugin-vue-i18n";
@@ -22,16 +19,7 @@ export default defineConfig({
   },
   // 自定义构建配置
   build: {
-    assetsDir: "assets/img/",
-    // 启用/禁用 brotli 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能
     brotliSize: false,
-    // rollupOptions: {
-    //   output: {
-    //     chunkFileNames: "assets/js/[name]-[hash].js",
-    //     entryFileNames: "assets/js/[name]-[hash].js",
-    //     assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
-    //   },
-    // },
   },
  
   plugins: [
