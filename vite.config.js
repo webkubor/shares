@@ -21,7 +21,15 @@ export default defineConfig({
   build: {
     brotliSize: false,
   },
- 
+  //tree-shaking
+  optimizeDeps:{
+    include:[        "vue",
+    "phosphor-vue",
+    "naive-ui",
+    "vue-i18n",
+    "vue-i18n",
+    "vue-router"]
+  },
   plugins: [
     vue(),
       Components({
