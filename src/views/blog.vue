@@ -1,22 +1,36 @@
 <template>
- <ColorCard/>
-  <div  class="sky">
-    <Moon/>
+  <div class="code-box">
+    <h2>测试开发文档交互效果</h2>
+    <CodeVue />
   </div>
+  <scrollRow/>
+  <ColorCard />
+  <div class="sky">
+    <Moon />
+  </div>
+
 </template>
 <script setup>
 import Moon from '@/components/Moon.vue';
-import  ColorCard from '@/components/ColorCard.vue'
+import ColorCard from '@/components/ColorCard.vue'
+import CodeVue from "@/components/Code.vue"
+import scrollRow from '@/components/scrollRow.vue';
 </script>
 <style lang="scss" scoped>
+
 .sky {
   width: 100%;
-  height: 100vh;
- background-image: url('@/assets/3d/universe.png');
-background-size: cover;
-position: relative;
+  height: 1200px;
+  background-image: url('@/assets/3d/universe.png');
+  background-size: cover;
+  position: relative;
 
 }
 
-
+.code-box {
+  margin: 20px;
+  border: 5px solid orangered;
+  padding: 20px;
+  border-radius: 10px;
+}
 </style>

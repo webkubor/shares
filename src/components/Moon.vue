@@ -18,7 +18,6 @@
 }
 
 
-
 .mercury {
     position: absolute;
     z-index: 3;

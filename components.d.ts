@@ -7,6 +7,7 @@ declare module 'vue' {
     AboutLife: typeof import('./src/components/aboutLife.vue')['default']
     AboutMe: typeof import('./src/components/aboutMe.vue')['default']
     AboutProjects: typeof import('./src/components/aboutProjects.vue')['default']
+    Code: typeof import('./src/components/Code.vue')['default']
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
     LifeShare: typeof import('./src/components/LifeShare.vue')['default']
     Moon: typeof import('./src/components/Moon.vue')['default']
@@ -27,7 +28,8 @@ declare module 'vue' {
     NPopover: typeof import('naive-ui')['NPopover']
     NSpace: typeof import('naive-ui')['NSpace']
     NTag: typeof import('naive-ui')['NTag']
-    ProjectList: typeof import('./src/components/projectList.vue')['default']
+    ProjectList: typeof import('./src/components/ProjectList.vue')['default']
+    ScrollRow: typeof import('./src/components/scrollRow.vue')['default']
     UserInfo: typeof import('./src/components/UserInfo.vue')['default']
   }
 }
