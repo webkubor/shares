@@ -1,7 +1,6 @@
 
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import I18n from "@intlify/vite-plugin-vue-i18n";
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import path from "path";
@@ -34,12 +33,7 @@ export default defineConfig({
     vue(),
       Components({
         resolvers: [NaiveUiResolver()]
-      }),
-		I18n({
-			runtimeOnly: true,
-			compositionOnly: true,
-			include: [path.resolve(__dirname, '../locales/**')]
-		})
+      })
   ],
   // 本地运行配置，及反向代理配置
   server: {

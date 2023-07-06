@@ -1,19 +1,16 @@
-<!--
- * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-09-21 10:55:11
--->
+
 <template>
   <div class="my-share" >
-    <AboutMe />
-    <AboutProject />
-    <AboutLife />
+    <UserInfo />
+    <ProjectList />
+    <LifeShare />
     <n-back-top :right="300" />
   </div>
 </template>
 <script setup >
-import AboutMe from "@/components/aboutMe.vue";
-import AboutProject from "@/components/aboutProjects.vue";
-import AboutLife from "@/components/aboutLife.vue";
+import UserInfo from "@/components/UserInfo.vue";
+import ProjectList from "@/components/ProjectList.vue";
+import LifeShare from "@/components/LifeShare.vue";
  
 </script>
 <style lang="scss" scoped>
