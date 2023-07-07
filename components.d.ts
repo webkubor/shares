@@ -7,6 +7,7 @@ declare module 'vue' {
     Apple: typeof import('./src/components/Apple.vue')['default']
     Code: typeof import('./src/components/Code.vue')['default']
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
+    Demo: typeof import('./src/components/demo.vue')['default']
     LifeShare: typeof import('./src/components/LifeShare.vue')['default']
     Moon: typeof import('./src/components/Moon.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']

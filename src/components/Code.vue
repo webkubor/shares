@@ -2,6 +2,7 @@
 	<CodeEditor theme="github-dark" :languages="[['javascript']]" width="100%" :line-nums="true" v-model="model.code"></CodeEditor>
 </template>
 <script setup>
+import  highlight from 'highlight'
 import CodeEditor from 'simple-code-editor';
 import { onMounted, reactive } from 'vue';
 let model = reactive({

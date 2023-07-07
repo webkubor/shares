@@ -4,7 +4,6 @@
     <UserInfo />
     <ProjectList />
     <LifeShare />
-    <n-back-top :right="300" />
   </div>
 </template>
 <script setup >

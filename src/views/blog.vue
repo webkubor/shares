@@ -1,7 +1,7 @@
 <template>
   <div class="code-box">
     <h2>测试开发文档交互效果</h2>
-    <CodeVue />
+    <!-- <CodeVue /> -->
   </div>
   <scrollRow/> 
  <ColorCard />
@@ -13,7 +13,7 @@
 <script setup>
 import Moon from '@/components/Moon.vue';
 import ColorCard from '@/components/ColorCard.vue'
-import CodeVue from "@/components/Code.vue"
+// import CodeVue from "@/components/Code.vue"
 import scrollRow from '@/components/scrollRow.vue';
 </script>
 <style lang="scss" scoped>

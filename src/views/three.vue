@@ -2,19 +2,17 @@
     <div ref="canvasContainer"></div>
 </template>
 <script setup>
-// 引入three.js
 import * as THREE from 'three';
 import { ref, onMounted, onUnmounted, watchEffect } from 'vue';
 const canvasContainer = ref(null);
 const planetSize = ref(2.5);
 const rotationSpeed = ref(0.005);
 
-let scene, camera, renderer, planet, animateId;
+let light, camera, renderer, planet, animateId, scene;
 
 onMounted(() => {
     initRender()
 })
-// 组件销毁时清除动画循环
 onUnmounted(() => {
     cancelAnimationFrame(animateId);
 });
@@ -35,8 +33,7 @@ watchEffect(() => {
 function initRender() {
 
     // 创建3D场景对象Scene
-    const scene = new THREE.Scene();
-
+    scene = new THREE.Scene();
 
     // 创建相机
     camera = new THREE.PerspectiveCamera(
@@ -50,6 +47,7 @@ function initRender() {
     // 创建渲染器
     renderer = new THREE.WebGLRenderer({
         antialias: true, // 启用抗锯齿效果
+        // alpha: true  //设置alpha为true，启用透明背景
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio); // 设置像素比例
@@ -68,25 +66,31 @@ function initRender() {
     planet = new THREE.Mesh(geometry, material);
     scene.add(planet);
 
-    // 动画循环函数
-    const animate = () => {
-        planet.rotation.y += rotationSpeed.value;
-        renderer.render(scene, camera);
-        animateId = requestAnimationFrame(animate);
-    };
 
-    // 开始动画循环
+    // 创建一束光线
+    const color = 0xFFFFFF;// 光颜色
+    const intensity = 2;// 光照强度
+    light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(0, 0, 10);// 设置光源发射点的位置
+    scene.add(light);
+
     animate();
-
-
 }
 
 
 
 
+function animate() {
+    planet.rotation.y += rotationSpeed.value;
+    renderer.render(scene, camera);
+    animateId = requestAnimationFrame(animate);
+}
+
+
+
 </script>
 <style lang="scss" scoped>
-canvas {
+div {
     width: 100%;
     height: 300vh;
 }
