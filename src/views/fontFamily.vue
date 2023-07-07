@@ -31,31 +31,31 @@ svg text {
 	animation: stroke 5s infinite alternate;
 }
 @keyframes stroke {
-	0% {
-		fill: rgba(72, 138, 20, 0);
-		stroke: rgba(54, 95, 160, 1);
-		stroke-dashoffset: 25%;
-		stroke-dasharray: 0 50%;
-		stroke-width: 0.8;
-	}
-	70% {
-		fill: rgba(72, 138, 20, 0);
-		stroke: rgba(54, 95, 160, 1);
-		stroke-width: 1.2;
-	}
-	85% {
-		fill: rgba(72, 138, 20, 0);
-		stroke: rgba(54, 95, 160, 1);
-		stroke-width: 1.5;
-	}
-	95%,
-	100% {
-		fill: rgba(72, 138, 204, 1);
-		stroke: rgba(54, 95, 160, 0);
-		stroke-dashoffset: -25%;
-		stroke-dasharray: 50% 0;
-		stroke-width: 0;
-	}
+  0% {
+    fill: rgba(0, 120, 255, 0);
+    stroke: rgba(0, 120, 255, 1);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 0.8;
+  }
+  70% {
+    fill: rgba(0, 120, 255, 0);
+    stroke: rgba(0, 120, 255, 1);
+    stroke-width: 1.2;
+  }
+  85% {
+    fill: rgba(0, 120, 255, 0);
+    stroke: rgba(0, 120, 255, 1);
+    stroke-width: 1.5;
+  }
+  95%,
+  100% {
+    fill: rgba(0, 120, 255, 1);
+    stroke: rgba(0, 120, 255, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
 }
 
 
