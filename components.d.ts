@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Apple: typeof import('./src/components/Apple.vue')['default']
     Code: typeof import('./src/components/Code.vue')['default']
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
     LifeShare: typeof import('./src/components/LifeShare.vue')['default']

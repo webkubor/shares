@@ -3,9 +3,9 @@
     <h2>测试开发文档交互效果</h2>
     <CodeVue />
   </div>
-  <scrollRow/>
-  <ColorCard />
-  <div class="sky">
+  <scrollRow/> 
+ <ColorCard />
+<div class="sky">
     <Moon />
   </div>
 

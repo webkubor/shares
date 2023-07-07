@@ -6,9 +6,27 @@ import CodeEditor from 'simple-code-editor';
 import { onMounted, reactive } from 'vue';
 let model = reactive({
 	code: ``,
-	targetCode: `import Moon from '@/components/Moon.vue';
-import ColorCard from '@/components/ColorCard.vue';
-import CodeVue from "@/components/Code.vue";`,
+	targetCode: `import { useUser } from "@/hooks/useUser";
+import { useTheme } from "@/hooks/useTheme";
+import { getRandomType } from "@/utils/random";
+import { useI18n } from "vue-i18n";
+import {computed}  from "vue"
+const { t, locale } = useI18n();
+let { user, updateAge } = useUser();
+let { swtichTheme } = useTheme();
+console.log(user, "我的");
+
+
+updateAge("logo.jpeg");
+const language = computed(() =>
+  locale.value === "zh-CN" ? "中文" : "English"
+);
+
+const toggleLocale = () => {
+  locale.value = locale.value === "zh-CN" ? "en" : "zh-CN";
+};
+
+`,
 	currentIndex: 0
 })
 

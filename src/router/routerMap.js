@@ -18,6 +18,14 @@ const indexMap = [
   {
     path: '/blog',
     component:() => import("@/views/blog.vue")
+  },
+  {
+    path: '/apple',
+    component:() => import("@/views/apple.vue")
+  },
+  {
+    path: '/fontFamily',
+    component:() => import("@/views/fontFamily.vue")
   }
 ]
 
