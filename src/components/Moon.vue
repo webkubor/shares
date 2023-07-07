@@ -1,7 +1,5 @@
 <template>
-    <!-- 我们再创建一条嫦娥绕月的轨道 -->
     <div class="satellite-orbits">
-  <!-- 首先我们创建一个月亮 -->
   <div class="mercury "></div>
     </div>
   
