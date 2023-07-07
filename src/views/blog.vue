@@ -1,23 +1,16 @@
 <template>
-  <div class="code-box">
-    <h2>测试开发文档交互效果</h2>
-    <!-- <CodeVue /> -->
-  </div>
-  <scrollRow/> 
- <ColorCard />
-<div class="sky">
+  <scrollRow />
+  <ColorCard />
+  <div class="sky">
     <Moon />
   </div>
-
 </template>
 <script setup>
 import Moon from '@/components/Moon.vue';
 import ColorCard from '@/components/ColorCard.vue'
-// import CodeVue from "@/components/Code.vue"
 import scrollRow from '@/components/scrollRow.vue';
 </script>
 <style lang="scss" scoped>
-
 .sky {
   width: 100%;
   height: 1200px;
