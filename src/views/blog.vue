@@ -1,4 +1,5 @@
 <template>
+  <Svg/>
   <scrollRow />
   <ColorCard />
   <div class="sky">
@@ -9,6 +10,7 @@
 import Moon from '@/components/Moon.vue';
 import ColorCard from '@/components/ColorCard.vue'
 import scrollRow from '@/components/scrollRow.vue';
+import Svg from '@/components/Svg.vue';
 </script>
 <style lang="scss" scoped>
 .sky {

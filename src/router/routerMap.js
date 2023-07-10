@@ -13,6 +13,10 @@ const indexMap = [
     component:() => import("@/views/blog.vue")
   },
   {
+    path: '/spider',
+    component:() => import("@/views/spider.vue")
+  },
+  {
     path: '/apple',
     component:() => import("@/views/apple.vue")
   },
