@@ -27,7 +27,7 @@
   
     /* 设置背景图片样式 */
     border-radius: 300px; /* 将图片剪切成圆形，模拟立体球体效果 */
-    background: url(@/assets/3d/earth.png); /* 设置背景图片 */
+    background: url(@/assets/3d/4.jpg); /* 设置背景图片 */
     animation-name: autogiration; /* 使用定义的 @keyframes 动画 */
     animation-duration: 60s; /* 动画持续时间，球体在 60 秒内完成一次旋转 */
     animation-delay: 1s; /* 一秒后执行动画 */
@@ -38,6 +38,9 @@
                 0 0px 130px 40px rgba(73, 61, 59, 0.1) inset,
                 0 0px 23px 4px rgba(230, 223, 221, 0.3) inset,
                 -20px 0 60px 0 rgba(189, 183, 181, 0.3);
+                  /* 调整背景图片在球体上的位置 */
+//   background-position-x: 50%; /* 水平位置居中 */
+  background-position-y: 70%; /* 垂直位置调整，可根据需要调整百分比值 */
   }
   </style>
   
