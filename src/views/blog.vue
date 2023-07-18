@@ -1,5 +1,5 @@
 <template>
-  <Svg/>
+  <!-- <Svg/> -->
   <scrollRow />
   <ColorCard />
   <div class="sky">
