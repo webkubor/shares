@@ -1,7 +1,7 @@
 <template>
   <!-- <Svg/> -->
-  <scrollRow />
-  <ColorCard />
+  <!-- <scrollRow />
+  <ColorCard /> -->
   <div class="sky">
     <Moon />
   </div>
