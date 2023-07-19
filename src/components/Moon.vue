@@ -1,6 +1,6 @@
 <template>
-  <div class="mercury" ref="mercuryRef" >
-    <div class="halo"></div> <!-- 添加光晕效果的元素 -->
+  <div class="mercury" >
+    <div class="halo"></div> 
   </div>
 </template>
 <script setup>
@@ -53,7 +53,7 @@
   position: absolute;
   cursor: pointer;
   z-index: 3;
-  left: 50%;
+  left: 70%;
   top: 50%;
   // margin-left: -300px;
   // margin-top: -300px;
@@ -75,8 +75,8 @@
     0 0px 130px 40px rgba(73, 61, 59, 0.1) inset,
     0 0px 23px 4px rgba(230, 223, 221, 0.3) inset,
     -20px 0 60px 0 rgba(189, 183, 181, 0.3);
-  background-position-x: 50%;
-  background-position-y: 70%;
+  // background-position-x: 50%;
+  background-position-y: 30%;
 
 }
 

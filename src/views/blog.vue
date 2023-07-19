@@ -16,7 +16,7 @@ import Svg from '@/components/Svg.vue';
 .sky {
   width: 100%;
   height: 1200px;
-  background-image: url('@/assets/3d/universe.png');
+  background-image: url('@/assets/3d/bg2.png');
   background-size: cover;
   position: relative;
 
