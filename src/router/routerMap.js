@@ -25,6 +25,10 @@ const indexMap = [
     component:() => import("@/views/three.vue")
   },
   {
+    path: '/loading',
+    component:() => import("@/views/loading/index.vue")
+  },
+  {
     path: '/fontFamily',
     component:() => import("@/views/fontFamily.vue")
   }
