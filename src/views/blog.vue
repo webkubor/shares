@@ -1,15 +1,11 @@
 <template>
-  <!-- <Svg/> -->
-  <!-- <scrollRow />
-  <ColorCard /> -->
+  <Svg/>
+  <ColorCard /> 
   <div class="sky">
     <Moon />
   </div>
 </template>
 <script setup>
-import Moon from '@/components/Moon.vue';
-import ColorCard from '@/components/ColorCard.vue'
-import scrollRow from '@/components/scrollRow.vue';
 import Svg from '@/components/Svg.vue';
 </script>
 <style lang="scss" scoped>

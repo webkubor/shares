@@ -1,0 +1,106 @@
+<template>
+  <div class="card" ref="cardRef" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
+    Magic Card
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const cardRef = ref(null);
+
+const handleMouseOver = () => {
+  cardRef.value.classList.add('hover');
+};
+
+const handleMouseOut = () => {
+  cardRef.value.classList.remove('hover');
+};
+</script>
+
+<style lang="scss">
+body {
+  min-height: 100vh;
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}
+.card {
+  --rotate: 132deg;
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgba(88, 199, 250, 0%);
+  cursor: pointer;
+  font-family: cursive;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    transform-origin: center;
+    transform: rotate(var(--rotate));
+    transition: opacity 0.5s;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height) / 6));
+  }
+
+  &.hover {
+    color: rgba(88, 199, 250, 1);
+    transition: color 1s;
+
+    &::before {
+      opacity: 0;
+    }
+
+    &::after {
+      animation: spin 2.5s linear infinite;
+      background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+</style>

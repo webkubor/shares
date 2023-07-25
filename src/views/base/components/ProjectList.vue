@@ -8,7 +8,7 @@
     responsive="screen"
   >
     <n-grid-item v-for="(item, index) in projects.list">
-      <n-card :title="item.title" v-ripple="{ color: '#5e7ce0',duration: 500, delay: 300 }">
+      <n-card :title="item.title" v-ripple="{ color: '#5e7ce0',duration: 500, delay: 300 }" @click="toDetail(item.id)">
         <template #cover>
           <n-image :src="item.pic" object-fit="scale-down" />
         </template>
@@ -37,20 +37,20 @@
     </n-grid-item>
   </n-grid>
 </template>
-<script>
+<script lang="ts" setup>
 import { useProject } from "@/hooks/useProject";
 import { getRandomType } from "@/utils/random";
 import { openUrl } from "@/utils/index";
-export default {
-  setup() {
-    let { projects } = useProject();
-    return {
-      projects,
-      openUrl,
-      getRandomType,
-    };
-  },
-};
+
+import {useRouter} from "vue-router";
+let { projects } = useProject();
+
+const router = useRouter()
+
+function toDetail(id:string) {
+  router.push('/project/' + id)
+}
+
 </script>
 <style lang="scss" scoped>
 .n-card {

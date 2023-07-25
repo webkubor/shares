@@ -9,6 +9,7 @@ declare module 'vue' {
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
     Demo: typeof import('./src/components/demo.vue')['default']
     LifeShare: typeof import('./src/components/LifeShare.vue')['default']
+    MagicCard: typeof import('./src/components/MagicCard.vue')['default']
     Moon: typeof import('./src/components/Moon.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NBackTop: typeof import('naive-ui')['NBackTop']
