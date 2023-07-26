@@ -1,8 +1,6 @@
 <template>
   <div class="card" ref="cardRef" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
-    <div class="content">
       <slot></slot>
-    </div>
   </div>
 </template>
 
