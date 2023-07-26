@@ -18,17 +18,8 @@ const handleMouseOut = () => {
 };
 </script>
 
-<style lang="scss">
-body {
-  min-height: 100vh;
-  background: #212534;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  box-sizing: border-box;
-}
+<style lang="scss" scoped>
+
 .card {
   --rotate: 132deg;
   --card-height: 65vh;
