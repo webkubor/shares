@@ -1,6 +1,8 @@
 <template>
   <div class="card" ref="cardRef" @mouseover="handleMouseOver" @mouseout="handleMouseOut">
-    Magic Card
+    <div class="content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -19,27 +21,25 @@ const handleMouseOut = () => {
 </script>
 
 <style lang="scss" scoped>
-
 .card {
   --rotate: 132deg;
   --card-height: 65vh;
   --card-width: calc(var(--card-height) / 1.5);
-  background: #191c29;
   width: var(--card-width);
   height: var(--card-height);
   padding: 3px;
-  position: relative;
   border-radius: 6px;
   justify-content: center;
   align-items: center;
+  background: #191c29;
   text-align: center;
   display: flex;
   font-size: 1.5em;
   color: rgba(88, 199, 250, 0%);
   cursor: pointer;
-  font-family: cursive;
-  overflow: hidden;
+  overflow:hidden;
   position: relative;
+  font-family: cursive;
 
   &::before {
     content: "";
@@ -51,15 +51,13 @@ const handleMouseOut = () => {
     z-index: -1;
     top: -1%;
     left: -2%;
-    transform-origin: center;
-    transform: rotate(var(--rotate));
-    transition: opacity 0.5s;
+    animation: spin 2.5s linear infinite;
   }
 
   &::after {
-    content: "";
     position: absolute;
     top: calc(var(--card-height) / 6);
+    content: "";
     left: 0;
     right: 0;
     z-index: -1;
@@ -68,20 +66,20 @@ const handleMouseOut = () => {
     margin: 0 auto;
     transform: scale(0.8);
     filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+  transition: opacity .5s;
+    animation: spin 1.5s linear infinite;
   }
 
   &.hover {
     color: rgba(88, 199, 250, 1);
     transition: color 1s;
 
-    &::before {
-      opacity: 0;
-    }
-
+    &::before,
     &::after {
-      animation: spin 2.5s linear infinite;
-      background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
-      opacity: 1;
+      animation: none;
+      opacity: 0;
     }
   }
 }

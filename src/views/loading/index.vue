@@ -22,9 +22,7 @@
       width: 200px;
       height: 200px;
       margin: 100px auto;
-    }
-
-    .sphere {
+      .sphere {
       width: 100%;
       height: 100%;
       border-radius: 50%;
@@ -32,7 +30,11 @@
       position: relative;
       transform-style: preserve-3d;
       animation: rotate 8s linear infinite;
+      
     }
+    }
+
+
 
     .face {
       width: 100%;
