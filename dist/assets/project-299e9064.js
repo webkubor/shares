@@ -1,0 +1,1 @@
+import{b2 as a,o as s,b5 as e,b7 as t,b8 as d,aA as n,bg as o}from"./index-14503cdb.js";const r={class:"page"};const c=a({},[["render",function(a,c){const b=o;return s(),e("div",r,[t(b,null,{default:d((()=>[n(" Magic Card ")])),_:1})])}],["__scopeId","data-v-9e15328d"]]);export{c as default};

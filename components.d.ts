@@ -4,15 +4,10 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Apple: typeof import('./src/components/Apple.vue')['default']
-    Code: typeof import('./src/components/Code.vue')['default']
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
-    Demo: typeof import('./src/components/demo.vue')['default']
-    LifeShare: typeof import('./src/components/LifeShare.vue')['default']
     MagicCard: typeof import('./src/components/MagicCard.vue')['default']
     Moon: typeof import('./src/components/Moon.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
-    NBackTop: typeof import('naive-ui')['NBackTop']
     NCard: typeof import('naive-ui')['NCard']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
@@ -28,10 +23,8 @@ declare module 'vue' {
     NPopover: typeof import('naive-ui')['NPopover']
     NSpace: typeof import('naive-ui')['NSpace']
     NTag: typeof import('naive-ui')['NTag']
-    ProjectList: typeof import('./src/components/ProjectList.vue')['default']
     ScrollRow: typeof import('./src/components/scrollRow.vue')['default']
     Svg: typeof import('./src/components/Svg.vue')['default']
-    UserInfo: typeof import('./src/components/UserInfo.vue')['default']
   }
 }
 

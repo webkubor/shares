@@ -1,0 +1,1 @@
+import{b2 as a,o as t,b5 as e,be as s,bf as d,b6 as o}from"./index-14503cdb.js";const n={},r={viewBox:"0 0 700 200"},i=[(a=>(s("data-v-2535922d"),a=a(),d(),a))((()=>o("text",{x:"0",y:"70%",id:"timelinetext"}," Tarspay ",-1)))];const x=a(n,[["render",function(a,s){return t(),e("svg",r,i)}],["__scopeId","data-v-2535922d"]]);export{x as default};

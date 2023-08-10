@@ -3,43 +3,48 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-import path from "path";
-const pathSrc = path.resolve(__dirname, 'src')
+import { fileURLToPath, URL } from 'url'
+
 
 export default defineConfig({
-  css: {},
-  base: "/webkubor-shares/", // assets
-  publicDir: "/webkubor-shares/", //js和静态文件同样的前缀
-  // 预构建这一步由 esbuild 执行，这使得 Vite 的冷启动时间比任何基于 JavaScript 的打包器都要快得多。
+  base: "/webkubor-shares/",
+  publicDir: "/webkubor-shares/", 
   resolve: {
     alias: {
-      "@/": `${pathSrc}/`,
-    },
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
+    }
   },
-  // 自定义构建配置
   build: {
     brotliSize: false,
-  },
-  //tree-shaking
-  optimizeDeps:{
-    include:[        "vue",
-    "phosphor-vue",
-    "naive-ui",
-    "vue-i18n",
-    "vue-i18n",
-    "vue-router"]
+    minify: 'terser',
+    chunkSizeWarningLimit: 1500,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            const moduleName = id.match(/node_modules\/([^/]+)/)[1];
+            return moduleName;
+          }
+        }
+      }
+    }
   },
   plugins: [
     vue(),
-      Components({
-        resolvers: [NaiveUiResolver()]
-      })
+    Components({
+      resolvers: [NaiveUiResolver()]
+    })
   ],
-  // 本地运行配置，及反向代理配置
   server: {
-    cors: true, // 默认启用并允许任何源
-    open: true, // 在服务器启动时自动在浏览器中打开应用程序
-    //反向代理配置，注意rewrite写法，开始没看文档在这里踩了坑
+    cors: true,
+    open: true,
     proxy: {
       "/api": {
         target: "https://api.66mz8.com/",
