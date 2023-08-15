@@ -9,18 +9,24 @@ const canvasContainer = ref(null);
 const planetSize = ref(2.5);
 const rotationSpeed = ref(0.008);
 
-let light, camera, renderer, planet, animateId, scene, controls;
+let width , height;
+let  camera, renderer, planet, animateId, scene, controls;
 
 onMounted(() => {
+    width = canvasContainer.value.clientWidth
+    height = canvasContainer.value.clientHeight
+    initRender()
     initCamera()
     initScene()
-    initRender()
     initControls()
     initEarth()
-    createLight()
+    initLight()
     animate();
+    console.log(height, width, "测试DOM节点的可视高度和宽度")
+
     window.addEventListener('resize', onWindowResize, false);
 })
+
 onUnmounted(() => {
     cancelAnimationFrame(animateId);
 });
@@ -63,7 +69,7 @@ function initRender() {
 }
 
 /**
- * @name 创建场景
+ * @name 初始化场景
  * @return {*}
  */
 function initScene() {
@@ -138,22 +144,27 @@ function initEarth() {
  * @name 创建一束光线 
  * @return {*}
  */
-function createLight() {
-    // 创建一束光线
-    // const color = 0xFFFFFF;// 光颜色
-    // const intensity = 2;// 光照强度
-    // light = new THREE.DirectionalLight(color, intensity);
-    // light.position.set(0, 0, 10);// 设置光源发射点的位置
-    // scene.add(light);
-
-    // 添加环境光
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+function initLight() {
+    const ambientLight = new THREE.AmbientLight(0xcccccc, 1.1);
     scene.add(ambientLight);
+    var directionalLight = new THREE.DirectionalLight(0xffffff, 0.2);
+    directionalLight.position.set(1, 0.1, 0).normalize();
+    var directionalLight2 = new THREE.DirectionalLight(0xff2ffff, 0.2);
+    directionalLight2.position.set(1, 0.1, 0.1).normalize();
+    scene.add(directionalLight);
+    scene.add(directionalLight2);
 
-    // 创建平行光
-    light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(0, 0, 10);
-    scene.add(light);
+    var hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.2);
+    hemiLight.position.set(0, 1, 0);
+    scene.add(hemiLight);
+    var directionalLight = new THREE.DirectionalLight(0xffffff);
+    directionalLight.position.set(1, 500, - 20);
+    directionalLight.castShadow = true;
+    directionalLight.shadow.camera.top = 18;
+    directionalLight.shadow.camera.bottom = - 10;
+    directionalLight.shadow.camera.left = - 52;
+    directionalLight.shadow.camera.right = 12;
+    scene.add(directionalLight);
 }
 
 /**
