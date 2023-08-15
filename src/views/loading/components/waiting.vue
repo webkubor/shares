@@ -3,22 +3,16 @@
         <img class="loading-img" src="@/assets/logo.png" alt="">
         <div class="sk-chase">
             <div class="sk-chase-dot">
-                <span></span>
             </div>
             <div class="sk-chase-dot">
-                <span></span>
             </div>
             <div class="sk-chase-dot">
-                <span></span>
             </div>
             <div class="sk-chase-dot">
-                <span></span>
             </div>
             <div class="sk-chase-dot">
-                <span></span>
             </div>
             <div class="sk-chase-dot">
-                <span></span>
             </div>
         </div>
     </div>
