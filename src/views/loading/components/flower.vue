@@ -20,7 +20,7 @@
 
 .out {
     background-color: #161B29;
-    min-height: 120vh;
+    min-height: 100vh;
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -48,11 +48,11 @@
         }
 
         .container {
-            width: 60vw;
-            height: 60vw;
+            width: 90vw;
+            height: 90vw;
             left: 0;
             right: 0;
-            top: 0px;
+            top: 0;
             bottom: 0;
             margin: auto;
         }
@@ -72,6 +72,7 @@
     margin: auto;
     max-width: 100%;
     position: absolute;
+    top: 50%; /* 调整动画的垂直位置 */
     border-radius: 0vw 10vw 0vw 10vw;
     box-shadow: inset 0vw 0vw 0vw .1vw #E645D0, 0vw 0vw 1.5vw 0vw #E645D0;
 }
