@@ -23,7 +23,7 @@
 .loading-container {
     width: 100%;
     height: 100vh;
-    background: rgba(14, 0, 103, 0.8);
+    background: rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +62,6 @@
             margin: 0 auto;
             width: 10%;
             height: 10%;
-            border: 1px solid blueviolet;
             background-color: #0061FF;
             box-shadow: 0px 1px 10px 0px #0061FF;
             border-radius: 100%;

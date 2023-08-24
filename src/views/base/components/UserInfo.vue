@@ -21,7 +21,7 @@
         {{ user.name }}
       </n-gradient-text>
     </h1>
-    <div class="demo-button" style="margin-bottom: 20px;" v-ripple="{ duration: 500, color:' #DCD5F5'}" @click="toggleLocale">语言切换: {{ language }}</div>
+    <!-- <div class="demo-button" style="margin-bottom: 20px;" v-ripple="{ duration: 500, color:' #DCD5F5'}" @click="toggleLocale">语言切换: {{ language }}</div> -->
     <n-space>
       <n-tag
         v-for="(item, index) in user.tags"
