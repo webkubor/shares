@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
-    "big.js": "^6.2.1",
+    "lodash": "^4.17.21",
     "phosphor-vue": "^4.4.0",
     "three": "^0.154.0",
     "vue": "^3.3.4"
