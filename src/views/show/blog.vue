@@ -184,9 +184,11 @@ function calculateLoan(years, annualInterestRate, loanAmount) {
   padding: 10px 30px;
   display: flex;
  justify-content: space-around;
+ flex-flow: wrap row;
+ font-size: 12px;
   .info-item {
     width: 45%;
-    font-size: 12px;
+    min-width: 300px;
     font-weight: 500;
     display: inline-block;
     border: 1px dotted #999999;
