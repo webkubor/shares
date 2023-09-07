@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
-    "build": "^0.1.4",
+    "big.js": "^6.2.1",
     "phosphor-vue": "^4.4.0",
     "three": "^0.154.0",
     "vue": "^3.3.4"
