@@ -21,8 +21,8 @@
           初期还款主要是利息，后期逐渐减少，本金逐渐增加。
         </p>
         <div>每月偿还: {{ equalInstallmentPayments.monthlyPayment }} 月</div>
-        <div>总偿还: {{ equalInstallmentPayments.totalPayment }} 元</div>
-        <div>总利息: {{ equalInstallmentPayments.totalInterest }} 元</div>
+        <div>累计还款总额: {{ equalInstallmentPayments.totalPayment }} 元</div>
+        <div>累计支付利息: {{ equalInstallmentPayments.totalInterest }} 元</div>
 
         <n-card>
           贷款金额（P）：100,000 元
@@ -46,7 +46,7 @@
           ≈ 13,227.40 元
         </n-card>
       </div>
-      <!-- <div class="info-item">
+      <div class="info-item">
         <h3>等额本金贷款</h3>
         <p>
           月利息 = 剩余未偿还本金 × 月利率
@@ -56,9 +56,37 @@
           总利息相对较低，但初期每月还款额较高
         </p>
         <div>每月偿还: {{ equalPrincipalPayments.monthlyPayment }} 元</div>
-        <div>总偿还: {{ equalPrincipalPayments.totalPayment }} 元</div>
-        <div>总利息: {{ equalPrincipalPayments.totalInterest }} 元</div>
-      </div> -->
+        <div>累计还款总额: {{ equalPrincipalPayments.totalPayment }} 元</div>
+        <div>累计支付利息: {{ equalPrincipalPayments.totalInterest }} 元</div>
+        <n-card>
+          贷款金额（P）：100,000 元
+          <br>
+          年利率（r）：5%（0.05）
+          贷款期限（n）：5 年（60 个月）
+          <br>
+          principalPayment = 100,000 / 60 = 1,666.67 元
+
+          <br>
+          -----
+          <br>
+
+          第一个月
+          interestPayment = 100,000 * 0.05 / 12 ≈ 416.67 元
+          <br>
+          第二个月
+          interestPayment = (100,000 - 1,666.67) * 0.05 / 12 ≈ 414.58 元
+          <br>
+          -----
+          <br>
+          第一个月
+          totalInterest = 2,083.34 - 100,000 ≈ 998,3.34 元
+          <br>
+          第二个月
+          totalInterest = 2,081.25 - 100,000 ≈ 981.25 元
+
+
+        </n-card>
+      </div>
     </div>
 
   </n-space>
@@ -118,8 +146,6 @@ function calculateEqualPrincipalLoan(years, annualInterestRate, loanAmount) {
   for (let i = 0; i < totalMonths; i++) {
     const remainingPrincipal = loanAmount - (i * monthlyPayment);
     const interestPayment = remainingPrincipal * monthlyInterestRate;
-    const principalPayment = monthlyPayment - interestPayment;
-
     totalPayment += monthlyPayment;
     totalInterest += interestPayment;
   }
@@ -127,7 +153,7 @@ function calculateEqualPrincipalLoan(years, annualInterestRate, loanAmount) {
   return {
     monthlyPayment: _.round(monthlyPayment, 2),
     totalInterest: _.round(totalInterest, 2),
-    totalPayment: _.round(totalPayment, 2)
+    totalPayment: _.round(totalPayment + totalInterest, 2)
   };
 }
 
@@ -136,10 +162,10 @@ function calculateLoan(years, annualInterestRate, loanAmount) {
   const totalMonths = years * 12;
   const monthlyInterestRate = _.divide(annualInterestRate, 12);
   console.log(monthlyInterestRate, "月利率")
-  
+
   const compoundFactor = Math.pow(1 + monthlyInterestRate, totalMonths);
   console.log(compoundFactor, "复利因子")
-  
+
   const monthlyPayment = _.multiply(_.multiply(loanAmount, monthlyInterestRate), _.divide(compoundFactor, _.subtract(compoundFactor, 1)));
 
   console.log('%c%s', 'color: #aa00ff', monthlyPayment, '计算每月还款额')
@@ -156,9 +182,11 @@ function calculateLoan(years, annualInterestRate, loanAmount) {
 <style lang="scss" scoped>
 .border-box {
   padding: 10px 30px;
-
+  display: flex;
+ justify-content: space-around;
   .info-item {
-    font-size: 14px;
+    width: 45%;
+    font-size: 12px;
     font-weight: 500;
     display: inline-block;
     border: 1px dotted #999999;
