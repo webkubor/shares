@@ -1,7 +1,3 @@
-/*
- * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2023-07-25 17:22:32
- */
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -10,10 +6,9 @@ import copy from "@/directives/copy";
 import PhosphorVue from "phosphor-vue";
 import ripple from "@/directives/ripple/index";
 import globalComponents from "@/components";
-
-import 'animate.css';
+import 'animate.css'
 import '@/styles/index.scss'
-
+// import '@/styles/magic.min.css'
 
 createApp(App)
 .use(copy)

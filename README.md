@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2022-09-05 11:34:04
+ * @LastEditTime: 2023-11-17 17:33:53
 -->
 # webkubor项目展示
 
@@ -36,19 +36,24 @@ Vite 内置了 HMR 到 Vue 单文件组件（SFC） 和 React Fast Refresh 中�
 
 
 
-#### 参与贡献
+#### 集成功能
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+- vite构建
+- pnpm新的包管理工具去除了npm，yarn的包管理
+- vue3组合式PAI写法
+- 常用loading页面
+- threejs 3D 模型展示
+- animate动画组件用法
+- 国际化-i18n
+- 框架组件按需加载
+- 不依赖于store的hooks业务写法
+- sh自定义本地部署脚本（bash）
+- 自定义指令
+- 动画集合（Apple，蜘蛛网效果）
 
 
-#### 特技
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+
+
+
+
