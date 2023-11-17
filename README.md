@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2023-11-17 17:33:53
+ * @LastEditTime: 2023-11-17 17:38:30
 -->
 # webkubor项目展示
 
@@ -35,6 +35,18 @@ Vite 内置了 HMR 到 Vue 单文件组件（SFC） 和 React Fast Refresh 中�
 也通过 @prefresh/vite 对 Preact 实现了官方集成
 
 
+
+#### 一个不错的动画库
+
+'magictime xxxx'(xxxx动画名)
+···javascript
+ $('.yourdiv').hover(function () {
+    $(this).addClass('magictime puffIn');
+});
+
+
+···
+https://www.minimamente.com/project/magic/
 
 #### 集成功能
 
