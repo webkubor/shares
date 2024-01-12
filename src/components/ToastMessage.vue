@@ -84,7 +84,7 @@ export default {
 
   .toast-message-content {
     color: aliceblue;
-    :deep .message-link {
+    :deep(.message-link)  {
       display: inline-block;
       text-decoration: underline;
       color: #d08fff;
