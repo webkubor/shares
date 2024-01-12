@@ -3,7 +3,7 @@
 <template>
     <div class="barrage">
     <video ref="player" :src="src" playsinline controls></video>
-    <Board/>
+    <Board v-if="props.barrage"/>
   </div>
 
 </template>
