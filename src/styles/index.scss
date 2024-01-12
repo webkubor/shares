@@ -1,7 +1,21 @@
+
+
+$primary-color: #2354FF;
+$warining-color: #FFB31C;
+$error-color: #BA0006;
+$info-color: #5E64DA;
+$success-color: #30C0A2;
+
+:root {
+    --plyr-color-main: $primary-color;
+}
+
 @import "./variables.scss";
 @import "./mixins.scss";
 @import "./button.scss";
 @import './magic.min.css';
+
+
 
 *,
 *::before,
@@ -10,6 +24,8 @@
   margin: 0;
   box-sizing: inherit;
 }
+
+
 body {
   box-sizing: border-box;
 }

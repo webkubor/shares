@@ -3,7 +3,7 @@
     <n-notification-provider :max="1">
       <n-loading-bar-provider>
         <n-dialog-provider>
-          <n-message-provider :max="1">
+          <n-message-provider>
             <router-view></router-view>
           </n-message-provider>
         </n-dialog-provider>
@@ -13,5 +13,9 @@
 </template>
 <script setup>
 import { useTheme } from "@/hooks/useTheme";
-let { allThemeOverrides, local } = useTheme();
+
+let { allThemeOverrides, local,initTheme } = useTheme();
+initTheme();
+
+
 </script>

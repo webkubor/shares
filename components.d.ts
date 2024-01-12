@@ -4,10 +4,12 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Cideo: typeof import('./src/components/cideo/index.vue')['default']
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
     MagicCard: typeof import('./src/components/MagicCard.vue')['default']
     Moon: typeof import('./src/components/Moon.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
+    NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
@@ -19,6 +21,7 @@ declare module 'vue' {
     NGrid: typeof import('naive-ui')['NGrid']
     NGridItem: typeof import('naive-ui')['NGridItem']
     NImage: typeof import('naive-ui')['NImage']
+    NInput: typeof import('naive-ui')['NInput']
     NInputNumber: typeof import('naive-ui')['NInputNumber']
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
@@ -28,6 +31,7 @@ declare module 'vue' {
     NTag: typeof import('naive-ui')['NTag']
     ScrollRow: typeof import('./src/components/scrollRow.vue')['default']
     Svg: typeof import('./src/components/Svg.vue')['default']
+    Video: typeof import('./src/components/video/index.vue')['default']
   }
 }
 

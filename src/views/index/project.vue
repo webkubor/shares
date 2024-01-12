@@ -1,9 +1,7 @@
 <template>
   
 <div class="page">
-  <MagicCard>
         Magic Card
-      </MagicCard>
 </div>
 
 </template>
@@ -13,6 +11,7 @@
 .page {
   min-height: 100vh;
   background: #212534;
+  color: #ffffff;
   display: flex;
   align-items: center;
   flex-direction: column;
