@@ -1,6 +1,6 @@
 import { createApp } from "vue";
-import ToastMessage from "@/components/ToastMessage";
-import icons from "@/plugins/icons";
+import ToastMessage from "@/components/ToastMessage.vue";
+import PhosphorVue from "phosphor-vue";
 
 // let index = 0; //当前索引
 let queue = []; //message队列
@@ -38,7 +38,7 @@ export function Message(option) {
     ...option
   });
 
-  const vm = app.use(icons).mount(dom);
+  const vm = app.use(PhosphorVue).mount(dom);
   vm.$el.setAttribute("id", id);
   setTimeout(() => {
     vm.$el.style.marginTop = `${defaultTop}px`;
@@ -47,10 +47,11 @@ export function Message(option) {
   if (queue.length > 0) {
     moveDownMessages(queue.length);
   }
+
   // index++;
   queue.push(vm.$el);
   function moveDownMessages(end) {
-    const height = 120;
+    const height = 60;
     const margin = 15;
     for (let index = 0; index < end; index++) {
       const el = queue[index];

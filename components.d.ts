@@ -30,10 +30,10 @@ declare module 'vue' {
     NPopover: typeof import('naive-ui')['NPopover']
     NSpace: typeof import('naive-ui')['NSpace']
     NTag: typeof import('naive-ui')['NTag']
-    ScrollRow: typeof import('./src/components/scrollRow.vue')['default']
+    ScrollRow: typeof import('./src/components/ScrollRow.vue')['default']
     Svg: typeof import('./src/components/Svg.vue')['default']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']
-    Video: typeof import('./src/components/video/index.vue')['default']
+    Video: typeof import('./src/components/Video/index.vue')['default']
   }
 }
 
