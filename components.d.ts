@@ -32,6 +32,7 @@ declare module 'vue' {
     NTag: typeof import('naive-ui')['NTag']
     ScrollRow: typeof import('./src/components/scrollRow.vue')['default']
     Svg: typeof import('./src/components/Svg.vue')['default']
+    ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']
     Video: typeof import('./src/components/video/index.vue')['default']
   }
 }
