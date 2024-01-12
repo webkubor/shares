@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Board: typeof import('./src/components/Video/board.vue')['default']
     Cideo: typeof import('./src/components/cideo/index.vue')['default']
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
     MagicCard: typeof import('./src/components/MagicCard.vue')['default']
@@ -28,6 +29,7 @@ declare module 'vue' {
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     NPopover: typeof import('naive-ui')['NPopover']
+    NSelect: typeof import('naive-ui')['NSelect']
     NSpace: typeof import('naive-ui')['NSpace']
     NTag: typeof import('naive-ui')['NTag']
     ScrollRow: typeof import('./src/components/ScrollRow.vue')['default']

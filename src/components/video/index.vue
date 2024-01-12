@@ -1,20 +1,24 @@
 
 
 <template>
-  <div>
+    <div class="barrage">
     <video ref="player" :src="src" playsinline controls></video>
+    <Board/>
   </div>
+
 </template>
   
 <script>
 import Plyr from 'plyr';
 import 'plyr/dist/plyr.css';
+import Board from './Board.vue'
 import { plyrI18n } from './plyrI18n'
 
 export default {
   name: 'VideoPlayer',
   props: {
     src: String,
+    barrage: Boolean
   },
   mounted() {
     const options = {
@@ -29,3 +33,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.barrage {
+    color: #ffff;
+    min-height: 100vh;
+    position: relative;
+}
+</style>
