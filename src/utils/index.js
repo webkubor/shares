@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-11 15:47:11
- * @LastEditTime: 2021-10-15 11:39:55
+ * @LastEditTime: 2024-01-12 09:42:53
  */
 import _ from "lodash";
 
@@ -30,6 +30,30 @@ import _ from "lodash";
   return str;
 }
 
+
+
+/**
+ * @description: 是否开起禁止页面滚动，默认开始
+ * @param {*} flag
+ * @return {*}
+ */
+export function preventScroll(flag= true) {
+  if (flag) {
+      const top = document.documentElement.scrollTop || document.body.scrollTop;
+      document.body.style.cssText += `
+        position: fixed;
+        width: 100vw;
+        left: 0;
+        top: ${-top}px;
+    `
+  } else {
+      const top = document.body.style.top;
+      document.body.style.cssText += `
+        position: static;
+    `;
+      window.scrollTo(0, Math.abs(parseFloat(top)))
+  }
+}
 
 
 /**
