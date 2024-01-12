@@ -4,6 +4,7 @@
             <n-button @click="sendMessage" type="primary">发送弹幕</n-button>
             <n-input v-model="message" placeholder="输入弹幕内容" clearable   type="textarea" autosize style="min-width: 80%" ></n-input>
         </div>
+        <n-color-picker />
         <div class="show-row">
         <n-button dashed type="info" @click="clearMessage" >清空弹幕</n-button>
 
