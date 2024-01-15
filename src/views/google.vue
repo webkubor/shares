@@ -3,11 +3,13 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
+  import { ref,onMounted } from 'vue';
   
   let codeFlag = ref(false);
   let captchaId = null;
-  
+  onMounted(() => {
+  handleLoadGoogleCaptcha();
+});
   function handleLoadGoogleCaptcha() {
     codeFlag.value = false;
     captchaId = grecaptcha.render("captcha", {
