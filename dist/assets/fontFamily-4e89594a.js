@@ -1,1 +1,0 @@
-import{_ as a}from"./index-8f0d488d.js";import{o as t,m as s,p as e,n as o,q as n}from"./.pnpm-aa7558b5.js";const r={},d={viewBox:"0 0 700 200"},i=[(a=>(e("data-v-3a4cd62a"),a=a(),o(),a))((()=>n("text",{x:"0",y:"70%",id:"timelinetext"}," Tarspay ",-1)))];const p=a(r,[["render",function(a,e){return t(),s("svg",d,i)}],["__scopeId","data-v-3a4cd62a"]]);export{p as default};
