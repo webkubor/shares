@@ -1,5 +1,7 @@
 <template>
-   <div id="captcha" style="margin:10px;"></div>
+<n-button @click="onVertifyV3Click">V3无感知登录</n-button>
+   <!-- <div id="captcha" style="margin:10px;"></div>
+    -->
 </template>
 <!-- 6Lc_OlEpAAAAABJA5kqj1SM0S3vo_tmbKNHuor48 前端 -->
 <!-- 6Lc_OlEpAAAAANp6r2WD2aoSpghbYgnuFQCNBCNz 服务器 -->
@@ -11,10 +13,26 @@ let register = reactive({
 })
 let codeFlag = ref(false);
 let captchaId = null;
+
+const key_id = '6LcTelEpAAAAAMP0-x8wbH9pvGwElJkxBZ47UvAP'
 onMounted(() => {
-   handleLoadGoogleCaptcha();
+   // handleGoogleCaptchaV2();
 });
-function handleLoadGoogleCaptcha() {
+
+function onVertifyV3Click() {
+    grecaptcha.ready(function () {
+        console.log(grecaptcha, 'grecaptcha准备完毕');
+        grecaptcha.execute(key_id, { action: 'login' }).then(function (token) {
+            // Add your logic to submit to your backend server here.
+            console.log(token, "token验证后");
+            console.log(key_id, "当前秘钥");
+            window.v3token = token;
+        })
+    });
+}
+
+
+function handleGoogleCaptchaV2() {
    codeFlag.value = false;
    captchaId = grecaptcha.render("captcha", {
       "sitekey": '6Lc_OlEpAAAAABJA5kqj1SM0S3vo_tmbKNHuor48',
