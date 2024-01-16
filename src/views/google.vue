@@ -1,5 +1,16 @@
 <template>
-<n-button @click="onVertifyV3Click">V3无感知登录</n-button>
+
+   <n-card>
+      <div>
+         网站秘钥  6LcTelEpAAAAAMP0-x8wbH9pvGwElJkxBZ47UvAP
+      </div>
+      <div>
+         服务器秘钥：6LcTelEpAAAAAI-OY2JMcjHcnm-n2I7i7K5wbVSZ
+      </div>
+      
+     <n-button @click="onVertifyV3Click">V3无感知登录</n-button>
+
+   </n-card>
    <!-- <div id="captcha" style="margin:10px;"></div>
     -->
 </template>
@@ -25,8 +36,13 @@ function onVertifyV3Click() {
         grecaptcha.execute(key_id, { action: 'login' }).then(function (token) {
             // Add your logic to submit to your backend server here.
             console.log(token, "token验证后");
-            console.log(key_id, "当前秘钥");
-            window.v3token = token;
+            window.$message.success('验证成功,请打开控制台，看输出内容');
+            let params = {
+               action: 'login',
+               token:token,
+               key: key_id
+            }
+            console.log(params, "params");
         })
     });
 }
