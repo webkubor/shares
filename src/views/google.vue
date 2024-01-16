@@ -1,7 +1,8 @@
 <template>
    <div id="captcha" style="margin:10px;"></div>
 </template>
-  
+<!-- 6Lc_OlEpAAAAABJA5kqj1SM0S3vo_tmbKNHuor48 前端 -->
+<!-- 6Lc_OlEpAAAAANp6r2WD2aoSpghbYgnuFQCNBCNz 服务器 -->
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
 
