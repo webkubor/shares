@@ -18,6 +18,14 @@ const indexMap = [
     component:() => import("@/views/show/scroll.vue")
   },
   {
+    path: '/xbox',
+    name: 'xobxCsgo',
+    meta: {
+      title: "xobxCsgo"
+    },
+    component:() => import("@/views/xbox/index.vue")
+  },
+  {
     path: '/google',
     name: 'google',
     meta: {
