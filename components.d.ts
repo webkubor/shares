@@ -4,7 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Board: typeof import('./src/components/video/board.vue')['default']
+    Board: typeof import('./src/components/Video/board.vue')['default']
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
     Moon: typeof import('./src/components/Moon.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
@@ -30,10 +30,10 @@ declare module 'vue' {
     NSelect: typeof import('naive-ui')['NSelect']
     NSpace: typeof import('naive-ui')['NSpace']
     NTag: typeof import('naive-ui')['NTag']
-    ScrollRow: typeof import('./src/components/scrollRow.vue')['default']
+    ScrollRow: typeof import('./src/components/ScrollRow.vue')['default']
     Svg: typeof import('./src/components/Svg.vue')['default']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']
-    Video: typeof import('./src/components/video/index.vue')['default']
+    Video: typeof import('./src/components/Video/index.vue')['default']
   }
 }
 
