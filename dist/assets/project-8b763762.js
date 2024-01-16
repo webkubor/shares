@@ -1,0 +1,1 @@
+import{_ as a}from"./index-c777da83.js";import{o as s,m as e}from"./.pnpm-6a7a59e5.js";const o={class:"page"};const r=a({},[["render",function(a,r){return s(),e("div",o," Magic Card ")}],["__scopeId","data-v-ea3e612c"]]);export{r as default};

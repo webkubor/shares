@@ -1,0 +1,1 @@
+import{t,b as e,o,c as r}from"./.pnpm-6a7a59e5.js";const s=t({__name:"index",setup:t=>(document.title="弹幕测试",(t,s)=>{const a=e("MovieCom");return o(),r(a,{barrage:!1,src:"https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"})})});export{s as default};
