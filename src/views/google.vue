@@ -7,9 +7,10 @@
       <div>
          服务器秘钥：6LcTelEpAAAAAI-OY2JMcjHcnm-n2I7i7K5wbVSZ
       </div>
-      
      <n-button @click="onVertifyV3Click">V3无感知登录</n-button>
-
+      <n-card title="结果">
+         {{ register.captchaCode }}
+      </n-card>
    </n-card>
    <!-- <div id="captcha" style="margin:10px;"></div>
     -->
@@ -20,7 +21,7 @@
 import { ref, onMounted, reactive } from 'vue';
 
 let register = reactive({
-   captchaCode: ''
+   captchaCode: {}
 })
 let codeFlag = ref(false);
 let captchaId = null;
@@ -34,15 +35,15 @@ function onVertifyV3Click() {
     grecaptcha.ready(function () {
         console.log(grecaptcha, 'grecaptcha准备完毕');
         grecaptcha.execute(key_id, { action: 'login' }).then(function (token) {
-            // Add your logic to submit to your backend server here.
             console.log(token, "token验证后");
-            window.$message.success('验证成功,请打开控制台，看输出内容');
             let params = {
                action: 'login',
                token:token,
                key: key_id
             }
             console.log(params, "params");
+            register.captchaCode = JSON.stringify(params, null, 2)
+            window.$message.success('验证成功,请打开控制台，看输出内容');
         })
     });
 }
