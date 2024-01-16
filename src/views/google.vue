@@ -25,6 +25,7 @@
   function handleCaptchaCallback(val) {
     if (val != null) {
       register.captchaCode = val;
+      console.log(val,'handleCaptchaCallback');
       codeFlag.value = true;
     }
   }
