@@ -1,7 +1,8 @@
 <template>
     <div class="list-box">
         <div v-for="(img, index) in showImglist" :key="index">
-            <div class="card"  :style="{background:`url(${img})`}"  @mousemove="handleMouseMove($event, index)" @mouseleave="clearRotation(index)">
+            <div class="card" :style="{ backgroundImage: `url(${img})` }" @mousemove="handleMouseMove($event, index)"
+                @mouseleave="clearRotation(index)">
                 <img src='https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/test.png'>
                 <div class="highlight"></div>
             </div>
@@ -11,8 +12,6 @@
 
 
 <script setup>
-
-
 
 let showImglist = [
     'https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/5.png',
@@ -51,39 +50,7 @@ const clearRotation = (index) => {
     card.style.transform = '';
 };
 </script>
-<style lang="scss" scoped> .list-box {
-     display: flex;
-     background: #000000;
-     min-height: 100vh;
-
- }
-
- .card {
-     height: 300px;
-     width: 200px;
-     margin: 10px;
-     position: relative;
-     overflow: hidden;
-
-     img {
-     position: relative;
-        top: 100px;
-        left:-110px;
-         width: 200%;
-         object-fit: scale-down;
-         display: block;
-
-     }
-
-     &:hover {
-         cursor: pointer;
-         border: 2.5px solid orangered;
-         img {
-            transform: scale(1.5);
-         }
-     }
- }
-
+<style lang="scss" scoped> 
  .highlight {
      position: absolute;
      top: 0;
@@ -93,4 +60,62 @@ const clearRotation = (index) => {
      height: 100%;
      display: none;
  }
+
+.list-box {
+     display: flex;
+     background: #000000;
+     min-height: 100vh;
+
+     .card {
+         height: 300px;
+         width: 200px;
+         margin: 20px;
+         position: relative;
+         background-size: cover;
+         filter: blur(0px);
+         transition: filter 0.3s ease;
+         /* 添加过渡效果 */
+
+         img {
+             position: relative;
+             top: 100px;
+             width: 160%;
+             left: 50%;
+             transform: translateX(-54%);
+             transition: all 0.5s ease-in-out;
+         }
+
+         &::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             transition: filter 0.3s ease;
+             background-color: rgba($color: #000000, $alpha: 0.3);
+             z-index: 1;
+         }
+
+         &:hover {
+             cursor: pointer;
+             border: 2.5px solid orangered;
+             filter: brightness(120%) drop-shadow(0 0 2em orangered);
+             &::before {
+                 background-color: transparent;
+             }
+             img {
+                 transform: translateX(-50%) scale(1.5);
+                 filter: drop-shadow(0 0 2em orangered);
+
+             }
+
+         }
+     }
+
+ }
+
+
+
+
 </style>
