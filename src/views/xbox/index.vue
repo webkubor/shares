@@ -3,8 +3,19 @@
         <div v-for="(img, index) in showImglist" :key="index">
             <div class="card" :style="{ backgroundImage: `url(${img})` }" @mousemove="handleMouseMove($event, index)"
                 @mouseleave="clearRotation(index)">
-                <img src='https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/test.png'>
+                <div class="tags">
+                    限时爆款
+                </div>
+                <div class="price-box">
+                    <img src="@/assets/xbox/1.png" alt="">
+                    <span>1200</span>
+                    
+                </div>
+                <img class="arms" src='https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/test.png'>
                 <div class="highlight"></div>
+                <div class="card-bottom">
+                    无双拳套
+                </div>
             </div>
         </div>
     </div>
@@ -63,7 +74,7 @@ const clearRotation = (index) => {
 
 .list-box {
      display: flex;
-     background: #000000;
+     background: #120505;
      min-height: 100vh;
 
      .card {
@@ -75,8 +86,53 @@ const clearRotation = (index) => {
          filter: blur(0px);
          transition: filter 0.3s ease;
          /* 添加过渡效果 */
+         .tags {
+             position: absolute;
+             top: 0px;
+             left: 0px;
+             font-size: 14px;
+             color: #fff;
+             font-size: 10px;
+             font-weight: bold;
+             padding: 5px;
+             background-image: linear-gradient( 135deg, #F6D242 10%, #FF52E5 100%);
+         }
 
-         img {
+         .price-box {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 40%;
+            border-radius: 5px;
+            background: linear-gradient(rgb(15, 13, 28) 0%, rgb(34, 45, 57) 100%);
+            color: #F8E079;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            height: 30px;
+            img {
+                height: 20px;
+                width: auto;
+                display: block;
+            }
+            span {
+                margin-left: 4px;
+            }
+         }
+         .card-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            color: aliceblue;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            background: rgba(0, 0, 0, 0.5);
+         }
+         
+
+         .arms {
              position: relative;
              top: 100px;
              width: 160%;
@@ -99,15 +155,13 @@ const clearRotation = (index) => {
 
          &:hover {
              cursor: pointer;
-             border: 2.5px solid orangered;
-             filter: brightness(120%) drop-shadow(0 0 2em orangered);
+             border: 2.5px solid #F0000E;
+             filter: brightness(120%) drop-shadow(0 0 1em #F0000E);
              &::before {
                  background-color: transparent;
              }
-             img {
+             .arms {
                  transform: translateX(-50%) scale(1.5);
-                 filter: drop-shadow(0 0 2em orangered);
-
              }
 
          }
