@@ -83,8 +83,6 @@ const clearRotation = (index) => {
          margin: 20px;
          position: relative;
          background-size: cover;
-         filter: blur(0px);
-         transition: filter 0.3s ease;
          /* 添加过渡效果 */
          .tags {
              position: absolute;
