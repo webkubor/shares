@@ -9,14 +9,7 @@ const indexMap = [
     name: 'Project',
     component:() => import("@/views/index/project.vue")
   },
-  {
-    path: '/list',
-    name: 'List',
-    meta: {
-      title: "列表滚动测试"
-    },
-    component:() => import("@/views/show/scroll.vue")
-  },
+
   {
     path: '/xbox',
     name: 'xobxCsgo',
@@ -42,7 +35,28 @@ const indexMap = [
     component:() => import("@/views/barrage/index.vue")
   },
   {
-    path: '/money',
+    path: '/loading',
+    name: 'Loading',
+    component:() => import("@/views/loading/index.vue")
+  },
+  {
+    path: '/show/time',
+    name: 'Time',
+    meta: {
+      title: "时间测试"
+    },
+    component:() => import("@/views/show/time.vue")
+  },
+  {
+    path: '/show/list',
+    name: 'List',
+    meta: {
+      title: "列表滚动测试"
+    },
+    component:() => import("@/views/show/scroll.vue")
+  },
+  {
+    path: '/show/money',
     name: 'Money',
     meta: {
       title: "利息计算"
@@ -50,7 +64,7 @@ const indexMap = [
     component:() => import("@/views/show/money.vue")
   },
   {
-    path: '/spider',
+    path: '/show/spider',
     name: 'Spider-background',
     meta: {
       title: "蜘蛛网测试"
@@ -58,7 +72,7 @@ const indexMap = [
     component:() => import("@/views/show/spider.vue")
   },
   {
-    path: '/apple',
+    path: '/show/apple',
     name: 'Apple-Page',
     meta: {
       title: "苹果官网流动"
@@ -66,17 +80,12 @@ const indexMap = [
     component:() => import("@/views/show/apple.vue")
   },
   {
-    path: '/earth',
+    path: '/show/earth',
     name: 'Earth',
     component:() => import("@/views/show/three.vue")
   },
   {
-    path: '/loading',
-    name: 'Loading',
-    component:() => import("@/views/loading/index.vue")
-  },
-  {
-    path: '/fontFamily',
+    path: '/show/fontFamily',
     name: 'fontFamily',
     component:() => import("@/views/show/fontFamily.vue")
   }

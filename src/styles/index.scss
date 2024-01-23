@@ -15,7 +15,9 @@ $success-color: #30C0A2;
 @import "./button.scss";
 @import './magic.min.css';
 
-
+.grecaptcha-badge {
+  display: none !important;
+}
 
 *,
 *::before,
