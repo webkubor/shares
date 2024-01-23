@@ -47,7 +47,7 @@ export default defineConfig({
     open: true,
     proxy: {
       "/api": {
-        target: "https://api.66mz8.com/",
+        target: "http://api.captcha.tianai.cloud/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

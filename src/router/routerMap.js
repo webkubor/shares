@@ -48,6 +48,14 @@ const indexMap = [
     component:() => import("@/views/show/time.vue")
   },
   {
+    path: '/show/vertify',
+    name: 'Vertify',
+    meta: {
+      title: "时间测试"
+    },
+    component:() => import("@/views/show/sliderVertify.vue")
+  },
+  {
     path: '/show/list',
     name: 'List',
     meta: {
