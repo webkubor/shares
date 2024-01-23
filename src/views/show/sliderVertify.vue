@@ -9,10 +9,10 @@
 </template>
 <script setup>
 import "@/assets/captcha/tac.css" // 验证码css
-import "@/assets/captcha/jquery.js"; // 验证码js
 import "@/assets/captcha/tac.min.js"; // 验证码js
 
 function loginBtn() {
+    let style = {logoUrl: null}// 去除logo  
     const config = {
         requestCaptchaDataUrl: "/api/gen/random",
         validCaptchaUrl: "/api/check3",
@@ -22,6 +22,6 @@ function loginBtn() {
             tac.destroyWindow();
         }
     }
-    new window.TAC(config).init();
+    new window.TAC(config, style).init();
 }
 </script>
