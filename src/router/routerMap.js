@@ -40,6 +40,14 @@ const indexMap = [
     component:() => import("@/views/loading/index.vue")
   },
   {
+    path: '/gasp/demo',
+    name: 'gaspJS',
+    meta: {
+      title: "粒子demo测试"
+    },
+    component:() => import("@/views/gasp/index.vue")
+  },
+  {
     path: '/show/tabbar',
     name: 'Tabbar',
     meta: {

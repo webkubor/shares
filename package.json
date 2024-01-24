@@ -8,6 +8,7 @@
     "show": "vite preview"
   },
   "dependencies": {
+    "gsap": "^3.12.5",
     "lodash": "^4.17.21",
     "phosphor-vue": "^4.4.0",
     "plyr": "^3.7.8",
