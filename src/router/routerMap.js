@@ -40,12 +40,12 @@ const indexMap = [
     component:() => import("@/views/loading/index.vue")
   },
   {
-    path: '/show/time',
-    name: 'Time',
+    path: '/show/tabbar',
+    name: 'Tabbar',
     meta: {
-      title: "时间测试"
+      title: "tabbar"
     },
-    component:() => import("@/views/show/time.vue")
+    component:() => import("@/views/show/tabbar.vue")
   },
   {
     path: '/show/vertify',
