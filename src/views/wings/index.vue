@@ -1,12 +1,12 @@
 <template>
     <div class="bg">
         <h2>火焰之翼</h2>
+        <div class="list">
+            <n-button type="success" ghost @click="commonClick">普通点击</n-button>
+        </div>
         <div class="flame">
             <img class="red" src="https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/fly-open-removebg-preview.png">
             <div class="light"></div>
-            <div class="list">
-                排行榜内容交互测试
-            </div>
         </div>
         <div class="flame">
             <img src="https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/6.png">
@@ -34,6 +34,16 @@
 </template>
 
 <script setup>
+import { useMusic } from "@/hooks/useMusic";
+
+const { initBackgroundMusic, onClickAudio } = useMusic()
+initBackgroundMusic()
+
+
+function commonClick() {
+    console.log(222);
+    onClickAudio()
+}
 
 </script>
 
@@ -56,6 +66,7 @@
     position: relative;
     cursor: pointer;
     z-index: 2;
+
     h2 {
         font-weight: 800;
         text-align: center;
@@ -72,7 +83,7 @@
         z-index: -1;
     }
 
-   
+
 
     &::before {
         display: block;
@@ -85,6 +96,7 @@
         left: 50%;
         top: -60%;
         transform: translate(-65%);
+        z-index: -1;
     }
 
     img {
@@ -116,4 +128,5 @@
         margin: 0 90px;
 
     }
-}</style>
+}
+</style>
