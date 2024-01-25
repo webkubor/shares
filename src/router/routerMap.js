@@ -27,6 +27,14 @@ const indexMap = [
     component:() => import("@/views/google.vue")
   },
   {
+    path: '/wings',
+    name: 'Wing',
+    meta: {
+      title: "火焰之翼"
+    },
+    component:() => import("@/views/wings/index.vue")
+  },
+  {
     path: '/barrage',
     name: 'Barrage',
     meta: {

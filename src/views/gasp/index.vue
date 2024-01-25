@@ -1,46 +1,83 @@
 <template>
-     <button ref="animatedButton" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
-    <span ref="buttonText">Hover me</span>
-  </button>
+  <canvas ref="canvas" id="hero-lightpass"></canvas>
 </template>
+
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { TweenMax } from 'gsap';
-const animatedButton = ref(null);
-    const buttonText = ref(null);
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-    const handleMouseEnter = () => {
-      TweenMax.to(buttonText.value, 0.5, { opacity: 1, y: 0, ease: 'Power4.easeInOut' });
-      TweenMax.to(animatedButton.value, 0.5, { backgroundColor: '#3498db', scale: 1.1 });
-    };
+const canvas = ref(null);
+const context = ref(null);
+const baseUrl = "https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass";
+const frameCount = 147;
+let images = []; // 在模块级别声明 images 数组
 
-    const handleMouseLeave = () => {
-      TweenMax.to(buttonText.value, 0.5, { opacity: 0, y: 20, ease: 'Power4.easeInOut' });
-      TweenMax.to(animatedButton.value, 0.5, { backgroundColor: '#2ecc71', scale: 1 });
-    };
+onMounted(() => {
+  initCanvas();
+  loadImages();
+  gsap.registerPlugin(ScrollTrigger); // 注册 ScrollTrigger 插件
+  setupAnimation();
+});
 
+onBeforeUnmount(() => {
+  // 在组件销毁前清理资源
+  images.forEach(img => {
+    img.onload = null;
+  });
+});
+
+function initCanvas() {
+  canvas.value = document.getElementById("hero-lightpass");
+  context.value = canvas.value.getContext("2d");
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+}
+
+function resizeCanvas() {
+  canvas.value.width = window.innerWidth;
+  canvas.value.height = window.innerHeight;
+}
+
+function loadImages() {
+  images = []; // 重置 images 数组
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = `${baseUrl}/${(i + 1).toString().padStart(4, '0')}.jpg`;
+    images.push(img);
+  }
+}
+
+function setupAnimation() {
+  const airpods = {
+    frame: 0
+  };
+
+  gsap.to(airpods, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: "none",
+    scrollTrigger: {
+      scrub: 0.5,
+      onUpdate: render
+    }
+  });
+}
+
+function render() {
+  context.value.clearRect(0, 0, canvas.value.width, canvas.value.height);
+  context.value.drawImage(images[airpods.frame], 0, 0);
+}
 </script>
 
-
-
 <style lang="scss" scoped>
-
-button {
-  position: relative;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #2ecc71;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+html, body {
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 }
 
-span {
-  position: relative;
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s, transform 0.5s;
+canvas {
+  display: block;
 }
 </style>
