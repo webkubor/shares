@@ -1,24 +1,14 @@
 <template>
     <div class="bg">
-        <h2>火焰之翼</h2>
-        <div class="list">
-            <n-button type="success" ghost @click="commonClick">普通点击</n-button>
-        </div>
         <div class="flame">
             <img class="red" src="https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/fly-open-removebg-preview.png">
             <div class="light"></div>
         </div>
         <div class="flame">
-            <img src="https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/6.png">
+            <img src="https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/king.png">
             <div class="light">
             </div>
         </div>
-        <div class="flame">
-            <img src="https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/gold-wins.png">
-            <div class="light">
-            </div>
-        </div>
-
 
         <div class="others">
             <div class="flame">
@@ -40,10 +30,6 @@ const { initBackgroundMusic, onClickAudio } = useMusic()
 initBackgroundMusic()
 
 
-function commonClick() {
-    console.log(222);
-    onClickAudio()
-}
 
 </script>
 
@@ -57,6 +43,7 @@ function commonClick() {
     align-items: center;
     flex-direction: column;
     color: #ffffff;
+    padding-bottom: 20vh;
 
 }
 
@@ -122,10 +109,11 @@ function commonClick() {
 
 .others {
     display: flex;
+    margin-top: -20px;
 
     .flame {
         width: 300px;
-        margin: 0 90px;
+        margin: 0 120px;
 
     }
 }
