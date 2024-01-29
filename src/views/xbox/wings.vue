@@ -10,9 +10,7 @@
         </div>
         <div class="flame">
             <img class="avactor" src="https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/avactor.png" alt="">
-            <!-- <div class="name-title">
-                King
-            </div> -->
+      
             <img src="https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/king.png">
             <div class="light">
             </div>
@@ -52,7 +50,6 @@ initBackgroundMusic()
     }
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Homemade+Apple&family=Sacramento&display=swap");
 
 .bg {
     min-height: 100vh;
@@ -103,10 +100,12 @@ initBackgroundMusic()
         width: 300px;
         height: 200px;
         position: absolute;
+        top: 25px;
         left: 50%;
         margin-left: -150px;
         background-image: -webkit-linear-gradient(left, #F0000E, #c2ff66 10%, #ff6a00 20%, #F0000E 30%, #CCCCFF 40%, #ff6a00 50%, #CCCCFF 60%, #CC00CC 70%, #F0000E 80%, #ff6a00 90%, #c2ff66 100%);
         -webkit-text-fill-color: transparent;
+        font-weight: 800;
         /* 将字体设置成透明色 */
         -webkit-background-clip: text;
         /* 裁剪背景图，使文字作为裁剪区域向外裁剪 */

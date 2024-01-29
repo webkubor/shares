@@ -11,7 +11,7 @@
                     <span>1200</span>
                     
                 </div>
-                <img class="arms" src='https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/test.png'>
+                <img class="arms" src='https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/fly-open-removebg-preview.png'>
                 <div class="highlight"></div>
                 <div class="card-bottom">
                     无双拳套
@@ -27,8 +27,6 @@
 let showImglist = [
     'https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/5.png',
     'https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/4.png',
-    'https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/3.png',
-    'https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/2.png',
     'https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/test/1.png',
     'https://img.tfskins.com/image/cdd673ded2eee54fe9c17f01d322c9320231102210449.png'
 ]
@@ -132,8 +130,8 @@ const clearRotation = (index) => {
 
          .arms {
              position: relative;
-             top: 100px;
-             width: 160%;
+             top: 80px;
+             width: 60%;
              left: 50%;
              transform: translateX(-54%);
              transition: all 0.5s ease-in-out;

@@ -11,12 +11,20 @@ const indexMap = [
   },
 
   {
-    path: '/xbox',
+    path: '/xbox/card',
     name: 'xobxCsgo',
     meta: {
-      title: "xobxCsgo"
+      title: "卡片交互"
     },
-    component:() => import("@/views/xbox/index.vue")
+    component:() => import("@/views/xbox/cards.vue")
+  },
+  {
+    path: '/xbox/wings',
+    name: 'Wing',
+    meta: {
+      title: "火焰之翼"
+    },
+    component:() => import("@/views/xbox/wings.vue")
   },
   {
     path: '/google',
@@ -26,14 +34,7 @@ const indexMap = [
     },
     component:() => import("@/views/google.vue")
   },
-  {
-    path: '/wings',
-    name: 'Wing',
-    meta: {
-      title: "火焰之翼"
-    },
-    component:() => import("@/views/wings/index.vue")
-  },
+ 
   {
     path: '/barrage',
     name: 'Barrage',
@@ -45,15 +46,10 @@ const indexMap = [
   {
     path: '/loading',
     name: 'Loading',
-    component:() => import("@/views/loading/index.vue")
-  },
-  {
-    path: '/gasp/demo',
-    name: 'gaspJS',
     meta: {
-      title: "粒子demo测试"
+      title: "Loading"
     },
-    component:() => import("@/views/gasp/index.vue")
+    component:() => import("@/views/loading/index.vue")
   },
   {
     path: '/show/tabbar',
@@ -67,7 +63,7 @@ const indexMap = [
     path: '/show/vertify',
     name: 'Vertify',
     meta: {
-      title: "时间测试"
+      title: "图片验证"
     },
     component:() => import("@/views/show/sliderVertify.vue")
   },

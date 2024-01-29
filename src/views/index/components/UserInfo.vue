@@ -36,12 +36,30 @@
     <div class="sign" >
       {{ user.personalSign }}
     </div>
+    <n-divider title-placement="center">工具包</n-divider>
+    <n-space>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/google')">google无感知登录</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/wings')">火焰翅膀模拟</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/barrage')">弹幕测试</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/loading')">loading</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/card')">卡片交互</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/show/tabbar')">Tabbar 设计参考</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/show/list')">列表滚动测试</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/show/money')">利息计算</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/show/spider')">蜘蛛网测试</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/show/apple')">苹果官网流动</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/show/earth')">地球滚动</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/show/fontFamily')">字体交互</n-button>
+    </n-space>
+
+
+
   </div>
 </template>
 <script setup>
 import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
-import { getRandomType } from "@/utils/random";
+import { getRandomType, getRandomColor } from "@/utils/random";
 import { useI18n } from "vue-i18n";
 import {computed}  from "vue"
 const { t, locale } = useI18n();
