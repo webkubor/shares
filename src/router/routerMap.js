@@ -108,6 +108,11 @@ const indexMap = [
     path: '/show/fontFamily',
     name: 'fontFamily',
     component:() => import("@/views/show/fontFamily.vue")
+  },
+  {
+    path: '/transform',
+    name: '视频转化',
+    component:() => import("@/views/transform/index.vue")
   }
 ]
 

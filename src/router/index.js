@@ -24,4 +24,10 @@ const router = createRouter({
   routes,
 });
 
+
+router.beforeEach(async (to, from, next) => {
+  document.title  = to.meta.title ?? 'webkubor'
+  next()
+})
+
 export default router;
