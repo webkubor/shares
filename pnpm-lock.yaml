@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  gsap:
-    specifier: ^3.12.5
-    version: 3.12.5
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -23,6 +20,9 @@ dependencies:
   vue:
     specifier: ^3.3.4
     version: 3.3.8(typescript@4.9.5)
+  whammy:
+    specifier: ^0.0.1
+    version: 0.0.1
 
 devDependencies:
   '@types/node':
@@ -1125,10 +1125,6 @@ packages:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
     dev: true
 
-  /gsap@3.12.5:
-    resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
-    dev: false
-
   /har-schema@2.0.0:
     resolution: {integrity: sha512-Oqluz6zhGX8cyRaTQlFMPw80bSJVG2x/cFb8ZPhUILGgHka9SsokCCOQgpveePerqidZOrT14ipqfJb7ILcW5Q==}
     engines: {node: '>=4'}
@@ -2010,6 +2006,10 @@ packages:
       - esbuild
       - uglify-js
     dev: true
+
+  /whammy@0.0.1:
+    resolution: {integrity: sha512-H8J4+I5ISuOZXAZiNMZXD71+oZIM6szrgYG8wt4dCpDNEU8mogxPGvgMIFg/BhkuptOLbtW0X34E/YE6a75ujg==}
+    dev: false
 
   /yallist@4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
