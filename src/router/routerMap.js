@@ -9,7 +9,14 @@ const indexMap = [
     name: 'Project',
     component:() => import("@/views/index/project.vue")
   },
-
+  {
+    path: '/xbox/open',
+    name: 'openBox',
+    meta: {
+      title: "卡片交互"
+    },
+    component:() => import("@/views/xbox/openBox.vue")
+  },
   {
     path: '/xbox/card',
     name: 'xobxCsgo',

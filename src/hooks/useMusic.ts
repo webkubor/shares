@@ -1,4 +1,5 @@
 import commonClick from '@/assets/click/commonClick_1.mp3';
+import noticeClick from '@/assets/click/notice.mp3';
 import bgMusic from '@/assets/bg.mp3';
 import { ref } from 'vue';
 let currentBgMusic = ref<any>(null);
@@ -6,12 +7,12 @@ let currentBgMusic = ref<any>(null);
 
 // 播放单个声音
 const playAudio = (audio) => {
-        try {
-            audio.play();
-        } catch (error) {
-            console.log(error);
-            audio.current.play()
-        }
+    try {
+        audio.play();
+    } catch (error) {
+        console.log(error);
+        audio.current.play()
+    }
 }
 
 //关闭当前的背景音乐
@@ -31,6 +32,14 @@ function onClickAudio() {
 }
 
 
+// 点击音效
+function onClickBox() {
+    let clickAudio = new Audio(noticeClick);
+    playAudio(clickAudio)
+}
+
+
+
 function initBackgroundMusic() {
     let soundSwitch = localStorage.getItem("soundSwitch");
     if (soundSwitch == 'false') return
@@ -42,6 +51,7 @@ function initBackgroundMusic() {
 export function useMusic() {
     return {
         initBackgroundMusic,
+        onClickBox,
         onClickAudio,
         stopMusic,
         playAudio

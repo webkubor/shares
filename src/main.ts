@@ -6,7 +6,6 @@ import copy from "@/directives/copy";
 import PhosphorVue from "phosphor-vue";
 import ripple from "@/directives/ripple/index";
 import globalComponents from "@/components";
-import '@/styles/index.scss'
 
 createApp(App)
 .use(copy)
