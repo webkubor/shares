@@ -38,10 +38,11 @@
     </div>
     <n-divider title-placement="center">工具包</n-divider>
     <n-space>
-      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/card')">图标测试</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/card')">xbox图标测试</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/wings')">xbox火焰翅膀模拟</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/open')">xbox开箱</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/transform')">视频转化</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/google')">google无感知登录</n-button>
-      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/wings')">火焰翅膀模拟</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/barrage')">弹幕测试</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/loading')">loading</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/show/tabbar')">Tabbar 设计参考</n-button>

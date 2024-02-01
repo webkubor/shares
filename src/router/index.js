@@ -3,11 +3,11 @@ import RouterMap from "./routerMap";
 
 const routes = [
   {
-    path: "/*/",
+    path: '/:pathMatch(.*)*',
     meta: {
-      auth: "all",
+      auth: 'all' // 统用权限
     },
-    redirect: "/",
+    redirect: "/home",
   },
   {
     path: "/",
@@ -26,7 +26,7 @@ const router = createRouter({
 
 
 router.beforeEach(async (to, from, next) => {
-  document.title  = to.meta.title ?? 'webkubor'
+  document.title = to.meta.title ?? 'webkubor'
   next()
 })
 
