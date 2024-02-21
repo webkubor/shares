@@ -3,200 +3,466 @@
         <h1>对战竞技& 欧皇</h1>
         <div class="room-item king">
             <img class="cover" src="@/assets/xbox/logo.png" />
-            <h2>经典</h2>
-            <n-space style="margin: 20px 0;">
-                <n-tag :bordered="false" type="warning">
-                    2v2
-                </n-tag>
-                <n-tag :bordered="false" type="warning">
-                    三回合
-                </n-tag>
-                <n-tag :bordered="false" type="warning">
-                    经典
-                </n-tag>
+            <div class="title-box">
+                <h2>经典模式</h2>
+                <div style="color: #666666; display: flex; align-items: center;">
+                    <ph-eye :size="18" color="#666666" weight="bold" />
+                    <span style="margin-left: 10px;">
+                        6人观看
+                    </span>
+                </div>
+                <n-space align="center">
+                    <div class="status-dot going"></div>
+                    <h4>进行中 3回合</h4>
+                </n-space>
+            </div>
+
+            <div class="price-box">
+                <span>X 1000.89</span>
+            </div>
+            <n-space style="margin: 20px 0; display: flex;">
+                <img class="user-head" src="@/assets/avactor.png" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <div class="join">
+                    <ph-plus :size="18" weight="bold" color="#ffffff" />
+                </div>
             </n-space>
-            <button>加入</button>
+            <button>立刻开始</button>
+            <button>加入观战</button>
             <div class="show-list">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
 
             </div>
         </div>
         <div class="room-item king">
             <img class="cover" src="@/assets/xbox/logo.png" />
-            <h2>经典</h2>
-
-            <n-space style="margin: 20px 0;">
-                <n-tag :bordered="false" type="warning">
-                    2v2
-                </n-tag>
-                <n-tag :bordered="false" type="warning">
-                    三回合
-                </n-tag>
-                <n-tag :bordered="false" type="warning">
-                    经典
-                </n-tag>
+            <div class="title-box">
+                <h2>经典模式</h2>
+                <div style="color: #666666; display: flex; align-items: center;">
+                    <ph-eye :size="18" color="#666666" weight="bold" />
+                    <span style="margin-left: 10px;">
+                        6人观看
+                    </span>
+                </div>
+                <n-space align="center">
+                    <div class="status-dot going"></div>
+                    <h4>进行中 3回合</h4>
+                </n-space>
+            </div>
+            <div class="price-box">
+                <span>X 1000.89</span>
+            </div>
+            <n-space style="margin: 20px 0; display: flex;">
+                <img class="user-head" src="@/assets/avactor.png" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <div class="join">
+                    <ph-plus :size="18" weight="bold" color="#ffffff" />
+                </div>
             </n-space>
-
-            <button>加入</button>
+            <button>立刻开始</button>
+            <button>加入观战</button>
             <div class="show-list">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
 
-</div>
+            </div>
         </div>
         <div class="room-item king">
             <img class="cover" src="@/assets/xbox/logo.png" />
-            <h2>经典</h2>
-            <n-space style="margin: 20px 0;">
-                <n-tag :bordered="false" type="warning">
-                    2v2
-                </n-tag>
-                <n-tag :bordered="false" type="warning">
-                    三回合
-                </n-tag>
-                <n-tag :bordered="false" type="warning">
-                    经典
-                </n-tag>
+            <div class="title-box">
+                <h2>经典模式</h2>
+                <div style="color: #666666; display: flex; align-items: center;">
+                    <ph-eye :size="18" color="#666666" weight="bold" />
+                    <span style="margin-left: 10px;">
+                        6人观看
+                    </span>
+                </div>
+                <n-space align="center">
+                    <div class="status-dot waiting"></div>
+                    <h4>等待中 3回合</h4>
+                </n-space>
+            </div>
+            <div class="price-box">
+                <span>X 1000.89</span>
+            </div>
+            <n-space style="margin: 20px 0; display: flex;">
+                <img class="user-head" src="@/assets/avactor.png" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <div class="join">
+                    <ph-plus :size="18" weight="bold" color="#ffffff" />
+                </div>
             </n-space>
-            <button>加入</button>
+            <button>立刻开始</button>
+            <button>加入观战</button>
             <div class="show-list">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
 
-</div>
+            </div>
         </div>
         <div class="room-item Joker">
             <img class="cover" src="@/assets/xbox/logo.png" />
-            <h2>小丑</h2>
-            <n-space style="margin: 20px 0;">
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    2v2
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    三回合
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    经典
-                </n-tag>
+            <div class="title-box">
+                <h2>小丑模式</h2>
+                <div style="color: #666666; display: flex; align-items: center;">
+                    <ph-eye :size="18" color="#666666" weight="bold" />
+                    <span style="margin-left: 10px;">
+                        6人观看
+                    </span>
+                </div>
+                <n-space align="center">
+                    <div class="status-dot waiting"></div>
+                    <h4>等待中 3回合</h4>
+                </n-space>
+            </div>
+            <div class="price-box">
+                <span>X 1000.89</span>
+            </div>
+            <n-space style="margin: 20px 0; display: flex;">
+                <img class="user-head" src="@/assets/avactor.png" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <div class="join">
+                    <ph-plus :size="18" weight="bold" color="#ffffff" />
+                </div>
             </n-space>
-            <button >加入</button>
+            <button>立刻开始</button>
+            <button>加入观战</button>
             <div class="show-list">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
 
-</div>
+            </div>
         </div>
         <div class="room-item Joker">
             <img class="cover" src="@/assets/xbox/logo.png" />
-            <h2>小丑</h2>
-            <n-space style="margin: 20px 0;">
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    2v2
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    三回合
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    经典
-                </n-tag>
+            <div class="title-box">
+                <h2>小丑模式</h2>
+                <div style="color: #666666; display: flex; align-items: center;">
+                    <ph-eye :size="18" color="#666666" weight="bold" />
+                    <span style="margin-left: 10px;">
+                        6人观看
+                    </span>
+                </div>
+                <n-space align="center">
+                    <div class="status-dot going"></div>
+                    <h4>进行中 3回合</h4>
+                </n-space>
+            </div>
+            <div class="price-box">
+                <span>X 1000.89</span>
+            </div>
+            <n-space style="margin: 20px 0; display: flex;">
+                <img class="user-head" src="@/assets/avactor.png" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <div class="join">
+                    <ph-plus :size="18" weight="bold" color="#ffffff" />
+                </div>
             </n-space>
-            <button >加入</button>
+            <button>立刻开始</button>
+            <button>加入观战</button>
             <div class="show-list">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
 
-</div>
+            </div>
         </div>
         <div class="room-item Joker">
             <img class="cover" src="@/assets/xbox/logo.png" />
-            <h2>小丑</h2>
-            <n-space style="margin: 20px 0;">
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    2v2
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    三回合
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    经典
-                </n-tag>
+            <div class="title-box">
+                <h2>小丑模式</h2>
+                <div style="color: #666666; display: flex; align-items: center;">
+                    <ph-eye :size="18" color="#666666" weight="bold" />
+                    <span style="margin-left: 10px;">
+                        6人观看
+                    </span>
+                </div>
+                <n-space align="center">
+                    <div class="status-dot going"></div>
+                    <h4>进行中 3回合</h4>
+                </n-space>
+            </div>
+            <div class="price-box">
+                <span>X 1000.89</span>
+            </div>
+            <n-space style="margin: 20px 0; display: flex;">
+                <img class="user-head" src="@/assets/avactor.png" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <div class="join">
+                    <ph-plus :size="18" weight="bold" color="#ffffff" />
+                </div>
             </n-space>
-            <button >加入</button>
+            <button>立刻开始</button>
+            <button>加入观战</button>
             <div class="show-list">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
 
-</div>
+            </div>
         </div>
         <div class="room-item disabled">
             <img class="cover" src="@/assets/xbox/active-logo.png" />
-            <h2>小丑</h2>
-            <n-space style="margin: 20px 0;">
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    2v2
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    三回合
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    经典
-                </n-tag>
+            <div class="title-box">
+                <h2>小丑模式</h2>
+                <div style="color: #666666; display: flex; align-items: center;">
+                    <ph-eye :size="18" color="#666666" weight="bold" />
+                    <span style="margin-left: 10px;">
+                        6人观看
+                    </span>
+                </div>
+                <n-space align="center">
+                    <div class="status-dot ending"></div>
+                    <h4>已结束 3回合</h4>
+                </n-space>
+            </div>
+            <div class="price-box">
+                <span>X 1000.89</span>
+            </div>
+            <n-space style="margin: 20px 0; display: flex;">
+                <img class="user-head" src="@/assets/avactor.png" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <div class="join">
+                    <ph-plus :size="18" weight="bold" color="#ffffff" />
+                </div>
             </n-space>
-            <button >查看结果</button>
+            <button>查看</button>
             <div class="show-list">
-
-</div>
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+            </div>
         </div>
         <div class="room-item disabled">
             <img class="cover" src="@/assets/xbox/active-logo.png" />
-            <h2>小丑</h2>
-            <n-space style="margin: 20px 0;">
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    2v2
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    三回合
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    经典
-                </n-tag>
+            <div class="title-box">
+                <h2>经典模式</h2>
+                <div style="color: #666666; display: flex; align-items: center;">
+                    <ph-eye :size="18" color="#666666" weight="bold" />
+                    <span style="margin-left: 10px;">
+                        6人观看
+                    </span>
+                </div>
+                <n-space align="center">
+                    <div class="status-dot ending"></div>
+                    <h4>已结束 3回合</h4>
+                </n-space>
+            </div>
+            <div class="price-box">
+                <span>X 1000.89</span>
+            </div>
+            <n-space style="margin: 20px 0; display: flex;">
+                <img class="user-head" src="@/assets/avactor.png" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <div class="join">
+                    <ph-plus :size="18" weight="bold" color="#ffffff" />
+                </div>
             </n-space>
-            <button >查看结果</button>
+            <button>查看</button>
             <div class="show-list">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
 
-</div>
+            </div>
 
         </div>
         <div class="room-item disabled">
             <img class="cover" src="@/assets/xbox/active-logo.png" />
-            <h2>小丑</h2>
-              <n-space style="margin: 20px 0;">
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    2v2
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    三回合
-                </n-tag>
-                <n-tag :bordered="false" :color="{ color: 'transparent', textColor: '#71bee9', borderColor: '#71bee9' }">
-                    经典
-                </n-tag>
+            <div class="title-box">
+                <h2>经典模式</h2>
+                <div style="color: #666666; display: flex; align-items: center;">
+                    <ph-eye :size="18" color="#666666" weight="bold" />
+                    <span style="margin-left: 10px;">
+                        6人观看
+                    </span>
+                </div>
+                <n-space align="center">
+                    <div class="status-dot ending"></div>
+                    <h4>已结束 3回合</h4>
+                </n-space>
+            </div>
+            <div class="price-box">
+                <span>X 1000.89</span>
+            </div>
+            <n-space style="margin: 20px 0; display: flex;">
+                <img class="user-head" src="@/assets/avactor.png" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <div class="join">
+                    <ph-plus :size="18" weight="bold" color="#ffffff" />
+                </div>
             </n-space>
-            <button >查看结果</button>
+            <button>查看</button>
             <div class="show-list">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
 
-</div>
+            </div>
         </div>
     </div>
 </template>
 <style  lang="scss"  scoped>
+.status-dot {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(10, 238, 10);
+    border-radius: 50%;
+    /* 设置闪烁动画 */
+}
+
+.going {
+    background-color: rgb(10, 238, 10);
+    animation: goingflash 1s infinite alternate;
+}
+
+.waiting {
+    background-color: rgb(238, 196, 10);
+    animation: waitingflash 1s infinite alternate;
+}
+
+.ending {
+    background-color: rgba(49, 23, 8, 0.89);
+
+}
+
+@keyframes waitingflash {
+    0% {
+        box-shadow: 0 0 5px 3px rgba(237, 251, 44, 0.7);
+        /* 开始时的光晕效果 */
+    }
+
+    100% {
+        box-shadow: 0 0 20px 10px rgba(0, 255, 0, 0);
+        /* 闪烁后的光晕效果 */
+    }
+}
+
+@keyframes goingflash {
+    0% {
+        box-shadow: 0 0 5px 3px rgba(0, 255, 0, 0.7);
+        /* 开始时的光晕效果 */
+    }
+
+    100% {
+        box-shadow: 0 0 20px 10px rgba(0, 255, 0, 0);
+        /* 闪烁后的光晕效果 */
+    }
+}
+
+
 .xbox-page {
     width: 100%;
-    height: 100vh;
-    background: #000000;
+    min-height: 100vh;
+    background-color: #000000;
+    background: url(https://xboxcsgo.oss-cn-hongkong.aliyuncs.com/files/xboxcsgo/red-bg.webp) no-repeat left top;
+    background-size: 100% 200%;
     color: #ffffff;
     padding: 40px;
+    box-sizing: border-box;
+
+    .price-box {
+        text-align: center;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 22px;
+        margin: 20px 0;
+        filter: drop-shadow(0 0 10px #e42121);
+    }
+
+    button {
+        width: 150px;
+        height: 30px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-right: 10px;
+
+    }
 
     .room-item {
-        height: 250px;
         width: 500px;
         padding: 20px;
         margin: 20px;
         position: relative;
         display: inline-block;
+        z-index: 1;
+
+        .title-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .user-head {
+            width: 50px;
+            border-radius: 50%;
+        }
+
+        .join {
+            background: linear-gradient(180deg, #ec5d35 0%, rgba(96, 107, 166, 0) 100%);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
         .show-list {
-            opacity: 0.2;
             width: 100%;
             height: 100px;
             margin-top: 20px;
+            display: flex;
+            overflow: hidden;
+            padding: 5px 0;
+
+            img {
+                filter: brightness(220%);
+                margin: 5px;
+            }
         }
 
         .cover {
@@ -211,34 +477,32 @@
         background: linear-gradient(144deg, #5498FF 2.92%, #101317 20.5%);
         border: 3px solid #ADCDFF;
         box-shadow: 0 0 17px #71bee9;
+
         button {
             border: 1px solid #ADCDFF;
             color: #ADCDFF;
             background: transparent;
-            width: 200px;
-            height: 30px;
-            font-size: 16px;
         }
+
         .show-list {
-            background: #5498FF;
+            background: rgba(#5498FF, 0.2);
+
         }
     }
 
     .king {
-        background: linear-gradient(145deg, #DC5EA5 2.89%, #23181E 20.36%);
-        box-shadow: 0 0 17px #e971c0;
-        border: 2px solid #FFC8E2;
+        background: linear-gradient(145deg, #e42121 2.89%, #23181E 20.36%);
+        box-shadow: 0 0 17px #e97179;
+        border: 2px solid #e70c0c;
+
         button {
-            border: 1px solid #FFC8E2;
-            color: #FFC8E2;
+            border: 1px solid #e42121;
+            color: #e42121;
             background: transparent;
-            width: 200px;
-            height: 30px;
-            font-size: 16px;
         }
+
         .show-list {
-            background: #DC5EA5;
-          
+            background: rgba(#e42121, 0.1);
         }
     }
 
@@ -248,17 +512,16 @@
         border-color: #65677d;
         border-width: 2px;
         box-shadow: none;
+
         button {
-            border: 1px solid  #65677d;
+            border: 1px solid #65677d;
             color: #65677d;
             background: transparent;
-            width: 200px;
-            height: 30px;
-            font-size: 16px;
         }
+
         .show-list {
-            background: #000000;
-          
+            background: rgba(#000000, 0.1);
+
         }
     }
 
