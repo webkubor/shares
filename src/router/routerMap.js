@@ -26,6 +26,14 @@ const indexMap = [
     component:() => import("@/views/xbox/cards.vue")
   },
   {
+    path: '/xbox/battle',
+    name: 'Battle',
+    meta: {
+      title: "对战竞技"
+    },
+    component:() => import("@/views/xbox/battle.vue")
+  },
+  {
     path: '/xbox/wings',
     name: 'Wing',
     meta: {

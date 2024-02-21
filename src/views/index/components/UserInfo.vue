@@ -38,6 +38,7 @@
     </div>
     <n-divider title-placement="center">工具包</n-divider>
     <n-space>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/battle')">xbox对战竞技</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/card')">xbox图标测试</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/wings')">xbox火焰翅膀模拟</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/open')">xbox开箱</n-button>
