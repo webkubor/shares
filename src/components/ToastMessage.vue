@@ -100,9 +100,8 @@ export default {
   left: 0;
   width: 100%;
   height: 5px;
-  background-color: #ccc;
+  background-color: #23181E;
   border-radius: 4px;
-
 }
 
 .progress-bar {
@@ -130,7 +129,7 @@ export default {
   .toast-message-content {
     position: relative;
     color: aliceblue;
-  padding: 0 10px;
+     padding: 0 10px;
     :deep(.message-link) {
       display: inline-block;
       text-decoration: underline;

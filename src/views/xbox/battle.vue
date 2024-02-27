@@ -228,7 +228,6 @@
                 <img src="@/assets/xbox/lucky.png" alt="">
                 <img src="@/assets/xbox/lucky.png" alt="">
                 <img src="@/assets/xbox/lucky.png" alt="">
-
             </div>
         </div>
         <div class="room-item disabled">
@@ -355,6 +354,7 @@ function onTest() {
             <div style="display:flex;align-items:center;justify-content:space-between;margin-top: 8px;">
                 <div style="display:flex;align-items:center;justify-content:space-between;">
                     <img src="${lark}" style="height:40px"> 
+                    <span>sdsdsdsds</span>
                     <span style="color:yellow; margin-left:10px;"> *2</span>
                 </div>
                 <span>x总价值 30/40</span>
@@ -362,7 +362,7 @@ function onTest() {
             </div>`,
     })
     Message({
-        time:3000,
+        time:5000,
         showProgress: false,
         content: `余额不足，请重新充值`,
     })

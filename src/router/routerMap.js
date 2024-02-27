@@ -17,6 +17,15 @@ const indexMap = [
     },
     component:() => import("@/views/xbox/openBox.vue")
   },
+
+  {
+    path: '/xbox/betting',
+    name: 'openBox',
+    meta: {
+      title: "三色球"
+    },
+    component:() => import("@/views/xbox/betting.vue")
+  },
   {
     path: '/xbox/card',
     name: 'xobxCsgo',
