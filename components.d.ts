@@ -30,6 +30,7 @@ declare module 'vue' {
     NSelect: typeof import('naive-ui')['NSelect']
     NSpace: typeof import('naive-ui')['NSpace']
     NTag: typeof import('naive-ui')['NTag']
+    Progress: typeof import('./src/components/progress.vue')['default']
     ScrollRow: typeof import('./src/components/ScrollRow.vue')['default']
     Svg: typeof import('./src/components/Svg.vue')['default']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']

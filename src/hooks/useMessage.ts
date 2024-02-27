@@ -51,7 +51,8 @@ export function Message(option) {
   // index++;
   queue.push(vm.$el);
   function moveDownMessages(end) {
-    const height = 60;
+    console.log(vm.$el, end);
+    const height = 100;
     const margin = 15;
     for (let index = 0; index < end; index++) {
       const el = queue[index];

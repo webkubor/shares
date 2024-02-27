@@ -1,24 +1,21 @@
 <template>
   <transition name="slide-fade">
     <div v-if="modelValue" class="toast-message">
-      <div class="icon-container">
-        <ph-check-circle v-if="type === 'success'" :size="20" color="#02d396" weight="bold" />
-        <ph-x-circle v-else-if="type === 'error'" :size="20" color="#ef5a4f" weight="bold" />
-        <ph-warning-circle v-else :size="20" color="#FFB31C" weight="bold" />
-      </div>
       <main class="toast-message-main">
         <section v-if="content" class="toast-message-content" v-html="content" />
         <section v-else class="toast-message-content">
           <slot />
         </section>
+        <div v-if="showProgress" class="progress-bar-container">
+          <div class="progress-bar" :style="{ width: `${progress}%`, backgroundColor: 'red' }"></div>
+        </div>
       </main>
     </div>
   </transition>
 </template>
   
 <script>
-import { watchEffect } from "vue";
-import { PhCheckCircle, PhXCircle, PhWarningCircle } from "phosphor-vue";
+import { watchEffect, onMounted, ref } from "vue";
 export default {
   name: "ToastMessage",
   inheritAttrs: false,
@@ -27,9 +24,17 @@ export default {
       type: Boolean,
       default: () => false
     },
+    showProgress:{
+      type: Boolean,
+      default: () => true
+    },
     content: {
       type: String,
       default: () => ""
+    },
+    time: {
+      type: Number,
+      default: () => 3000
     },
     destroy: {
       type: Function,
@@ -46,20 +51,42 @@ export default {
   emits: ["update:modelValue"],
   setup(props, { emit }) {
     let timer = null;
+
+    const progress = ref(100);
+    const totalTime = props.time || 5000; // 接受外部传入的时间参数，默认为 5000 毫秒
+
     function onClose() {
       emit("update:modelValue", false);
       props.destroy();
     }
+    onMounted(() => {
+      startProgress();
+    });
+
+
     watchEffect(() => {
       clearTimeout(timer);
       if (props.modelValue) {
         timer = setTimeout(() => {
           onClose();
-        }, 3000);
+        }, props.time);
       }
     });
 
+
+
+    const startProgress = () => {
+      const interval = setInterval(() => {
+        progress.value -= (100 / totalTime) * 1000;
+        if (progress.value <= 0) {
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+
+
     return {
+      progress,
       onClose
     };
   }
@@ -67,6 +94,24 @@ export default {
 </script>
   
 <style lang="scss" scoped>
+.progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #ccc;
+  border-radius: 4px;
+
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s;
+  box-shadow: 0px 10px 40px -4px rgba(#e42121, 0.4);
+}
+
 .toast-message {
   display: flex;
   position: fixed;
@@ -74,17 +119,19 @@ export default {
   right: 64px;
   top: 96px;
   margin-left: -325px;
-  background:#0E0B00;
-  box-shadow: 0px 10px 40px -4px rgba(#2354FF, 0.4);
-  border-radius: 16px;
+  background: linear-gradient(145deg, #e42121 2.89%, #23181E 20.36%);
+  box-shadow: 0px 10px 40px -4px rgba(#e42121, 0.4);
+  filter: drop-shadow(0 0 10px #e42121);
+  border-radius: 6px;
   z-index: 10000;
   transition: 0.3s;
-  padding: 0 10px;
-  border: 0.2px solid #2354FF;
+  border: 0.2px solid #e42121;
 
   .toast-message-content {
+    position: relative;
     color: aliceblue;
-    :deep(.message-link)  {
+  padding: 0 10px;
+    :deep(.message-link) {
       display: inline-block;
       text-decoration: underline;
       color: #d08fff;
@@ -93,14 +140,10 @@ export default {
   }
 }
 
-.icon-container {
-  display: flex;
-  border-radius: 16px 0px 0px 16px;
-  font-size: 24px;
-  align-items: center;
-}
+
 
 .toast-message-main {
+  position: relative;
   flex: 1;
   padding: 15px;
 }

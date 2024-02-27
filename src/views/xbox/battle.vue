@@ -1,7 +1,8 @@
 <template>
     <div class="xbox-page">
+
         <h1>对战竞技& 欧皇</h1>
-        <div class="room-item king">
+        <div class="room-item king" @click="onTest">
             <img class="cover" src="@/assets/xbox/logo.png" />
             <div class="title-box">
                 <h2>经典模式</h2>
@@ -343,7 +344,35 @@
         </div>
     </div>
 </template>
+<script setup lang="ts">
+import { Message } from "@/hooks/useMessage";
+import lark from '@/assets/xbox/lucky.png'
+
+function onTest() {
+    Message({
+        time:3000,
+        content: `<div>开启红色箱子2次，中奖预计为获得
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top: 8px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <img src="${lark}" style="height:40px"> 
+                    <span style="color:yellow; margin-left:10px;"> *2</span>
+                </div>
+                <span>x总价值 30/40</span>
+                </div>
+            </div>`,
+    })
+    Message({
+        time:3000,
+        showProgress: false,
+        content: `余额不足，请重新充值`,
+    })
+}
+
+</script>
 <style  lang="scss"  scoped>
+
+
+
 .status-dot {
     position: relative;
     width: 10px;
@@ -425,9 +454,7 @@
         width: 500px;
         padding: 20px;
         margin: 20px;
-        position: relative;
         display: inline-block;
-        z-index: 1;
 
         .title-box {
             display: flex;
