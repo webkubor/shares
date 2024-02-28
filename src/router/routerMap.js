@@ -13,11 +13,18 @@ const indexMap = [
     path: '/xbox/open',
     name: 'openBox',
     meta: {
-      title: "卡片交互"
+      title: "xbox开箱"
     },
     component:() => import("@/views/xbox/openBox.vue")
   },
-
+  {
+    path: '/xbox/lucky',
+    name: 'lucky',
+    meta: {
+      title: "幸运饰品"
+    },
+    component:() => import("@/views/xbox/lucky.vue")
+  },
   {
     path: '/xbox/betting',
     name: 'openBox',
