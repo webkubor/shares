@@ -45,6 +45,8 @@ body {
   color: #ffffff;
   border-radius: 2px;
   padding: 8px 25px;
+  width: 200px;
+  height: fit-content;
   background-color: rgba($color: $default-primary, $alpha: 0.3);
   border: 1px solid $default-primary;
   cursor: pointer;

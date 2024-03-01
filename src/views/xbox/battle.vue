@@ -5,6 +5,45 @@
         <div class="room-item king" @click="onTest">
             <img class="cover" src="@/assets/xbox/logo.png" />
             <div class="title-box">
+                <h2>欧皇</h2>
+                <div style="color: #666666; display: flex; align-items: center;">
+                    <ph-eye :size="18" color="#666666" weight="bold" />
+                    <span style="margin-left: 10px;">
+                        6人观看
+                    </span>
+                </div>
+                <n-space align="center">
+                    <div class="status-dot going"></div>
+                    <h4>进行中 3回合</h4>
+                </n-space>
+            </div>
+
+            <div class="price-box">
+                <span>X 1000.89</span>
+            </div>
+            <n-space style="margin: 20px 0; display: flex;">
+                <img class="user-head" src="@/assets/avactor.png" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <div class="join">
+                    <ph-plus :size="18" weight="bold" color="#ffffff" />
+                </div>
+            </n-space>
+            <button>立刻开始</button>
+            <button>加入观战</button>
+            <div class="show-list">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+                <img src="@/assets/xbox/lucky.png" alt="">
+
+            </div>
+        </div>
+        <div class="room-item battle" @click="onTest">
+            <img class="cover" src="@/assets/xbox/logo.png" />
+            <div class="title-box">
                 <h2>经典模式</h2>
                 <div style="color: #666666; display: flex; align-items: center;">
                     <ph-eye :size="18" color="#666666" weight="bold" />
@@ -41,7 +80,7 @@
 
             </div>
         </div>
-        <div class="room-item king">
+        <div class="room-item battle">
             <img class="cover" src="@/assets/xbox/logo.png" />
             <div class="title-box">
                 <h2>经典模式</h2>
@@ -79,7 +118,7 @@
 
             </div>
         </div>
-        <div class="room-item king">
+        <div class="room-item battle">
             <img class="cover" src="@/assets/xbox/logo.png" />
             <div class="title-box">
                 <h2>经典模式</h2>
@@ -349,7 +388,7 @@ import lark from '@/assets/xbox/lucky.png'
 
 function onTest() {
     Message({
-        time:3000,
+        time:8000,
         content: `<div>开启红色箱子2次，中奖预计为获得
             <div style="display:flex;align-items:center;justify-content:space-between;margin-top: 8px;">
                 <div style="display:flex;align-items:center;justify-content:space-between;">
@@ -361,11 +400,11 @@ function onTest() {
                 </div>
             </div>`,
     })
-    Message({
-        time:5000,
-        showProgress: false,
-        content: `余额不足，请重新充值`,
-    })
+    // Message({
+    //     time:5000,
+    //     showProgress: false,
+    //     content: `余额不足，请重新充值`,
+    // })
 }
 
 </script>
@@ -517,7 +556,7 @@ function onTest() {
         }
     }
 
-    .king {
+    .battle {
         background: linear-gradient(145deg, #e42121 2.89%, #23181E 20.36%);
         box-shadow: 0 0 17px #e97179;
         border: 2px solid #e70c0c;
@@ -530,6 +569,21 @@ function onTest() {
 
         .show-list {
             background: rgba(#e42121, 0.1);
+        }
+    }
+    .king {
+        background: linear-gradient(145deg, #e4d021 2.89%, #23181E 20.36%);
+        box-shadow: 0 0 17px #7c6b20;
+        border: 2px solid #e7d80c;
+
+        button {
+            border: 1px solid #e7d80c;
+            color: #e7d80c;
+            background: transparent;
+        }
+
+        .show-list {
+            background: rgba(#e7d80c, 0.1);
         }
     }
 
