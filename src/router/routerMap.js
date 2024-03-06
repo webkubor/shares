@@ -5,11 +5,6 @@ const indexMap = [
     component: () => import('@/views/index/home.vue')
   },
   {
-    path: '/project/:id',
-    name: 'Project',
-    component:() => import("@/views/index/project.vue")
-  },
-  {
     path: '/xbox/open',
     name: 'openBox',
     meta: {

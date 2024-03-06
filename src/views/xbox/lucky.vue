@@ -12,7 +12,7 @@
 
 
 <script setup>
-import { onMounted,  } from 'vue';
+import { onMounted  } from 'vue';
 </script>
 <style lang="scss" scoped>
 

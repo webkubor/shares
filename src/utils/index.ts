@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-11 15:47:11
- * @LastEditTime: 2024-01-12 09:42:53
+ * @LastEditTime: 2024-03-06 10:11:04
  */
 import _ from "lodash";
 
@@ -62,7 +62,7 @@ export function preventScroll(flag= true) {
  * @param {*} id
  * @return {*}
  */
-export function openUrl(url, id = "default") {
+export function openUrl(url:string, id = "default") {
   var a = document.createElement("a");
   a.setAttribute("href", url);
   a.setAttribute("target", "_blank");
