@@ -32,7 +32,7 @@
 <script setup>
 import { useMusic } from "@/hooks/useMusic";
 
-const { initBackgroundMusic, onClickAudio } = useMusic()
+const { initBackgroundMusic, onChooseClick } = useMusic()
 initBackgroundMusic()
 
 

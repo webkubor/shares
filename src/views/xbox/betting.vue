@@ -18,21 +18,26 @@ import { reactive, ref,onMounted } from 'vue'
 import { Message } from "@/hooks/useMessage";
 import dayjs from 'dayjs';
 import lark from '@/assets/xbox/lucky.png'
+import { useMusic } from "@/hooks/useMusic";
+
+const {  onChooseClick, onCommonClick } = useMusic()
 
 
 let currentTitle = ref('')
 let boxList = reactive([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 let activeIndex = ref(null)
 let chooseList = ref([])
-let speed = 100
+let speed = 100 //开奖的滚动速度
 let totalTime = 1000 // 总时长为 6000 毫秒
 let timer = null
 
+
 onMounted(()=>{
-    currentTitle.value =generateTimestampWithRandom()
+    currentTitle.value = generateTimestampWithRandom()
 })
 
 function onChoose(index) {
+    onCommonClick()
     if (chooseList.value && chooseList.value.includes(index)) {
         Message({
             content: `不可重复下注`,
@@ -57,6 +62,7 @@ function onChoose(index) {
 }
 
 function onStart(number) {
+    onChooseClick()
     if (timer) return
     let currentIndex = 0; // 当前索引
     activeIndex.value = 0
@@ -68,6 +74,8 @@ function onStart(number) {
         activeIndex.value = boxList[currentIndex];
         currentIndex++;
     }, speed);
+
+
     setTimeout(() => {
         clearInterval(timer);
         timer = null
@@ -100,6 +108,10 @@ async function showResult(number) {
 
 
 
+/**
+ * @description: 根据当前时间获取期数
+ * @return {*}
+ */
 function generateTimestampWithRandom() {
     const currentDate = dayjs(); // 获取当前日期时间
     const year = currentDate.year(); // 获取年份
@@ -132,18 +144,26 @@ function generateTimestampWithRandom() {
     .box-list {
         margin: 30px;
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start; /* 从左到右排列 */
         flex-flow: wrap;
         width: 80vw;
 
         .item {
-            width: 200px;
+            width: calc(25% - 100px); /* 每个项目宽度为容器宽度的 1/3，减去一些间距 */
             text-align: center;
             line-height: 200px;
             height: 200px;
-            border: 1px solid $error-color;
+            cursor: pointer;
+            box-shadow: 0px 2px 20px $error-color;
+            border-radius: 4px;
             margin-bottom: 20px;
+            margin-right: 20px;
             position: relative;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                border: 1px solid $error-color;
+                filter: brightness(120%) drop-shadow(0 0 10px $error-color);
+            }
 
             span {
                 position: relative;
@@ -155,6 +175,7 @@ function generateTimestampWithRandom() {
                 top: 0;
                 left: 0;
                 width: 100%;
+                height: 100%;
             }
         }
 
@@ -167,7 +188,7 @@ function generateTimestampWithRandom() {
 
         .active {
             box-shadow: 0 0 10px $error-color;
-            transform: scale(1.1);
+            transform: scale(1.05);
             filter: drop-shadow(0 0 10px $error-color);
         }
     }

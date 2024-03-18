@@ -1,5 +1,6 @@
-import commonClick from '@/assets/click/commonClick_1.mp3';
+import chooseClick from '@/assets/click/choose.mp3';
 import noticeClick from '@/assets/click/notice.mp3';
+import commonClick from '@/assets/click/common.mp3';
 import bgMusic from '@/assets/bg.mp3';
 import { ref } from 'vue';
 let currentBgMusic = ref<any>(null);
@@ -26,10 +27,17 @@ function stopMusic() {
 
 
 // 点击音效
-function onClickAudio() {
+function onChooseClick() {
+    let clickAudio = new Audio(chooseClick);
+    playAudio(clickAudio)
+}
+
+// 普通点击
+function onCommonClick() {
     let clickAudio = new Audio(commonClick);
     playAudio(clickAudio)
 }
+
 
 
 // 点击音效
@@ -51,8 +59,9 @@ function initBackgroundMusic() {
 export function useMusic() {
     return {
         initBackgroundMusic,
+        onCommonClick,
         onClickBox,
-        onClickAudio,
+        onChooseClick,
         stopMusic,
         playAudio
     }
