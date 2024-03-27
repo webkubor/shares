@@ -5,19 +5,47 @@ $warining-color: #FFB31C;
 $error-color: #F0000E;
 $info-color: #5E64DA;
 $success-color: #30C0A2;
-
 $default-primary: #F0000E;
 $default-active-color: #F59403;
 $default-underline-color: #5a5a5b;
 $default-gold-color: #FFC000;
 $default-input-placeholder:#D7B9B9;
 
-
 :root {
     --plyr-color-main: $primary-color;
 }
 
-@import "./variables.scss";
+.light_theme {
+  --webkubor-text-primary: #333333;
+  --webkubor-desc-primary: #999999;
+  --webkubor-card-level-1: #f5f7fa;
+  --webkubor-card-level-2: #ffffff;
+  --webkubor-card-level-3: #eeeeee;
+  --webkubor-divider: #e5e5e5;
+  --webkubor-popover-hover-item: #f5f7fa;
+  --webkubor-shadow: #D1D1D1;
+}
+.dark_theme {
+  --webkubor-text-primary: #ffffff;
+  --webkubor-desc-primary: #9a9999;
+  --webkubor-card-level-1: #030303;
+  --webkubor-card-level-2: #171a1d;
+  --webkubor-card-level-3: #0c0e10;
+  --webkubor-divider: #272b30;
+  --webkubor-popover-hover-item: #171a1d;
+  --webkubor-shadow: #1B1B1B;
+}
+
+
+body {
+box-sizing: border-box;
+  color: var(--webkubor-text-primary) !important;
+}
+
+
+
+
+// @import "./variables.scss";
 @import "./mixins.scss";
 @import "./button.scss";
 
@@ -25,17 +53,6 @@ $default-input-placeholder:#D7B9B9;
   display: none !important;
 }
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  box-sizing: inherit;
-}
-
-
-body {
-  box-sizing: border-box;
-}
 
 
 // 常规操作栏按钮
@@ -123,11 +140,6 @@ body {
 }
 .flex-center-h {
   @include flex-center-h;
-}
-
-
-.n-card {
-  margin: auto;
 }
 
 

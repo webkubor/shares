@@ -1,30 +1,25 @@
 <template>
   <div class="about-me column-center">
     <div class="switch-btn" v-ripple="{ duration: 500, color: ' #DCD5F5' }" @click="toggleLocale"> {{ language }}</div>
-
     <n-popover trigger="hover">
       <template #trigger>
         <div class="love-headers">
           <n-avatar round :size="100" :src="getImage('me.jpeg')" @click="swtichTheme" />
         </div>
       </template>
-      <span>来换个心情呗 {{ t("about") }}</span>
+      <span> {{ t("this") }} {{ user.name }}</span>
     </n-popover>
 
-    <n-gradient-text type="info">
-      {{ user.name }}
-    </n-gradient-text>
-
     <div class="sign">
-      <span>
-        签名:
-      </span>
       {{ user.personalSign }}
     </div>
     <n-space>
       <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round>
         {{ item }}
       </n-tag>
+      <n-watermark v-if="show" content="大家艰苦一下，一切都会有的" cross fullscreen :font-size="16" :line-height="16" :width="384"
+        :height="384" :x-offset="12" :y-offset="60" :rotate="-15" />
+      <n-switch v-model:value="show" />
     </n-space>
 
 
@@ -56,12 +51,13 @@ import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType, getRandomColor } from "@/utils/random";
 import { useI18n } from "vue-i18n";
-import { computed } from "vue"
+import { computed, ref } from "vue"
 const { t, locale } = useI18n();
 let { user, updateAge } = useUser();
 let { swtichTheme } = useTheme();
 console.log(user, "我的");
 
+let show = ref(false)
 
 updateAge("logo.jpeg");
 const language = computed(() =>
@@ -95,12 +91,13 @@ const getImage = (name) => {
 
     .n-icon {
       margin: 0 10px;
+
       &:active {
-      animation: bounce;
-      /* referring directly to the animation's @keyframe declaration */
-      animation-duration: 2s;
-      /* don't forget to set a duration! */
-    }
+        animation: bounce;
+        /* referring directly to the animation's @keyframe declaration */
+        animation-duration: 2s;
+        /* don't forget to set a duration! */
+      }
     }
   }
 

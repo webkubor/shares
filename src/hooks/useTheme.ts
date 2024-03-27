@@ -24,7 +24,7 @@ const themeOverrides: GlobalThemeOverrides = reactive({
 
     infoColor: "#5E64DA",
     infoColorHover: "#878FE6",
-    infoColorPressed:  "#4446B3",
+    infoColorPressed: "#4446B3",
     infoColorSuppl: "rgba(94,100,218,0.5)",
 
 
@@ -45,8 +45,8 @@ const themeOverrides: GlobalThemeOverrides = reactive({
   },
   Button: {
     paddingMedium: "0 14px",
-    textColorPrimary:"#ffffff",
-    textColorHoverPrimary:"#ffffff"
+    textColorPrimary: "#ffffff",
+    textColorHoverPrimary: "#ffffff"
   },
   Input: {
     heightMedium: "36px",
@@ -60,14 +60,14 @@ const themeOverrides: GlobalThemeOverrides = reactive({
       },
     },
   },
-  Card:{
-    paddingMedium:"20px"
+  Card: {
+    paddingMedium: "20px"
   }
 });
 // 亮色
 const themeOverridesLight: GlobalThemeOverrides = reactive({
   Card: {
-    color:"#FFFFFF",
+    color: "#FFFFFF",
     titleTextColor: "#333333",
     textColor: "#333333",
     colorModal: "#EEEEEE"
@@ -87,47 +87,47 @@ const themeOverridesLight: GlobalThemeOverrides = reactive({
   DataTable: {
     thTextColor: "#333333",
     tdTextColor: "#333333",
-    thColor:"#F1F5FA",
-    tdColor:"#FFFFFF"
+    thColor: "#F1F5FA",
+    tdColor: "#FFFFFF"
   },
-  Menu:{
-    itemTextColor:"#333333",
-    itemTextColorHover:"#2354ff",
-    itemTextColorHoverHorizontal:"#2354ff",
-    itemTextColorActiveHoverHorizontal:"#333333",
-    itemTextColorChildActiveHorizontal:"#2354ff",
-    itemTextColorChildActiveHoverHorizontal:"#2354ff",
-    itemTextColorActiveHorizontal:"#2354ff",
-    itemTextColorHorizontal:"#333333",
+  Menu: {
+    itemTextColor: "#333333",
+    itemTextColorHover: "#2354ff",
+    itemTextColorHoverHorizontal: "#2354ff",
+    itemTextColorActiveHoverHorizontal: "#333333",
+    itemTextColorChildActiveHorizontal: "#2354ff",
+    itemTextColorChildActiveHoverHorizontal: "#2354ff",
+    itemTextColorActiveHorizontal: "#2354ff",
+    itemTextColorHorizontal: "#333333",
 
-    itemIconColor:"#333333",
-    itemIconColorHoverHorizontal:"#2354ff",
-    itemIconColorActiveHorizontal:"#2354ff",
-    itemIconColorChildActiveHorizontal:"#2354ff",
-    itemIconColorChildActiveHoverHorizontal:"#2354ff",
-    itemIconColorActiveHover:"#2354ff",
-    itemIconColorActiveHoverHorizontalInverted:"#2354ff",
-    itemIconColorActiveHoverHorizontal:"#333333",
+    itemIconColor: "#333333",
+    itemIconColorHoverHorizontal: "#2354ff",
+    itemIconColorActiveHorizontal: "#2354ff",
+    itemIconColorChildActiveHorizontal: "#2354ff",
+    itemIconColorChildActiveHoverHorizontal: "#2354ff",
+    itemIconColorActiveHover: "#2354ff",
+    itemIconColorActiveHoverHorizontalInverted: "#2354ff",
+    itemIconColorActiveHoverHorizontal: "#333333",
   },
-  Dropdown:{
-    optionTextColor:"#333333",
-    optionTextColorActive:"#2354ff",
-    optionColorHoverInverted:"#2354ff",
-    optionColorActiveInverted:"#2354ff",
+  Dropdown: {
+    optionTextColor: "#333333",
+    optionTextColorActive: "#2354ff",
+    optionColorHoverInverted: "#2354ff",
+    optionColorActiveInverted: "#2354ff",
   },
-  Divider:{
-    color:"#e5e5e5"
+  Divider: {
+    color: "#e5e5e5"
   },
-  Button:{
-    border:"1px solid #E5E5E5",
-    textColorPrimary:"#ffffff",
-    textColorHoverPrimary:"#ffffff"
+  Button: {
+    border: "1px solid #E5E5E5",
+    textColorPrimary: "#ffffff",
+    textColorHoverPrimary: "#ffffff"
   },
 });
 // 暗色
 const themeOverridesDark: GlobalThemeOverrides = reactive({
   Card: {
-    color:"#171A1D",
+    color: "#171A1D",
     titleTextColor: "#ffffff",
     textColor: "#9A9999",
     colorModal: "#0C0E10"
@@ -147,46 +147,46 @@ const themeOverridesDark: GlobalThemeOverrides = reactive({
   DataTable: {
     thTextColor: "#ffffff",
     tdTextColor: "#ffffff",
-    thColor:"#0C0E10",
-    tdColor:"#171A1D"
+    thColor: "#0C0E10",
+    tdColor: "#171A1D"
   },
-  Menu:{
-    itemTextColor:"#9A9999",
-    itemTextColorHover:"#ffffff",
-    itemTextColorHoverHorizontal:"#ffffff",
-    itemTextColorActiveHoverHorizontal:"#9A9999",
-    itemTextColorChildActiveHorizontal:"#ffffff",
-    itemTextColorChildActiveHoverHorizontal:"#ffffff",
-    itemTextColorActiveHorizontal:"#ffffff",
-    itemTextColorHorizontal:"#9A9999",
+  Menu: {
+    itemTextColor: "#9A9999",
+    itemTextColorHover: "#ffffff",
+    itemTextColorHoverHorizontal: "#ffffff",
+    itemTextColorActiveHoverHorizontal: "#9A9999",
+    itemTextColorChildActiveHorizontal: "#ffffff",
+    itemTextColorChildActiveHoverHorizontal: "#ffffff",
+    itemTextColorActiveHorizontal: "#ffffff",
+    itemTextColorHorizontal: "#9A9999",
 
-    itemIconColor:"#9A9999",
-    itemIconColorHoverHorizontal:"#ffffff",
-    itemIconColorActiveHorizontal:"#ffffff",
-    itemIconColorChildActiveHorizontal:"#ffffff",
-    itemIconColorChildActiveHoverHorizontal:"#ffffff",
-    itemIconColorActiveHover:"#ffffff",
-    itemIconColorActiveHoverHorizontalInverted:"#ffffff",
-    itemIconColorActiveHoverHorizontal:"#9A9999",
+    itemIconColor: "#9A9999",
+    itemIconColorHoverHorizontal: "#ffffff",
+    itemIconColorActiveHorizontal: "#ffffff",
+    itemIconColorChildActiveHorizontal: "#ffffff",
+    itemIconColorChildActiveHoverHorizontal: "#ffffff",
+    itemIconColorActiveHover: "#ffffff",
+    itemIconColorActiveHoverHorizontalInverted: "#ffffff",
+    itemIconColorActiveHoverHorizontal: "#9A9999",
   },
-  Dropdown:{
-    optionTextColor:"#9A9999",
-    optionTextColorActive:"#ffffff",
-    optionColorHoverInverted:"#ffffff",
-    optionColorActiveInverted:"#ffffff",
-    color:"#030303",
-    optionColorActive:"#2354ff"
+  Dropdown: {
+    optionTextColor: "#9A9999",
+    optionTextColorActive: "#ffffff",
+    optionColorHoverInverted: "#ffffff",
+    optionColorActiveInverted: "#ffffff",
+    color: "#030303",
+    optionColorActive: "#2354ff"
   },
-  Divider:{
-    color:"#272B30"
+  Divider: {
+    color: "#272B30"
   },
-  Button:{
-    border:"1px solid #272B30",
-    textColorPrimary:"#ffffff",
-    textColorHoverPrimary:"#ffffff"
+  Button: {
+    border: "1px solid #272B30",
+    textColorPrimary: "#ffffff",
+    textColorHoverPrimary: "#ffffff"
   },
-  Popover:{
-    color:"#030303"
+  Popover: {
+    color: "#030303"
   }
 });
 export function useTheme() {
@@ -197,26 +197,25 @@ export function useTheme() {
       if (document.body.classList.contains("dark_theme")) {
         document.body.classList.remove("dark_theme");
         document.body.classList.add("light_theme");
-        allThemeOverrides.value = Object.assign(themeOverridesLight,themeOverrides);
+        allThemeOverrides.value = Object.assign(themeOverridesLight, themeOverrides);
       }
     } else {
       local.theme = darkTheme;
       local.osTheme = "dark";
       document.body.classList.remove("light_theme");
       document.body.classList.add("dark_theme");
-  const message = useMessage();
-      message.success("白天不懂夜的黑~~")
-      allThemeOverrides.value = Object.assign(themeOverridesDark,themeOverrides);
+      window.$message?.success("白天不懂夜的黑~~")
+      allThemeOverrides.value = Object.assign(themeOverridesDark, themeOverrides);
     }
   }
 
 
-function initTheme() {
-  local.theme = lightTheme;
-  local.osTheme = "light";
-  document.body.classList.add("light_theme");
-  allThemeOverrides.value = Object.assign(themeOverridesLight,themeOverrides );
-}
+  function initTheme() {
+    local.theme = lightTheme;
+    local.osTheme = "light";
+    document.body.classList.add("light_theme");
+    allThemeOverrides.value = Object.assign(themeOverridesLight, themeOverrides);
+  }
 
   return {
     allThemeOverrides,
