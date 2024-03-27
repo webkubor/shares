@@ -4,7 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { fileURLToPath, URL } from 'url'
-
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
   base: "/webkubor-shares/",
@@ -45,6 +45,7 @@ export default defineConfig({
     }
   },
   plugins: [
+    VueDevTools(),
     vue(),
     Components({
       resolvers: [NaiveUiResolver()]
