@@ -2,7 +2,7 @@
 const indexMap = [
   {
     path: '/home',
-    component: () => import('@/views/index/home.vue')
+    component: () => import('@/layouts/entry/home.vue')
   },
   {
     path: '/xbox/open',
@@ -51,6 +51,14 @@ const indexMap = [
       title: "火焰之翼"
     },
     component:() => import("@/views/xbox/wings.vue")
+  },
+  {
+    path: '/webGl/index',
+    name: 'webGl',
+    meta: {
+      title: "webGL 初始化"
+    },
+    component:() => import("@/views/webGl/index.vue")
   },
   {
     path: '/google',

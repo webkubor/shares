@@ -10,7 +10,5 @@ window.$message = useMessage();
 window.$notification = useNotification();
 window.$dialog = useDialog();
 window.$toast = Message
-
-
 </script>
   
