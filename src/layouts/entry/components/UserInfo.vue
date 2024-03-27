@@ -17,14 +17,13 @@
       <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round>
         {{ item }}
       </n-tag>
-      <n-watermark v-if="show" content="大家艰苦一下，一切都会有的" cross fullscreen :font-size="16" :line-height="16" :width="384"
-        :height="384" :x-offset="12" :y-offset="60" :rotate="-15" />
-      <n-switch v-model:value="show" />
+   
     </n-space>
 
 
     <n-divider title-placement="center">工具包</n-divider>
     <n-space>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/webgl/index')">webGL</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/lucky')">xbox幸运饰品</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/betting')">xbox三色球</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/battle')">xbox对战竞技</n-button>
@@ -42,6 +41,9 @@
       <n-button :color="getRandomColor()" ghost @click="$router.push('/show/apple')">苹果官网流动</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/show/earth')">地球滚动</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/show/fontFamily')">字体交互</n-button>
+      <n-watermark v-if="show" content="大家艰苦一下，一切都会有的" cross fullscreen :font-size="16" :line-height="16" :width="384"
+        :height="384" :x-offset="12" :y-offset="60" :rotate="-15" />
+      <n-switch v-model:value="show" ></n-switch>
     </n-space>
 
   </div>

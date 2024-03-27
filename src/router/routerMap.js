@@ -53,7 +53,7 @@ const indexMap = [
     component:() => import("@/views/xbox/wings.vue")
   },
   {
-    path: '/webGl/index',
+    path: '/webgl/index',
     name: 'webGl',
     meta: {
       title: "webGL 初始化"
