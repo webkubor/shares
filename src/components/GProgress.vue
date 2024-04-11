@@ -1,7 +1,7 @@
 <template>
         <div class="progress-slider" ref="totalSider" >
             <div class="progress-bar" :style="{ width: progress + '%' }">
-                <div class="end thumb" ref="endElement" @onpointerStart="onDragStart"></div>
+                <div class="end thumb" ref="endElement"  @touchstart="onDragStart" @touchmove="onMouseMove" @touchend="onMouseUp" @mousedown="onDragStart" @mousemove="onMouseMove" @mouseup="onMouseUp"></div>
             </div>
         </div>
 
@@ -32,8 +32,6 @@ let emit = defineEmits(['change'])
 const progress = ref(0);
 const endElement = ref<HTMLElement | null>(null);
 const totalSider = ref<HTMLElement | null>(null);
-
-
 
 watch(() => props.value, (newValue) => {
     progress.value = ((newValue - props.min) / (props.max - props.min)) * 100;
