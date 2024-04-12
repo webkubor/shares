@@ -10,7 +10,6 @@
 <script lang="ts" setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue';
 import { add, subtract, multiply, divide } from "@/utils/math"
-import { cardLight } from 'naive-ui/es/card/styles';
 let props = defineProps(
     {
         min: {
