@@ -44,15 +44,6 @@ watch(() => props.value, (newValue) => {
 
 
 
-const onClick = (event: MouseEvent) => {
-    const rect = (event.target as HTMLElement).getBoundingClientRect();
-    const offsetX = event.clientX - rect.left;
-    const width = rect.width;
-    const percentage = (offsetX / width) * 100;
-    unpdateProgress(percentage)
-};
-
-
 function unpdateProgress(percentage) {
     if (!isDragging.value) return
     let progress = parseInt(percentage) //显示的进度
@@ -76,14 +67,15 @@ function onMouseMove(event: MouseEvent) {
     if (!totalSider.value) return
     if (!endElement.value) return
     if (!isDragging.value) return
-    let progressWidth = event.clientX - totalSider.value.getBoundingClientRect().left; 
+    let clientX = event.clientX || event.targetTouches[0].clientX;
+    let progressWidth = clientX - totalSider.value.getBoundingClientRect().left; 
     if (progressWidth< 0) progressWidth = 0
     const pointer = endElement.value.offsetWidth //指示器宽度
     const totalWidth = totalSider.value.getBoundingClientRect().width - pointer/2; 
     if (progressWidth>= totalWidth) progressWidth = totalWidth
     let percentage = (progressWidth / totalWidth) * 100;
-    console.log('percentage', percentage)
-    emit('change', percentage);
+    console.log('percentage' )
+    unpdateProgress(percentage)
 }
 
 
