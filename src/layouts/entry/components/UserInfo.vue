@@ -118,4 +118,24 @@ const getImage = (name) => {
     margin: 10px 0 20px;
   }
 }
+
+.switch-btn {
+  position: absolute;
+  font-size: 14px;
+  right: 50px;
+  top: 50px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  background-color: #A04CF8;
+  color: #ffffff;
+  border-radius: 50%;
+  text-align: center;
+  font-family: PingFangSC-Regular,Microsoft Yahei,\\5FAE\8F6F\96C5\9ED1,sans-serif;
+  &:hover {
+    cursor: pointer;
+    filter: drop-shadow(0 0 1em #a04cf7);
+    user-select: none;
+  }
+}
 </style>

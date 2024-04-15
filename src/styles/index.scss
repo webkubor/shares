@@ -44,8 +44,7 @@ box-sizing: border-box;
 
 
 
-
-// @import "./variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 @import "./mixins.scss";
 @import "./button.scss";
 
@@ -143,22 +142,74 @@ box-sizing: border-box;
 }
 
 
-.switch-btn {
+@keyframes jumbo {
+  from {
+      background-position: 50% 50%, 50% 50%;
+  }
+
+  to {
+      background-position: 350% 50%, 350% 50%;
+  }
+}
+
+.common-bg-move {
+  --stripes: repeating-linear-gradient(100deg,
+          #fff 0%,
+          #fff 7%,
+          transparent 10%,
+          transparent 12%,
+          #fff 16%);
+  --stripesDark: repeating-linear-gradient(100deg,
+          #000 0%,
+          #000 7%,
+          transparent 10%,
+          transparent 12%,
+          #000 16%);
+  --rainbow: repeating-linear-gradient(100deg,
+          #60a5fa 10%,
+          #e879f9 15%,
+          #60a5fa 20%,
+          #5eead4 25%,
+          #60a5fa 30%);
+  background-image: var(--stripes), var(--rainbow);
+  background-size: 300%, 200%;
+  background-position: 50% 50%, 50% 50%;
+
+  filter: blur(10px) invert(100%);
+
+  mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 70%);
+
+  pointer-events: none;
+}
+
+.common-bg-move::after {
+  content: "";
   position: absolute;
-  font-size: 14px;
-  right: 50px;
-  top: 50px;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
-  background-color: #A04CF8;
-  color: #ffffff;
-  border-radius: 50%;
+  inset: 0;
+  background-image: var(--stripes), var(--rainbow);
+  background-size: 200%, 100%;
+  animation: jumbo 60s linear infinite;
+  background-attachment: fixed;
+  mix-blend-mode: difference;
+}
+
+
+.common-title {
+  font-family: Inter, sans-serif;
+  font-size: 35px;
+  color: #000000;
+  width: 100%;
   text-align: center;
-  font-family: PingFangSC-Regular,Microsoft Yahei,\\5FAE\8F6F\96C5\9ED1,sans-serif;
-  &:hover {
-    cursor: pointer;
-    filter: drop-shadow(0 0 1em #a04cf7);
-    user-select: none;
+  position: relative;
+  font-weight: 600;
+  z-index: 999;
+  margin: 20px 0;
+  line-height: 40px;
+  .more {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: rgb(31 41 55);
+    color: #ffffff;
   }
 }

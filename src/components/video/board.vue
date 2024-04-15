@@ -4,7 +4,7 @@
     </div>
     <div class="barrage-board">
         <div class="show-row">
-            <n-input v-model:value="message" placeholder="这里输入弹幕" clearable type="textarea" autosize
+            <n-input v-model:value="message"  clearable type="textarea" autosize
                 style="min-width: 80%"></n-input>
             <n-button @click="sendMessage" type="primary">发送弹幕</n-button>
             <n-button dashed type="info" @click="clearMessage">清空弹幕</n-button>
