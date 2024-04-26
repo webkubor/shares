@@ -1,3 +1,7 @@
+// 在路由配置中懒加载一个组件
+import { defineAsyncComponent } from 'vue';
+
+
 
 const indexMap = [
   {

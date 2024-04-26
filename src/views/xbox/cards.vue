@@ -3,7 +3,6 @@
         <div class="item">
             <h2>vip</h2>
             <img src="@/assets/xbox/vip.png" alt="">
-            <img src="@/assets/xbox/vip2.png" alt="">
         </div>
         <div class="item">
             <h2>钱包</h2>
