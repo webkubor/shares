@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-15 11:39:34
- * @LastEditTime: 2024-01-29 16:05:12
+ * @LastEditTime: 2024-04-26 16:37:15
  */
 
 /**
@@ -18,6 +18,19 @@ export function createRandomStr(len = 6) {
   return rdmString.substr(0, len);
 }
 
+
+
+
+
+
+export function createRandomNum(min =0, max= 111) {
+  if (typeof min !== 'number' || typeof max !== 'number') {
+    window.$message('Both min and max should be numbers.')
+    throw new Error('Both min and max should be numbers.');
+  }
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 /**
  * @description: 获取tag的随机状态
  * @param {*}
