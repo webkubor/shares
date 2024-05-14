@@ -60,6 +60,30 @@ export class IndexedDBHelper {
         });
     }
 
+    async deleteAll() {
+        let db = await this.dbPromise;
+        let transaction = db.transaction([this.storeName], 'readwrite');
+        let store = transaction.objectStore(this.storeName);
+        // 开启游标遍历所有记录
+        let cursorRequest = store.openCursor();
+        return new Promise((resolve, reject) => {
+            cursorRequest.onsuccess = (event) => {
+                let cursor = event.target.result;
+                if (cursor) {
+                    // 删除当前记录并移动到下一个
+                    let request = cursor.delete();
+                    request.onsuccess = () => cursor.continue();
+                    request.onerror = () => reject(request.error);
+                } else {
+                    // 当没有更多记录时，视为完成
+                    resolve();
+                }
+            };
+            cursorRequest.onerror = () => reject(cursorRequest.error);
+        });
+    }
+
+
     async get(indexName, indexedValue) {
         let db = await this.dbPromise;
         let transaction = db.transaction([this.storeName], 'readonly');
@@ -74,6 +98,24 @@ export class IndexedDBHelper {
         });
     }
 
+    /**
+     * @description: 模糊搜索
+     * @param {*} searchTerm
+     * @return {*}
+     */    
+    async fuzzySearch(searchTerm) {
+        let allItems = await this.getAll(); // 获取所有数据
+        let results = allItems.filter(item => {
+            // 假设我们要在名为 'name' 的字段上进行模糊搜索
+            return item.name && item.name.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+        return results; // 返回匹配项数组
+    }
+    
+    /**
+     * @description: 
+     * @return {*}
+     */    
     async getAll() {
         let db = await this.dbPromise;
         let transaction = db.transaction([this.storeName], 'readonly');

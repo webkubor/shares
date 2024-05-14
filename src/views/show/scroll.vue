@@ -3,15 +3,53 @@
     <n-card title="indexDB测试">
         <n-space>
             <n-space>
-                <n-input v-model:value="userId" type="text" placeholder="请输入用户ID"></n-input>
+                <n-input v-model:value="userName" type="text" placeholder="请输入用户名称"></n-input>
                 <n-button type="primary" @click="getUserById"> 搜索 </n-button>
             </n-space>
             <n-button type="primary" @click="addUser"> 新增数据 </n-button>
-            <n-button type="primary" @click="openUrl"> 跳转 </n-button>
+            <n-button type="primary" @click="onReset"> 重置 </n-button>
         </n-space>
 
     </n-card>
+    <n-card  title="检索结果" v-if="searchList.length">
+            <n-space align="center" justify="space-between" class="card-row" v-for="(item, index) in searchList" :key="index">
+                <span>
+                    {{ item.id }}
+                </span>
+                <span>
+                    {{ item.name }}
+                </span>
+                <span>
+                    {{ item.email }}
+                </span>
+                <span>
+
+                <n-button type="error" ghost @click="deleteUser(item.id)">
+                    删除
+                </n-button>
+                </span>
+
+            </n-space>
+    </n-card>
+
     <div id="card-container">
+      
+        <n-card >
+            <n-space align="center" justify="space-between" class="card-row">
+                <span>
+                   ID
+                </span>
+                <span>
+                   名称
+                </span>
+                <span>
+                   邮箱
+                </span>
+                <span>
+                   操作
+                </span>
+            </n-space>
+        </n-card>
         <n-card v-for="(item, index) in list" :key="index">
             <n-space align="center" justify="space-between" class="card-row">
                 <span>
@@ -23,11 +61,14 @@
                 <span>
                     {{ item.email }}
                 </span>
+                <span>
+
                 <n-button type="error" ghost @click="deleteUser(item.id)">
                     删除
                 </n-button>
-            </n-space>
+            </span>
 
+            </n-space>
         </n-card>
     </div>
 </template>
@@ -40,7 +81,10 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 
 let list = ref([])
-let userId = ref(null)
+let userName = ref(null)
+
+
+let searchList = ref([])
 
 // 创建一个IndexedDBHelper实例
 let dbHelper = new IndexedDBHelper('MyAppDatabase', 1, 'Users');
@@ -82,6 +126,11 @@ async function addUser() {
 }
 
 
+
+function onReset() {
+    searchList.value = []
+}
+
 // 更新用户数据
 async function updateUser(id, updatedUser) {
     try {
@@ -120,14 +169,17 @@ async function getAllUsers() {
 
 // 获取单个用户数据
 async function getUserById() {
-    if (!userId.value) {
-        window.$message?.error('请输入用户ID')
+    if (!userName.value) {
+        window.$message?.error('请输入用户名称')
         return
     }
-    console.log(userId.value, 'name')
+    console.log(userName.value, 'name')
+    searchList.value = []
     try {
-        let user = await dbHelper.get('name', userId.value);
-        console.log('查询到的用户:', user);
+        // let user = await dbHelper.get('name', userName.value);
+        let users = await dbHelper.fuzzySearch(userName.value);
+        console.log('查询到的用户:', users);
+        searchList.value = [...searchList.value, ...users]
     } catch (error) {
         console.error('获取用户失败:', error);
     }
@@ -171,17 +223,23 @@ function initScroll() {
 
 </script>
 <style lang="scss" scoped>
+ .card-row {
+        margin-top: 10px;
+        span {
+            display: inline-block;
+            width: 200px;
+          text-align: center;
+        }
+        &:hover {
+            filter: drop-shadow(0px 0px 10px #FFB31C);
+        }
+    }
 #card-container {
     height: 400px;
     overflow: auto;
     margin: 50px;
     border: 2px solid #FFB31C;
     font-weight: 600;
-
-    .card-row {
-        &:hover {
-            filter: drop-shadow(0px 0px 10px #FFB31C);
-        }
-    }
+   
 }
 </style>
