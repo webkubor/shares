@@ -7,6 +7,7 @@
                 <n-button type="primary" @click="getUserById"> 搜索 </n-button>
             </n-space>
             <n-button type="primary" @click="addUser"> 新增数据 </n-button>
+            <n-button type="primary" @click="openUrl"> 跳转 </n-button>
         </n-space>
 
     </n-card>
@@ -34,6 +35,9 @@
 import { onMounted, nextTick, ref } from 'vue';
 import { IndexedDBHelper } from '@/utils/indexedDBHelper'
 import { createRandomStr, createRandomNum } from '@/utils/random'
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 let list = ref([])
 let userId = ref(null)
@@ -45,14 +49,22 @@ onMounted(async () => {
     await nextTick(); // 等待DOM更新
     initScroll()
     getAllUsers();
+    console.log(document.referrer,1111)
 })
 
 
 
  function openUrl (){
-    let target= "https://manager.959skins.com/#/login?redirect=/dashboard"
-    window.open(target)
+    router.replace({
+        path: '/show/apple',
+        query: {
+            id: 1
+        }})
+    // let target= "https://payment.tpservice.pro/#/pay/mx/store/P1783793418077667330?payWay=store"
+    // window.open(target)
+    // window.open(target, '_blank');
     // window.history.replaceState({}, '0', 'https://manager.959skins.com/#/login?redirect=/dashboard');
+
  }
 
 // 添加用户数据
