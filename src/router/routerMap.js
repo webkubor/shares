@@ -9,14 +9,6 @@ const indexMap = [
     component: () => import('@/layouts/entry/home.vue')
   },
   {
-    path: '/xbox/open',
-    name: 'openBox',
-    meta: {
-      title: "xbox开箱"
-    },
-    component:() => import("@/views/xbox/openBox.vue")
-  },
-  {
     path: '/xbox/lucky',
     name: 'lucky',
     meta: {
@@ -26,7 +18,7 @@ const indexMap = [
   },
   {
     path: '/xbox/betting',
-    name: 'openBox',
+    name: 'betting',
     meta: {
       title: "三色球"
     },
@@ -48,14 +40,7 @@ const indexMap = [
     },
     component:() => import("@/views/xbox/battle.vue")
   },
-  {
-    path: '/xbox/wings',
-    name: 'Wing',
-    meta: {
-      title: "火焰之翼"
-    },
-    component:() => import("@/views/xbox/wings.vue")
-  },
+
   {
     path: '/xbox/progress',
     name: 'Progress',

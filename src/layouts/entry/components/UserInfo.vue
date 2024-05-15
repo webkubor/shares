@@ -25,11 +25,9 @@
     <n-space>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/webgl/index')">webGL</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/lucky')">xbox幸运饰品</n-button>
-      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/betting')">xbox三色球</n-button>
-      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/battle')">xbox对战竞技</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/betting')">三色球/下注/自定义切换</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/battle')">对战竞技样式参考</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/card')">xbox图标测试</n-button>
-      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/wings')">xbox火焰翅膀模拟</n-button>
-      <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/open')">xbox开箱</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/google')">google无感知登录</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/barrage')">弹幕测试</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/loading')">loading</n-button>

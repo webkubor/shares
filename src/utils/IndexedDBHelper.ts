@@ -1,7 +1,5 @@
 
 // 这个工具包提供了一个IndexedDBHelper类，通过构造函数传入数据库名、版本号和对象仓库名。然后提供了四个方法分别对应增（add）、删（delete）、改（put）和查（get、getAll）操作。
-
-// add(item)：向存储中添加一个新的数据项。
 // put(item)：更新或添加一个数据项，如果数据项的键已经存在，则更新该键对应的值；否则，插入新的数据项。
 // delete(id)：根据给定的ID删除存储中的数据项。
 // get(id)：根据给定的ID获取存储中的数据项。
@@ -27,6 +25,11 @@ export class IndexedDBHelper {
         });
     }
 
+    /**
+     * @description: 添加一个新的数据项。
+     * @param {*} item
+     * @return {*}
+     */    
     async add(item) {
         let db = await this.dbPromise;
         let transaction = db.transaction([this.storeName], 'readwrite');
@@ -48,7 +51,12 @@ export class IndexedDBHelper {
             request.onerror = () => reject(request.error);
         });
     }
-
+    
+    /**
+     * @description: 删除单个项目
+     * @param {*} id
+     * @return {*}
+     */    
     async delete(id) {
         let db = await this.dbPromise;
         let transaction = db.transaction([this.storeName], 'readwrite');
@@ -59,7 +67,10 @@ export class IndexedDBHelper {
             request.onerror = () => reject(request.error);
         });
     }
-
+    /**
+     * @description: 删除全部数据
+     * @return {*}
+     */    
     async deleteAll() {
         let db = await this.dbPromise;
         let transaction = db.transaction([this.storeName], 'readwrite');
@@ -83,7 +94,12 @@ export class IndexedDBHelper {
         });
     }
 
-
+    /**
+     * @description: 精确搜索
+     * @param {*} indexName
+     * @param {*} indexedValue
+     * @return {*}
+     */    
     async get(indexName, indexedValue) {
         let db = await this.dbPromise;
         let transaction = db.transaction([this.storeName], 'readonly');
@@ -113,7 +129,7 @@ export class IndexedDBHelper {
     }
     
     /**
-     * @description: 
+     * @description: 获取全部数据
      * @return {*}
      */    
     async getAll() {

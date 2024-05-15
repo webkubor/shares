@@ -30,11 +30,14 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { useNotice } from '@/hooks/useNotice';
 const message = ref('');
 const fontSize = ref('22');
 const speed = ref(20);
 const danmakus = ref([]);
 const color = ref(null);
+
+const { popNotice } = useNotice();
 
 let speedOptions = [
     {
@@ -67,9 +70,8 @@ let fontOptions = [
 ]
 
 const sendMessage = () => {
-    console.log('发送弹幕:', message.value);
     if (message.value.trim() === '') {
-        window.$toast.success('请先输入弹幕内容!');
+        popNotice('请先输入弹幕内容!');
         return
     };
     const newDanmaku = {
