@@ -9,6 +9,14 @@ const indexMap = [
     component: () => import('@/layouts/entry/home.vue')
   },
   {
+    path: '/rtc/webWork',
+    name: 'Worker',
+    meta: {
+      title: "Web Worker"
+    },
+    component:() => import("@/views/rtc/webWork.vue")
+  },
+  {
     path: '/xbox/lucky',
     name: 'lucky',
     meta: {
