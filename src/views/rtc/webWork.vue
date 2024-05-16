@@ -1,18 +1,21 @@
 <template>
-    <div>
-      <button @click="startComputation">开始计算</button>
-      <p>计算结果: {{ result }}</p>
-    </div>
+    <n-card>
+        <n-space>
+            <n-button @click="startComputation">开始计算</n-button>
+      <n-input-number  placeholder="计算结果"  v-model:value="end"/>
+        </n-space>
+     
+    </n-card>
   </template>
   
   <script setup>
   import { ref, onMounted, onUnmounted } from 'vue';
   
-  const result = ref(null);
+  const end = ref(null);
   let worker = null;
   
   onMounted(() => {
-    worker = new Worker('/path/to/my-worker.js'); // 确保路径正确
+    worker = new Worker(new URL('@/workers/worker.ts', import.meta.url), { type: 'module' });
     worker.addEventListener('message', handleWorkerMessage);
   });
   
@@ -24,13 +27,14 @@
   });
   
   function startComputation() {
-    worker.postMessage({ type: 'compute', value: 10 }); // 发送消息给Worker
+    worker.postMessage({ type: 'compute', data: 10 });
   }
   
   function handleWorkerMessage(e) {
-    const { data } = e;
-    if (data.type === 'result') {
-      result.value = data.value;
+    console.log(e.data , 'handleWorkerMessage')
+    const { type, result } = e.data;
+    if (type === 'result') {
+        end.value = result;
     }
   }
   </script>

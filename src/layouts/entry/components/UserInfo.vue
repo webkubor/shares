@@ -24,6 +24,7 @@
     <n-divider title-placement="center">工具包</n-divider>
     <n-space>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/webgl/index')">webGL</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/rtc/webWork')">web worker</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/lucky')">xbox幸运饰品</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/betting')">三色球/下注/自定义切换</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/battle')">对战竞技样式参考</n-button>

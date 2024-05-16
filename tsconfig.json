@@ -20,6 +20,6 @@
       "/src/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/utils/render.js", ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/utils/render.js", "public/worker.ts", ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
