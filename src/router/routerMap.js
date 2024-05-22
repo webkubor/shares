@@ -91,6 +91,14 @@ const indexMap = [
     component:() => import("@/views/loading/index.vue")
   },
   {
+    path: '/chart/start',
+    name: 'chart-start',
+    meta: {
+      title: "chart-start"
+    },
+    component:() => import("@/views/chart/index.vue")
+  },
+  {
     path: '/show/tabbar',
     name: 'Tabbar',
     meta: {

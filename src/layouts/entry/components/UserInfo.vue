@@ -23,6 +23,7 @@
 
     <n-divider title-placement="center">工具包</n-divider>
     <n-space>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/start')">折线图</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/webgl/index')">webGL</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/rtc/webWork')">web worker</n-button>
       <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/lucky')">xbox幸运饰品</n-button>

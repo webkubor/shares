@@ -7,6 +7,8 @@ declare module 'vue' {
     Board: typeof import('./src/components/Video/board.vue')['default']
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
     GProgress: typeof import('./src/components/GProgress.vue')['default']
+    Line: typeof import('./src/components/D3/line.vue')['default']
+    Line2: typeof import('./src/components/echarts/line2.vue')['default']
     Moon: typeof import('./src/components/Moon.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
