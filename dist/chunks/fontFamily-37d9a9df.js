@@ -1,1 +1,0 @@
-import{au as a,o as s,ax as t,aL as e,aM as d,aC as o}from"../assets/index-648af22d.js";const n={},r={viewBox:"0 0 700 200"},i=[(a=>(e("data-v-3a4cd62a"),a=a(),d(),a))((()=>o("text",{x:"0",y:"70%",id:"timelinetext"}," Tarspay ",-1)))];const x=a(n,[["render",function(a,e){return s(),t("svg",r,i)}],["__scopeId","data-v-3a4cd62a"]]);export{x as default};

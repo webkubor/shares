@@ -8,6 +8,7 @@
     "show": "vite preview"
   },
   "dependencies": {
+    "@antv/g2plot": "^2.4.31",
     "d3": "^7.9.0",
     "echarts": "^5.5.0",
     "lodash": "^4.17.21",

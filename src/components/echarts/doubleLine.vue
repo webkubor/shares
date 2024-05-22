@@ -7,7 +7,7 @@
   import * as echarts from 'echarts';
   
   export default {
-    name: 'LineChart',
+    name: 'DoubleLineChart',
     setup() {
       const chart = ref(null);
       let myChart = null;
