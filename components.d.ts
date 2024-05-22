@@ -6,6 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Board: typeof import('./src/components/Video/board.vue')['default']
     ColorCard: typeof import('./src/components/ColorCard.vue')['default']
+    DoubleLine: typeof import('./src/components/echarts/doubleLine.vue')['default']
     GProgress: typeof import('./src/components/GProgress.vue')['default']
     Line: typeof import('./src/components/D3/line.vue')['default']
     Line2: typeof import('./src/components/echarts/line2.vue')['default']

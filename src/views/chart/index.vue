@@ -14,7 +14,10 @@
     </n-card>
     <n-card title="echart折线图-图例改造">
         <echartLine2/>
+    </n-card>
 
+    <n-card title="echart折线图-混合">
+        <doubleLine/>
     </n-card>
    
 </template>
@@ -22,6 +25,7 @@
 import D3Line from '@/components/D3/line.vue'
 import echartLine from '@/components/echarts/line.vue'
 import echartLine2 from '@/components/echarts/line2.vue'
+import doubleLine from '@/components/echarts/doubleLine.vue'
 </script>
 <script setup>
 
