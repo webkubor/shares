@@ -83,6 +83,14 @@ const indexMap = [
     component:() => import("@/views/barrage/index.vue")
   },
   {
+    path: '/buttons',
+    name: 'Button',
+    meta: {
+      title: "Button"
+    },
+    component:() => import("@/views/show/btns.vue")
+  },
+  {
     path: '/loading',
     name: 'Loading',
     meta: {
