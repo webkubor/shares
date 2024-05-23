@@ -36,6 +36,7 @@ declare module 'vue' {
     NSwitch: typeof import('naive-ui')['NSwitch']
     NTag: typeof import('naive-ui')['NTag']
     NWatermark: typeof import('naive-ui')['NWatermark']
+    Pie: typeof import('./src/components/echarts/pie.vue')['default']
     ScrollRow: typeof import('./src/components/ScrollRow.vue')['default']
     Svg: typeof import('./src/components/Svg.vue')['default']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']

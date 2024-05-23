@@ -29,6 +29,3 @@ import echartLine2 from '@/components/echarts/line2.vue'
 import doubleLine from '@/components/echarts/doubleLine.vue'
 import g2plotLine from '@/components/g2plot/doubleLine.vue'
 </script>
-<script setup>
-
-</script>
