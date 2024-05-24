@@ -52,36 +52,45 @@
         </n-space>
     </n-card>
 
-    <div class="tab-list">
-        <div class="tab-item">
-            首页
-            <ph-x-circle :size="32" class="close" />
-        </div>
-        <div class="tab-item">
-            关于
-            <ph-x-circle :size="32" class="close" />
-        </div>
-        <div class="tab-item">
-            服务
-            <ph-x-circle :size="32" class="close" />
-        </div>
-        <div class="tab-item">
-            案例
-            <ph-x-circle :size="32" class="close" />
-        </div>
-        <div class="tab-item">
-            联系
-            <ph-x-circle :size="32" class="close" />
-        </div>
-        <div class="tab-item">
-            更多
-            <ph-x-circle :size="32" class="close" />
-        </div>
+    <n-card title="面包屑">
+        <n-space vertical>
+            <div class="tab-list">
+                <div class="tab-item" v-for="(item, index) in routers" :key="index">
+                    {{ item }}
+                    <ph-x-circle :size="32" class="close" />
+                </div>
+            </div>
 
-    </div>
+            <div class="tab-list-2">
+                <div class="bottom-level">
+                    <div class="tab-item" v-for="(item, index) in routers" :key="index">
+                        {{ item }}
+                        <ph-x-circle :size="32" class="close" />
+                    </div>
+
+                </div>
+            </div>
+
+        </n-space>
+    </n-card>
+
+
 
 </template>
+<script setup>
 
+let routers = [
+    '首页',
+    '关于',
+    '服务',
+    '案例',
+    '联系',
+    '更多'
+]
+
+
+
+</script>
 
 
 <style scoped lang="scss">
@@ -107,7 +116,7 @@
 
 
 .tab-list {
-    width: 90%;
+    width: 95%;
     margin: 30px auto;
     display: flex;
     align-items: center;
@@ -133,10 +142,11 @@
         display: flex;
         justify-content: space-evenly;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
         .close {
             display: none;
             color: #212121;
-           transition: all ease-in-out 0.5s;
+            transition: all ease-in-out 0.5s;
         }
 
         &:hover {
@@ -144,16 +154,89 @@
             padding: 10px 20px;
             cursor: pointer;
             color: #212121;
+            color: #338aff;
+
             .close {
                 display: block;
+                color: #338aff;
                 margin-left: 20px;
             }
         }
 
         &:active {
             transform: translateY(4px);
-            box-shadow:none;
+            box-shadow: none;
         }
+    }
+}
+
+
+.tab-list-2 {
+    width: 95%;
+    margin: 30px auto;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    position: relative;
+
+    position: relative;
+    box-sizing: border-box;
+    background-image: linear-gradient(25deg, #0078df, #1a94e4, #1bb1e8, #00cfec);
+
+    .bottom-level {
+        width: 100%;
+        min-height: 80px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(6px);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+
+        .tab-item {
+            line-height: 50px;
+            height: 50px;
+            min-width: 50px;
+            justify-content: space-between;
+            border-radius: 30px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            margin-left: 20px;
+            transition: all ease-in-out 0.5s;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+
+
+            .close {
+                display: none;
+                color: #212121;
+                transition: all ease-in-out 0.5s;
+            }
+
+            &:hover {
+                background-color: #0d3e98;
+                min-width: 100px;
+                cursor: pointer;
+                color: #ffffff;
+                .close {
+                    display: block;
+                color: #ffffff;
+                }
+            }
+
+            &:active {
+                transform: translateY(4px);
+                filter: brightness(1.2) drop-shadow(0px 5px 10px rgb(9, 8, 69));
+            box-shadow: none;
+            }
+        }
+
+
     }
 }
 
