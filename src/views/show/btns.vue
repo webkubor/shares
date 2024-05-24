@@ -6,7 +6,8 @@
                     <button class="btn-1">
                         Hover Me!
                     </button>
-                    <button class="ripple-btn">Click Me</button>
+                    <button class="xbox-ripple-btn">Click Me</button>
+                    <button class="xbox-action-btn">Click</button>
 
                     <button class="down-btn">
                         <svg class="svgIcon" viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +31,8 @@
                     <button class="btn-1">
                         Hover Me!
                     </button>
-                    <button class="ripple-btn">Click Me</button>
+                    <button class="xbox-ripple-btn">Click Me</button>
+                    <button class="xbox-action-btn">Click</button>
                     <button class="down-btn">
                         <svg class="svgIcon" viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -345,50 +347,7 @@ let routers = [
 
 
 
-.ripple-btn {
-    background: linear-gradient(270deg, #e88b00 0%, #ee3200 100%);
-    color: #ffffff;
-    text-align: center;
-    font-weight: 600;
-    padding: 20px 35px;
-    cursor: pointer;
-    border: none;
-    font-size: 14px;
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    transition: all 0.2s ease-in-out;
 
-    &::before {
-        content: "";
-        position: absolute;
-        background-color: rgba(255, 255, 255, 0.4);
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        transform: scale(0);
-        transition: all 0.5s ease-in-out;
-        pointer-events: none;
-    }
-
-    &:hover {
-        filter: drop-shadow(0 0 5px #f59403);
-
-        &::before {
-            transform: scale(2);
-            opacity: 0;
-        }
-    }
-
-    &:active {
-        filter: drop-shadow(0 0 5px #f0000e);
-
-        &::before {
-            transform: scale(0);
-            opacity: 0.4;
-        }
-    }
-}
 
 .down-btn {
     width: 50px;

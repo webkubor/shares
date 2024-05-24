@@ -1,6 +1,15 @@
-@mixin flex {
-  display: flex;
+
+
+/* 毛玻璃效果 */
+@mixin glass-effect($bg-color, $blur, $opacity) {
+  background: rgba($bg-color, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba($bg-color, $opacity - 0.1);
 }
+
+
+
 @mixin flex-center-v {
   display: flex;
   align-items: center;

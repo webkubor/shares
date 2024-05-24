@@ -141,7 +141,6 @@ onMounted(() => {
 .pie-border {
     width: 500px;
     height: 400px;
-    box-shadow: 2px 0px 4px #00BFFF;
 }
 
 /* 添加任何必要的样式 */

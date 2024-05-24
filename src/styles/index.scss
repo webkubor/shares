@@ -1,6 +1,7 @@
 
 
-$primary-color: #2354FF;
+/* 主题色 */
+$primary-color: #007BFF;
 $warining-color: #FFB31C;
 $error-color: #F0000E;
 $info-color: #5E64DA;
@@ -48,11 +49,26 @@ box-sizing: border-box;
 @import "./mixins.scss";
 @import "./button.scss";
 
-.grecaptcha-badge {
-  display: none !important;
+
+
+.column-center {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.flex-center-v {
+  @include flex-center-v;
+}
+.flex-center-h {
+  @include flex-center-h;
 }
 
 
+
+.grecaptcha-badge {
+  display: none !important;
+}
 
 // 常规操作栏按钮
 .xbox-action-btn {
@@ -122,76 +138,6 @@ box-sizing: border-box;
 
 }
 
-
-.column-center {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-}
-.flex {
-  @include flex;
-}
-.flex-center {
-  @include flex-center;
-}
-.flex-center-v {
-  @include flex-center-v;
-}
-.flex-center-h {
-  @include flex-center-h;
-}
-
-
-@keyframes jumbo {
-  from {
-      background-position: 50% 50%, 50% 50%;
-  }
-
-  to {
-      background-position: 350% 50%, 350% 50%;
-  }
-}
-
-.common-bg-move {
-  --stripes: repeating-linear-gradient(100deg,
-          #fff 0%,
-          #fff 7%,
-          transparent 10%,
-          transparent 12%,
-          #fff 16%);
-  --stripesDark: repeating-linear-gradient(100deg,
-          #000 0%,
-          #000 7%,
-          transparent 10%,
-          transparent 12%,
-          #000 16%);
-  --rainbow: repeating-linear-gradient(100deg,
-          #60a5fa 10%,
-          #e879f9 15%,
-          #60a5fa 20%,
-          #5eead4 25%,
-          #60a5fa 30%);
-  background-image: var(--stripes), var(--rainbow);
-  background-size: 300%, 200%;
-  background-position: 50% 50%, 50% 50%;
-
-  filter: blur(10px) invert(100%);
-
-  mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 70%);
-
-  pointer-events: none;
-}
-
-.common-bg-move::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--stripes), var(--rainbow);
-  background-size: 200%, 100%;
-  animation: jumbo 60s linear infinite;
-  background-attachment: fixed;
-  mix-blend-mode: difference;
-}
 
 
 .common-title {
