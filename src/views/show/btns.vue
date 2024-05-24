@@ -17,6 +17,11 @@
                         <span class="icon2"></span>
                         <span class="tooltip">Download</span>
                     </button>
+                    <div class="btn-3">Button Hover
+
+                        <div class="inner-color"></div>
+
+                    </div>
                 </n-space>
             </n-card>
 
@@ -25,8 +30,8 @@
                     <button class="btn-1">
                         Hover Me!
                     </button>
-                <button class="ripple-btn">Click Me</button>
-                <button class="down-btn">
+                    <button class="ripple-btn">Click Me</button>
+                    <button class="down-btn">
                         <svg class="svgIcon" viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z">
@@ -35,54 +40,121 @@
                         <span class="icon2"></span>
                         <span class="tooltip">Download</span>
                     </button>
-            </n-space>
+
+                    <div class="btn-3">Button Hover
+
+                        <div class="inner-color"></div>
+
+                    </div>
+                </n-space>
 
             </n-card>
         </n-space>
     </n-card>
 
+    <div class="tab-list">
+        <div class="tab-item">
+            首页
+            <ph-x-circle :size="32" class="close" />
+        </div>
+        <div class="tab-item">
+            关于
+            <ph-x-circle :size="32" class="close" />
+        </div>
+        <div class="tab-item">
+            服务
+            <ph-x-circle :size="32" class="close" />
+        </div>
+        <div class="tab-item">
+            案例
+            <ph-x-circle :size="32" class="close" />
+        </div>
+        <div class="tab-item">
+            联系
+            <ph-x-circle :size="32" class="close" />
+        </div>
+        <div class="tab-item">
+            更多
+            <ph-x-circle :size="32" class="close" />
+        </div>
+
+    </div>
+
 </template>
 
-<script setup lang="ts">
-import { onMounted } from 'vue';
 
-
-onMounted(() => {
-    let btn = document.querySelectorAll("button");
-    btn.forEach((btn) => {
-        btn.onclick = function (e) {
-            let x = e.pageX - e.target.offsetLeft;
-            let y = e.pageY - e.target.offsetTop;
-            let ripples = document.createElement("span");
-
-            ripples.style.left = x + "px";
-            ripples.style.top = y + "px";
-            window.document.appendChild(ripples);
-
-            setTimeout(() => {
-                ripples.remove();
-            }, 2000);
-        };
-    });
-})
-</script>
 
 <style scoped lang="scss">
 :root {
-    --backdrop-color:#212121;
-  --fill-color:#e8e8e8;
+    --backdrop-color: #212121;
+    --fill-color: #e8e8e8;
 }
 
 
 
 .sun {
-  --backdrop-color: #e8e8e8; /* 默认的背景颜色 */
-  --fill-color:#212121;
+    --backdrop-color: #e8e8e8;
+    /* 默认的背景颜色 */
+    --fill-color: #212121;
 }
 
 .moon {
-  --backdrop-color: #212121; /* 默认的背景颜色 */
-  --fill-color:#e8e8e8;
+    --backdrop-color: #212121;
+    /* 默认的背景颜色 */
+    --fill-color: #e8e8e8;
+}
+
+
+
+.tab-list {
+    width: 90%;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background: linear-gradient(to right, #ffa63d, #ff3d77, #338aff, #3cf0c5);
+    background-size: 600%;
+    -webkit-animation: anime 6s linear infinite;
+    padding: 25px 0;
+
+    .tab-item {
+        padding: 10px 30px;
+        margin-left: 20px;
+        font-size: 20px;
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        background-color: rgba(255, 255, 255, 0.4);
+        transition: all ease-in-out 0.5s;
+        color: #212121;
+        font-weight: 600;
+        border: none;
+        display: flex;
+        justify-content: space-evenly;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        .close {
+            display: none;
+            color: #212121;
+           transition: all ease-in-out 0.5s;
+        }
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #212121;
+            .close {
+                display: block;
+                margin-left: 20px;
+            }
+        }
+
+        &:active {
+            transform: translateY(4px);
+            box-shadow:none;
+        }
+    }
 }
 
 
@@ -131,6 +203,62 @@ onMounted(() => {
         }
     }
 }
+
+
+
+.btn-3,
+.inner-color {
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 50px;
+    width: 200px;
+    height: 60px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 60px;
+    background: linear-gradient(-45deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
+    background-size: 600%;
+    -webkit-animation: anime 6s linear infinite;
+    animation: anime 6s linear infinite;
+}
+
+.inner-color {
+    position: absolute;
+    margin-top: -70px;
+    z-index: -1;
+    filter: blur(30px);
+    opacity: 0.8;
+}
+
+
+@keyframes anime {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@-webkit-keyframes anime {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 
 
 
