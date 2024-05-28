@@ -78,6 +78,28 @@
 
 
 
+    <n-card title="骨架屏">
+        <n-space vertical>
+
+            <div class="gm-skeleton">
+
+            </div>
+
+
+            <div class="skeleton-wrapper">
+                <div class="skeleton-header"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+            </div>
+        </n-space>
+
+    </n-card>
+
+
 </template>
 <script setup>
 
@@ -101,7 +123,64 @@ let routers = [
     --fill-color: #e8e8e8;
 }
 
+.skeleton-wrapper {
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+    .skeleton-header {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px;
+        @include skeleton-animation;
+    }
+
+    .skeleton-content {
+        margin-top: 20px;
+
+        .skeleton-line {
+            height: 20px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            @include skeleton-animation;
+
+            &:nth-child(2) {
+                width: 90%;
+            }
+
+            &:nth-child(3) {
+                width: 80%;
+            }
+
+            &:nth-child(4) {
+                width: 95%;
+            }
+        }
+    }
+}
+
+.gm-skeleton {
+    background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%) !important;
+    background-color: transparent !important;
+    background-size: 400% 100%;
+    animation: skeleton-loading 1.5s ease-in infinite;
+    min-height: .3rem;
+    min-width: 1rem;
+    height: 400px;
+}
+
+@keyframes skeleton-loading {
+    from {
+        background-position: 100% 50%;
+    }
+
+    to {
+        background-position: 0 50%;
+    }
+}
 
 .sun {
     --backdrop-color: #e8e8e8;
@@ -225,16 +304,17 @@ let routers = [
                 min-width: 100px;
                 cursor: pointer;
                 color: #ffffff;
+
                 .close {
                     display: block;
-                color: #ffffff;
+                    color: #ffffff;
                 }
             }
 
             &:active {
                 transform: translateY(4px);
                 filter: brightness(1.2) drop-shadow(0px 5px 10px rgb(9, 8, 69));
-            box-shadow: none;
+                box-shadow: none;
             }
         }
 
