@@ -71,7 +71,7 @@ const indexMap = [
     meta: {
       title: "google"
     },
-    component:() => import("@/views/google.vue")
+    component:() => import("@/views/vertify/google.vue")
   },
  
   {
@@ -83,12 +83,12 @@ const indexMap = [
     component:() => import("@/views/barrage/index.vue")
   },
   {
-    path: '/ui/business',
+    path: '/show/business',
     name: 'UI',
     meta: {
       title: "UI-B"
     },
-    component:() => import("@/views/ui/business.vue")
+    component:() => import("@/views/show/business.vue")
   },
   {
     path: '/buttons',

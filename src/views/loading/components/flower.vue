@@ -1,7 +1,6 @@
 <template>
-    <div class="out">
+    <div class="out iphone15-border">
         <div class="fade-in">
-            <img src="@/assets/logo.png" alt="" srcset="">
             <div class="container">
                 <div class="one common"></div>
                 <div class="two common"></div>
@@ -19,9 +18,6 @@
 <style lang="scss" scoped>
 
 .out {
-    background-color: #161B29;
-    min-height: 100vh;
-    width: 100%;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -37,19 +33,9 @@
         /* Opera */
         justify-content: center;
         position: relative;
-
-        img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            height: 40px;
-            z-index: 200;
-        }
-
         .container {
             width: 90vw;
-            height: 90vw;
+            height: 90%;
             left: 0;
             right: 0;
             top: 0;

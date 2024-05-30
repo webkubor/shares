@@ -1,5 +1,5 @@
 <template>
-    <div class="spinner-box">
+    <div class="spinner-box iphone15-border">
         <img class="loading-img" src="@/assets/logo.png" alt="">
         <div class="circle-border">
             <div class="circle-core"></div>
@@ -8,12 +8,9 @@
 </template>
 <style lang="scss" scoped >
 .spinner-box {
-    width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent;
     position: relative;
 
     .loading-img {

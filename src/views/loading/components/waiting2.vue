@@ -1,5 +1,5 @@
 <template>
-    <div class="loading-container">
+    <div class="loading-container iphone15-border">
         <img class="loading-img" src="@/assets/logo.png" alt="">
         <div class="sk-circle">
             <div class="sk-circle1 sk-child"></div>
@@ -21,9 +21,6 @@
 </template>
 <style lang="scss" scoped>
 .loading-container {
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;

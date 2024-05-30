@@ -50,6 +50,13 @@ box-sizing: border-box;
 @import "./button.scss";
 
 
+.iphone15-border {
+  width: 430px;
+  height: 932px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  // background-color: #d1efef;
+    background-color: #161B29;
+}
 
 .column-center {
   display: flex;
