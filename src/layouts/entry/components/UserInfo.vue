@@ -31,39 +31,40 @@
       <n-card title="特殊功能试验区">
         <n-space>
 
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/line')">折线图测试</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/pie')">饼图</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/rtc/webWork')">web worker</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/barrage')">弹幕测试</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/loading')">loading</n-button>
-        <n-watermark v-if="show" content="大家艰苦一下，一切都会有的" cross fullscreen :font-size="16" :line-height="16" :width="384"
-          :height="384" :x-offset="12" :y-offset="60" :rotate="-15" />
-        <n-switch v-model:value="show"></n-switch>
-      </n-space>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/line')">折线图测试</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/pie')">饼图</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/rtc/webWork')">web worker</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/barrage')">弹幕测试</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/loading')">loading</n-button>
+          <n-watermark v-if="show" content="大家艰苦一下，一切都会有的" cross fullscreen :font-size="16" :line-height="16"
+            :width="384" :height="384" :x-offset="12" :y-offset="60" :rotate="-15" />
+          <n-switch v-model:value="show"></n-switch>
+        </n-space>
 
       </n-card>
       <n-card title="UI视觉">
         <n-space>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/business')">UI界面</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/buttons')">按钮组</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/webgl/index')">webGL</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/tabbar')">Tabbar 设计参考</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/list')">列表滚动测试</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/money')">利息计算</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/spider')">蜘蛛网测试</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/apple')">苹果官网流动</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/earth')">地球滚动</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/fontFamily')">字体交互</n-button>
-      </n-space>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/login')">Login登录页</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/business')">UI界面</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/buttons')">按钮组</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/webgl/index')">webGL</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/tabbar')">Tabbar 设计参考</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/list')">列表滚动测试</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/money')">利息计算</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/spider')">蜘蛛网测试</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/apple')">苹果官网流动</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/earth')">地球滚动</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/fontFamily')">字体交互</n-button>
+        </n-space>
       </n-card>
 
       <n-card title="游戏专区">
         <n-space>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/lucky')">xbox幸运饰品</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/betting')">三色球/下注/自定义切换</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/battle')">对战竞技样式参考</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/card')">xbox图标测试</n-button>
-      </n-space>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/lucky')">xbox幸运饰品</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/betting')">三色球/下注/自定义切换</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/battle')">对战竞技样式参考</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/card')">xbox图标测试</n-button>
+        </n-space>
       </n-card>
 
     </n-space>

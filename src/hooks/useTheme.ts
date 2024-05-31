@@ -189,6 +189,8 @@ const themeOverridesDark: GlobalThemeOverrides = reactive({
     color: "#030303"
   }
 });
+
+
 export function useTheme() {
   function swtichTheme() {
     if (local.osTheme === "dark") {
@@ -224,3 +226,13 @@ export function useTheme() {
     local,
   };
 }
+
+
+
+
+
+export let backgroundBg = [
+  'https://cdn.pixabay.com/photo/2023/11/02/16/47/dawn-8361032_960_720.jpg',
+  'https://cdn.pixabay.com/photo/2016/10/21/15/59/sun-1758348_1280.jpg',
+  'https://cdn.pixabay.com/photo/2023/01/08/09/33/jellyfish-7704800_1280.jpg'
+]
