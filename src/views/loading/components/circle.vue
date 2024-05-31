@@ -1,6 +1,6 @@
 <template>
     <div class="spinner-box iphone15-border">
-        <img class="loading-img" src="@/assets/logo.png" alt="">
+        <img class="loading-img" src="@/assets/logo/tp.png" alt="">
         <div class="circle-border">
             <div class="circle-core"></div>
         </div>

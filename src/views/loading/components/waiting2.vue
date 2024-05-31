@@ -1,6 +1,6 @@
 <template>
     <div class="loading-container iphone15-border">
-        <img class="loading-img" src="@/assets/logo.png" alt="">
+        <img class="loading-img" src="@/assets/logo/tp.png" alt="">
         <div class="sk-circle">
             <div class="sk-circle1 sk-child"></div>
             <div class="sk-circle2 sk-child"></div>

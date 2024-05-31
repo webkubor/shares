@@ -19,11 +19,7 @@
       </n-tag>
 
     </n-space>
-
-
     <n-divider title-placement="center">工具包</n-divider>
-
-
     <n-space vertical>
       <n-card title="人机验证">
         <n-button :color="getRandomColor()" ghost @click="$router.push('/google')">google无感知登录</n-button>

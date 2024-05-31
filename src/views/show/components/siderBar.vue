@@ -2,7 +2,7 @@
     <div class="b-sider-box">
 
         <div class="logo-box">
-            <img src="./logo.png" alt="">
+            <img src="@/assets/logo/q.png" alt="">
             <div class="name">
                 Tarspay
             </div>

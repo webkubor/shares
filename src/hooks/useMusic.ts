@@ -53,7 +53,7 @@ function initBackgroundMusic() {
     if (soundSwitch == 'false') return
     currentBgMusic.value = new Audio(bgMusic);
     currentBgMusic.value.loop = true;
-    // currentBgMusic.value.play();
+    currentBgMusic.value.play();
 }
 
 export function useMusic() {
