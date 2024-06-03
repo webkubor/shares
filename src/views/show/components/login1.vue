@@ -66,9 +66,8 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, rgb(28, 29, 56), rgb(57, 174, 238));
-    background-color: #222;
-    color: white;
+    background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+    color: #333333;
     padding: 0;
     margin: 0;
     font-family: Arial, sans-serif
@@ -81,7 +80,7 @@ input {
   position: relative;
   padding: 10px 20px 40px;
   text-align: center;
-  @include glass-effect(#ffffff, 10, 0.2);
+  @include glass-effect(#ffffff, 10, 0.5);
   &:hover {
     box-shadow: 0 0 12px rgba(#43CBFF, 0.5);
   }

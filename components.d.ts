@@ -37,10 +37,12 @@ declare module 'vue' {
     NTag: typeof import('naive-ui')['NTag']
     NWatermark: typeof import('naive-ui')['NWatermark']
     Pie: typeof import('./src/components/echarts/pie.vue')['default']
+    Sbtn: typeof import('./src/components/anime/Sbtn.vue')['default']
     ScrollRow: typeof import('./src/components/ScrollRow.vue')['default']
     Svg: typeof import('./src/components/Svg.vue')['default']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']
     Video: typeof import('./src/components/Video/index.vue')['default']
+    WaterDrop: typeof import('./src/components/anime/WaterDrop.vue')['default']
   }
 }
 
