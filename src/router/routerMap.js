@@ -9,6 +9,14 @@ const indexMap = [
     component: () => import('@/layouts/entry/home.vue')
   },
   {
+    path: '/chat/room',
+    name: 'ChatRoom',
+    meta: {
+      title: "聊天室测试"
+    },
+    component: () => import("@/views/chatRoom/index.vue")
+  },
+  {
     path: '/login',
     name: 'Login',
     meta: {

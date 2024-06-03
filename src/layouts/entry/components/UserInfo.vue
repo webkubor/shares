@@ -26,7 +26,7 @@
       </n-card>
       <n-card title="特殊功能试验区">
         <n-space>
-
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/chat/room')">聊天室</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/line')">折线图测试</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/pie')">饼图</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/rtc/webWork')">web worker</n-button>
