@@ -21,7 +21,6 @@
 <script setup>
 
 import WaterDrop from "@/components/anime/WaterDrop.vue"
-import Sbtn from "@/components/anime/Sbtn.vue"
 </script>
 <style lang="scss" scoped>
 .login-view {
