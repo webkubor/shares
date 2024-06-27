@@ -50,6 +50,18 @@ $default-input-placeholder:#D7B9B9;
 @import "./button.scss";
 
 
+.echarts-tooltip {
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #2C2F3F;
+  color: #fff;
+  .tooltip-value {
+    font-size: 14px;
+    color: #E74C3C;
+  }
+}
+
 
 .column-center {
   display: flex;
