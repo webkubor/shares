@@ -49,6 +49,29 @@ $default-input-placeholder:#D7B9B9;
 @import "./mixins.scss";
 @import "./button.scss";
 
+@font-face {
+  font-family: 'Chinese1';
+  src: url('@/assets/fonts/AiChinese01.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Chinese2';
+  src: url('@/assets/fonts/AiChinese02.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Chinese3';
+  src: url('@/assets/fonts/Chinese3.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 
 .echarts-tooltip {
   position: relative;

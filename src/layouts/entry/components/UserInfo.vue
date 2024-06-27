@@ -40,6 +40,7 @@
       </n-card>
       <n-card title="UI视觉">
         <n-space>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/font')">中文字体设计</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/login')">Login登录页</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/show/business')">UI界面</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/buttons')">按钮组</n-button>

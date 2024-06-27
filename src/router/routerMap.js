@@ -99,6 +99,14 @@ const indexMap = [
     component: () => import("@/views/barrage/index.vue")
   },
   {
+    path: '/show/font',
+    name: 'Font',
+    meta: {
+      title: "ChineseFont"
+    },
+    component: () => import("@/views/show/font.vue")
+  },
+  {
     path: '/show/business',
     name: 'UI',
     meta: {
