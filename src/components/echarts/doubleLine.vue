@@ -2,13 +2,11 @@
     <div ref="chart" class="chart"></div>
   </template>
   
-  <script>
+  <script setup>
   import { ref, onMounted, onBeforeUnmount } from 'vue';
   import * as echarts from 'echarts';
   
-  export default {
-    name: 'DoubleLineChart',
-    setup() {
+ 
       const chart = ref(null);
       let myChart = null;
   
@@ -204,11 +202,7 @@
         }
       });
   
-      return {
-        chart,
-      };
-    },
-  };
+     
   </script>
   
   <style>

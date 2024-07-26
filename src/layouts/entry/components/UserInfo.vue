@@ -94,7 +94,7 @@ const toggleLocale = () => {
 
 
 const getImage = (name) => {
-  const picModules = import.meta.globEager("/src/assets/*");
+  const picModules = import.meta.glob("/src/assets/*",{eager: true});
   const path = `/src/assets/${name}`;
   return picModules[path].default;
 };

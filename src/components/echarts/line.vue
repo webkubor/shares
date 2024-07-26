@@ -2,13 +2,11 @@
   <div ref="chart" class="chart"></div>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import * as echarts from 'echarts';
 
-export default {
-  name: 'LineChart',
-  setup() {
+
     const chart = ref(null);
     let myChart = null;
 
@@ -81,11 +79,7 @@ export default {
       }
     });
 
-    return {
-      chart,
-    };
-  },
-};
+   
 </script>
 
 <style>

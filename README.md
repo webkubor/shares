@@ -1,8 +1,20 @@
 <!--
  * @Date: 2021-07-20 16:07:16
- * @LastEditTime: 2023-11-17 17:38:30
+ * @LastEditTime: 2024-07-26 10:59:05
 -->
 # webkubor项目展示
+
+
+
+## vite5
+
+```
+    // 以前的使用方法
+    const routesModules = import.meta.globEager('../views/**/router/*.js');
+    // 现在的使用方法
+    const routesModules = import.meta.glob('../views/**/router/*.js', {eager: true});
+```
+
 
 #### 介绍
 赶上vue3 + vite的最佳搭档,正好可以总结一下,当前在前端领域的积累

@@ -1,6 +1,5 @@
 import { createApp } from "vue";
 import ToastMessage from "@/components/ToastMessage.vue";
-import PhosphorVue from "phosphor-vue";
 
 // let index = 0; //当前索引
 let queue = []; //message队列
@@ -38,7 +37,7 @@ export function Message(option) {
     ...option
   });
 
-  const vm = app.use(PhosphorVue).mount(dom);
+  const vm = app.mount(dom);
   vm.$el.setAttribute("id", id);
   setTimeout(() => {
     vm.$el.style.marginTop = `${defaultTop}px`;

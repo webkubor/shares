@@ -2,13 +2,11 @@
   <div ref="chart" class="chart"></div>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { Line } from '@antv/g2plot';
 
-export default {
-  name: 'LineChart',
-  setup() {
+
     const chart = ref(null);
     let lineChart = null;
 
@@ -118,11 +116,7 @@ export default {
       }
     });
 
-    return {
-      chart,
-    };
-  },
-};
+ 
 </script>
 
 <style>

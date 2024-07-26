@@ -4,13 +4,15 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Board: typeof import('./src/components/Video/board.vue')['default']
-    ColorCard: typeof import('./src/components/ColorCard.vue')['default']
-    DoubleLine: typeof import('./src/components/echarts/doubleLine.vue')['default']
+    AnimeSbtn: typeof import('./src/components/anime/Sbtn.vue')['default']
+    AnimeWaterDrop: typeof import('./src/components/anime/WaterDrop.vue')['default']
+    D3Line: typeof import('./src/components/D3/line.vue')['default']
+    EchartsDoubleLine: typeof import('./src/components/echarts/doubleLine.vue')['default']
+    EchartsLine: typeof import('./src/components/echarts/line.vue')['default']
+    EchartsLine2: typeof import('./src/components/echarts/line2.vue')['default']
+    EchartsPie: typeof import('./src/components/echarts/pie.vue')['default']
+    G2plotDoubleLine: typeof import('./src/components/g2plot/doubleLine.vue')['default']
     GProgress: typeof import('./src/components/GProgress.vue')['default']
-    Line: typeof import('./src/components/D3/line.vue')['default']
-    Line2: typeof import('./src/components/echarts/line2.vue')['default']
-    Moon: typeof import('./src/components/Moon.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
@@ -32,17 +34,12 @@ declare module 'vue' {
     NPopover: typeof import('naive-ui')['NPopover']
     NSelect: typeof import('naive-ui')['NSelect']
     NSpace: typeof import('naive-ui')['NSpace']
-    NSpin: typeof import('naive-ui')['NSpin']
     NSwitch: typeof import('naive-ui')['NSwitch']
     NTag: typeof import('naive-ui')['NTag']
     NWatermark: typeof import('naive-ui')['NWatermark']
-    Pie: typeof import('./src/components/echarts/pie.vue')['default']
-    Sbtn: typeof import('./src/components/anime/Sbtn.vue')['default']
-    ScrollRow: typeof import('./src/components/ScrollRow.vue')['default']
-    Svg: typeof import('./src/components/Svg.vue')['default']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']
     Video: typeof import('./src/components/Video/index.vue')['default']
-    WaterDrop: typeof import('./src/components/anime/WaterDrop.vue')['default']
+    VideoBoard: typeof import('./src/components/Video/board.vue')['default']
   }
 }
 

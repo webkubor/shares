@@ -102,7 +102,7 @@
 
 </template>
 <script setup>
-
+ import { PhXCircle} from "@phosphor-icons/vue";
 let routers = [
     '首页',
     '关于',
