@@ -25,7 +25,6 @@ export default defineConfig({
     },
     },
   build: {
-    brotliSize: false,
     chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
