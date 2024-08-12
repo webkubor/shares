@@ -129,7 +129,7 @@ function initCamera() {
 function initEarth() {
     const geometry = new THREE.SphereGeometry(planetSize.value, 32, 32);
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load('https://webjunjun.github.io/wechat/earth.jpg');
+    const texture = textureLoader.load('@/assets/3d/earth.png');
     // 要调整纹理过滤模式，可以使用Three.js中的Texture对象的minFilter属性。该属性用于设置纹理在缩小时的过滤方式
     // 双线性过滤模式，该模式结合了线性过滤和Mipmaps技术，在不同缩小级别的纹理之间平滑过渡，可以获得更好的质量和平滑度。
     texture.minFilter = THREE.LinearMipmapLinearFilter;
