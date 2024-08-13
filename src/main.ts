@@ -5,6 +5,7 @@ import i18n from '@/plugins/i18n'
 import copy from "@/directives/copy";
 import ripple from "@/directives/ripple/index";
 import globalComponents from "@/components";
+import "@icon-park/vue-next/styles/index.css";
 
 createApp(App)
 .use(copy)
