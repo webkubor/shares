@@ -64,9 +64,9 @@
       </n-card>
       <n-card title="UI视觉">
         <n-space>
-          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/font')">中文字体设计</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/font')">小说封面设计</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/login')">Login登录页</n-button>
-          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/business')">UI界面</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/business')">管理端界面颜色</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/buttons')">按钮组</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/webgl/index')">webGL</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/show/tabbar')">Tabbar 设计参考</n-button>
@@ -74,7 +74,6 @@
           <n-button :color="getRandomColor()" ghost @click="$router.push('/show/money')">利息计算</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/show/spider')">蜘蛛网测试</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/show/apple')">苹果官网流动</n-button>
-          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/fontFamily')">字体交互</n-button>
         </n-space>
       </n-card>
 

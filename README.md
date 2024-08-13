@@ -39,9 +39,12 @@ UI - native UI
 加入vue单元测试 
 
 #### 架构细节说明
-基于vite的特殊性, vite在开发时期作为服务器在根目录,而不是在public文件夹里(vue2);
-Vite 内置了 HMR 到 Vue 单文件组件（SFC） 和 React Fast Refresh 中。
-也通过 @prefresh/vite 对 Preact 实现了官方集成
+- 集成了国际化方案
+- 集成了多个图标库
+- 多个工具包
+- 人机验证的两个方式 Google 和 Cloudflare
+- UI 动画过度
+
 
 
 

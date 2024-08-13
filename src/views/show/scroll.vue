@@ -74,7 +74,7 @@
 </template>
 <script lang="ts" setup>
 import { onMounted, nextTick, ref } from 'vue';
-import { IndexedDBHelper } from '@/utils/indexedDBHelper'
+import { IndexedDBHelper } from '@/utils/IndexedDBHelper'
 import { createRandomStr, createRandomNum } from '@/utils/random'
 import { useRouter } from 'vue-router';
 

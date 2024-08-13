@@ -1,5 +1,5 @@
-
 <template>
+     
       <router-view></router-view>
 </template>
 <script lang="ts" setup>
@@ -11,4 +11,4 @@ window.$notification = useNotification();
 window.$dialog = useDialog();
 window.$toast = Message
 </script>
-  
+

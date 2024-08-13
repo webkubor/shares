@@ -201,14 +201,8 @@ const indexMap = [
       title: "苹果官网流动"
     },
     component: () => import("@/views/show/apple.vue")
-  },
+  }
  
-  {
-    path: '/show/fontFamily',
-    name: 'fontFamily',
-    component: () => import("@/views/show/fontFamily.vue")
-  },
-
 ]
 
 const routerMap = [
