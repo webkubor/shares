@@ -35,7 +35,6 @@ export default defineConfig({
           lib: ['dayjs', 'flyio','lodash', 'plyr','mathjs'],
           naive: ['naive-ui'],
           phosphor: ['@phosphor-icons/vue'],
-          three:['three'],
           g2plot: ['@antv/g2plot'],
           echarts: ['echarts'],
         }

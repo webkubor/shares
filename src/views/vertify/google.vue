@@ -1,10 +1,18 @@
 <template>
 
    <n-space vertical>
-      <n-button text tag="a" href="https://www.google.com/recaptcha/admin/site/702521588/setup?hl=zh-c" target="_blank"
-         type="primary">
-         recaptcha添加操作地址
-      </n-button>
+      <n-card title="google提前引入">
+         <n-button text tag="a" href="https://www.google.com/recaptcha/admin/site/702521588/setup?hl=zh-c"
+            target="_blank" type="primary">
+            recaptcha添加操作地址
+         </n-button>
+         <div>
+            script src='https://www.recaptcha.net/recaptcha/api.js?render=6LcTelEpAAAAAMP0-x8wbH9pvGwElJkxBZ47UvAP'
+            async defer
+         </div>
+
+      </n-card>
+
       <n-card title="google 无感知验证-基于得分">
          <div>
             网站秘钥 6LcTelEpAAAAAMP0-x8wbH9pvGwElJkxBZ47UvAP

@@ -1,8 +1,0 @@
-import{i as m,C as p,L as u}from"./echarts-bD9ZZym7.js";import{_ as h}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{r as _,k as v,K as b,L as g}from"./vendor-DvKkXVKX.js";const y={__name:"pie",setup($){const s=_(null),r=[{value:35634,name:"bank"},{value:12456,name:"qris"},{value:12456,name:"ewallet"},{value:12456,name:"market"}],c=r.reduce((e,o)=>e+o.value,0),i=e=>new u(0,0,1,1,[{offset:0,color:`hsl(${e*90}, 70%, 50%)`},{offset:1,color:`hsl(${e*90+60}, 70%, 50%)`}]),f={tooltip:{trigger:"item"},legend:{orient:"horizontal",bottom:"10px",left:"center"},series:[{name:"Payment Method",type:"pie",radius:["60%","70%"],avoidLabelOverlap:!1,padAngle:5,itemStyle:{borderRadius:10,borderColor:"#fff",borderWidth:2},label:{show:!1,position:"center"},labelLine:{show:!1},data:r.map((e,o)=>({...e,itemStyle:{color:i(o)}}))}]};return v(()=>{const e=m(s.value);e.setOption(f);const o=new p({shape:{cx:e.getWidth()/2,cy:e.getHeight()/2,r:90},style:{fill:"#fff",shadowBlur:20,shadowOffsetX:0,shadowOffsetY:0,shadowColor:"#00BFFF"}});e.getZr().add(o);const n=t=>{e.setOption({title:{text:t,left:"center",top:"center",textStyle:{fontSize:24,color:"#000000"}},subtext:t,subtextStyle:{fontSize:16,color:"#000000"}})};e.on("legendselectchanged",function(t){const l=t.name,a=r.find(d=>d.name===l);n(a?`${a.name}
-${a.value}`:`Total
-
-${c}`)}),e.on("click",function(t){if(t.componentType==="series"){const{name:l,value:a}=t.data;console.log(`点击了${l}，值为${a}`),n(`${l}
-
-${a}`)}}),n(`Total
-
-${c}`)}),(e,o)=>(b(),g("div",{ref_key:"chart",ref:s,class:"pie-border"},null,512))}},k=h(y,[["__scopeId","data-v-6f9760de"]]);export{k as P};

@@ -1,1 +1,0 @@
-(function(){"use strict";self.addEventListener("message",s=>{const{type:e,data:t}=s.data;if(console.log(`Received message: ${e}`,s.data),e==="compute"){const a=o(t);self.postMessage({type:"result",result:a})}});function o(s){let e=0;for(let t=0;t<1e7;t++)e+=t*s;return e}})();

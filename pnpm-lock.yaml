@@ -26,9 +26,6 @@ dependencies:
   plyr:
     specifier: ^3.7.8
     version: 3.7.8
-  three:
-    specifier: ^0.154.0
-    version: 0.154.0
   vue:
     specifier: ^3.3.8
     version: 3.3.8(typescript@4.9.5)
@@ -4065,10 +4062,6 @@ packages:
       commander: 2.20.3
       source-map-support: 0.5.21
     dev: true
-
-  /three@0.154.0:
-    resolution: {integrity: sha512-Uzz8C/5GesJzv8i+Y2prEMYUwodwZySPcNhuJUdsVMH2Yn4Nm8qlbQe6qRN5fOhg55XB0WiLfTPBxVHxpE60ug==}
-    dev: false
 
   /tiny-emitter@2.1.0:
     resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}

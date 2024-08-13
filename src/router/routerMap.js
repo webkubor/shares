@@ -82,12 +82,20 @@ const indexMap = [
     component: () => import("@/views/webGl/index.vue")
   },
   {
-    path: '/google',
+    path: '/vertify/google',
     name: 'google',
     meta: {
-      title: "google"
+      title: "Google"
     },
     component: () => import("@/views/vertify/google.vue")
+  },
+  {
+    path: '/vertify/cloudflare',
+    name: 'Cloudflare',
+    meta: {
+      title: "Cloudflare"
+    },
+    component: () => import("@/views/vertify/cloudflare.vue")
   },
 
   {
@@ -194,11 +202,7 @@ const indexMap = [
     },
     component: () => import("@/views/show/apple.vue")
   },
-  {
-    path: '/show/earth',
-    name: 'Earth',
-    component: () => import("@/views/show/three.vue")
-  },
+ 
   {
     path: '/show/fontFamily',
     name: 'fontFamily',

@@ -1,1 +1,0 @@
-const e="/webkubor-shares/assets/avactor-BmFtgwf5.png",o=Object.freeze(Object.defineProperty({__proto__:null,default:e},Symbol.toStringTag,{value:"Module"})),t="/webkubor-shares/assets/me-DgQO0QE-.jpeg",_=Object.freeze(Object.defineProperty({__proto__:null,default:t},Symbol.toStringTag,{value:"Module"}));export{o as _,_ as a,e as b,t as c};
