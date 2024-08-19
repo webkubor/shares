@@ -13,7 +13,7 @@
     </n-card>
 
     <n-card>
-            <img  class="water-pic" v-for="item in previews" :src="item" alt="">
+        <img class="water-pic" v-for="item in previews" :src="item" alt="">
     </n-card>
 
 </template>
@@ -56,26 +56,92 @@ function handleRemove(data: { file: UploadFileInfo, fileList: UploadFileInfo[] }
 
 
 function getPreviewUrl(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = (e) => resolve(e.target.result);
-    reader.onerror = (e) => reject(e);
-    reader.readAsDataURL(file);
-  });
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result);
+        reader.onerror = (e) => reject(e);
+        // 转换为base64字符串
+        reader.readAsDataURL(file);
+
+    });
 }
 
 function handleFileListChange() {
-    window.$message.info('是的，file-list 的值变了')
+    window.$message.info('开始处理临时图片预览 URL')
     fileListRef.value.forEach(async (element) => {
-    try {
-      const previewUrl = await getPreviewUrl(element.file);
-      previews.value.push(previewUrl);
-    } catch (error) {
-      console.error('获取预览 URL 时出错:', error);
-    } finally {
-        console.log(previews.value)
-    }
-});
+        try {
+            // 转换为base64
+            const previewUrl = await getPreviewUrl(element.file);
+            //   转换为Canvas
+            let tempCanvas = await imgToCanvas(previewUrl)
+            // 把水印写入
+            const canvas = addWatermark(tempCanvas, '考研公众号：HaoYo')
+            const img = convasToImg(canvas);
+            previews.value.push(img.src);
+        } catch (error) {
+            console.error('获取预览 URL 时出错:', error);
+        } finally {
+            console.log(previews.value)
+        }
+    });
+}
+
+
+
+
+
+/**
+ * canvas添加水印
+ * @param  canvas 对象
+ * @param text 水印文字
+ */
+function addWatermark(canvas, text: string) {
+    const ctx = canvas.getContext('2d')
+    ctx.fillStyle = '#aaa'
+    ctx.textBaseline = 'middle'
+    ctx.font = (ctx.canvas.width / 20) + 'px Arial'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    // ctx.rotate(45);
+    // ctx.rotate((45 * Math.PI) / 180);
+    ctx.fillText(text, canvas.width / 2, canvas.height / 2)
+    return canvas
+}
+
+
+
+/**
+ * Base64转成canvas
+ * @param  base64
+ */
+ async function imgToCanvas(base64) {
+    // 创建img元素
+    const img = document.createElement('img')
+    img.setAttribute('src', base64)
+    await new Promise((resolve) => (img.onload = resolve))
+    // 创建canvas DOM元素，并设置其宽高和图片一样
+    const canvas = document.createElement('canvas')
+    console.log(img.height)
+    console.log(img.width)
+    canvas.width = img.width
+    canvas.height = img.height
+    // 坐标(0,0) 表示从此处开始绘制，相当于偏移。
+    canvas.getContext('2d').drawImage(img, 0, 0)
+    return canvas
+}
+
+
+/**
+ * canvas转成img
+ * @param {canvas对象} canvas
+ */
+function convasToImg(canvas, type) {
+    // 新建Image对象，可以理解为DOM
+    let image = new Image()
+    // canvas.toDataURL 返回的是一串Base64编码的URL
+    // 指定格式 PNG
+    image.src = canvas.toDataURL(type)
+    return image
 }
 
 
