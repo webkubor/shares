@@ -1,26 +1,33 @@
 <template>
     <n-card title="图片水印添加">
         <n-space>
-            <n-input type="text" v-model="watermarkText" placeholder="输入水印文字"></n-input>
-            <n-button>生成水印</n-button>
+            <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字"></n-input>
+            <n-button @click="handleFileListChange">生成水印</n-button>
         </n-space>
     </n-card>
     <n-card>
-        <n-upload list-type="image" v-model:file-list="fileListRef" @change="handleUploadChange" @remove="handleRemove"
+        <n-upload list-type="image" multiple v-model:file-list="fileListRef" @change="handleUploadChange" @remove="handleRemove"
             @update:file-list="handleFileListChange">
             <n-button>上传文件</n-button>
         </n-upload>
     </n-card>
 
     <n-card>
-        <img class="water-pic" v-for="item in previews" :src="item" alt="">
+        <n-space v-for="(item, index) in previews">
+            <n-space  vertical>
+            <img class="water-pic" :src="item" alt="">
+            <n-button @click="downWaterPic(item)">下载图片</n-button>
+        </n-space>
+
+        </n-space>
     </n-card>
 
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
-const watermarkText = ref('');
+import { saveFile } from "@/utils/down"
+const watermarkText = ref('说书人司南烛');
 const fileListRef = ref([]);
 const previews = ref([]);
 
@@ -75,7 +82,7 @@ function handleFileListChange() {
             //   转换为Canvas
             let tempCanvas = await imgToCanvas(previewUrl)
             // 把水印写入
-            const canvas = addWatermark(tempCanvas, '考研公众号：HaoYo')
+            const canvas = addWatermark(tempCanvas, watermarkText.value)
             const img = convasToImg(canvas);
             previews.value.push(img.src);
         } catch (error) {
@@ -87,7 +94,12 @@ function handleFileListChange() {
 }
 
 
-
+function downWaterPic(imageSrc) {
+    const link = document.createElement('a');
+    link.href = imageSrc;
+    link.download = 'watermarked_image.png';
+    link.click();
+}
 
 
 /**
@@ -114,7 +126,7 @@ function addWatermark(canvas, text: string) {
  * Base64转成canvas
  * @param  base64
  */
- async function imgToCanvas(base64) {
+async function imgToCanvas(base64) {
     // 创建img元素
     const img = document.createElement('img')
     img.setAttribute('src', base64)
