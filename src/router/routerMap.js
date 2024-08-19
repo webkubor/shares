@@ -17,7 +17,7 @@ const indexMap = [
     component: () => import("@/views/chatRoom/index.vue")
   },
   {
-    path: '/login',
+    path: '/show/login',
     name: 'Login',
     meta: {
       title: "Login"
@@ -74,14 +74,6 @@ const indexMap = [
     component: () => import("@/views/xbox/progress.vue")
   },
   {
-    path: '/webgl/index',
-    name: 'webGl',
-    meta: {
-      title: "webGL 初始化"
-    },
-    component: () => import("@/views/webGl/index.vue")
-  },
-  {
     path: '/vertify/google',
     name: 'google',
     meta: {
@@ -122,8 +114,17 @@ const indexMap = [
     },
     component: () => import("@/views/show/business.vue")
   },
+
   {
-    path: '/buttons',
+    path: '/show/watermark',
+    name: 'UI',
+    meta: {
+      title: "图片水印添加"
+    },
+    component: () => import("@/views/show/watermark/index.vue")
+  },
+  {
+    path: '/show/buttons',
     name: 'Button',
     meta: {
       title: "Button"
