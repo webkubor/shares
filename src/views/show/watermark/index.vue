@@ -2,39 +2,36 @@
     <n-card title="图片水印添加">
         <n-space>
             <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字"></n-input>
+
             <n-button @click="handleFileListChange">生成水印</n-button>
-        </n-space>
-    </n-card>
-    <n-card>
-        <n-upload list-type="image" multiple v-model:file-list="fileListRef" @change="handleUploadChange" @remove="handleRemove"
+            <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef" @change="handleUploadChange" @remove="handleRemove"
             @update:file-list="handleFileListChange">
             <n-button>上传文件</n-button>
         </n-upload>
+        </n-space>
+    </n-card>
+    <n-card>
+       
     </n-card>
 
     <n-card>
-        <n-space v-for="(item, index) in previews">
-            <n-space  vertical>
-            <img class="water-pic" :src="item" alt="">
-            <n-button @click="downWaterPic(item)">下载图片</n-button>
-        </n-space>
-
-        </n-space>
+        <n-space >
+            <n-space   v-for="(item, index) in previews" vertical>
+                <img class="water-pic" :src="item" alt="">
+                <n-button @click="downWaterPic(item)">下载图片</n-button>
+            </n-space>
+        </n-space >
     </n-card>
+       
 
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
-import { saveFile } from "@/utils/down"
-const watermarkText = ref('说书人司南烛');
+const watermarkText = ref('司南烛');
 const fileListRef = ref([]);
 const previews = ref([]);
 
-
-function addWatermarks() {
-    console.log(previewFileList.value)
-}
 
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList
@@ -74,7 +71,6 @@ function getPreviewUrl(file) {
 }
 
 function handleFileListChange() {
-    window.$message.info('开始处理临时图片预览 URL')
     fileListRef.value.forEach(async (element) => {
         try {
             // 转换为base64
@@ -109,14 +105,17 @@ function downWaterPic(imageSrc) {
  */
 function addWatermark(canvas, text: string) {
     const ctx = canvas.getContext('2d')
-    ctx.fillStyle = '#aaa'
-    ctx.textBaseline = 'middle'
-    ctx.font = (ctx.canvas.width / 20) + 'px Arial'
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
-    // ctx.rotate(45);
-    // ctx.rotate((45 * Math.PI) / 180);
-    ctx.fillText(text, canvas.width / 2, canvas.height / 2)
+    ctx.fillStyle = 'rgba(170, 170, 170, 0.3)'; // 设置透明度为 0.5
+  
+    ctx.textAlign = 'center';
+      // 设置文本的垂直对齐方式为底部对齐
+      ctx.textBaseline = 'bottom';
+    // 设置字体大小，根据画布宽度动态调整
+    ctx.font = (ctx.canvas.width / 18) + 'px Chinese1';
+    // 设置一个边距值，根据画布宽度确定
+    const padding = (ctx.canvas.width / 18);
+    // 在底部居中位置绘制水印文字，通过计算水平位置使得文字居中
+    ctx.fillText(text, canvas.width / 2, canvas.height - padding);
     return canvas
 }
 
