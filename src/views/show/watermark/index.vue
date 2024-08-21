@@ -2,10 +2,10 @@
     <n-card title="图片水印添加">
         <n-space>
             <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字"></n-input>
-
-            <n-button @click="handleFileListChange">生成水印</n-button>
-            <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef" @change="handleUploadChange" @remove="handleRemove"
-            @update:file-list="handleFileListChange">
+            <n-button v-if="previews.length" @click="handleFileListChange">生成水印</n-button>
+            <n-button v-if="previews.length" @click="downloadAll">批量下载</n-button>
+            <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef" :on-update:file-list="handleFileListChange" @change="handleUploadChange" 
+            >
             <n-button>上传文件</n-button>
         </n-upload>
         </n-space>
@@ -17,8 +17,9 @@
     <n-card>
         <n-space >
             <n-space   v-for="(item, index) in previews" vertical>
-                <img class="water-pic" :src="item" alt="">
-                <n-button @click="downWaterPic(item)">下载图片</n-button>
+                <img class="water-pic" :src="item.src" alt="">
+                <n-space> <n-button @click="downWaterPic(item.src)">下载图片</n-button>
+                    <n-button @click="remove(index)">移除</n-button></n-space>
             </n-space>
         </n-space >
     </n-card>
@@ -35,28 +36,9 @@ const previews = ref([]);
 
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList
+    previews.value =[]
 }
 
-function handleRemove(data: { file: UploadFileInfo, fileList: UploadFileInfo[] }) {
-    if (data.file.id === 'text-message') {
-        window.$message.info('居然没传上去，算了，删了吧')
-    }
-    else if (data.file.id === 'notification') {
-        window.$message.error('不行，这个有用，不许删')
-        return false
-    }
-    else if (data.file.id === 'contact') {
-        message.loading('不知道这个有没有用，等我问问服务器能不能删', {
-            duration: 4000
-        })
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                window.$message.error('不行，他们也不许删这个')
-                resolve(false)
-            }, 4000)
-        })
-    }
-}
 
 
 function getPreviewUrl(file) {
@@ -70,25 +52,19 @@ function getPreviewUrl(file) {
     });
 }
 
-function handleFileListChange() {
-    fileListRef.value.forEach(async (element) => {
-        try {
-            // 转换为base64
-            const previewUrl = await getPreviewUrl(element.file);
-            //   转换为Canvas
-            let tempCanvas = await imgToCanvas(previewUrl)
-            // 把水印写入
-            const canvas = addWatermark(tempCanvas, watermarkText.value)
-            const img = convasToImg(canvas);
-            previews.value.push(img.src);
-        } catch (error) {
-            console.error('获取预览 URL 时出错:', error);
-        } finally {
-            console.log(previews.value)
-        }
-    });
+async function processFile(element) {
+  const previewUrl = await getPreviewUrl(element.file);
+  const tempCanvas = await imgToCanvas(previewUrl);
+  const canvas = addWatermark(tempCanvas, watermarkText.value);
+  const img = convasToImg(canvas);
+  return { name: element.name, src: img.src };
 }
 
+async function handleFileListChange() {
+  const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
+  const previewNames = new Set(previews.value.map(item => item.name));
+  previews.value = previews.value.concat(processedPreviews.filter(item =>!previewNames.has(item.name)));
+}
 
 function downWaterPic(imageSrc) {
     const link = document.createElement('a');
@@ -98,6 +74,11 @@ function downWaterPic(imageSrc) {
 }
 
 
+function remove(index) {
+    previews.value?.splice(index ,1)
+    fileListRef.value?.splice(index ,1)
+}
+
 /**
  * canvas添加水印
  * @param  canvas 对象
@@ -105,13 +86,14 @@ function downWaterPic(imageSrc) {
  */
 function addWatermark(canvas, text: string) {
     const ctx = canvas.getContext('2d')
-    ctx.fillStyle = 'rgba(170, 170, 170, 0.3)'; // 设置透明度为 0.5
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // 设置透明度为 0.5
   
     ctx.textAlign = 'center';
       // 设置文本的垂直对齐方式为底部对齐
       ctx.textBaseline = 'bottom';
     // 设置字体大小，根据画布宽度动态调整
-    ctx.font = (ctx.canvas.width / 18) + 'px Chinese1';
+    ctx.font = (ctx.canvas.width / 14) + 'px Chinese1';
+    ctx.fontWeight = 500
     // 设置一个边距值，根据画布宽度确定
     const padding = (ctx.canvas.width / 18);
     // 在底部居中位置绘制水印文字，通过计算水平位置使得文字居中
@@ -119,6 +101,16 @@ function addWatermark(canvas, text: string) {
     return canvas
 }
 
+
+// 批量下载函数
+function downloadAll() {
+  previews.value.forEach((imageSrc) => {
+    const link = document.createElement('a');
+    link.href = imageSrc.src;
+    link.download = `watermarked_image_${new Date().getTime()}.png`;
+    link.click();
+  });
+}
 
 
 /**
@@ -132,8 +124,6 @@ async function imgToCanvas(base64) {
     await new Promise((resolve) => (img.onload = resolve))
     // 创建canvas DOM元素，并设置其宽高和图片一样
     const canvas = document.createElement('canvas')
-    console.log(img.height)
-    console.log(img.width)
     canvas.width = img.width
     canvas.height = img.height
     // 坐标(0,0) 表示从此处开始绘制，相当于偏移。
