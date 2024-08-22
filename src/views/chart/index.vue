@@ -1,10 +1,5 @@
 <template>
  <n-space vertical>
-    <n-card title="D3折线图"> 
-        <D3Line />
-
-    </n-card>
-
     <n-card title="echart折线图">
         <echartLine/>
 
@@ -23,7 +18,6 @@
 
 </template>
 <script setup>
-import D3Line from '@/components/D3/line.vue'
 import echartLine from '@/components/echarts/line.vue'
 import echartLine2 from '@/components/echarts/line2.vue'
 import doubleLine from '@/components/echarts/doubleLine.vue'

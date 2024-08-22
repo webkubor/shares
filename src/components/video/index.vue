@@ -9,7 +9,7 @@
 <script setup>
 import Plyr from 'plyr';
 import 'plyr/dist/plyr.css';
-import Board from './Board.vue'
+import Board from './board.vue'
 import { plyrI18n } from './plyrI18n'
 import { onMounted,ref } from 'vue';
 

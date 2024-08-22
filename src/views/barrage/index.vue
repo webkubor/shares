@@ -1,14 +1,12 @@
 <template>
-
     <div class="common-bg-move page-bg"></div>
     <div class="common-title">webkubor
-
         <span class="more">UI</span>
     </div>
     <MovieCom :barrage="true" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"></MovieCom>
 </template>
 <script setup lang="ts">
-import MovieCom from '@/components/Video/index.vue';
+import MovieCom from '@/components/video/index.vue';
 document.title = "弹幕测试"
 </script>
 <style scoped lang="scss">
