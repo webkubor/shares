@@ -65,14 +65,7 @@ const indexMap = [
     component: () => import("@/views/xbox/battle.vue")
   },
 
-  {
-    path: '/xbox/progress',
-    name: 'Progress',
-    meta: {
-      title: "进度条测试"
-    },
-    component: () => import("@/views/xbox/progress.vue")
-  },
+
   {
     path: '/vertify/google',
     name: 'google',
