@@ -1,20 +1,31 @@
 <template>
     <n-card title="图片水印添加">
         <n-space>
-            <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字"></n-input>
+            <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字">
+                <template #prefix>
+                    水印内容:
+                </template>
+            </n-input>
+          
             <n-button v-if="previews.length" @click="onRrewrite">生成水印</n-button>
             <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
                 :on-update:file-list="handleFileListChange" @change="handleUploadChange">
                 <n-button>上传文件</n-button>
             </n-upload>
             <n-button v-if="previews.length" type="primary" @click="downloadAll">批量下载</n-button>
+            <n-checkbox v-model:checked="config.active" label="添加图片标题"  />
+            <n-input v-if="config.active" type="text" v-model:value="config.title" placeholder="添加图片标题">
+                <template #prefix>
+                    标题:
+                </template>
+            </n-input>
         </n-space>
     </n-card>
     <n-card>
 
     </n-card>
 
-    <n-card>
+    <n-card v-if="previews.length">
         <n-space>
             <n-space v-for="(item, index) in previews" vertical>
                 <img class="water-pic" :src="item.src" alt="">
@@ -27,11 +38,17 @@
 
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
 const watermarkText = ref('司南烛');
 const fileListRef = ref([]);
 const previews = ref([]);
+
+
+const config = reactive({
+    active: true,
+    title: "魔女阿七"
+})
 
 
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
@@ -46,7 +63,6 @@ function getPreviewUrl(file) {
         const reader = new FileReader();
         reader.onload = (e) => resolve(e.target.result);
         reader.onerror = (e) => reject(e);
-        // 转换为base64字符串
         reader.readAsDataURL(file);
 
     });
@@ -108,9 +124,38 @@ function addWatermark(canvas, text: string) {
     const padding = (ctx.canvas.width / 18);
     // 在底部居中位置绘制水印文字，通过计算水平位置使得文字居中
     ctx.fillText(text, canvas.width / 2, canvas.height - padding);
-    return canvas
+    if (config.active) {
+        return addName(ctx, canvas)
+    } else {
+        return canvas
+
+    }
 }
 
+
+
+function addName(ctx, canvas) {
+    // 设置文字颜色为黑色
+    ctx.fillStyle = 'black';
+    // 设置文字左对齐
+    ctx.textAlign = 'left';
+    // 设置字体大小为画布宽度的1/12加上字体名称为 Chinese1
+    ctx.font = (ctx.canvas.width / 10) + 'px Chinese1';
+    // 设置文字粗细为 500
+    ctx.fontWeight = 500;
+    // 获取要添加的文本内容，假设来自 config.title
+    const textToAdd = config.title;
+    // 设置边距，水平边距和垂直边距一致，取画布宽度的1/18
+    const padding = canvas.width / 18;
+    // 设置垂直字间距为画布宽度的1/10
+    let verticalLetterSpacing = ctx.canvas.width / 13;
+    // 遍历文本中的每个字符
+    for (let i = 0; i < textToAdd.length; i++) {
+        // 在指定位置绘制单个字符，同时考虑垂直字间距和统一的边距
+        ctx.fillText(textToAdd[i], padding, (i + 1) * (ctx.canvas.width / 14) + padding + i * verticalLetterSpacing);
+    }
+    return  canvas
+}
 
 // 批量下载函数
 function downloadAll() {
