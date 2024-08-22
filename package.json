@@ -1,5 +1,5 @@
 {
-  "name": "vite-new-vue",
+  "name": "shares",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --host --open",

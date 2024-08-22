@@ -20,7 +20,7 @@ const routes = [
 // 第一步抽离router
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL + "webkubor-shares"),
+  history: createWebHashHistory(import.meta.env.BASE_URL + "shares"),
   routes,
 });
 

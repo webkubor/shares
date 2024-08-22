@@ -8,8 +8,8 @@ import vueTools from "vite-plugin-vue-devtools"
 
 
 export default defineConfig({
-  base: "/webkubor-shares/",
-  publicDir: "/webkubor-shares/", 
+  base: "/shares/",
+  publicDir: "/shares/", 
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
