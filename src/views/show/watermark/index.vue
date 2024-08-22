@@ -2,28 +2,28 @@
     <n-card title="图片水印添加">
         <n-space>
             <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字"></n-input>
-            <n-button v-if="previews.length" @click="handleFileListChange">生成水印</n-button>
-            <n-button v-if="previews.length" @click="downloadAll">批量下载</n-button>
-            <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef" :on-update:file-list="handleFileListChange" @change="handleUploadChange" 
-            >
-            <n-button>上传文件</n-button>
-        </n-upload>
+            <n-button v-if="previews.length" @click="onRrewrite">生成水印</n-button>
+            <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
+                :on-update:file-list="handleFileListChange" @change="handleUploadChange">
+                <n-button>上传文件</n-button>
+            </n-upload>
+            <n-button v-if="previews.length" type="primary" @click="downloadAll">批量下载</n-button>
         </n-space>
     </n-card>
     <n-card>
-       
+
     </n-card>
 
     <n-card>
-        <n-space >
-            <n-space   v-for="(item, index) in previews" vertical>
+        <n-space>
+            <n-space v-for="(item, index) in previews" vertical>
                 <img class="water-pic" :src="item.src" alt="">
                 <n-space> <n-button @click="downWaterPic(item.src)">下载图片</n-button>
                     <n-button @click="remove(index)">移除</n-button></n-space>
             </n-space>
-        </n-space >
+        </n-space>
     </n-card>
-       
+
 
 </template>
 <script setup lang="ts">
@@ -36,7 +36,7 @@ const previews = ref([]);
 
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList
-    previews.value =[]
+    previews.value = []
 }
 
 
@@ -53,17 +53,27 @@ function getPreviewUrl(file) {
 }
 
 async function processFile(element) {
-  const previewUrl = await getPreviewUrl(element.file);
-  const tempCanvas = await imgToCanvas(previewUrl);
-  const canvas = addWatermark(tempCanvas, watermarkText.value);
-  const img = convasToImg(canvas);
-  return { name: element.name, src: img.src };
+    const previewUrl = await getPreviewUrl(element.file);
+    const tempCanvas = await imgToCanvas(previewUrl);
+    const canvas = addWatermark(tempCanvas, watermarkText.value);
+    const img = convasToImg(canvas);
+    return { name: element.name, src: img.src };
 }
 
+
+
+function onRrewrite() {
+    if (!watermarkText.value) {
+        window.$message?.warning("请填写水印内容")
+        return
+    }
+    previews.value = []
+    handleFileListChange()
+}
 async function handleFileListChange() {
-  const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
-  const previewNames = new Set(previews.value.map(item => item.name));
-  previews.value = previews.value.concat(processedPreviews.filter(item =>!previewNames.has(item.name)));
+    const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
+    const previewNames = new Set(previews.value.map(item => item.name));
+    previews.value = previews.value.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
 }
 
 function downWaterPic(imageSrc) {
@@ -75,8 +85,8 @@ function downWaterPic(imageSrc) {
 
 
 function remove(index) {
-    previews.value?.splice(index ,1)
-    fileListRef.value?.splice(index ,1)
+    previews.value?.splice(index, 1)
+    fileListRef.value?.splice(index, 1)
 }
 
 /**
@@ -87,10 +97,10 @@ function remove(index) {
 function addWatermark(canvas, text: string) {
     const ctx = canvas.getContext('2d')
     ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // 设置透明度为 0.5
-  
+
     ctx.textAlign = 'center';
-      // 设置文本的垂直对齐方式为底部对齐
-      ctx.textBaseline = 'bottom';
+    // 设置文本的垂直对齐方式为底部对齐
+    ctx.textBaseline = 'bottom';
     // 设置字体大小，根据画布宽度动态调整
     ctx.font = (ctx.canvas.width / 14) + 'px Chinese1';
     ctx.fontWeight = 500
@@ -104,12 +114,12 @@ function addWatermark(canvas, text: string) {
 
 // 批量下载函数
 function downloadAll() {
-  previews.value.forEach((imageSrc) => {
-    const link = document.createElement('a');
-    link.href = imageSrc.src;
-    link.download = `watermarked_image_${new Date().getTime()}.png`;
-    link.click();
-  });
+    previews.value.forEach((imageSrc) => {
+        const link = document.createElement('a');
+        link.href = imageSrc.src;
+        link.download = `watermarked_image_${new Date().getTime()}.png`;
+        link.click();
+    });
 }
 
 
