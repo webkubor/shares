@@ -40,8 +40,8 @@ declare module 'vue' {
     NUpload: typeof import('naive-ui')['NUpload']
     NWatermark: typeof import('naive-ui')['NWatermark']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']
-    Video: typeof import('./src/components/Video/index.vue')['default']
-    VideoBoard: typeof import('./src/components/Video/board.vue')['default']
+    Video: typeof import('./src/components/video/index.vue')['default']
+    VideoBoard: typeof import('./src/components/video/board.vue')['default']
   }
 }
 

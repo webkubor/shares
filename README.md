@@ -46,20 +46,6 @@ UI - native UI
 - UI 动画过度
 
 
-
-
-#### 一个不错的动画库
-
-'magictime xxxx'(xxxx动画名)
-···javascript
- $('.yourdiv').hover(function () {
-    $(this).addClass('magictime puffIn');
-});
-
-
-···
-https://www.minimamente.com/project/magic/
-
 #### 集成功能
 
 - vite构建
