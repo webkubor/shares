@@ -1,11 +1,9 @@
 <template>
-   
         <Login1 />
         <Login2 />
         <Login3 />
         <Login4 />
         <Login5 />
-
 </template>
 <script setup>
 import Login1 from "./components/login1.vue"
