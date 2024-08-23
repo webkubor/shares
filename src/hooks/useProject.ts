@@ -2,6 +2,15 @@ import { reactive } from "vue";
 const projects = reactive({
   list: [
     {
+      id: 10,
+      title: "midjourney 教程",
+      pic: "https://github.com/webkubor/picx-images-hosting/raw/master/blog/image.pf9qhnl1w.webp",
+      descrition:
+        "AIGC 教程文档,基于 vitepress",
+      tags: ["vitepress", "AIGC", "midjourney", "persnal"],
+      source: "https://webkubor.github.io/midjourney/",
+    },
+    {
       id: 1,
       title: "工作文档总结",
       pic: "https://tva1.sinaimg.cn/large/e6c9d24ely1h6e2d5qt7zj21hb0sqwg5.jpg",
@@ -125,7 +134,7 @@ const projects = reactive({
     {
       id: 14,
       title: "Ricohuaso",
-      pic: "https://p.ipic.vip/3m0q7r.png",
+      pic: "https://github.com/webkubor/picx-images-hosting/raw/master/blog/image.1lbr5xu3ax.webp",
       tags: ["音视频", "流量变现", "分销", "电商"],
       descrition: "智利-看视频流量变现",
       source: "https://www.ricohuaso.com/",
