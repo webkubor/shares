@@ -1,6 +1,7 @@
 <template>
     <div class="watermark">
-        <n-split direction="horizontal" :max="0.75" :min="0.25">
+        <n-split direction="horizontal" :max="1"
+        :min="0">
             <template #1>
                 <n-space vertical>
                     <n-card title="图片水印添加">
@@ -33,7 +34,6 @@
                                         <n-radio value="2">
                                             文字水印
                                         </n-radio>
-
                                     </n-space>
                                 </n-radio-group>
                             </n-form-item>
@@ -41,7 +41,8 @@
                                 <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字" />
                             </n-form-item>
                             <n-form-item label="图片水印" label-placement="left" v-if="config.watermarkType === '1'">
-                                <img src="./2.png" style="height: 40px;">
+                                <n-select v-model:value="config.imageStyle" :options="imageStyles" />
+                                <img :src="getImageUrl(config.imageStyle)" style="height: 40px;">
                             </n-form-item>
                             <n-form-item label="需要题字" label-placement="left">
                                 <n-checkbox v-model:checked="config.active" label="添加图片标题" />
@@ -95,7 +96,6 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
-import imgSource from './2.png'
 const watermarkText = ref('司南烛');
 const fileListRef = ref([]);
 const previews = ref([]);
@@ -107,6 +107,7 @@ const config = reactive({
     font: 10,
     watermarkType: '2',
     weight: 500,
+    imageStyle: '/src/assets/watermark/2.png',
     letterSpacing: 70,
     title: "小鬼阿七",
     color: "#000000"
@@ -126,7 +127,48 @@ const sizeOptions = [
         value: 8
     },
 ]
+// 静态资源处理问题：Vite 在开发模式下对静态资源的处理方式与传统的 Webpack 等构建工具可能有所不同。如果直接使用相对路径来引用静态资源，可能会导致资源加载失败。
 
+const imageStyles = [
+
+{
+        label: '中规中矩',
+        value: '/src/assets/watermark/1.png'
+    },
+    {
+        label: '还不错',
+        value: '/src/assets/watermark/2.png'
+    },
+    {
+        label: 'nice',
+        value: '/src/assets/watermark/3.png'
+    },
+    {
+        label: '4',
+        value: '/src/assets/watermark/4.png'
+    },
+    {
+        label: '5',
+        value: '/src/assets/watermark/5.png'
+    },
+    {
+        label: '6',
+        value: '/src/assets/watermark/6.png'
+    },
+    {
+        label: '7',
+        value: '/src/assets/watermark/7.png'
+    },
+    {
+        label: '8',
+        value: '/src/assets/watermark/8.png'
+    }
+]
+
+function getImageUrl(path) {
+  return imagePaths[path]?.default;
+}
+const imagePaths = import.meta.glob('/src/assets/watermark/*.png', { eager: true });
 
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList
@@ -167,45 +209,52 @@ async function handleFileListChange() {
 }
 
 
+enum watermarkTypeKey {
+image = "1",
+text ="2"
+}
+
 /**
  * canvas添加水印
  * @param  canvas 对象
  * @param text 水印文字
  */
-async function addWatermark(canvas: HTMLCanvasElement, text: string): Promise<HTMLCanvasElement> {
+async function addWatermark(canvas: HTMLCanvasElement): Promise<HTMLCanvasElement> {
     const ctx = canvas.getContext('2d');
     if (!ctx) {
         throw new Error('无法获取画布上下文');
     }
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'bottom';
-    ctx.font = `bold ${(ctx.canvas.width / 14)}px Chinese1 `;
-    const padding = (ctx.canvas.width / 18);
-    ctx.fillText(text, canvas.width / 2, canvas.height - padding);
-
-    return new Promise((resolve, reject) => {
-        onDrawImage(imgSource, ctx).then(() => {
-            if (config.active) {
-                resolve(addName(ctx, canvas));
-            } else {
-                resolve(canvas);
-            }
-        }).catch(reject);
-    });
+    if (config.watermarkType === watermarkTypeKey.image) {
+        try {
+            await onDrawImage(canvas, ctx);
+            return config.active? addName(ctx, canvas) : canvas;
+        } catch (error) {
+            console.error('图片水印加载错误:', error);
+            return canvas;
+        }
+    } else {
+        //文字水印
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.font = `bold ${(ctx.canvas.width / 14)}px Chinese1 `;
+        const padding = (ctx.canvas.width / 18);
+        ctx.fillText(watermarkText.value, canvas.width / 2, canvas.height - padding);
+        return config.active? addName(ctx, canvas) : canvas;
+    }
 }
 
-function onDrawImage(source: string, ctx: CanvasRenderingContext2D): Promise<CanvasRenderingContext2D> {
+function onDrawImage(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): Promise<CanvasRenderingContext2D> {
     return new Promise((resolve, reject) => {
         const padding = (ctx.canvas.width / 18);
         const img = new Image();
-        img.src = source;
+        img.src = getImageUrl(config.imageStyle);
         img.onload = function () {
             const originalWidth = img.width;
             const originalHeight = img.height;
             const fixedHeight = 100;
             const newWidth = (fixedHeight / originalHeight) * originalWidth;
-            ctx.drawImage(img, padding, padding, newWidth, fixedHeight);
+            ctx.drawImage(img, canvas.width / 2 - newWidth / 2, ctx.canvas.height - fixedHeight - padding, newWidth, fixedHeight);
             resolve(ctx);
         };
         img.onerror = reject;
@@ -262,7 +311,7 @@ function getPreviewUrl(file: File): Promise<string> {
 async function processFile(element: { file: File }): Promise<{ name: string; src: string }> {
     const previewUrl = await getPreviewUrl(element.file);
     const tempCanvas = await imgToCanvas(previewUrl);
-    const canvas = await addWatermark(tempCanvas, watermarkText.value);
+    const canvas = await addWatermark(tempCanvas);
     const img = convasToImg(canvas);
     return { name: element.name, src: img.src };
 }

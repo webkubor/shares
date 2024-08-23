@@ -1,33 +1,7 @@
 
 # webkubor项目展示
 
-
-
-## vite5
-
-```
-    // 以前的使用方法
-    const routesModules = import.meta.globEager('../views/**/router/*.js');
-    // 现在的使用方法
-    const routesModules = import.meta.glob('../views/**/router/*.js', {eager: true});
-```
-
-
-#### 介绍
-赶上vue3 + vite的最佳搭档,正好可以总结一下,当前在前端领域的积累
-
-```
-console.log(import.meta.env.VITE_APP_NAME, 'dev args')
-console.log('%c%s', 'color: #ff0000', import.meta.env.MODE, 'mode');
-
-console.log('%c%s', 'color: #00e600', import.meta.env.BASE_URL, "部署应用时的基本 URL");
-
-console.log('%c%s', 'color: #00a3cc', import.meta.env.PROD, "应用是否运行在生产环境");
-
-console.log('%c%s', 'color: #aa00ff',import.meta.env.DEV,  "应用是否运行在开发环境");
-```
-
-#### 项目架构
+## 项目架构
 
 采用基于vue3的技术栈
 路由-vue-router
@@ -46,7 +20,7 @@ UI - native UI
 - UI 动画过度
 
 
-#### 集成功能
+### 集成功能
 
 - vite构建
 - pnpm新的包管理工具去除了npm，yarn的包管理
@@ -65,5 +39,17 @@ UI - native UI
 
 
 
+## vite5
+
+```js
+// 以前的使用方法
+ const routesModules = import.meta.globEager('../views/**/router/*.js');
+// 现在的使用方法
+ const routesModules = import.meta.glob('../views/**/router/*.js', {eager: true});
+```
+### import.meta.glob是为了解决什么问题
+
+import.meta.glob是一个标准的 ES 模块语法，在现代浏览器和支持 ES 模块的构建工具中都可以使用。这使得代码更加具有可移植性和兼容性
+- 动态导入模块,import.meta.glob允许在运行时根据需要加载模块
 
 
