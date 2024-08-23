@@ -2,7 +2,7 @@
   <div class="open-box-page">
     <div class="product-box" :class="{ 'rotate': showAnimate }">
     </div>
-    <img class="start-button" src="@/assets/xbox/box/button.png" alt="Product Image" @click="onOpen">
+    <img class="start-button" src="https://github.com/webkubor/picx-images-hosting/raw/master/xbox/button.8l00nt7zg4.webp" alt="Product Image" @click="onOpen">
   </div>
 </template>
 
@@ -37,7 +37,7 @@ function onOpen() {
 
 <style lang="scss" scoped>
 .open-box-page {
-  background: url(@/assets/xbox/box/bg4.png) no-repeat center center;
+  background: url(https://github.com/webkubor/picx-images-hosting/raw/master/xbox/bg4.60u6b671pm.webp) no-repeat center center;
   background-size: contain;
   color: #ffffff;
   font-weight: 600;

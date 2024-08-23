@@ -22,9 +22,9 @@
                 <span>X 1000.89</span>
             </div>
             <n-space style="margin: 20px 0; display: flex;">
-                <img class="user-head" src="@/assets/avactor.png" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/avactor.1ovd3miimg.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
                 <div class="join">
                     <ph-plus :size="18" weight="bold" color="#ffffff" />
                 </div>
@@ -61,9 +61,9 @@
                 <span>X 1000.89</span>
             </div>
             <n-space style="margin: 20px 0; display: flex;">
-                <img class="user-head" src="@/assets/avactor.png" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/avactor.1ovd3miimg.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
                 <div class="join">
                     <ph-plus :size="18" weight="bold" color="#ffffff" />
                 </div>
@@ -99,9 +99,9 @@
                 <span>X 1000.89</span>
             </div>
             <n-space style="margin: 20px 0; display: flex;">
-                <img class="user-head" src="@/assets/avactor.png" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/avactor.1ovd3miimg.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
                 <div class="join">
                     <ph-plus :size="18" weight="bold" color="#ffffff" />
                 </div>
@@ -137,9 +137,9 @@
                 <span>X 1000.89</span>
             </div>
             <n-space style="margin: 20px 0; display: flex;">
-                <img class="user-head" src="@/assets/avactor.png" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/avactor.1ovd3miimg.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
                 <div class="join">
                     <ph-plus :size="18" weight="bold" color="#ffffff" />
                 </div>
@@ -175,9 +175,9 @@
                 <span>X 1000.89</span>
             </div>
             <n-space style="margin: 20px 0; display: flex;">
-                <img class="user-head" src="@/assets/avactor.png" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/avactor.1ovd3miimg.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
                 <div class="join">
                     <ph-plus :size="18" weight="bold" color="#ffffff" />
                 </div>
@@ -213,9 +213,9 @@
                 <span>X 1000.89</span>
             </div>
             <n-space style="margin: 20px 0; display: flex;">
-                <img class="user-head" src="@/assets/avactor.png" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/avactor.1ovd3miimg.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
                 <div class="join">
                     <ph-plus :size="18" weight="bold" color="#ffffff" />
                 </div>
@@ -251,9 +251,9 @@
                 <span>X 1000.89</span>
             </div>
             <n-space style="margin: 20px 0; display: flex;">
-                <img class="user-head" src="@/assets/avactor.png" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/avactor.1ovd3miimg.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
                 <div class="join">
                     <ph-plus :size="18" weight="bold" color="#ffffff" />
                 </div>
@@ -288,9 +288,9 @@
                 <span>X 1000.89</span>
             </div>
             <n-space style="margin: 20px 0; display: flex;">
-                <img class="user-head" src="@/assets/avactor.png" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/avactor.1ovd3miimg.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
                 <div class="join">
                     <ph-plus :size="18" weight="bold" color="#ffffff" />
                 </div>
@@ -324,9 +324,9 @@
                 <span>X 1000.89</span>
             </div>
             <n-space style="margin: 20px 0; display: flex;">
-                <img class="user-head" src="@/assets/avactor.png" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/avactor.1ovd3miimg.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
                 <div class="join">
                     <ph-plus :size="18" weight="bold" color="#ffffff" />
                 </div>
@@ -362,9 +362,9 @@
                 <span>X 1000.89</span>
             </div>
             <n-space style="margin: 20px 0; display: flex;">
-                <img class="user-head" src="@/assets/avactor.png" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
-                <img class="user-head" src="@/assets/me.jpeg" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/avactor.1ovd3miimg.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
+                <img class="user-head" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="">
                 <div class="join">
                     <ph-plus :size="18" weight="bold" color="#ffffff" />
                 </div>

@@ -4,7 +4,7 @@
     <n-popover trigger="hover">
       <template #trigger>
         <div class="love-headers">
-          <n-avatar round :size="100" :src="getImage('me.jpeg')" @click="swtichTheme" />
+          <n-avatar round :size="100" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" @click="swtichTheme" />
         </div>
       </template>
       <span> {{ t("this") }} {{ user.name }}</span>
@@ -117,11 +117,6 @@ const toggleLocale = () => {
 };
 
 
-const getImage = (name) => {
-  const picModules = import.meta.glob("/src/assets/*", { eager: true });
-  const path = `/src/assets/${name}`;
-  return picModules[path].default;
-};
 
 
 </script>

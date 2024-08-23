@@ -143,22 +143,22 @@ function selectBook(bookIndex) {
     }
 
     .bg1 {
-        background: url(@/assets/book/w-1.png) no-repeat;
+        background: url(https://github.com/webkubor/picx-images-hosting/raw/master/book/w-1.32hw7nmu8c.webp) no-repeat;
         background-size: contain;
     }
 
     .bg2 {
-        background: url(@/assets/book/w-2.png) no-repeat;
+        background: url(https://github.com/webkubor/picx-images-hosting/raw/master/book/w-2.5mnqkamsuq.webp) no-repeat;
         background-size: contain;
     }
 
     .bg3 {
-        background: url(@/assets/book/w-3.png) no-repeat;
+        background: url(https://github.com/webkubor/picx-images-hosting/raw/master/book/w-3.6pnfv6imqf.webp) no-repeat;
         background-size: contain;
     }
 
     .bg4 {
-        background: url(@/assets/book/w-4.png) no-repeat;
+        background: url(https://github.com/webkubor/picx-images-hosting/raw/master/book/w-4.5c0wr57kpp.webp) no-repeat;
         background-size: contain;
     }
 
@@ -213,22 +213,22 @@ function selectBook(bookIndex) {
         filter: drop-shadow(0 0 4px #000000);  /* 文字阴影 */
     }
     .bg1 {
-        background: url(@/assets/book/m-1.png) no-repeat;
+        background: url(https://github.com/webkubor/picx-images-hosting/raw/master/book/m-1.361i5dfwxd.webp) no-repeat;
         background-size: cover;
     }
 
     .bg2 {
-        background: url(@/assets/book/m-2.png) no-repeat;
+        background: url(https://github.com/webkubor/picx-images-hosting/raw/master/book/m-2.6t71swbpfc.webp) no-repeat;
         background-size: cover;
     }
 
     .bg3 {
-        background: url(@/assets/book/m-3.png) no-repeat;
+        background: url(https://github.com/webkubor/picx-images-hosting/raw/master/book/m-3.1023jlo96n.webp) no-repeat;
         background-size: cover;
     }
 
     .bg4 {
-        background: url(@/assets/book/m-4.png) no-repeat;
+        background: url(https://github.com/webkubor/picx-images-hosting/raw/master/book/m-4.5xakdg20zq.webp) no-repeat;
         background-size: cover;
     }
     .logo {
