@@ -10,6 +10,8 @@
                                 <n-button>上传文件</n-button>
                             </n-upload>
                             <n-button v-if="previews.length" type="primary" @click="downloadAll">批量下载</n-button>
+                         
+                            <n-button v-if="previews.length" @click="onRrewrite">重绘</n-button>
                             <n-switch v-model:value="config.show">
                                 <template #checked>
                                     展开工具栏
@@ -67,7 +69,6 @@
                                     'rgba(208, 48, 80, 1)',
                                 ]" @complete="onCompleteColor" />
                             </n-form-item>
-                            <n-button v-if="previews.length" @click="onRrewrite">重绘</n-button>
 
                         </n-card>
                     </n-collapse-transition>
@@ -134,24 +135,6 @@ function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
 
 
 
-function getPreviewUrl(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (e) => resolve(e.target.result);
-        reader.onerror = (e) => reject(e);
-        reader.readAsDataURL(file);
-
-    });
-}
-
-async function processFile(element) {
-    const previewUrl = await getPreviewUrl(element.file);
-    const tempCanvas = await imgToCanvas(previewUrl);
-    const canvas = addWatermark(tempCanvas, watermarkText.value);
-    const img = convasToImg(canvas);
-    return { name: element.name, src: img.src };
-}
-
 
 
 function onRrewrite() {
@@ -168,18 +151,6 @@ function onRrewrite() {
 function onCompleteColor() {
     onRrewrite()
 }
-async function handleFileListChange() {
-    const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
-    const previewNames = new Set(previews.value.map(item => item.name));
-    previews.value = previews.value.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
-}
-
-function downWaterPic(imageSrc) {
-    const link = document.createElement('a');
-    link.href = imageSrc;
-    link.download = 'watermarked_image.png';
-    link.click();
-}
 
 
 function remove(index) {
@@ -187,26 +158,37 @@ function remove(index) {
     fileListRef.value?.splice(index, 1)
 }
 
+
+
+async function handleFileListChange() {
+    const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
+    const previewNames = new Set(previews.value.map(item => item.name));
+    previews.value = previews.value.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
+}
+
+
 /**
  * canvas添加水印
  * @param  canvas 对象
  * @param text 水印文字
  */
-function addWatermark(canvas, text: string) {
-    const ctx = canvas.getContext('2d')
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // 设置透明度为 0.5
+function addWatermark(canvas: HTMLCanvasElement, text: string): HTMLCanvasElement{
+    const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    throw new Error('无法获取画布上下文');
+  } 
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // 设置透明度为 0.5
 
     ctx.textAlign = 'center';
     // 设置文本的垂直对齐方式为底部对齐
     ctx.textBaseline = 'bottom';
     // 设置字体大小，根据画布宽度动态调整
-    ctx.font = (ctx.canvas.width / 14) + 'px Chinese1';
-    ctx.fontWeight = config.weight
+    ctx.font = `bold ${(ctx.canvas.width / 14)}px Chinese1 `;
     // 设置一个边距值，根据画布宽度确定
     const padding = (ctx.canvas.width / 18);
     // 在底部居中位置绘制水印文字，通过计算水平位置使得文字居中
     ctx.fillText(text, canvas.width / 2, canvas.height - padding);
-    drawImage(imgSource, ctx)
+    onDrawImage(imgSource, ctx)
     if (config.active) {
         return addName(ctx, canvas)
     } else {
@@ -215,42 +197,29 @@ function addWatermark(canvas, text: string) {
     }
 }
 
-
-
-
-function drawImage(source, ctx) {
-    const padding = (ctx.canvas.width / 18);
-    const img = new Image();
-    img.src = source;
-    img.onload = function () {
-        console.log(`output->加载完毕`, img)
-        ctx.drawImage(img, 0, 0, padding, padding);
-    };
-    return ctx
+function onDrawImage(source: string, ctx: CanvasRenderingContext2D): CanvasRenderingContext2D {
+  const padding = (ctx.canvas.width / 18);
+  const img = new Image();
+  img.src = source;
+  img.onload = function () {
+    console.log(`output->加载完毕`, img);
+    ctx.drawImage(img, 0, 0, padding, padding);
+  };
+  return ctx;
 }
 
 
-
-function addName(ctx, canvas) {
-    // 设置文字颜色为黑色
-    ctx.fillStyle = config.color;
-    // 设置文字左对齐
-    ctx.textAlign = 'left';
-    // 设置字体大小为画布宽度的1/12加上字体名称为 Chinese1
-    ctx.font = (ctx.canvas.width / config.font) + 'px Chinese1';
-    // 设置文字粗细为 500
-    ctx.fontWeight = 500;
-    // 获取要添加的文本内容，假设来自 config.title
-    const textToAdd = config.title;
-    // 设置边距，水平边距和垂直边距一致，取画布宽度的1/18
-    const padding = canvas.width / 18;
-    const paddingH = canvas.height / 15;
-    // 遍历文本中的每个字符
-    for (let i = 0; i < textToAdd.length; i++) {
-        // 在指定位置绘制单个字符，同时考虑垂直字间距和统一的边距
-        ctx.fillText(textToAdd[i], padding, (i + 1) * (config.letterSpacing) + paddingH + i * config.letterSpacing);
-    }
-    return canvas
+function addName(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): HTMLCanvasElement {
+  ctx.fillStyle = config.color;
+  ctx.textAlign = 'left';
+  ctx.font = `${config.weight} ${(ctx.canvas.width / config.font)}px Chinese1 `;
+  const textToAdd = config.title;
+  const padding = canvas.width / 18;
+  const paddingH = canvas.height / 15;
+  for (let i = 0; i < textToAdd.length; i++) {
+    ctx.fillText(textToAdd[i], padding, (i + 1) * (config.letterSpacing) + paddingH + i * config.letterSpacing);
+  }
+  return canvas;
 }
 
 // 批量下载函数
@@ -263,23 +232,50 @@ function downloadAll() {
     });
 }
 
+/**
+ * @description: 单独下载
+ * @param {*} imageSrc
+ * @return {*}
+ */
+function downWaterPic(imageSrc) {
+    const link = document.createElement('a');
+    link.href = imageSrc;
+    link.download = `webkubor_${new Date().getTime()}.png`;
+    link.click();
+}
+
+
+
+function getPreviewUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => resolve(e.target.result as string);
+    reader.onerror = (e) => reject(e);
+    reader.readAsDataURL(file);
+  });
+}
+
+async function processFile(element: { file: File }): Promise<{ name: string; src: string }> {
+  const previewUrl = await getPreviewUrl(element.file);
+  const tempCanvas = await imgToCanvas(previewUrl);
+  const canvas = addWatermark(tempCanvas, watermarkText.value);
+  const img = convasToImg(canvas);
+  return { name: element.name, src: img.src };
+}
 
 /**
  * Base64转成canvas
- * @param  base64
+ * @param base64
  */
-async function imgToCanvas(base64) {
-    // 创建img元素
-    const img = document.createElement('img')
-    img.setAttribute('src', base64)
-    await new Promise((resolve) => (img.onload = resolve))
-    // 创建canvas DOM元素，并设置其宽高和图片一样
-    const canvas = document.createElement('canvas')
-    canvas.width = img.width
-    canvas.height = img.height
-    // 坐标(0,0) 表示从此处开始绘制，相当于偏移。
-    canvas.getContext('2d').drawImage(img, 0, 0)
-    return canvas
+ async function imgToCanvas(base64: string): Promise<HTMLCanvasElement> {
+  const img = document.createElement('img');
+  img.setAttribute('src', base64);
+  await new Promise((resolve) => (img.onload = resolve));
+  const canvas = document.createElement('canvas');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  canvas.getContext('2d')?.drawImage(img, 0, 0);
+  return canvas;
 }
 
 
@@ -287,15 +283,11 @@ async function imgToCanvas(base64) {
  * canvas转成img
  * @param {canvas对象} canvas
  */
-function convasToImg(canvas, type) {
-    // 新建Image对象，可以理解为DOM
-    let image = new Image()
-    // canvas.toDataURL 返回的是一串Base64编码的URL
-    // 指定格式 PNG
-    image.src = canvas.toDataURL(type)
-    return image
+ function convasToImg(canvas: HTMLCanvasElement, type = "image/png"): HTMLImageElement {
+  let image = new Image();
+  image.src = canvas.toDataURL(type);
+  return image;
 }
-
 
 </script>
 <style lang="scss">
@@ -307,7 +299,7 @@ function convasToImg(canvas, type) {
 }
 
 .water-pic {
-    width: 300px;
+    width: 250px;
     margin-top: 10px;
 }
 </style>
