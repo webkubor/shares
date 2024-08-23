@@ -10,7 +10,7 @@
                                 <n-button>上传文件</n-button>
                             </n-upload>
                             <n-button v-if="previews.length" type="primary" @click="downloadAll">批量下载</n-button>
-                         
+
                             <n-button v-if="previews.length" @click="onRrewrite">重绘</n-button>
                             <n-switch v-model:value="config.show">
                                 <template #checked>
@@ -79,12 +79,12 @@
             <template #2>
                 <n-card title="预览区域">
                     <n-space v-if="previews.length">
-                    <n-space v-for="(item, index) in previews" vertical>
-                        <img class="water-pic" :src="item.src" alt="">
-                        <n-space> <n-button @click="downWaterPic(item.src)">下载图片</n-button>
-                            <n-button @click="remove(index)">移除</n-button></n-space>
+                        <n-space v-for="(item, index) in previews" vertical>
+                            <img class="water-pic" :src="item.src" alt="">
+                            <n-space> <n-button @click="downWaterPic(item.src)">下载图片</n-button>
+                                <n-button @click="remove(index)">移除</n-button></n-space>
+                        </n-space>
                     </n-space>
-                </n-space>
                 </n-card>
             </template>
         </n-split>
@@ -143,7 +143,7 @@ function onRrewrite() {
         return
     }
     previews.value = []
-    console.log(`output->fileListRef.value`,fileListRef.value)
+    console.log(`output->fileListRef.value`, fileListRef.value)
     handleFileListChange()
 }
 
@@ -172,54 +172,58 @@ async function handleFileListChange() {
  * @param  canvas 对象
  * @param text 水印文字
  */
-function addWatermark(canvas: HTMLCanvasElement, text: string): HTMLCanvasElement{
+async function addWatermark(canvas: HTMLCanvasElement, text: string): Promise<HTMLCanvasElement> {
     const ctx = canvas.getContext('2d');
-  if (!ctx) {
-    throw new Error('无法获取画布上下文');
-  } 
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // 设置透明度为 0.5
-
-    ctx.textAlign = 'center';
-    // 设置文本的垂直对齐方式为底部对齐
-    ctx.textBaseline = 'bottom';
-    // 设置字体大小，根据画布宽度动态调整
-    ctx.font = `bold ${(ctx.canvas.width / 14)}px Chinese1 `;
-    // 设置一个边距值，根据画布宽度确定
-    const padding = (ctx.canvas.width / 18);
-    // 在底部居中位置绘制水印文字，通过计算水平位置使得文字居中
-    ctx.fillText(text, canvas.width / 2, canvas.height - padding);
-    onDrawImage(imgSource, ctx)
-    if (config.active) {
-        return addName(ctx, canvas)
-    } else {
-        return canvas
-
+    if (!ctx) {
+        throw new Error('无法获取画布上下文');
     }
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.font = `bold ${(ctx.canvas.width / 14)}px Chinese1 `;
+    const padding = (ctx.canvas.width / 18);
+    ctx.fillText(text, canvas.width / 2, canvas.height - padding);
+
+    return new Promise((resolve, reject) => {
+        onDrawImage(imgSource, ctx).then(() => {
+            if (config.active) {
+                resolve(addName(ctx, canvas));
+            } else {
+                resolve(canvas);
+            }
+        }).catch(reject);
+    });
 }
 
-function onDrawImage(source: string, ctx: CanvasRenderingContext2D): CanvasRenderingContext2D {
-  const padding = (ctx.canvas.width / 18);
-  const img = new Image();
-  img.src = source;
-  img.onload = function () {
-    console.log(`output->加载完毕`, img);
-    ctx.drawImage(img, 0, 0, padding, padding);
-  };
-  return ctx;
+function onDrawImage(source: string, ctx: CanvasRenderingContext2D): Promise<CanvasRenderingContext2D> {
+    return new Promise((resolve, reject) => {
+        const padding = (ctx.canvas.width / 18);
+        const img = new Image();
+        img.src = source;
+        img.onload = function () {
+            const originalWidth = img.width;
+            const originalHeight = img.height;
+            const fixedHeight = 100;
+            const newWidth = (fixedHeight / originalHeight) * originalWidth;
+            ctx.drawImage(img, padding, padding, newWidth, fixedHeight);
+            resolve(ctx);
+        };
+        img.onerror = reject;
+    });
 }
 
 
 function addName(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): HTMLCanvasElement {
-  ctx.fillStyle = config.color;
-  ctx.textAlign = 'left';
-  ctx.font = `${config.weight} ${(ctx.canvas.width / config.font)}px Chinese1 `;
-  const textToAdd = config.title;
-  const padding = canvas.width / 18;
-  const paddingH = canvas.height / 15;
-  for (let i = 0; i < textToAdd.length; i++) {
-    ctx.fillText(textToAdd[i], padding, (i + 1) * (config.letterSpacing) + paddingH + i * config.letterSpacing);
-  }
-  return canvas;
+    ctx.fillStyle = config.color;
+    ctx.textAlign = 'left';
+    ctx.font = `${config.weight} ${(ctx.canvas.width / config.font)}px Chinese1 `;
+    const textToAdd = config.title;
+    const padding = canvas.width / 18;
+    const paddingH = canvas.height / 15;
+    for (let i = 0; i < textToAdd.length; i++) {
+        ctx.fillText(textToAdd[i], padding, (i + 1) * (config.letterSpacing) + paddingH + i * config.letterSpacing);
+    }
+    return canvas;
 }
 
 // 批量下载函数
@@ -247,35 +251,35 @@ function downWaterPic(imageSrc) {
 
 
 function getPreviewUrl(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = (e) => resolve(e.target.result as string);
-    reader.onerror = (e) => reject(e);
-    reader.readAsDataURL(file);
-  });
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result as string);
+        reader.onerror = (e) => reject(e);
+        reader.readAsDataURL(file);
+    });
 }
 
 async function processFile(element: { file: File }): Promise<{ name: string; src: string }> {
-  const previewUrl = await getPreviewUrl(element.file);
-  const tempCanvas = await imgToCanvas(previewUrl);
-  const canvas = addWatermark(tempCanvas, watermarkText.value);
-  const img = convasToImg(canvas);
-  return { name: element.name, src: img.src };
+    const previewUrl = await getPreviewUrl(element.file);
+    const tempCanvas = await imgToCanvas(previewUrl);
+    const canvas = await addWatermark(tempCanvas, watermarkText.value);
+    const img = convasToImg(canvas);
+    return { name: element.name, src: img.src };
 }
 
 /**
  * Base64转成canvas
  * @param base64
  */
- async function imgToCanvas(base64: string): Promise<HTMLCanvasElement> {
-  const img = document.createElement('img');
-  img.setAttribute('src', base64);
-  await new Promise((resolve) => (img.onload = resolve));
-  const canvas = document.createElement('canvas');
-  canvas.width = img.width;
-  canvas.height = img.height;
-  canvas.getContext('2d')?.drawImage(img, 0, 0);
-  return canvas;
+async function imgToCanvas(base64: string): Promise<HTMLCanvasElement> {
+    const img = document.createElement('img');
+    img.setAttribute('src', base64);
+    await new Promise((resolve) => (img.onload = resolve));
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    canvas.getContext('2d')?.drawImage(img, 0, 0);
+    return canvas;
 }
 
 
@@ -283,10 +287,10 @@ async function processFile(element: { file: File }): Promise<{ name: string; src
  * canvas转成img
  * @param {canvas对象} canvas
  */
- function convasToImg(canvas: HTMLCanvasElement, type = "image/png"): HTMLImageElement {
-  let image = new Image();
-  image.src = canvas.toDataURL(type);
-  return image;
+function convasToImg(canvas: HTMLCanvasElement, type = "image/png"): HTMLImageElement {
+    let image = new Image();
+    image.src = canvas.toDataURL(type);
+    return image;
 }
 
 </script>
