@@ -4,7 +4,9 @@
     <n-popover trigger="hover">
       <template #trigger>
         <div class="love-headers">
-          <n-avatar round :size="100" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" @click="swtichTheme" />
+          <n-avatar round :size="100"
+            src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp"
+            @click="swtichTheme" />
         </div>
       </template>
       <span> {{ t("this") }} {{ user.name }}</span>
@@ -18,31 +20,27 @@
         :height="384" :x-offset="12" :y-offset="60" :rotate="-15" />
       <n-switch v-model:value="show">
         <template #checked>
-      自然赠予你，树冠 微风 肩头的暴雨
-    </template>
-    <template #unchecked>
-      片刻后生成，平衡 忠诚 不息的身体
-    </template>
+          自然赠予你，树冠 微风 肩头的暴雨
+        </template>
+        <template #unchecked>
+          片刻后生成，平衡 忠诚 不息的身体
+        </template>
       </n-switch>
       <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round>
         {{ item }}
       </n-tag>
-
+      <div id="demoCanvas"></div>
     </n-space>
-
-
-
-
   </div>
 </template>
 <script setup>
 import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
-import { getRandomType, getRandomColor } from "@/utils/random";
-import { PhAirplay, PhAppWindow } from "@phosphor-icons/vue";
-import { HourglassFull, FriendsCircle } from '@icon-park/vue-next';
+import { getRandomType } from "@/utils/random";
 import { useI18n } from "vue-i18n";
-import { computed, ref } from "vue"
+import { computed, ref, onMounted} from "vue"
+import SVGA from 'svgaplayerweb';
+
 const { t, locale } = useI18n();
 let { user, updateAge } = useUser();
 let { swtichTheme } = useTheme();
@@ -51,6 +49,8 @@ console.log(user, "我的");
 let show = ref(false)
 
 updateAge("logo.jpeg");
+
+
 const language = computed(() =>
   locale.value === "zh-CN" ? "中文" : "English"
 );
@@ -59,8 +59,19 @@ const toggleLocale = () => {
   locale.value = locale.value === "zh-CN" ? "en" : "zh-CN";
 };
 
+function renderSvga() {
+  var player = new SVGA.Player('#demoCanvas');
+  var parser = new SVGA.Parser('#demoCanvas'); // Must Provide same selector eg:#demoCanvas IF support IE6+
+  parser.load('rose_2.0.0.svga', function (videoItem) {
+    player.setVideoItem(videoItem);
+    player.startAnimation();
+  })
+}
 
 
+onMounted(()=>{
+  console.log(`output->`,name)
+})
 
 </script>
 
