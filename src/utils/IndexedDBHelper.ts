@@ -87,7 +87,7 @@ export class IndexedDBHelper {
                     request.onerror = () => reject(request.error);
                 } else {
                     // 当没有更多记录时，视为完成
-                    resolve();
+                    resolve(null);
                 }
             };
             cursorRequest.onerror = () => reject(cursorRequest.error);
