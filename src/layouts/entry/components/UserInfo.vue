@@ -1,4 +1,5 @@
 <template>
+
   <div class="about-me column-center">
     <div class="switch-btn" v-ripple="{ duration: 500, color: ' #DCD5F5' }" @click="toggleLocale"> {{ language }}</div>
     <n-popover trigger="hover">
@@ -32,6 +33,7 @@
       <div id="demoCanvas"></div>
     </n-space>
   </div>
+
 </template>
 <script setup>
 import { useUser } from "@/hooks/useUser";

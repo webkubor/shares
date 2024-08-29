@@ -85,15 +85,6 @@ const indexMap = [
     component: () => import("@/views/barrage/index.vue")
   },
   {
-    path: '/show/font',
-    name: 'Font',
-    meta: {
-      title: "ChineseFont"
-    },
-    component: () => import("@/views/show/font.vue")
-  },
-
-  {
     path: '/show/watermark',
     name: 'UI',
     meta: {
@@ -142,14 +133,6 @@ const indexMap = [
     component: () => import("@/views/show/tabbar.vue")
   },
   {
-    path: '/show/vertify',
-    name: 'Vertify',
-    meta: {
-      title: "图片验证"
-    },
-    component: () => import("@/views/show/sliderVertify.vue")
-  },
-  {
     path: '/show/list',
     name: 'List',
     meta: {
@@ -164,14 +147,6 @@ const indexMap = [
       title: "利息计算"
     },
     component: () => import("@/views/show/money.vue")
-  },
-  {
-    path: '/show/spider',
-    name: 'Spider-background',
-    meta: {
-      title: "蜘蛛网测试"
-    },
-    component: () => import("@/views/show/spider.vue")
   },
   {
     path: '/show/apple',

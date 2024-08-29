@@ -43,6 +43,7 @@ declare module 'vue' {
     NTag: typeof import('naive-ui')['NTag']
     NUpload: typeof import('naive-ui')['NUpload']
     NWatermark: typeof import('naive-ui')['NWatermark']
+    Spider: typeof import('./src/components/Spider.vue')['default']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']
     Video: typeof import('./src/components/video/index.vue')['default']
     VideoBoard: typeof import('./src/components/video/board.vue')['default']
