@@ -490,10 +490,17 @@ function onTest() {
     }
 
     .room-item {
-        width: 500px;
+        width: 28vw;
         padding: 20px;
         margin: 20px;
         display: inline-block;
+        position: relative;
+        .cover {
+            position: absolute;
+            right: 10px;
+            height: 200px;
+            width: 200px;
+        }
 
         .title-box {
             display: flex;
@@ -531,12 +538,7 @@ function onTest() {
             }
         }
 
-        .cover {
-            position: absolute;
-            right: 10px;
-            height: 200px;
-            width: 200px;
-        }
+     
     }
 
     .Joker {

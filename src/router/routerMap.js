@@ -32,14 +32,7 @@ const indexMap = [
     },
     component: () => import("@/views/rtc/webWork.vue")
   },
-  {
-    path: '/xbox/lucky',
-    name: 'lucky',
-    meta: {
-      title: "幸运饰品"
-    },
-    component: () => import("@/views/xbox/lucky.vue")
-  },
+ 
   {
     path: '/xbox/betting',
     name: 'betting',
@@ -98,14 +91,6 @@ const indexMap = [
       title: "ChineseFont"
     },
     component: () => import("@/views/show/font.vue")
-  },
-  {
-    path: '/show/business',
-    name: 'UI',
-    meta: {
-      title: "UI-B"
-    },
-    component: () => import("@/views/show/business.vue")
   },
 
   {
