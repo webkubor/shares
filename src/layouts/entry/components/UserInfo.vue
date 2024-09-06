@@ -71,9 +71,6 @@ function renderSvga() {
 }
 
 
-onMounted(()=>{
-  console.log(`output->`,name)
-})
 
 </script>
 

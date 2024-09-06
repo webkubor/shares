@@ -6,7 +6,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     AnimeSbtn: typeof import('./src/components/anime/Sbtn.vue')['default']
     AnimeWaterDrop: typeof import('./src/components/anime/WaterDrop.vue')['default']
-    D3Line: typeof import('./src/components/D3/line.vue')['default']
     EchartsDoubleLine: typeof import('./src/components/echarts/doubleLine.vue')['default']
     EchartsLine: typeof import('./src/components/echarts/line.vue')['default']
     EchartsLine2: typeof import('./src/components/echarts/line2.vue')['default']

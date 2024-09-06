@@ -47,7 +47,8 @@
                             <n-form-item label="需要题字" label-placement="left">
                                 <n-checkbox v-model:checked="config.active" label="添加图片标题" />
                             </n-form-item>
-                            <n-form-item label="题字大小" label-placement="left">
+                            <div v-if="config.active">
+                                <n-form-item label="题字大小" label-placement="left">
                                 <n-select v-model:value="config.font" :options="sizeOptions" />
                             </n-form-item>
                             <n-form-item label="字间距离" label-placement="left">
@@ -70,6 +71,8 @@
                                     'rgba(208, 48, 80, 1)',
                                 ]" @complete="onCompleteColor" />
                             </n-form-item>
+                            </div>
+                      
 
                         </n-card>
                     </n-collapse-transition>
@@ -103,7 +106,7 @@ const previews = ref([]);
 
 const config = reactive({
     show: true,
-    active: true,
+    active: false,
     font: 10,
     watermarkType: '2',
     weight: 500,
@@ -185,7 +188,6 @@ function onRrewrite() {
         return
     }
     previews.value = []
-    console.log(`output->fileListRef.value`, fileListRef.value)
     handleFileListChange()
 }
 
