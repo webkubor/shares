@@ -2,6 +2,13 @@ import { reactive } from "vue";
 const projects = reactive({
   list: [
     {
+      id:11,
+      pic:"https://github.com/webkubor/picx-images-hosting/raw/master/blog/FigmaCover040bef78cc67e2feef02a5fee6a9ea4c.6m3ulu5n58.webp",
+      title: "XBox CsGo 皮肤",
+      descrition: "高爆率 Csgo 开箱网站(开箱玩法,无限欧皇,开箱神器)",
+      tags: ["开箱盲盒", "游戏", "开箱", "盲盒", "Csgo", "Vue3", "vant", "element-plus"],
+    },
+    {
       id: 10,
       title: "midjourney 教程",
       pic: "https://github.com/webkubor/picx-images-hosting/raw/master/blog/image.pf9qhnl1w.webp",

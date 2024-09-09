@@ -3,8 +3,8 @@
   <n-card>
     <UserInfo />
     <ToolView/>
-    <LifeShare />
     <ProjectList />
+    <LifeShare />
   </n-card>
 </template>
 <script setup >
