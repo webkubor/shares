@@ -61,14 +61,6 @@ const toggleLocale = () => {
   locale.value = locale.value === "zh-CN" ? "en" : "zh-CN";
 };
 
-function renderSvga() {
-  var player = new SVGA.Player('#demoCanvas');
-  var parser = new SVGA.Parser('#demoCanvas'); // Must Provide same selector eg:#demoCanvas IF support IE6+
-  parser.load('rose_2.0.0.svga', function (videoItem) {
-    player.setVideoItem(videoItem);
-    player.startAnimation();
-  })
-}
 
 
 
