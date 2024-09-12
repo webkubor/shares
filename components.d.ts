@@ -12,6 +12,7 @@ declare module 'vue' {
     EchartsPie: typeof import('./src/components/echarts/pie.vue')['default']
     G2plotDoubleLine: typeof import('./src/components/g2plot/doubleLine.vue')['default']
     GProgress: typeof import('./src/components/GProgress.vue')['default']
+    NAffix: typeof import('naive-ui')['NAffix']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']

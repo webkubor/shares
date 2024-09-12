@@ -101,6 +101,14 @@ const indexMap = [
     component: () => import("@/views/show/btns.vue")
   },
   {
+    path: '/show/colors',
+    name: 'Colors',
+    meta: {
+      title: "Colors"
+    },
+    component: () => import("@/views/show/colors.vue")
+  },
+  {
     path: '/loading',
     name: 'Loading',
     meta: {

@@ -34,6 +34,7 @@
       </n-card>
       <n-card title="UI视觉">
         <n-space>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/show/colors')">Colors</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/loading')">loading</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/line')">折线图测试</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/pie')">饼图</n-button>
