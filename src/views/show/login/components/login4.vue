@@ -7,7 +7,7 @@
             <div class="right">
                 <h1>Login</h1>
                 <n-space vertical>
-                    <n-input placeholder="username"></n-input>
+                    <n-input placeholder="2"></n-input>
                     <n-input placeholder="password"></n-input>
                     <n-button type="primary" style="width: 100%;">登录</n-button>
                 </n-space>

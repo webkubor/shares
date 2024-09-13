@@ -1,61 +1,161 @@
-
-
-/* 毛玻璃效果 */
+/* 毛玻璃效果 (Glass Effect)
+   参数:
+   - $bg-color: 背景颜色
+   - $blur: 模糊效果强度
+   - $opacity: 背景透明度
+*/
 @mixin glass-effect($bg-color, $blur, $opacity) {
   background: rgba($bg-color, $opacity);
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur($blur);
-  border: 1px solid rgba($bg-color, $opacity - 0.1);
+  border: 1px solid rgba($bg-color, $opacity - 0.1); // 边框透明度稍低于背景
 }
-// 骨架屏
+
+/* 骨架屏动画 (Skeleton Animation)
+   创建类似加载时的骨架屏效果
+*/
 @mixin skeleton-animation {
   background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s infinite linear;
+  animation: shimmer 1.5s infinite linear; // 闪烁动画效果
 }
+
+/* 骨架屏的闪烁动画关键帧 */
 @keyframes shimmer {
   0% {
-      background-position: -200% 0;
+    background-position: -200% 0;
   }
+
   100% {
-      background-position: 200% 0;
+    background-position: 200% 0;
   }
 }
 
+/* 水平居中和垂直居中 (Flexbox Centering) */
+/* 垂直居中 */
 @mixin flex-center-v {
   display: flex;
-  align-items: center;
+  align-items: center; // 垂直方向居中
 }
+
+/* 水平居中 */
 @mixin flex-center-h {
   display: flex;
-  justify-content: center;
+  justify-content: center; // 水平方向居中
 }
+
+/* 水平和垂直都居中 */
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Flex 布局下的列方向居中 (Flex Column Centering) */
 @mixin flex-column {
   display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
+  flex-flow: column wrap; // 垂直布局，并允许换行
+  align-items: center; // 垂直方向居中
+  justify-content: center; // 水平方向居中
 }
 
+/* 多行文本省略 (Ellipsis for Multiline Text)
+   参数:
+   - $lines: 行数，超出该行数后显示省略号
+*/
 @mixin ellipsis($lines) {
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; // 溢出显示省略号
   display: -webkit-box;
-  -webkit-line-clamp: $lines;
+  -webkit-line-clamp: $lines; // 限制显示的行数
   -webkit-box-orient: vertical;
 }
+
+/* 自定义滚动条 (Custom Scrollbar) */
 @mixin scroller {
   &::-webkit-scrollbar {
-    background: transparent;
-    width: 8px;
+    background: transparent; // 滚动条背景透明
+    width: 8px; // 滚动条宽度
   }
+
   &::-webkit-scrollbar-thumb {
-    background: #ddd;
+    background: #ddd; // 滚动条滑块颜色
+  }
+}
+
+
+// // 定义 input 的标准样式 mixin
+@mixin input-standard($input-border,$input-background) {
+  $text-color: lighten($input-border, 30%);
+  width: 100%;
+  margin-bottom: 10px;
+  background: $input-background;
+  outline: none;
+  padding: 10px;
+  font-size: 14px;
+  letter-spacing: 4px;
+  font-weight: 500;
+  caret-color: $input-border;
+  color: $text-color !important; // 动态生成的文字颜色
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border: 1px solid $input-border;
+  border-radius: 4px;
+  box-shadow: inset 0 -5px 45px rgba($input-border, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: box-shadow .5s ease;
+  &:focus {
+    box-shadow: inset 0 -5px 45px rgba($input-border, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
+  }
+  &:active {
+    box-shadow: inset 0 -5px 45px rgba($input-border, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
+  }
+  &:-webkit-autofill {
+    background-color: $input-background; // 保持背景色一致
+    color: $text-color; // 保持文字颜色一致
+    box-shadow: 0 0 0 1px rgba($input-border, 0.2) inset; // 自定义自动填充阴影
+  }
+
+  &:-webkit-autofill:focus {
+    box-shadow: 0 0 0 3px rgba($input-border, 0.3) inset; // 自动填充焦点状态的阴影
+  }
+}
+
+
+@mixin button-standard($theme-color, $bg-color) {
+  // 根据主题色动态生成文字颜色和悬停效果
+  $text-color: lighten($theme-color, 20%);
+  $hover-bg-color: darken($bg-color, 5%);
+  $focus-shadow-color: rgba($theme-color, 0.3);
+  width: 100%;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  color: $text-color;
+  background-color: $bg-color;
+  border: 1px solid $theme-color;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $theme-color;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px $theme-color;
+  }
+
+  &:active {
+    background-color: darken($bg-color, 10%);
+    filter: drop-shadow(0 0 5px $theme-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
+    transform: translateY(2px);
+
   }
 }

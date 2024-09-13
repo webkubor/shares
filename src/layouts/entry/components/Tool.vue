@@ -2,17 +2,6 @@
       <SpiderView/>
       <n-divider title-placement="center">工具包</n-divider>
     <n-space vertical>
-      <!-- <n-card title="图标库-@phosphor-icons/vue">
-        <PhAirplay :size="32" />
-        <PhAppWindow :size="32" />
-      </n-card>
-      <n-card title="图标库-@icon-park/vue-next">
-        https://iconpark.oceanengine.com/official
-        <n-space>
-          <hourglass-full theme="filled" size="34" fill="#e75716" :strokeWidth="3" strokeLinecap="butt" />
-          <friends-circle theme="filled" size="34" fill="#000000" :strokeWidth="3" strokeLinecap="butt" />
-        </n-space>
-      </n-card> -->
       <n-card title="人机验证">
         <n-space>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/vertify/google')">google无感知登录</n-button>
@@ -59,6 +48,4 @@
 import SpiderView from "@/components/Spider.vue"
 
 import {  getRandomColor } from "@/utils/random";
-import { PhAirplay, PhAppWindow } from "@phosphor-icons/vue";
-import { HourglassFull, FriendsCircle } from '@icon-park/vue-next';
 </script>

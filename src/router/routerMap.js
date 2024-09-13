@@ -22,7 +22,7 @@ const indexMap = [
     meta: {
       title: "Login"
     },
-    component: () => import("@/views/show/logins.vue")
+    component: () => import("@/views/show/login/index.vue")
   },
   {
     path: '/rtc/webWork',

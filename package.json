@@ -20,7 +20,6 @@
     "vue-clipboard3": "^2.0.0"
   },
   "devDependencies": {
-    "@icon-park/vue-next": "^1.4.2",
     "@types/node": "^18.7.18",
     "@vitejs/plugin-vue": "^4.5.0",
     "dayjs": "^1.10.7",
