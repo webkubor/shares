@@ -8,13 +8,12 @@
       <div class="board">
         <div ref="btcChart" class="chart"></div>
         <div class="form">
-      <H1>Manager</H1>
-      <p>Access your payment services and manage your account.</p>
+          <H1>Manager</H1>
+          <p>Access your payment services and manage your account.</p>
           <label for="username">账号</label>
           <input id="username" type="text" placeholder="请输入账号" autocomplete="username">
           <label for="password">密码</label>
           <input id="password" type="password" placeholder="请输入密码" autocomplete="current-password">
-
           <button type="submit" @click="onsubmit">提交</button>
         </div>
       </div>
@@ -163,15 +162,18 @@ button {
 }
 
 .form {
-color: $theme-color;
+  color: $theme-color;
+
   label {
     font-size: 14px;
     display: inline-block;
   }
+
   input {
     display: inline-block;
   }
 }
+
 .login-view {
   width: 100%;
   height: 100vh;
