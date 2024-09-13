@@ -20,6 +20,9 @@ dependencies:
   mathjs:
     specifier: ^12.4.1
     version: 12.4.1
+  nex-lib:
+    specifier: ^1.2.1
+    version: 1.2.1
   plyr:
     specifier: ^3.7.8
     version: 3.7.8
@@ -3143,6 +3146,10 @@ packages:
   /neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
+
+  /nex-lib@1.2.1:
+    resolution: {integrity: sha512-lBJ8sR2ecMGj+0AeQ4Dac94epUMlUnpFuSHw2tePCyo3eama5FhXpm9+HaYQiIJGmDZKWSu9z78fKoDZ2kpg+w==}
+    dev: false
 
   /node-releases@2.0.14:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
