@@ -18,7 +18,7 @@
     position: relative;
     width: 80%;
     height: 10px;
-    background: linear-gradient(to right, rgba(52, 152, 219, 0) 0%, rgba(52, 152, 219, 1) 50%, rgba(52, 152, 219, 0) 100%);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(52, 152, 219, 1) 50%, rgba(52, 152, 219, 0) 100%);
     box-shadow: 0 0 20px rgba(52, 152, 219, 1);
     animation: glow 4s infinite;
 }
@@ -26,7 +26,7 @@
 .ball {
     width: 50px;
     height: 50px;
-    background: radial-gradient(circle, #3498db, #2980b9);
+    background: radial-gradient(circle, #3498db, #cfdbe3);
     border-radius: 50%;
     position: absolute;
     bottom: 10px; /* Align with the ground */

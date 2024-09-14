@@ -1,75 +1,43 @@
-
 <template>
-    <div class="loading">
-        <span style="--i:1"></span>
-        <span style="--i:2"></span>
-        <span style="--i:3"></span>
-        <span style="--i:4"></span>
-        <span style="--i:5"></span>
-        <span style="--i:6"></span>
-        <span style="--i:7"></span>
-    </div>
-
-    <svg>
-        <!-- filter元素id属性顶一个滤镜的唯一名称，
-            feGaussianBlur 定义模糊效果，
-            in="SourceGraphic"这个部分定义了由整个图像创建效果，
-            stdDeviation属性定义模糊量
-        -->
+    <div class="water-page iphone15-border">
+      <div class="loading">
+        <span v-for="i in 7" :style="`--i: ${i}`"></span>
+      </div>
+  
+      <svg>
         <filter id="gooey">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
-            <!-- feColorMatrix 用于彩色滤光片转换 -->
-            <feColorMatrix values="
-            1 0 0 0 0 
-            0 1 0 0 0
-            0 0 1 0 0 
-            0 0 0 20 -10
-            " />
-            <!-- 
-            values="
-            R G B A 1
-            1 0 0 0 0  R = 1*R + 0*G + 0*B + 0*A + 0
-            0 1 0 0 0  G = 0*R + 1*G + 0*B + 0*A + 0
-            0 0 1 0 0  B = 0*R + 0*G + 1*B + 0*A + 0
-            0 0 0 20 -10  A = 0*R + 0*G + 0*B + 1*A + 0
-            "  
-             -->
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+          <feColorMatrix values="
+              1 0 0 0 0 
+              0 1 0 0 0
+              0 0 1 0 0 
+              0 0 0 20 -10" />
         </filter>
-    </svg>
-
-
-</template>
-<style lang="scss" scoped>
-
-
-//CSS
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body {
+      </svg>
+    </div>
+  </template>
+  
+  <style lang="scss" scoped>
+  .water-page {
     display: flex;
-    min-height: 100vh;
-    overflow: hidden;
-    justify-content: center;
     align-items: center;
-    background: #010b10;
-}
-
-svg {
+    justify-content: center;
+  }
+  
+  svg {
     width: 0;
     height: 0;
-}
-
-.loading {
+  }
+  
+  .loading {
     width: 200px;
     height: 200px;
     position: relative;
     filter: url(#gooey);
-}
-
-.loading span {
+    will-change: transform;
+  }
+  
+  .loading span {
     position: absolute;
     top: 0;
     left: 0;
@@ -77,11 +45,11 @@ svg {
     height: 100%;
     display: block;
     animation: loading 4s ease-in-out infinite;
-    /* var函数用来插入css变量的值，css变量名称以--开头 */
     animation-delay: calc(0.2s * var(--i));
-}
-
-.loading span::before {
+    will-change: transform;
+  }
+  
+  .loading span::before {
     content: '';
     position: absolute;
     top: 0;
@@ -91,17 +59,16 @@ svg {
     background: linear-gradient(#fce4ec, #03a9f4);
     border-radius: 50%;
     box-shadow: 0 0 30px #03a9f4;
-}
-
-@keyframes loading {
+  }
+  
+  @keyframes loading {
     0% {
-        transform: rotate(0deg);
+      transform: rotate(0deg);
     }
-
     50%,
     100% {
-        transform: rotate(360deg);
+      transform: rotate(360deg);
     }
-}
-
-</style>
+  }
+  </style>
+  
