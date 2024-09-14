@@ -43,7 +43,7 @@
 
     </n-space>
 <Cursor/>
-      <SpiderView/>
+      <!-- <SpiderView/> -->
 </template>
 <script setup lang="ts">
 import SpiderView from "@/components/Spider.vue"

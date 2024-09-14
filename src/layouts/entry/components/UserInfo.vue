@@ -13,9 +13,10 @@
       <span> {{ t("this") }} {{ user.name }}</span>
     </n-popover>
 
-    <div class="sign">
+    <span class="sign">
       {{ user.personalSign }}
-    </div>
+      <span></span>
+    </span>
     <n-space>
       <n-watermark v-if="show" content="大家艰苦一下，一切都会有的" cross fullscreen :font-size="16" :line-height="16" :width="384"
         :height="384" :x-offset="12" :y-offset="60" :rotate="-15" />
@@ -40,8 +41,7 @@ import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
 import { useI18n } from "vue-i18n";
-import { computed, ref, onMounted} from "vue"
-import SVGA from 'svgaplayerweb';
+import { computed, ref, onMounted } from "vue"
 
 const { t, locale } = useI18n();
 let { user, updateAge } = useUser();
@@ -99,9 +99,24 @@ const toggleLocale = () => {
   }
 
   .sign {
+    display: block;
     font-weight: 500;
     font-size: 20px;
-    margin: 10px 0 20px;
+    margin: 20px ;
+    cursor: pointer;
+    span {
+      background: #000000;
+      height: 2px;
+      width: 0px;
+      display: block;
+    transition: all 0.5s ease-in-out;
+    }
+    &:hover {
+      background-size: 100% 2px;
+      span {
+      width: 100%;
+    }
+    }
   }
 }
 
