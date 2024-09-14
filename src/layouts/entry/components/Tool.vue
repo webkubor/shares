@@ -1,5 +1,4 @@
 <template>
-      <SpiderView/>
       <n-divider title-placement="center">工具包</n-divider>
     <n-space vertical>
       <n-card title="人机验证">
@@ -23,10 +22,10 @@
       </n-card>
       <n-card title="UI视觉">
         <n-space>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/animation/index')">Animation</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/show/colors')">Colors</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/loading')">loading</n-button>
-          <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/line')">折线图测试</n-button>
-          <n-button :color="getRandomColor()" ghost @click="$router.push('/chart/pie')">饼图</n-button>
+          <n-button :color="getRandomColor()" ghost @click="$router.push('/chart')">图表</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/show/login')">Login登录页</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/show/buttons')">按钮组</n-button>
           <n-button :color="getRandomColor()" ghost @click="$router.push('/show/tabbar')">Tabbar 设计参考</n-button>
@@ -43,6 +42,8 @@
       </n-card>
 
     </n-space>
+<Cursor/>
+      <SpiderView/>
 </template>
 <script setup lang="ts">
 import SpiderView from "@/components/Spider.vue"

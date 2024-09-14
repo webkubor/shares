@@ -57,7 +57,14 @@ const indexMap = [
     },
     component: () => import("@/views/xbox/battle.vue")
   },
-
+  {
+    path: '/animation/index',
+    name: 'Animation',
+    meta: {
+      title: "Animation"
+    },
+    component: () => import("@/views/animation/index.vue")
+  },
 
   {
     path: '/vertify/google',
@@ -117,20 +124,12 @@ const indexMap = [
     component: () => import("@/views/loading/index.vue")
   },
   {
-    path: '/chart/line',
+    path: '/chart',
     name: 'chartLine',
     meta: {
       title: "chartLine"
     },
     component: () => import("@/views/chart/index.vue")
-  },
-  {
-    path: '/chart/pie',
-    name: 'chartPie',
-    meta: {
-      title: "chartPie"
-    },
-    component: () => import("@/views/chart/pie.vue")
   },
   {
     path: '/show/tabbar',
