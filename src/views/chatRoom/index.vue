@@ -1,9 +1,9 @@
 <template>
     <div class="room-bg">
         <div class="chat-room">
-<LeftNav />
-<directory />
-<Window />
+            <LeftNav />
+            <directory />
+            <Window />
         </div>
 
     </div>
@@ -14,8 +14,6 @@ import directory from "./components/directory.vue"
 import Window from "./components/window.vue"
 </script>
 <style lang="scss" scoped>
-
-
 .room-bg {
     width: 100%;
     box-sizing: border-box;
@@ -27,13 +25,12 @@ import Window from "./components/window.vue"
     display: flex;
     justify-content: center;
     align-items: center;
+
     .chat-room {
         width: 80vw;
         height: 46.875vw;
-       @include glass-effect(rgba(255, 255, 255), 10, 0.4);
-       display: flex;
+        @include glass-effect(rgba(255, 255, 255), 10, 0.4);
+        display: flex;
     }
 }
-
-
 </style>
