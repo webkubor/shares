@@ -9,7 +9,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   base: "/shares/",
-  publicDir: "/shares/", 
+  publicDir: "/shares/",
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -23,16 +23,16 @@ export default defineConfig({
         additionalData: `@import './src/styles/index.scss';`,
       },
     },
-    },
+  },
   build: {
     chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
         chunkFileNames: 'chunks/[name]-[hash].js', //设置非入口 chunk 的文件名格式。这里表示将非入口chunk的JS文件输出到chunks目录下，文件名由[name]（chunk的名字）和[hash]（哈希值）组成，这样可以保证每次修改内容后输出的文件名带有不同的哈希值，有利于浏览器缓存更新
         assetFileNames: 'assets/[name]-[hash][extname]', //置非JavaScript和CSS的其他静态资源（如图片、字体等）的输出路径和文件名格式，同样带有[name]和[hash]，以及原始资源的扩展名[extname]。
-        manualChunks:{
+        manualChunks: {
           vendor: ['vue', 'vue-router', 'vue-i18n'],
-          lib: ['dayjs', 'flyio','lodash', 'plyr','mathjs'],
+          lib: ['dayjs', 'flyio', 'lodash', 'plyr', 'mathjs'],
           naive: ['naive-ui'],
           phosphor: ['@phosphor-icons/vue'],
           g2plot: ['@antv/g2plot'],
@@ -44,11 +44,39 @@ export default defineConfig({
   plugins: [
     vueTools(),
     vue(),
-    VitePWA({ registerType: 'autoUpdate' }),
+    VitePWA({
+      manifest: {
+        "name": 'PWA Demo',
+        "description": "A PWA demo built with Vite and vite pwa",
+        "theme_color": "#242424",
+        icons: [
+          {
+              "src": "/logo.svg",
+              "sizes": "192x192",
+              "type": "image/svg+xml"
+          },
+          {
+              "src": "/logo.svg",
+              "sizes": "512x512",
+              "type": "image/svg+xml"
+          }
+      ]
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,jpg,svg}'], //缓存相关静态资源
+      },
+      devOptions: {
+        // 如果想在`vite dev`命令下调试PWA, 必须启用它
+        enabled: true,
+        // Vite在dev模式下会使用浏览器原生的ESModule，将type设置为`"module"`与原先的保持一致
+        type: "module"
+      }
+    }
+    ),
     Components({
       resolvers: [NaiveUiResolver()],
-       // 关键配置
-       directoryAsNamespace: true
+      // 关键配置
+      directoryAsNamespace: true
     })
   ],
   server: {

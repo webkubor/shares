@@ -15,7 +15,7 @@ export function useAddToHomeScreen() {
 
   // 监听 beforeinstallprompt 事件
   const beforeInstallPromptHandler = (e) => {
-    console.log(`output->beforeInstallPromptHandler`,e)
+    console.log(`output->beforeInstallPromptHandler-触发`,e)
     // 阻止默认的安装提示
     e.preventDefault();
     deferredPrompt = e;
