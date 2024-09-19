@@ -4,18 +4,6 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AnimeSbtn: typeof import('./src/components/anime/Sbtn.vue')['default']
-    AnimeWaterDrop: typeof import('./src/components/anime/WaterDrop.vue')['default']
-    Cursor: typeof import('./src/components/cursor.vue')['default']
-    EchartsDoubleLine: typeof import('./src/views/chart/components/doubleLine.vue')['default']
-    EchartsLine: typeof import('./src/views/chart/components/line.vue')['default']
-    EchartsLine2: typeof import('./src/views/chart/components/line2.vue')['default']
-    EchartsPie: typeof import('./src/views/chart/components/pie.vue')['default']
-    FlowerBg: typeof import('./src/components/flowerBg.vue')['default']
-    G2plotDoubleLine: typeof import('./src/components/g2plot/doubleLine.vue')['default']
-    G2plotG2plotLine: typeof import('./src/components/g2plot/g2plotLine.vue')['default']
-    GProgress: typeof import('./src/components/GProgress.vue')['default']
-    NAffix: typeof import('naive-ui')['NAffix']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
@@ -48,8 +36,6 @@ declare module 'vue' {
     NWatermark: typeof import('naive-ui')['NWatermark']
     Spider: typeof import('./src/components/Spider.vue')['default']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']
-    Video: typeof import('./src/views/barrage/video/index.vue')['default']
-    VideoBoard: typeof import('./src/views/barrage/video/board.vue')['default']
   }
 }
 

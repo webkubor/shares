@@ -2,6 +2,13 @@
 
   <div class="about-me column-center">
     <div class="switch-btn" v-ripple="{ duration: 500, color: ' #DCD5F5' }" @click="toggleLocale"> {{ language }}</div>
+    <button v-if="isAddToHomeAvailable" @click="openAddFlow">
+      添加到主屏幕
+    </button>
+    <!-- 显示 iOS 手动添加的提示 -->
+    <div v-if="showAddTipsDialog">
+      请手动添加到主屏幕：点击 Safari 浏览器底部的分享按钮，然后选择“添加到主屏幕”。
+    </div>
     <n-popover trigger="hover">
       <template #trigger>
         <div class="love-headers">
@@ -41,12 +48,13 @@ import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
 import { useI18n } from "vue-i18n";
-import { computed, ref, onMounted } from "vue"
+import { computed, ref } from "vue"
+import  {useAddToHomeScreen} from "@/hooks/useAddToHomeScreen"
 
 const { t, locale } = useI18n();
 let { user, updateAge } = useUser();
 let { swtichTheme } = useTheme();
-console.log(user, "我的");
+const { showAddTipsDialog, isAddToHomeAvailable, openAddFlow } = useAddToHomeScreen();
 
 let show = ref(false)
 

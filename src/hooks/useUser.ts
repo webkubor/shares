@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-10-13 14:03:05
- * @LastEditTime: 2023-03-10 15:09:19
+ * @LastEditTime: 2024-09-19 15:05:34
  */
 import { reactive } from "vue";
 import dayjs from "@/utils/dayjs";
@@ -51,7 +51,6 @@ export function useUser() {
   function updateAge() {
     let time = dayjs(user.birthday).fromNow(true);
     user.age = time.split(" ")[0];
-    console.log("%c%s", "color: #e50000", "我的年龄已更新", user.age);
   }
   
   return {

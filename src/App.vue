@@ -4,7 +4,7 @@
       <n-loading-bar-provider>
         <n-dialog-provider>
           <n-message-provider>
-            <router-view></router-view>
+            <router-view/>
           </n-message-provider>
         </n-dialog-provider>
       </n-loading-bar-provider>
@@ -14,9 +14,11 @@
 <script setup>
 import { useTheme } from "@/hooks/useTheme";
 import { onMounted } from "vue";
-let { allThemeOverrides, local,initTheme } = useTheme();
+let { allThemeOverrides, local, initTheme } = useTheme();
 
 onMounted(() => {
   initTheme();
 })
- </script>
+
+
+</script>

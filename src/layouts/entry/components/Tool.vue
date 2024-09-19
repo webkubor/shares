@@ -42,7 +42,6 @@
       </n-card>
 
     </n-space>
-<Cursor/>
       <!-- <SpiderView/> -->
 </template>
 <script setup lang="ts">

@@ -5,7 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { fileURLToPath, URL } from 'url'
 import vueTools from "vite-plugin-vue-devtools"
-
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   base: "/shares/",
@@ -44,6 +44,7 @@ export default defineConfig({
   plugins: [
     vueTools(),
     vue(),
+    VitePWA({ registerType: 'autoUpdate' }),
     Components({
       resolvers: [NaiveUiResolver()],
        // 关键配置
