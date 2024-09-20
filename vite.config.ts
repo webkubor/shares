@@ -45,31 +45,37 @@ export default defineConfig({
     vueTools(),
     vue(),
     VitePWA({
-      manifest: {
-        "name": 'PWA Demo',
-        "description": "A PWA demo built with Vite and vite pwa",
-        "theme_color": "#242424",
-        icons: [
-          {
-              "src": "/logo.svg",
-              "sizes": "192x192",
-              "type": "image/svg+xml"
-          },
-          {
-              "src": "/logo.svg",
-              "sizes": "512x512",
-              "type": "image/svg+xml"
-          }
-      ]
-      },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,jpg,svg}'], //缓存相关静态资源
-      },
+      injectRegister: 'auto',
+      registerType: 'autoUpdate',
       devOptions: {
         // 如果想在`vite dev`命令下调试PWA, 必须启用它
         enabled: true,
         // Vite在dev模式下会使用浏览器原生的ESModule，将type设置为`"module"`与原先的保持一致
         type: "module"
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,jpg,svg}'], //缓存相关静态资源
+      },
+      manifest: {
+        "name": 'webkubor Share',
+        "description": "webkubor Share",
+        "theme_color": "#242424",
+        "start_url": "/",
+        "background_color": "#242424",
+        icons: [
+          {
+            "src": "/shares/logo.svg",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            purpose: 'any maskable'
+          },
+          {
+            "src": "/shares/logo.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            purpose: 'any maskable'
+          }
+        ]
       }
     }
     ),
