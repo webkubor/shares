@@ -20,17 +20,17 @@ import { ref } from 'vue';
 
 const videoWindow = ref<HTMLVideoElement | null>(null);
 
+
 async function onStart() {
     if (!videoWindow.value) return;
     // 尝试获取媒体设备
     try {
-        const stream = await navigator.mediaDevices.getUserMedia({
+        window.stream = await navigator.mediaDevices.getUserMedia({
             video: true,
             audio: true
         });
-        videoWindow.value.srcObject = stream;
+        videoWindow.value.srcObject = window.stream;
         videoWindow.value.play();
-addWatermark();
     } catch (error) {
         console.error('无法获取媒体设备：', error);
     }
@@ -45,31 +45,17 @@ function onPic() {
         canvas.height = 150;
         context.drawImage(videoWindow.value, 0, 0, 300, 150);
         const url = canvas.toDataURL('images/png')
-  const a = document.createElement('a');
-  const event = new MouseEvent('click');
-  a.download = 'default.png';
-  a.href = url;
-  a.dispatchEvent(event);
+        const a = document.createElement('a');
+        const event = new MouseEvent('click');
+        a.download = 'default.png';
+        a.href = url;
+        a.dispatchEvent(event);
 
     }
 }
 
 
 
-function addWatermark() {
-    const canvas = document.createElement('canvas');
-    const video = videoWindow.value;
-    if (!video ||!canvas) return;
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    ctx.drawImage(video, 0, 0);
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-    ctx.font = '20px Arial';
-    ctx.fillText('Webkubor Test', canvas.width - 150, canvas.height - 20);
-    video.srcObject = canvas.captureStream();
-}
 
 
 
@@ -97,6 +83,13 @@ function onClose() {
     if (!videoWindow.value) return;
     try {
         videoWindow.value.srcObject = null;
+        window.stream.getTracks().forEach(track => {
+            if (track.kind === 'video') {
+                (track as MediaStreamTrack).stop();
+            } else if (track.kind === 'audio') {
+                (track as MediaStreamTrack).stop();
+            }
+        });
     } catch (error) {
         console.error('关闭播放时出现错误：', error);
     }
