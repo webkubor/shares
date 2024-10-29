@@ -4,7 +4,6 @@
             <n-button @click="startComputation">开始计算</n-button>
       <n-input-number  placeholder="计算结果"  v-model:value="end"/>
         </n-space>
-     
     </n-card>
   </template>
   

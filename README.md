@@ -12,7 +12,8 @@
 - 框架组件按需加载
 - 不依赖于store的hooks业务写法
 - sh自定义本地部署脚本（bash）
-- vivus路径动画库
+
+
   
 ### Intro
 
@@ -26,6 +27,7 @@
 - Loading 集合
 - 下注玩法
 - workder 集合
+-  WebRTC API 实现视频通话
 
 
 

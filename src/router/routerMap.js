@@ -25,6 +25,14 @@ const indexMap = [
     component: () => import("@/views/show/login/index.vue")
   },
   {
+    path: '/rtc/index',
+    name: 'Rtc',
+    meta: {
+      title: "WebRTC"
+    },
+    component: () => import("@/views/rtc/index.vue")
+  },
+  {
     path: '/rtc/webWork',
     name: 'Worker',
     meta: {

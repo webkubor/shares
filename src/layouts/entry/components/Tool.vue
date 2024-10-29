@@ -21,6 +21,7 @@
         <n-button :color="getRandomColor()" ghost @click="$router.push('/chat/room')">聊天室(未完成)</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/watermark')">图片水印添加</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/font')">小说封面</n-button>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/rtc/index')">WebRTC</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/rtc/webWork')">web worker</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/barrage')">弹幕测试</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/list')">列表滚动测试</n-button>
