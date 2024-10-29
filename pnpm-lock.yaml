@@ -55,9 +55,6 @@ devDependencies:
   sass-loader:
     specifier: ^13.0.2
     version: 13.3.2(sass@1.69.5)(webpack@5.93.0)
-  svgaplayerweb:
-    specifier: ^2.3.2
-    version: 2.3.2
   typescript:
     specifier: ^4.8.3
     version: 4.9.5
@@ -5385,10 +5382,6 @@ packages:
 
   /svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
-    dev: true
-
-  /svgaplayerweb@2.3.2:
-    resolution: {integrity: sha512-QuTvNIgy3W6Mi4h74SczEHUtAwb8m3ax7Ai7xRLUuN6hjJh49RGtWOWq1IuF2I7ECcl0HAYn8FcTn99UDz9UiQ==}
     dev: true
 
   /tapable@2.2.1:
