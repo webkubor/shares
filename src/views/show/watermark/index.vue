@@ -1,7 +1,6 @@
 <template>
     <div class="watermark">
-        <n-split direction="horizontal" :max="1"
-        :min="0">
+        <n-split direction="horizontal" :max="1" :min="0">
             <template #1>
                 <n-space vertical>
                     <n-card title="图片水印添加">
@@ -45,37 +44,37 @@
                                 <img :src="getImageUrl(config.imageStyle)" style="height: 40px;">
                             </n-form-item>
                             <n-form-item label="透明度" label-placement="left" v-if="config.watermarkType === '1'">
-                                <n-input-number v-model:value="config.globalAlpha" placeholder="透明度"   :step="0.1" />
+                                <n-input-number v-model:value="config.globalAlpha" placeholder="透明度" :step="0.1" />
                             </n-form-item>
                             <n-form-item label="需要题字" label-placement="left">
                                 <n-checkbox v-model:checked="config.active" label="添加图片标题" />
                             </n-form-item>
                             <div v-if="config.active">
                                 <n-form-item label="题字大小" label-placement="left">
-                                <n-select v-model:value="config.font" :options="sizeOptions" />
-                            </n-form-item>
-                            <n-form-item label="字间距离" label-placement="left">
-                                <n-input-number type="text" v-model:value="config.letterSpacing" placeholder="字间距"
-                                    :min="50" :step="1" />
-                            </n-form-item>
-                            <n-form-item label="题字粗细" label-placement="left">
-                                <n-input-number type="text" v-model:value="config.weight" placeholder="题字粗细" :min="300"
-                                    :step="100" />
-                            </n-form-item>
-                            <n-form-item label="题字内容" label-placement="left">
-                                <n-input type="text" v-model:value="config.title" placeholder="添加图片标题" />
-                            </n-form-item>
-                            <n-form-item label="题字颜色" label-placement="left">
-                                <n-color-picker v-model:value="config.color" :actions="['clear']" :swatches="[
-                                    '#FFFFFF',
-                                    '#18A058',
-                                    '#2080F0',
-                                    '#F0A020',
-                                    'rgba(208, 48, 80, 1)',
-                                ]" @complete="onCompleteColor" />
-                            </n-form-item>
+                                    <n-select v-model:value="config.font" :options="sizeOptions" />
+                                </n-form-item>
+                                <n-form-item label="字间距离" label-placement="left">
+                                    <n-input-number type="text" v-model:value="config.letterSpacing" placeholder="字间距"
+                                        :min="50" :step="1" />
+                                </n-form-item>
+                                <n-form-item label="题字粗细" label-placement="left">
+                                    <n-input-number type="text" v-model:value="config.weight" placeholder="题字粗细"
+                                        :min="300" :step="100" />
+                                </n-form-item>
+                                <n-form-item label="题字内容" label-placement="left">
+                                    <n-input type="text" v-model:value="config.title" placeholder="添加图片标题" />
+                                </n-form-item>
+                                <n-form-item label="题字颜色" label-placement="left">
+                                    <n-color-picker v-model:value="config.color" :actions="['clear']" :swatches="[
+                                        '#FFFFFF',
+                                        '#18A058',
+                                        '#2080F0',
+                                        '#F0A020',
+                                        'rgba(208, 48, 80, 1)',
+                                    ]" @complete="onCompleteColor" />
+                                </n-form-item>
                             </div>
-                      
+
 
                         </n-card>
                     </n-collapse-transition>
@@ -138,7 +137,7 @@ const sizeOptions = [
 
 const imageStyles = [
 
-{
+    {
         label: '中规中矩',
         value: '/src/assets/watermark/1.png'
     },
@@ -173,8 +172,9 @@ const imageStyles = [
 ]
 
 function getImageUrl(path) {
-  return imagePaths[path]?.default;
+    return imagePaths[path]?.default;
 }
+
 const imagePaths = import.meta.glob('/src/assets/watermark/*.png', { eager: true });
 
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
@@ -216,8 +216,8 @@ async function handleFileListChange() {
 
 
 enum watermarkTypeKey {
-image = "1",
-text ="2"
+    image = "1",
+    text = "2"
 }
 
 /**
@@ -233,7 +233,7 @@ async function addWatermark(canvas: HTMLCanvasElement): Promise<HTMLCanvasElemen
     if (config.watermarkType === watermarkTypeKey.image) {
         try {
             await onDrawImage(canvas, ctx);
-            return config.active? addName(ctx, canvas) : canvas;
+            return config.active ? addName(ctx, canvas) : canvas;
         } catch (error) {
             console.error('图片水印加载错误:', error);
             return canvas;
@@ -243,12 +243,13 @@ async function addWatermark(canvas: HTMLCanvasElement): Promise<HTMLCanvasElemen
         ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
-        ctx.font = `bold ${(ctx.canvas.width / 14)}px Chinese1 `;
+        ctx.font = `bold ${(ctx.canvas.width / 14)}px AiChinese01 `;
         const padding = (ctx.canvas.width / 18);
         ctx.fillText(watermarkText.value, canvas.width / 2, canvas.height - padding);
-        return config.active? addName(ctx, canvas) : canvas;
+        return config.active ? addName(ctx, canvas) : canvas;
     }
 }
+
 
 function onDrawImage(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): Promise<CanvasRenderingContext2D> {
     return new Promise((resolve, reject) => {
@@ -273,7 +274,7 @@ function onDrawImage(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): 
 function addName(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): HTMLCanvasElement {
     ctx.fillStyle = config.color;
     ctx.textAlign = 'left';
-    ctx.font = `${config.weight} ${(ctx.canvas.width / config.font)}px Chinese1 `;
+    ctx.font = `${config.weight} ${(ctx.canvas.width / config.font)}px AiChinese01 `;
     const textToAdd = config.title;
     const padding = canvas.width / 18;
     const paddingH = canvas.height / 15;
@@ -358,6 +359,7 @@ function convasToImg(canvas: HTMLCanvasElement, type = "image/png"): HTMLImageEl
     min-height: 1080px;
     padding: 20px;
 }
+
 
 .water-pic {
     width: 250px;

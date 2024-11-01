@@ -257,11 +257,11 @@ function selectBook(bookIndex) {
 }
 
 .type-chinese1 {
-    font-family: 'Chinese1';
+    font-family: 'AiChinese01';
 }
 
 .type-chinese2 {
-    font-family: 'Chinese2';
+    font-family: 'AiChinese02';
 }
 
 .type-chinese3 {
