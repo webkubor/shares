@@ -17,7 +17,7 @@
         <div v-if="showAddTipsDialog">
           请手动添加到主屏幕：点击 Safari 浏览器底部的分享按钮，然后选择“添加到主屏幕”。
         </div>
-
+        
         <n-button :color="getRandomColor()" ghost @click="$router.push('/chat/room')">聊天室(未完成)</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/watermark')">图片水印添加</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/font')">小说封面</n-button>
@@ -31,6 +31,7 @@
     </n-card>
     <n-card title="UI视觉">
       <n-space>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/three/index')">Three</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/animation/index')">Animation</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/colors')">Colors</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/loading')">loading</n-button>

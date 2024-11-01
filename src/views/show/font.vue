@@ -70,7 +70,6 @@
 
 <script setup>
 import { ref } from 'vue'
-
 const selectedFont = ref('type-chinese1')
 const selectedBook = ref(1)
 const textContent = ref('曲断天涯\u00A0剑道情长')

@@ -116,6 +116,14 @@ const indexMap = [
     component: () => import("@/views/show/btns.vue")
   },
   {
+    path: '/three/index',
+    name: 'Three',
+    meta: {
+      title: "Three"
+    },
+    component: () => import("@/views/three/index.vue")
+  },
+  {
     path: '/show/font',
     name: 'Font',
     meta: {
