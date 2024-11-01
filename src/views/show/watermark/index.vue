@@ -44,6 +44,9 @@
                                 <n-select v-model:value="config.imageStyle" :options="imageStyles" />
                                 <img :src="getImageUrl(config.imageStyle)" style="height: 40px;">
                             </n-form-item>
+                            <n-form-item label="透明度" label-placement="left" v-if="config.watermarkType === '1'">
+                                <n-input-number v-model:value="config.globalAlpha" placeholder="透明度"   :step="0.1" />
+                            </n-form-item>
                             <n-form-item label="需要题字" label-placement="left">
                                 <n-checkbox v-model:checked="config.active" label="添加图片标题" />
                             </n-form-item>
@@ -108,6 +111,7 @@ const config = reactive({
     show: true,
     active: false,
     font: 10,
+    globalAlpha: 0.7,
     watermarkType: '2',
     weight: 500,
     imageStyle: '/src/assets/watermark/2.png',
@@ -256,7 +260,9 @@ function onDrawImage(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): 
             const originalHeight = img.height;
             const fixedHeight = 100;
             const newWidth = (fixedHeight / originalHeight) * originalWidth;
+            ctx.globalAlpha = config.globalAlpha;
             ctx.drawImage(img, canvas.width / 2 - newWidth / 2, ctx.canvas.height - fixedHeight - padding, newWidth, fixedHeight);
+            ctx.globalAlpha = 1;
             resolve(ctx);
         };
         img.onerror = reject;
