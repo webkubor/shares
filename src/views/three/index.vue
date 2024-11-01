@@ -3,8 +3,6 @@
 </template>
 <script setup lang="ts">
 import * as THREE from 'three'//导入three.js核心库
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls' //导入轨道控制器
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'//导入GLTF模型加载器
 import { onMounted } from 'vue';
 
 
