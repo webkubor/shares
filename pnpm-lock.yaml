@@ -26,6 +26,12 @@ dependencies:
   plyr:
     specifier: ^3.7.8
     version: 3.7.8
+  three:
+    specifier: ^0.169.0
+    version: 0.169.0
+  three-orbit-controls:
+    specifier: ^82.1.0
+    version: 82.1.0
   vue:
     specifier: ^3.3.8
     version: 3.3.8(typescript@4.9.5)
@@ -55,6 +61,9 @@ devDependencies:
   sass-loader:
     specifier: ^13.0.2
     version: 13.3.2(sass@1.69.5)(webpack@5.93.0)
+  three-obj-mtl-loader:
+    specifier: ^1.0.3
+    version: 1.0.3(three@0.169.0)
   typescript:
     specifier: ^4.8.3
     version: 4.9.5
@@ -5460,6 +5469,21 @@ packages:
       commander: 2.20.3
       source-map-support: 0.5.21
     dev: true
+
+  /three-obj-mtl-loader@1.0.3(three@0.169.0):
+    resolution: {integrity: sha512-0z7BfyG6vYPY9RvxJvL4rq8PbNrF42Kn4zxeqTfeDzJN++2oKbtCQhxHs5vLULnDuCRTEyDFf5TYvO+1vnJ7KQ==}
+    peerDependencies:
+      three: '>= 0.91'
+    dependencies:
+      three: 0.169.0
+    dev: true
+
+  /three-orbit-controls@82.1.0:
+    resolution: {integrity: sha512-hIWxGoHqIbeq0S2lA14m9VRzo7SamKKVJ9mKMT/rdh0Qa3nV5Umvhlx4zsHl0Y6jLKVZhjatJfeD/K08Tr/g4A==}
+    dev: false
+
+  /three@0.169.0:
+    resolution: {integrity: sha512-Ed906MA3dR4TS5riErd4QBsRGPcx+HBDX2O5yYE5GqJeFQTPU+M56Va/f/Oph9X7uZo3W3o4l2ZhBZ6f6qUv0w==}
 
   /tiny-emitter@2.1.0:
     resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}

@@ -116,6 +116,14 @@ const indexMap = [
     component: () => import("@/views/show/btns.vue")
   },
   {
+    path: '/show/font',
+    name: 'Font',
+    meta: {
+      title: "Font"
+    },
+    component: () => import("@/views/show/font.vue")
+  },
+  {
     path: '/show/colors',
     name: 'Colors',
     meta: {
