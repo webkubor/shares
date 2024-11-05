@@ -4,25 +4,11 @@
             <template #1>
                 <n-space vertical>
                     <n-card title="图片水印添加">
-                        <n-space>
                             <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
                                 :on-update:file-list="handleFileListChange" @change="handleUploadChange">
                                 <n-button>上传文件</n-button>
                             </n-upload>
-                            <n-button v-if="previews.length" type="primary" @click="downloadAll">批量下载</n-button>
-
-                            <n-button v-if="previews.length" @click="onRrewrite">重绘</n-button>
-                            <n-switch v-model:value="config.show">
-                                <template #checked>
-                                    展开工具栏
-                                </template>
-                                <template #unchecked>
-                                    折叠工具栏
-                                </template>
-                            </n-switch>
-                        </n-space>
                     </n-card>
-                    <n-collapse-transition :show="config.show">
                         <n-card title="操作栏目">
                             <n-form-item label="水印形式" label-placement="left">
                                 <n-radio-group v-model:value="config.watermarkType" name="radiogroup">
@@ -42,6 +28,9 @@
                             <n-form-item label="图片水印" label-placement="left" v-if="config.watermarkType === '1'">
                                 <n-select v-model:value="config.imageStyle" :options="imageStyles" />
                                 <img :src="getImageUrl(config.imageStyle)" style="height: 40px;">
+                            </n-form-item>
+                            <n-form-item label="图片大小" label-placement="left" v-if="config.watermarkType === '1'">
+                                <n-input-number v-model:value="config.scaleFactor" placeholder="图片水印大小" :step="0.1" />
                             </n-form-item>
                             <n-form-item label="透明度" label-placement="left" v-if="config.watermarkType === '1'">
                                 <n-input-number v-model:value="config.globalAlpha" placeholder="透明度" :step="0.1" />
@@ -77,13 +66,15 @@
 
 
                         </n-card>
-                    </n-collapse-transition>
-
-
                 </n-space>
             </template>
             <template #2>
                 <n-card title="预览区域">
+                 
+                    <n-space>
+                        <n-button v-if="previews.length" @click="onRrewrite">重绘</n-button>
+                        <n-button v-if="previews.length" type="primary" @click="downloadAll">批量下载</n-button>
+                    </n-space>
                     <n-space v-if="previews.length">
                         <n-space v-for="(item, index) in previews" vertical>
                             <img class="water-pic" :src="item.src" alt="">
@@ -107,9 +98,9 @@ const previews = ref([]);
 
 
 const config = reactive({
-    show: true,
     active: false,
     font: 10,
+    scaleFactor: 0.5,
     globalAlpha: 0.7,
     watermarkType: '2',
     weight: 500,
@@ -138,35 +129,35 @@ const sizeOptions = [
 const imageStyles = [
 
     {
-        label: '中规中矩',
+        label: '红底方正字',
         value: '/src/assets/watermark/1.png'
     },
     {
-        label: '还不错',
+        label: '红纹路边框楷体',
         value: '/src/assets/watermark/2.png'
     },
     {
-        label: 'nice',
+        label: '官方红底-官府',
         value: '/src/assets/watermark/3.png'
     },
     {
-        label: '4',
+        label: '红框红字透明底',
         value: '/src/assets/watermark/4.png'
     },
     {
-        label: '5',
+        label: '红底行书',
         value: '/src/assets/watermark/5.png'
     },
     {
-        label: '6',
+        label: '红底艺术字',
         value: '/src/assets/watermark/6.png'
     },
     {
-        label: '7',
+        label: '红底艺术字2',
         value: '/src/assets/watermark/7.png'
     },
     {
-        label: '8',
+        label: '红框艺术字透明底',
         value: '/src/assets/watermark/8.png'
     }
 ]
@@ -260,9 +251,11 @@ function onDrawImage(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): 
             const originalWidth = img.width;
             const originalHeight = img.height;
             const fixedHeight = 100;
-            const newWidth = (fixedHeight / originalHeight) * originalWidth;
+            const scaleFactor = config.scaleFactor;
+            const newWidth = (fixedHeight / originalHeight) * originalWidth  * scaleFactor;
+            const newHeight = fixedHeight * scaleFactor;
             ctx.globalAlpha = config.globalAlpha;
-            ctx.drawImage(img, canvas.width / 2 - newWidth / 2, ctx.canvas.height - fixedHeight - padding, newWidth, fixedHeight);
+            ctx.drawImage(img, canvas.width / 2 - newWidth / 2, ctx.canvas.height - fixedHeight - padding, newWidth, newHeight);
             ctx.globalAlpha = 1;
             resolve(ctx);
         };
