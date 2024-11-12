@@ -1,8 +1,17 @@
+
 <template>
-     
-      <router-view></router-view>
+  <n-card>
+    <UserInfo />
+    <ToolView/>
+    <ProjectList />
+    <LifeShare />
+  </n-card>
 </template>
-<script lang="ts" setup>
+<script setup >
+import UserInfo from "./components/UserInfo.vue";
+import ProjectList from "./components/ProjectList.vue";
+import LifeShare from "./components/LifeShare.vue";
+import ToolView from './components/Tool.vue'
 import { useMessage, useNotification, useDialog } from "naive-ui";
 import { Message } from "@/hooks/useMessage";
 window.$message = useMessage();
@@ -18,5 +27,12 @@ window.addEventListener('vite:preloadError', (event) => {
     }, 5000)
   })
 
-</script>
 
+</script>
+<style lang="scss" scoped>
+
+.carousel-img {
+  width: 100%;
+  object-fit: cover;
+}
+</style>
