@@ -383,7 +383,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { Message } from "@/hooks/useMessage";
+import { Message } from "@/hooks/useToast";
 import lark from '@/assets/xbox/lucky.png'
 import { PhPlus, PhEye } from "@phosphor-icons/vue";
 function onTest() {

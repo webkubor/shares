@@ -15,7 +15,7 @@
 </template>
 <script setup>
 import { reactive, ref,onMounted } from 'vue'
-import { Message } from "@/hooks/useMessage";
+import { Message } from "@/hooks/useToast";
 import dayjs from 'dayjs';
 import lark from '@/assets/xbox/lucky.png'
 import { useMusic } from "@/hooks/useMusic";

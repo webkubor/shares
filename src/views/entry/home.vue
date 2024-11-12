@@ -13,11 +13,9 @@ import ProjectList from "./components/ProjectList.vue";
 import LifeShare from "./components/LifeShare.vue";
 import ToolView from './components/Tool.vue'
 import { useMessage, useNotification, useDialog } from "naive-ui";
-import { Message } from "@/hooks/useMessage";
 window.$message = useMessage();
 window.$notification = useNotification();
 window.$dialog = useDialog();
-window.$toast = Message
 
 window.addEventListener('vite:preloadError', (event) => {
   window.$message?.warning('检测到有新版本，5秒后即将自动刷新...');
