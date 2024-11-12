@@ -1,7 +1,6 @@
 <template>
 
   <div class="about-me column-center">
-    <div class="switch-btn" v-ripple="{ duration: 500, color: ' #DCD5F5' }" @click="toggleLocale"> {{ language }}</div>
     <n-popover trigger="hover">
       <template #trigger>
         <div class="love-headers">
@@ -10,7 +9,7 @@
             @click="swtichTheme" />
         </div>
       </template>
-      <span> {{ t("this") }} {{ user.name }}</span>
+      <span> {{ $t("this") }} {{ user.name }}</span>
     </n-popover>
 
     <span class="sign">
@@ -40,10 +39,8 @@
 import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
-import { useI18n } from "vue-i18n";
-import { computed, ref } from "vue"
+import {  ref } from "vue"
 
-const { t, locale } = useI18n();
 let { user, updateAge } = useUser();
 let { swtichTheme } = useTheme();
 
@@ -51,14 +48,6 @@ let show = ref(false)
 
 updateAge("logo.jpeg");
 
-
-const language = computed(() =>
-  locale.value === "zh-CN" ? "中文" : "English"
-);
-
-const toggleLocale = () => {
-  locale.value = locale.value === "zh-CN" ? "en" : "zh-CN";
-};
 
 
 
