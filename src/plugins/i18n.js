@@ -1,10 +1,10 @@
 /*
  * @Date: 2022-03-06 08:51:38
- * @LastEditTime: 2022-09-05 11:17:03
+ * @LastEditTime: 2024-11-12 14:19:02
  */
 import { createI18n } from 'vue-i18n'
-import en from "../../locales/en.json"
-import zh from "../../locales/zh-CN.json"
+import en from "@/locales/en.json"
+import zh from "@/locales/zh-CN.json"
 
 export default function (app) {
 	const i18n = createI18n({
