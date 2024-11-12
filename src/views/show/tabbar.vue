@@ -71,7 +71,6 @@ onMounted(() => {
 
 </script>
 <style  lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 
 :root {
@@ -85,7 +84,6 @@ onMounted(() => {
 
 body,html {
     background-color: #eee;
-    font-family: "Montserrat", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -180,7 +180,6 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Montserrat", sans-serif;
   padding: 80px;
   background: #3F4566;
 

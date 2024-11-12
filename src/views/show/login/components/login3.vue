@@ -32,8 +32,6 @@
 
 </template>
 <style lang="scss" scoped>
-@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap);
-
 .title {
     font-size: 34px;
     font-weight: 700;
@@ -61,7 +59,6 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Montserrat", sans-serif;
     font-size: 12px;
     background-color: #ecf0f3;
     color: #a0a5a8;
@@ -101,7 +98,6 @@ button {
                 letter-spacing: 0.15px;
                 border: none;
                 outline: none;
-                font-family: "Montserrat", sans-serif;
                 background-color: #ecf0f3;
                 transition: 0.25s ease;
                 border-radius: 8px;
