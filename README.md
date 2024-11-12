@@ -1,7 +1,10 @@
 ## 个人博客
 
-### Title
+域名配置:http://webkubor.online/#/home
 
+netify托管:https://share-webkubor.netlify.app/#/home
+
+### Title
 
 - 数据状态存储采用compotions API支持的hooks写法
 - 集成了国际化方案
