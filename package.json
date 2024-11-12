@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --host --open",
-    "build": "vite build",
+    "build": "VITE_CJS_TRACE=true vite build",
     "depoly": "sh -x ./build_depoly.sh ",
     "show": "vite preview"
   },
