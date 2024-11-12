@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --host --open",
-    "build": "VITE_CJS_TRACE=true vite build",
+    "build": "vite build",
     "depoly": "sh -x ./build_depoly.sh ",
     "show": "vite preview"
   },
@@ -13,12 +13,10 @@
     "@phosphor-icons/vue": "^2.2.1",
     "echarts": "^5.5.0",
     "gsap": "^3.12.5",
-    "jsencrypt": "^3.3.2",
     "lodash": "^4.17.21",
     "mathjs": "^12.4.1",
     "plyr": "^3.7.8",
     "three": "^0.169.0",
-    "three-orbit-controls": "^82.1.0",
     "vue": "^3.3.8",
     "vue-clipboard3": "^2.0.0"
   },
@@ -30,7 +28,6 @@
     "naive-ui": "^2.39.0",
     "sass": "^1.32.8",
     "sass-loader": "^13.0.2",
-    "three-obj-mtl-loader": "^1.0.3",
     "typescript": "^4.8.3",
     "unplugin-vue-components": "^0.17.21",
     "vite": "^5.3.4",

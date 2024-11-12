@@ -17,9 +17,6 @@ dependencies:
   gsap:
     specifier: ^3.12.5
     version: 3.12.5
-  jsencrypt:
-    specifier: ^3.3.2
-    version: 3.3.2
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -32,9 +29,6 @@ dependencies:
   three:
     specifier: ^0.169.0
     version: 0.169.0
-  three-orbit-controls:
-    specifier: ^82.1.0
-    version: 82.1.0
   vue:
     specifier: ^3.3.8
     version: 3.3.8(typescript@4.9.5)
@@ -64,9 +58,6 @@ devDependencies:
   sass-loader:
     specifier: ^13.0.2
     version: 13.3.2(sass@1.69.5)(webpack@5.93.0)
-  three-obj-mtl-loader:
-    specifier: ^1.0.3
-    version: 1.0.3(three@0.169.0)
   typescript:
     specifier: ^4.8.3
     version: 4.9.5
@@ -4385,10 +4376,6 @@ packages:
     resolution: {integrity: sha512-UVU9dibq2JcFWxQPA6KCqj5O42VOmAY3zQUfEKxU0KpTGXwNoCjkX1e13eHNvw/xPynt6pU0rZ1htjWTNTSXsg==}
     dev: true
 
-  /jsencrypt@3.3.2:
-    resolution: {integrity: sha512-arQR1R1ESGdAxY7ZheWr12wCaF2yF47v5qpB76TtV64H1pyGudk9Hvw8Y9tb/FiTIaaTRUyaSnm5T/Y53Ghm/A==}
-    dev: false
-
   /jsesc@0.5.0:
     resolution: {integrity: sha512-uZz5UnB7u4T9LvwmFqXii7pZSouaRPorGs5who1Ip7VO0wxanFvBL7GkM6dTHlgX+jhBApRetaWpnDabOeTcnA==}
     hasBin: true
@@ -5477,20 +5464,9 @@ packages:
       source-map-support: 0.5.21
     dev: true
 
-  /three-obj-mtl-loader@1.0.3(three@0.169.0):
-    resolution: {integrity: sha512-0z7BfyG6vYPY9RvxJvL4rq8PbNrF42Kn4zxeqTfeDzJN++2oKbtCQhxHs5vLULnDuCRTEyDFf5TYvO+1vnJ7KQ==}
-    peerDependencies:
-      three: '>= 0.91'
-    dependencies:
-      three: 0.169.0
-    dev: true
-
-  /three-orbit-controls@82.1.0:
-    resolution: {integrity: sha512-hIWxGoHqIbeq0S2lA14m9VRzo7SamKKVJ9mKMT/rdh0Qa3nV5Umvhlx4zsHl0Y6jLKVZhjatJfeD/K08Tr/g4A==}
-    dev: false
-
   /three@0.169.0:
     resolution: {integrity: sha512-Ed906MA3dR4TS5riErd4QBsRGPcx+HBDX2O5yYE5GqJeFQTPU+M56Va/f/Oph9X7uZo3W3o4l2ZhBZ6f6qUv0w==}
+    dev: false
 
   /tiny-emitter@2.1.0:
     resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}

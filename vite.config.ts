@@ -8,9 +8,7 @@ import vueTools from "vite-plugin-vue-devtools"
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  // base: "/shares/",
-  // publicDir: "/shares/",
-  base: "./",
+  base: process.env.NODE_ENV === 'development' ? '/' : './',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -68,7 +66,6 @@ export default defineConfig({
     ),
     Components({
       resolvers: [NaiveUiResolver()],
-      // 关键配置
       directoryAsNamespace: true
     })
   ],
