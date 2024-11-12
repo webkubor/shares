@@ -8,8 +8,9 @@ import vueTools from "vite-plugin-vue-devtools"
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: "/shares/",
-  publicDir: "/shares/",
+  // base: "/shares/",
+  // publicDir: "/shares/",
+  base: "./",
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
