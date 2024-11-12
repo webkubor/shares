@@ -6,7 +6,6 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { fileURLToPath, URL } from 'url'
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'development' ? '/' : './',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

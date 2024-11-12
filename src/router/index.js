@@ -2,6 +2,11 @@ import { createRouter, createWebHashHistory } from "vue-router";
 const RouterMap = [
   {
     path: '/',
+    redirect: { name: 'Home' }
+  },
+  {
+    path: '/home',
+    name:"Home",
     component: () => import('@/views/entry/home.vue')
   },
   {
