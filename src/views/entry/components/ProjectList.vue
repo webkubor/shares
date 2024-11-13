@@ -1,6 +1,5 @@
 
 <template>
-  <n-divider title-placement="center">关于项目</n-divider>
   <n-grid
     cols="1 s:1 m:1 l:2 xl:3 2xl:3"
     x-gap="15"

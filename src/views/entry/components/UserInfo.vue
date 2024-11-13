@@ -1,15 +1,15 @@
 <template>
-
-  <div class="about-me column-center">
+  <div class="full-page">
+    <div class="about-me">
     <n-popover trigger="hover">
       <template #trigger>
         <div class="love-headers">
           <n-avatar round :size="100"
             src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp"
-            @click="swtichTheme" />
+            @click="toggleTheme" />
         </div>
       </template>
-      <span> {{ $t("this") }} {{ user.name }}</span>
+      <span> this is {{ user.name }}</span>
     </n-popover>
 
     <span class="sign">
@@ -17,49 +17,47 @@
       <span></span>
     </span>
     <n-space>
-      <n-watermark v-if="show" content="大家艰苦一下，一切都会有的" cross fullscreen :font-size="16" :line-height="16" :width="384"
-        :height="384" :x-offset="12" :y-offset="60" :rotate="-15" />
-      <n-switch v-model:value="show">
-        <template #checked>
-          自然赠予你，树冠 微风 肩头的暴雨
-        </template>
-        <template #unchecked>
-          片刻后生成，平衡 忠诚 不息的身体
-        </template>
-      </n-switch>
       <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round>
         {{ item }}
       </n-tag>
-      <div id="demoCanvas"></div>
     </n-space>
   </div>
+  </div>
+ 
 
 </template>
 <script setup>
 import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
-import {  ref } from "vue"
 
 let { user, updateAge } = useUser();
-let { swtichTheme } = useTheme();
-
-let show = ref(false)
+let { switchTheme,local } = useTheme();
 
 updateAge("logo.jpeg");
 
-
-
-
+function toggleTheme() {
+  switchTheme(local.osTheme === "light");
+}
 
 </script>
 
 <style lang="scss" scoped>
+.full-page {
+  min-height: 100vh;
+  width: 100%;
+}
 .about-me {
-  padding: 1rem 0 1rem;
+  margin: 25vh auto ;
   font-size: 12px;
-
-
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  color: var(--webkubor-text-primary);
+  filter: drop-shadow(0 0 2px var(--webkubor-text-primary));
+  padding: 20px 30px;
 
   .love-headers {
     display: flex;
@@ -89,21 +87,24 @@ updateAge("logo.jpeg");
   .sign {
     display: block;
     font-weight: 500;
-    font-size: 20px;
-    margin: 20px ;
+    font-size: 30px;
+    margin: 40px;
     cursor: pointer;
+   color: var(--webkubor-text-primary);
     span {
-      background: #000000;
+      background: var(--webkubor-text-primary);
       height: 2px;
       width: 0px;
       display: block;
-    transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
     }
+
     &:hover {
       background-size: 100% 2px;
+
       span {
-      width: 100%;
-    }
+        width: 100%;
+      }
     }
   }
 }

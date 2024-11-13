@@ -1,5 +1,4 @@
 <template>
-  <n-divider title-placement="center">工具包</n-divider>
   <n-space vertical>
     <n-card title="人机验证">
       <n-space>
@@ -10,14 +9,6 @@
     </n-card>
     <n-card title="特殊功能试验区">
       <n-space>
-        <n-button v-if="isAddToHomeAvailable" @click="openAddFlow">
-          添加到主屏幕
-        </n-button>
-        <!-- 显示 iOS 手动添加的提示 -->
-        <div v-if="showAddTipsDialog">
-          请手动添加到主屏幕：点击 Safari 浏览器底部的分享按钮，然后选择“添加到主屏幕”。
-        </div>
-        
         <n-button :color="getRandomColor()" ghost @click="$router.push('/chat/room')">聊天室(未完成)</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/watermark')">图片水印添加</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/font')">小说封面</n-button>
@@ -56,8 +47,6 @@
 </template>
 <script setup lang="ts">
 import SpiderView from "@/components/Spider.vue"
-import { useAddToHomeScreen } from "@/hooks/useAddToHomeScreen"
 import { getRandomColor } from "@/utils/random";
-const { showAddTipsDialog, isAddToHomeAvailable, openAddFlow } = useAddToHomeScreen();
 
 </script>

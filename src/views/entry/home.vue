@@ -2,9 +2,17 @@
 <template>
   <n-card>
     <UserInfo />
-    <ToolView/>
-    <ProjectList />
-    <LifeShare />
+    <n-tabs type="segment" animated>
+    <n-tab-pane name="chap1" tab="技术博客">
+      <LifeShare />
+    </n-tab-pane>
+    <n-tab-pane name="chap2" tab="有趣的尝试">
+      <ToolView/>
+    </n-tab-pane>
+    <n-tab-pane name="chap3" tab="项目展示">
+      <ProjectList />
+    </n-tab-pane>
+  </n-tabs>
   </n-card>
 </template>
 <script setup >

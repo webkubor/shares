@@ -1,6 +1,6 @@
 
 import {  darkTheme, lightTheme } from "naive-ui";
-import { reactive, ref } from "vue";
+import { reactive, ref, onMounted, onBeforeUnmount } from "vue";
 import { GlobalThemeOverrides } from "naive-ui";
 let local: any = reactive({
   theme: null,
@@ -9,7 +9,7 @@ let local: any = reactive({
 let allThemeOverrides = ref({});
 
 // 公共主题色及尺寸大小配置
-const themeOverrides: GlobalThemeOverrides = reactive({
+const baseThemeOverrides: GlobalThemeOverrides = reactive({
   common: {
     fontWeightStrong: "600",
     successColor: "#30C0A2",
@@ -192,36 +192,59 @@ const themeOverridesDark: GlobalThemeOverrides = reactive({
 
 
 export function useTheme() {
-  function swtichTheme() {
-    if (local.osTheme === "dark") {
-      local.theme = lightTheme;
-      local.osTheme = "light";
-      if (document.body.classList.contains("dark_theme")) {
-        document.body.classList.remove("dark_theme");
-        document.body.classList.add("light_theme");
-        allThemeOverrides.value = Object.assign(themeOverridesLight, themeOverrides);
+     // 自动切换系统主题
+     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+  
+    // 切换主题方法
+    const switchTheme = (toDark = false) => {
+      if (toDark) {
+          local.theme = darkTheme;
+          local.osTheme = "dark";
+  
+          // 确保替换或添加正确的类
+          document.body.classList.remove("light_theme");
+          document.body.classList.add("dark_theme");
+          
+          console.log(document.body.classList); // 调试输出
+  
+          allThemeOverrides.value = { ...baseThemeOverrides, ...themeOverridesDark };
+      } else {
+          local.theme = lightTheme;
+          local.osTheme = "light";
+  
+          // 确保替换或添加正确的类
+          document.body.classList.remove("dark_theme");
+          document.body.classList.add("light_theme");
+          
+          console.log(document.body.classList); // 调试输出
+  
+          allThemeOverrides.value = { ...baseThemeOverrides, ...themeOverridesLight };
       }
+  };
+
+  // 初始化主题并监听系统主题变化
+  const initTheme = () => {
+    if (mediaQuery.matches) {
+        switchTheme(true);  // 系统默认暗色
     } else {
-      local.theme = darkTheme;
-      local.osTheme = "dark";
-      document.body.classList.remove("light_theme");
-      document.body.classList.add("dark_theme");
-      window.$message?.success("白天不懂夜的黑~~")
-      allThemeOverrides.value = Object.assign(themeOverridesDark, themeOverrides);
+        switchTheme(false); // 系统默认亮色
     }
-  }
+
+    // 监听系统主题变化
+    mediaQuery.addEventListener("change", (event) => {
+        switchTheme(event.matches);
+    });
+};
 
 
-  function initTheme() {
-    local.theme = lightTheme;
-    local.osTheme = "light";
-    document.body.classList.add("light_theme");
-    allThemeOverrides.value = Object.assign(themeOverridesLight, themeOverrides);
-  }
+  // 组件卸载时移除事件监听
+  onMounted(() => initTheme());
+  onBeforeUnmount(() => mediaQuery.removeEventListener("change", switchTheme));
 
   return {
     allThemeOverrides,
-    swtichTheme,
+    switchTheme,
     initTheme,
     local,
   };
@@ -229,10 +252,3 @@ export function useTheme() {
 
 
 
-
-
-export let backgroundBg = [
-  'https://cdn.pixabay.com/photo/2023/11/02/16/47/dawn-8361032_960_720.jpg',
-  'https://cdn.pixabay.com/photo/2016/10/21/15/59/sun-1758348_1280.jpg',
-  'https://cdn.pixabay.com/photo/2023/01/08/09/33/jellyfish-7704800_1280.jpg'
-]

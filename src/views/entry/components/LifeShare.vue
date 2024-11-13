@@ -1,5 +1,4 @@
 <template>
-  <n-divider title-placement="center"> 关于我近期的生活 </n-divider>
   <div class="mylife">
     <n-grid
       cols="1 s:1 m:1 l:1 xl:1 2xl:1"
@@ -10,7 +9,7 @@
       <n-grid-item>
         <iframe
           class="weibo"
-          src="https://www.yuque.com/webkubor/life"
+          src="https://www.yuque.com/webkubor/blog"
           frameborder="0"
         ></iframe>
       </n-grid-item>

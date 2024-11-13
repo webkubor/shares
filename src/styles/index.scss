@@ -14,34 +14,18 @@ $default-input-placeholder:#D7B9B9;
 
 :root {
     --plyr-color-main: $primary-color;
+    --webkubor-bg:#ffffff;
+    --webkubor-text-primary: #000000;
 }
 
 .light_theme {
-  --webkubor-text-primary: #333333;
-  --webkubor-desc-primary: #999999;
-  --webkubor-card-level-1: #f5f7fa;
-  --webkubor-card-level-2: #ffffff;
-  --webkubor-card-level-3: #eeeeee;
-  --webkubor-divider: #e5e5e5;
-  --webkubor-popover-hover-item: #f5f7fa;
-  --webkubor-shadow: #D1D1D1;
+  --webkubor-bg:#ffffff;
+  --webkubor-text-primary: #000000;
 }
 .dark_theme {
+  --webkubor-bg:#000000;
   --webkubor-text-primary: #ffffff;
-  --webkubor-desc-primary: #9a9999;
-  --webkubor-card-level-1: #030303;
-  --webkubor-card-level-2: #171a1d;
-  --webkubor-card-level-3: #0c0e10;
-  --webkubor-divider: #272b30;
-  --webkubor-popover-hover-item: #171a1d;
-  --webkubor-shadow: #1B1B1B;
 }
-
-
-* {
-  box-sizing: border-box;
-}
-
 
 @font-face {
     font-family: 'AiChinese01';
