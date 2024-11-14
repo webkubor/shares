@@ -21,9 +21,13 @@ import ProjectList from "./components/ProjectList.vue";
 import LifeShare from "./components/LifeShare.vue";
 import ToolView from './components/Tool.vue'
 import { useMessage, useNotification, useDialog } from "naive-ui";
+import { useMusic } from "@/hooks/useMusic";
+
+
 window.$message = useMessage();
 window.$notification = useNotification();
 window.$dialog = useDialog();
+const {initBackgroundMusic} = useMusic()
 
 window.addEventListener('vite:preloadError', (event) => {
   window.$message?.warning('检测到有新版本，5秒后即将自动刷新...');
@@ -32,6 +36,7 @@ window.addEventListener('vite:preloadError', (event) => {
       console.log('页面已更新为最新版本...');
     }, 5000)
   })
+  initBackgroundMusic()
 
 
 </script>

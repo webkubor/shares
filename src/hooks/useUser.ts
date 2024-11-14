@@ -1,7 +1,3 @@
-/*
- * @Date: 2021-10-13 14:03:05
- * @LastEditTime: 2024-09-19 15:05:34
- */
 import { reactive } from "vue";
 import dayjs from "@/utils/dayjs";
 
@@ -13,33 +9,7 @@ const user = reactive({
   Guideline: 1,
   isfirstLogin:true,
   personalSign: "Unkillable makes you stronger",
-  tags: [ "前端开发工程师", "ENFP", "网易云音乐人", "小说作家"],
-  timeLine: [
-    {
-      title: "成功",
-      content: "哪里成功",
-      time: "2018-04-03 20:46",
-      show:"https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg",
-    },
-    {
-      title: "成功",
-      content: "哪里成功",
-      time: "2018-04-03 20:46",
-      show:"https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
-    },
-    {
-      title: "成功",
-      content: "哪里成功",
-      time: "2018-04-03 20:46",
-      show:"https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
-    },
-    {
-      title: "成功",
-      content: "哪里成功",
-      time: "2018-04-03 20:46",
-      show:"https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
-    }
-  ]
+  tags: [ "前端开发工程师", "网易云音乐人", "签约小说作家", "新民乐爱好者"],
 });
 
 export function useUser() {

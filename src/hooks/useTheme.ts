@@ -205,9 +205,6 @@ export function useTheme() {
           // 确保替换或添加正确的类
           document.body.classList.remove("light_theme");
           document.body.classList.add("dark_theme");
-          
-          console.log(document.body.classList); // 调试输出
-  
           allThemeOverrides.value = { ...baseThemeOverrides, ...themeOverridesDark };
       } else {
           local.theme = lightTheme;
@@ -216,9 +213,6 @@ export function useTheme() {
           // 确保替换或添加正确的类
           document.body.classList.remove("dark_theme");
           document.body.classList.add("light_theme");
-          
-          console.log(document.body.classList); // 调试输出
-  
           allThemeOverrides.value = { ...baseThemeOverrides, ...themeOverridesLight };
       }
   };

@@ -38,6 +38,7 @@ declare module 'vue' {
     NWatermark: typeof import('naive-ui')['NWatermark']
     Spider: typeof import('./src/components/Spider.vue')['default']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']
+    WaveAnimation: typeof import('./src/components/WaveAnimation/index.vue')['default']
   }
 }
 

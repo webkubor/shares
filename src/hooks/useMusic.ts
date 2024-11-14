@@ -54,6 +54,7 @@ function initBackgroundMusic() {
     currentBgMusic.value = new Audio(bgMusic);
     currentBgMusic.value.loop = true;
     currentBgMusic.value.play();
+    console.log('initBackgroundMusic',currentBgMusic.value);
 }
 
 export function useMusic() {

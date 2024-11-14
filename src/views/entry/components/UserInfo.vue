@@ -1,29 +1,29 @@
 <template>
   <div class="full-page">
     <div class="about-me">
-    <n-popover trigger="hover">
-      <template #trigger>
-        <div class="love-headers">
-          <n-avatar round :size="100"
-            src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp"
-            @click="toggleTheme" />
-        </div>
-      </template>
-      <span> this is {{ user.name }}</span>
-    </n-popover>
+      <n-popover trigger="hover">
+        <template #trigger>
+          <div class="love-headers">
+            <n-avatar round :size="100"
+              src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp"
+              @click="toggleTheme" />
+          </div>
+        </template>
+        <span> this is {{ user.name }}</span>
+      </n-popover>
 
-    <span class="sign">
-      {{ user.personalSign }}
-      <span></span>
-    </span>
-    <n-space>
-      <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round>
-        {{ item }}
-      </n-tag>
-    </n-space>
+      <span class="sign">
+        {{ user.personalSign }}
+        <span></span>
+      </span>
+      <n-space>
+        <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round>
+          {{ item }}
+        </n-tag>
+      </n-space>
+    </div>
   </div>
-  </div>
- 
+
 
 </template>
 <script setup>
@@ -32,7 +32,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
 
 let { user, updateAge } = useUser();
-let { switchTheme,local } = useTheme();
+let { switchTheme, local } = useTheme();
 
 updateAge("logo.jpeg");
 
@@ -46,9 +46,11 @@ function toggleTheme() {
 .full-page {
   min-height: 100vh;
   width: 100%;
+  position: relative;
 }
+
 .about-me {
-  margin: 25vh auto ;
+  margin: 25vh auto;
   font-size: 12px;
   text-align: center;
   display: flex;
@@ -56,8 +58,9 @@ function toggleTheme() {
   align-items: center;
   width: 50%;
   color: var(--webkubor-text-primary);
-  filter: drop-shadow(0 0 2px var(--webkubor-text-primary));
   padding: 20px 30px;
+  @include glass-effect(#e7e5e4, 10, 0.09);
+
 
   .love-headers {
     display: flex;
@@ -90,7 +93,8 @@ function toggleTheme() {
     font-size: 30px;
     margin: 40px;
     cursor: pointer;
-   color: var(--webkubor-text-primary);
+    color: var(--webkubor-text-primary);
+
     span {
       background: var(--webkubor-text-primary);
       height: 2px;
@@ -101,32 +105,12 @@ function toggleTheme() {
 
     &:hover {
       background-size: 100% 2px;
+      filter: drop-shadow(0 0 10px var(--webkubor-text-primary));
 
       span {
         width: 100%;
       }
     }
-  }
-}
-
-.switch-btn {
-  position: absolute;
-  font-size: 14px;
-  right: 50px;
-  top: 50px;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
-  background-color: #A04CF8;
-  color: #ffffff;
-  border-radius: 50%;
-  text-align: center;
-  font-family: PingFangSC-Regular, Microsoft Yahei, \\5FAE\8F6F\96C5\9ED1, sans-serif;
-
-  &:hover {
-    cursor: pointer;
-    filter: drop-shadow(0 0 1em #a04cf7);
-    user-select: none;
   }
 }
 </style>

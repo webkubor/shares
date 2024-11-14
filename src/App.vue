@@ -14,8 +14,10 @@
 <script setup>
 import { useTheme } from "@/hooks/useTheme";
 import { onMounted } from "vue";
+import {prettyLog} from "@/utils/log";
 let { allThemeOverrides, local, initTheme } = useTheme();
 
+window.log = prettyLog();
 onMounted(() => {
   initTheme();
 })
