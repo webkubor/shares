@@ -51,14 +51,6 @@ const RouterMap = [
     component: () => import("@/views/xbox/betting.vue")
   },
   {
-    path: '/xbox/card',
-    name: 'xobxCsgo',
-    meta: {
-      title: "卡片交互"
-    },
-    component: () => import("@/views/xbox/cards.vue")
-  },
-  {
     path: '/xbox/battle',
     name: 'Battle',
     meta: {
