@@ -1,12 +1,6 @@
 <template>
         <n-card>
                 <n-space>
-                        <n-card title="文字下划线" class="border-common ">
-                                <div class="text-flow">
-                                        自然赠予你，树冠 微风 肩头的暴雨,片刻后生成，平衡 忠诚 不息的身体
-                                </div>
-
-                        </n-card>
                         <n-card title="指定路径滑动" class="border-common ">
                                 <div class="circle">
                                 </div>
@@ -91,21 +85,7 @@ const handleClick = (event) => {
         filter: drop-shadow(0 0 20px $default-gold-color);
 }
 
-.text-flow {
-        position: relative;
-        font-weight: 400;
-        font-size: 16px;
-        cursor: pointer;
-        display: inline-block;
 
-        &::after {
-                content: "";
-                display: block;
-                border-bottom: 1px solid black;
-                width: 100%;
-        }
-
-}
 
 
 .area {

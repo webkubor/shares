@@ -44,13 +44,13 @@ function toggleTheme() {
 
 <style lang="scss" scoped>
 .full-page {
-  min-height: 100vh;
+  min-height: 50vh;
   width: 100%;
   position: relative;
 }
 
 .about-me {
-  margin: 25vh auto;
+  margin: 5vh auto;
   font-size: 12px;
   text-align: center;
   display: flex;
