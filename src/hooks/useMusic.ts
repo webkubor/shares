@@ -50,7 +50,7 @@ function onClickBox() {
 
 function initBackgroundMusic() {
     let soundSwitch = localStorage.getItem("soundSwitch");
-    if (soundSwitch == 'false') return
+    if (soundSwitch == 'false'|| currentBgMusic.value) return
     currentBgMusic.value = new Audio(bgMusic);
     currentBgMusic.value.loop = true;
     currentBgMusic.value.play();
