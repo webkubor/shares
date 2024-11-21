@@ -148,6 +148,7 @@ function onsubmit() {
 </script>
 
 <style lang="scss" scoped>
+
 $bg-color: #2c3e50;
 $theme-color: #E74C3C;
 
@@ -175,13 +176,14 @@ button {
 }
 
 .login-view {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 80px;
   background: #3F4566;
+  box-sizing: border-box;
 
   .login-box {
     width: 100%;

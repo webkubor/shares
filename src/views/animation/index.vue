@@ -106,8 +106,8 @@ const handleClick = (event) => {
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	background: $default-gold-color;
-	filter: drop-shadow(0 0 20px $default-gold-color);
+	background: #FFC000;
+	filter: drop-shadow(0 0 20px #FFC000);
 }
 
 

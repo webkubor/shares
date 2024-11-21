@@ -9,14 +9,12 @@
   },
   "type": "module",
   "dependencies": {
-    "@antv/g2plot": "^2.4.31",
     "@phosphor-icons/vue": "^2.2.1",
     "echarts": "^5.5.0",
     "gsap": "^3.12.5",
     "lodash": "^4.17.21",
     "mathjs": "^12.4.1",
     "plyr": "^3.7.8",
-    "three": "^0.169.0",
     "vue": "^3.3.8",
     "vue-clipboard3": "^2.0.0"
   },

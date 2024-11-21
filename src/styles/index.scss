@@ -1,19 +1,14 @@
 
 
 /* 主题色 */
-$primary-color: #007BFF;
+$default-primary: #F0000E;
 $warining-color: #FFB31C;
 $error-color: #F0000E;
 $info-color: #5E64DA;
 $success-color: #30C0A2;
-$default-primary: #F0000E;
-$default-active-color: #F59403;
-$default-underline-color: #5a5a5b;
-$default-gold-color: #FFC000;
-$default-input-placeholder:#D7B9B9;
 
 :root {
-    --plyr-color-main: $primary-color;
+    --plyr-color-main: $default-primary;
     --webkubor-bg:#ffffff;
     --webkubor-text-primary: #000000;
 }

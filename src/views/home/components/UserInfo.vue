@@ -1,5 +1,4 @@
 <template>
-  <div class="full-page">
     <div class="about-me">
       <n-popover trigger="hover">
         <template #trigger>
@@ -11,25 +10,23 @@
         </template>
         <span> this is {{ user.name }}</span>
       </n-popover>
-
       <span class="sign">
         {{ user.personalSign }}
         <span></span>
       </span>
-      <n-space>
+     <Waiting/>
+      <n-space style="margin-top: 20px;">
         <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round>
           {{ item }}
         </n-tag>
       </n-space>
     </div>
-  </div>
-
-
 </template>
 <script setup>
 import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
+import Waiting from "./Waiting.vue";
 
 let { user, updateAge } = useUser();
 let { switchTheme, local } = useTheme();
@@ -43,25 +40,22 @@ function toggleTheme() {
 </script>
 
 <style lang="scss" scoped>
-.full-page {
-  min-height: 50vh;
-  width: 100%;
-  position: relative;
-}
 
 .about-me {
+  width: 100%;
+  position: relative;
   margin: 5vh auto;
   font-size: 12px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  max-width: 1080px;
+  width: 50vw;
   color: var(--webkubor-text-primary);
   padding: 20px 30px;
-  @include glass-effect(#e7e5e4, 10, 0.09);
-
-
+  @include glass-effect($default-primary, 10, 0.09);
+  box-shadow: 0px 2px 10px $default-primary;
   .love-headers {
     display: flex;
     align-items: center;
@@ -91,7 +85,7 @@ function toggleTheme() {
     display: block;
     font-weight: 500;
     font-size: 30px;
-    margin: 40px;
+    margin: 40px 30px 10px;
     cursor: pointer;
     color: var(--webkubor-text-primary);
 

@@ -7,7 +7,7 @@ const RouterMap = [
   {
     path: '/home',
     name:"Home",
-    component: () => import('@/views/entry/home.vue')
+    component: () => import('@/views/home/index.vue')
   },
   {
     path: '/chat/room',
@@ -101,22 +101,6 @@ const RouterMap = [
     component: () => import("@/views/show/watermark/index.vue")
   },
   {
-    path: '/show/buttons',
-    name: 'Button',
-    meta: {
-      title: "Button"
-    },
-    component: () => import("@/views/show/btns.vue")
-  },
-  {
-    path: '/three/index',
-    name: 'Three',
-    meta: {
-      title: "Three"
-    },
-    component: () => import("@/views/three/index.vue")
-  },
-  {
     path: '/show/font',
     name: 'Font',
     meta: {
@@ -132,22 +116,7 @@ const RouterMap = [
     },
     component: () => import("@/views/show/colors.vue")
   },
-  {
-    path: '/loading',
-    name: 'Loading',
-    meta: {
-      title: "Loading"
-    },
-    component: () => import("@/views/loading/index.vue")
-  },
-  {
-    path: '/chart',
-    name: 'chartLine',
-    meta: {
-      title: "chartLine"
-    },
-    component: () => import("@/views/chart/index.vue")
-  },
+ 
   {
     path: '/show/tabbar',
     name: 'Tabbar',
@@ -185,7 +154,7 @@ const RouterMap = [
 const routes = [
   {
     path: '/:pathMatch(.*)*',
-    name: '404',
+    redirect: 'Home',
     component: () => import('@/views/notFound.vue')
   },
   ...RouterMap

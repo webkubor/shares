@@ -9,7 +9,7 @@
     <n-grid-item v-for="(item, index) in projects.list">
       <n-card :title="item.title" v-ripple="{ color: '#5e7ce0',duration: 500, delay: 300 }" @click="toDetail(item.source)">
         <template #cover>
-          <n-image :src="item.pic"/>
+          <img :src="item.pic" />
         </template>
         <div class="content"  >
           <n-tag
@@ -21,7 +21,7 @@
             {{ item }}
           </n-tag>
           <div class="item">
-            <n-ellipsis :line-clamp="3">
+            <n-ellipsis :line-clamp="2">
               {{ item.descrition }}
             </n-ellipsis>
           </div>
@@ -50,13 +50,18 @@ function toDetail(URL:string) {
 
 </script>
 <style lang="scss" scoped>
+img {
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+}
 .n-card {
   max-width: 800px;
-  max-height: 580px;
+  height: 380px;
   cursor: pointer;
 }
 .content {
-  font-size: 18px;
+  font-size: 12px;
   .n-tag {
     margin-right: 4px;
   }
