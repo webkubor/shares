@@ -26,6 +26,14 @@ const RouterMap = [
     component: () => import("@/views/show/login/index.vue")
   },
   {
+    path: '/wallpaper',
+    name: 'Login',
+    meta: {
+      title: "壁纸样机生成器"
+    },
+    component: () => import("@/views/wallpaper/index.vue")
+  },
+  {
     path: '/rtc/index',
     name: 'Rtc',
     meta: {
@@ -167,7 +175,7 @@ const router = createRouter({
 
 
 router.beforeEach(async (to, from, next) => {
-  document.title = to.meta.title ?  to.meta.title + '| webkubor': 'webkubor | 在线工作台'
+  document.title = to.meta.title ?  to.meta.title + ' | webkubor': 'webkubor | 在线工作台'
   next()
 })
 
