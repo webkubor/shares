@@ -7,7 +7,6 @@
 </template>
 <script setup lang="ts">
 import MovieCom from './video/index.vue';
-document.title = "弹幕测试"
 </script>
 <style scoped lang="scss">
 @keyframes jumbo {

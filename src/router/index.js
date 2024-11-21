@@ -167,7 +167,7 @@ const router = createRouter({
 
 
 router.beforeEach(async (to, from, next) => {
-  document.title = to.meta.title ?? 'webkubor'
+  document.title = to.meta.title ?  to.meta.title + '| webkubor': 'webkubor | 在线工作台'
   next()
 })
 

@@ -11,42 +11,43 @@
         </n-space>
 
     </n-card>
-    <n-card  title="检索结果" v-if="searchList.length">
-            <n-space align="center" justify="space-between" class="card-row" v-for="(item, index) in searchList" :key="index">
-                <span>
-                    {{ item.id }}
-                </span>
-                <span>
-                    {{ item.name }}
-                </span>
-                <span>
-                    {{ item.email }}
-                </span>
-                <span>
+    <n-card title="检索结果" v-if="searchList.length">
+        <n-space align="center" justify="space-between" class="card-row" v-for="(item, index) in searchList"
+            :key="index">
+            <span>
+                {{ item.id }}
+            </span>
+            <span>
+                {{ item.name }}
+            </span>
+            <span>
+                {{ item.email }}
+            </span>
+            <span>
 
                 <n-button type="error" ghost @click="deleteUser(item.id)">
                     删除
                 </n-button>
-                </span>
+            </span>
 
-            </n-space>
+        </n-space>
     </n-card>
 
     <div id="card-container">
-      
-        <n-card >
+
+        <n-card>
             <n-space align="center" justify="space-between" class="card-row">
                 <span>
-                   ID
+                    ID
                 </span>
                 <span>
-                   名称
+                    名称
                 </span>
                 <span>
-                   邮箱
+                    邮箱
                 </span>
                 <span>
-                   操作
+                    操作
                 </span>
             </n-space>
         </n-card>
@@ -63,10 +64,10 @@
                 </span>
                 <span>
 
-                <n-button type="error" ghost @click="deleteUser(item.id)">
-                    删除
-                </n-button>
-            </span>
+                    <n-button type="error" ghost @click="deleteUser(item.id)">
+                        删除
+                    </n-button>
+                </span>
 
             </n-space>
         </n-card>
@@ -93,23 +94,24 @@ onMounted(async () => {
     await nextTick(); // 等待DOM更新
     initScroll()
     getAllUsers();
-    console.log(document.referrer,1111)
+    console.log(document.referrer, 1111)
 })
 
 
 
- function openUrl (){
+function openUrl() {
     router.replace({
         path: '/show/apple',
         query: {
             id: 1
-        }})
+        }
+    })
     // let target= "https://payment.tpservice.pro/#/pay/mx/store/P1783793418077667330?payWay=store"
     // window.open(target)
     // window.open(target, '_blank');
     // window.history.replaceState({}, '0', 'https://manager.959skins.com/#/login?redirect=/dashboard');
 
- }
+}
 
 // 添加用户数据
 async function addUser() {
@@ -223,23 +225,28 @@ function initScroll() {
 
 </script>
 <style lang="scss" scoped>
- .card-row {
-        margin-top: 10px;
-        span {
-            display: inline-block;
-            width: 200px;
-          text-align: center;
-        }
-        &:hover {
-            filter: drop-shadow(0px 0px 10px #FFB31C);
-        }
+.card-row {
+    margin-top: 10px;
+
+    span {
+        display: inline-block;
+        width: 200px;
+        text-align: center;
     }
+
+    &:hover {
+        filter: drop-shadow(0px 0px 10px #FFB31C);
+    }
+}
+
 #card-container {
     height: 400px;
     overflow: auto;
-    margin: 50px;
     border: 2px solid #FFB31C;
+    filter: drop-shadow(0px 0px 10px #FFB31C);
+    background: var(--webkubor-bg) ;
     font-weight: 600;
-   
+    height: calc(100vh - 100px) ;
+    padding-top: 10px;
 }
 </style>

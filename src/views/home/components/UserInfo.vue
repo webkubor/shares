@@ -55,7 +55,6 @@ function toggleTheme() {
   color: var(--webkubor-text-primary);
   padding: 20px 30px;
   @include glass-effect($default-primary, 10, 0.09);
-  box-shadow: 0px 2px 10px $default-primary;
   .love-headers {
     display: flex;
     align-items: center;
