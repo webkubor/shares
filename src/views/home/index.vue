@@ -1,5 +1,5 @@
 <template>
-  <n-card>
+  <n-card style="height: 100vh;">
     <UserInfo />
     <div class="show-container">
       <n-tabs type="segment" animated>

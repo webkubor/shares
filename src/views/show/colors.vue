@@ -25,42 +25,47 @@
     </n-card>
     <div class="control-window">
         <n-card title="基础-色板">
-        <template #header-extra>
-            <n-button tertiary :color="confirmColor" @click="onCollect('1')">
-                收起
-            </n-button>
-        </template>
-        <div class="color-list" v-if="!closeList.includes('1')">
-            <div class="color-item" v-for="item in solidColor" :key="item.color" @click="onConfirm(item.color)">
-                <div class="board" :style="{
-                    backgroundColor: item.color,
-                    filter: item.color === hoverColor ? `drop-shadow(0 0 2em ${item.color})` : 'none'
-                }" @mouseover="hoverColor = item.color" @mouseleave="hoverColor = ''" >
+            <template #header-extra>
+                <n-button tertiary :color="confirmColor" @click="onCollect('1')">
+                    收起
+                </n-button>
+            </template>
+            <div class="color-list" v-if="!closeList.includes('1')">
+                <div class="color-item" v-for="item in solidColor" :key="item.color" @click="onConfirm(item.color)">
+                    <div class="board" :style="{
+                        backgroundColor: item.color,
+                        filter: item.color === hoverColor ? `drop-shadow(0 0 2em ${item.color})` : 'none'
+                    }" @mouseover="hoverColor = item.color" @mouseleave="hoverColor = ''">
+                       <span>
+                        {{ item.description }}
+                       </span> 
+                    </div>
+                    <div class="name" :style="{ color: item.color }"> {{ item.name }}{{ item.color }}</div>
                 </div>
-                <div class="name" :style="{ color: item.color }"> {{ item.name }}{{ item.color }}</div>
             </div>
-        </div>
-    </n-card>
-    <n-card title="淡色-色板">
-        <template #header-extra>
-            <n-button tertiary :color="confirmColor" @click="onCollect('2')">
-                收起
-            </n-button>
-        </template>
-        <div class="color-list" v-if="!closeList.includes('2')">
-            <div class="color-item" v-for="item in paleColor" :key="item.color"  @click="onConfirm(item.color)">
-                <div class="board" :style="{
-                    backgroundColor: item.color,
-                    filter: item.color === hoverColor ? `drop-shadow(0 0 2em ${item.color})` : 'none'
-                }" @mouseover="hoverColor = item.color" @mouseleave="hoverColor = ''"
-            >
+        </n-card>
+        <n-card title="淡色-色板" style="margin-top: 20px;">
+            <template #header-extra>
+                <n-button tertiary :color="confirmColor" @click="onCollect('2')">
+                    收起
+                </n-button>
+            </template>
+            <div class="color-list" v-if="!closeList.includes('2')">
+                <div class="color-item" v-for="item in paleColor" :key="item.color" @click="onConfirm(item.color)">
+                    <div class="board dark" :style="{
+                        backgroundColor: item.color,
+                        filter: item.color === hoverColor ? `drop-shadow(0 0 2em ${item.color})` : 'none'
+                    }" @mouseover="hoverColor = item.color" @mouseleave="hoverColor = ''">
+                       <span>
+                        {{ item.description }}
+                       </span> 
+                    </div>
+                    <div class="name" :style="{ color: item.color }"> {{ item.name }}{{ item.color }}</div>
                 </div>
-                <div class="name" :style="{ color: item.color }"> {{ item.name }}{{ item.color }}</div>
             </div>
-        </div>
-    </n-card>
+        </n-card>
     </div>
-  
+
 </template>
 
 <script setup lang="ts">
@@ -73,43 +78,67 @@ const theme = ref('1')
 
 const closeList = ref([])
 const solidColor = [
+    // 红色系
     { name: '红色', color: '#f50057', description: '明亮、鲜艳的红色' },
-    { name: '橙色', color: '#ff6200', description: '鲜亮、充满活力的橙色' },
-    { name: '绿色', color: '#00c853', description: '清新、自然的绿色' },
-    { name: '青色', color: '#00bfa5', description: '冷静、沉稳的青色' },
-    { name: '蓝色', color: '#0077ff', description: '经典、深邃的蓝色' },
-    { name: '紫色', color: '#651fff', description: '深邃、神秘的紫色' },
     { name: '柔和红', color: '#ff6f91', description: '柔和的红色' },
-    { name: '浅橙色', color: '#ff9e6d', description: '柔和的橙色' },
-    { name: '柔和黄', color: '#ffe082', description: '柔和的黄色' },
-    { name: '浅绿色', color: '#66ffa6', description: '柔和的绿色' },
-    { name: '柔和青', color: '#5df2d6', description: '柔和的青色' },
-    { name: '浅蓝色', color: '#80bfff', description: '柔和的蓝色' },
-    { name: '柔和紫', color: '#9c8eff', description: '柔和的紫色' },
     { name: '蔷薇红', color: '#e91e63', description: '柔和、浪漫的红色' },
-    { name: '橘子橙', color: '#ff9800', description: '活力、热情的橙色' },
-    { name: '琥珀黄', color: '#ffc107', description: '明亮、温暖的黄色' },
-    { name: '薄荷绿', color: '#4caf50', description: '清新、自然的绿色' },
-    { name: '青竹蓝', color: '#00acc1', description: '冷静、沉稳的蓝色' },
-    { name: '靛青蓝', color: '#3f51b5', description: '经典、深邃的蓝色' },
-    { name: '午夜紫', color: '#673ab7', description: '深邃、神秘的紫色' },
     { name: '洋气红', color: '#c81045', description: '明亮且洋气的红色' },
     { name: '深红色', color: '#b03a2e', description: '深沉、具有深度的红色' },
     { name: '玫瑰红', color: '#d16d82', description: '典雅的玫瑰红色' },
     { name: '暗红色', color: '#7f1d1d', description: '更深邃的红色' },
+
+    // 橙色系
+    { name: '橙色', color: '#ff6200', description: '鲜亮、充满活力的橙色' },
+    { name: '浅橙色', color: '#ff9e6d', description: '柔和的橙色' },
+    { name: '橘子橙', color: '#ff9800', description: '活力、热情的橙色' },
+    { name: '琥珀黄', color: '#ffc107', description: '明亮、温暖的黄色' },
+    { name: '香槟橙', color: '#ffa726', description: '温暖且优雅的香槟橙' },
+
+    // 黄色系
+    { name: '柔和黄', color: '#ffe082', description: '柔和的黄色' },
+    { name: '琥珀黄', color: '#ffc107', description: '明亮、温暖的黄色' },
+    { name: '明亮黄', color: '#ffeb3b', description: '吸引目光的明亮黄色' },
+    { name: '柠檬黄', color: '#fdd835', description: '充满活力的柠檬黄色' },
+    { name: '金色', color: '#ffca28', description: '带有贵气的金黄色' },
+
+    // 绿色系
+    { name: '绿色', color: '#00c853', description: '清新、自然的绿色' },
+    { name: '浅绿色', color: '#66ffa6', description: '柔和的绿色' },
     { name: '明亮绿', color: '#2ecc71', description: '明亮且鲜艳的绿色' },
-    { name: '温暖绿', color: '#6abf69', description: '柔和、温暖的绿色' },
+    { name: '薄荷绿', color: '#4caf50', description: '清新、自然的绿色' },
     { name: '翠绿', color: '#009975', description: '强烈的翠绿色' },
     { name: '深森林绿', color: '#004d00', description: '更深沉、浓郁的森林绿' },
+    { name: '温暖绿', color: '#6abf69', description: '柔和、温暖的绿色' },
+
+    // 青色系
+    { name: '青色', color: '#00bfa5', description: '冷静、沉稳的青色' },
+    { name: '柔和青', color: '#5df2d6', description: '柔和的青色' },
+    { name: '青竹蓝', color: '#00acc1', description: '冷静、沉稳的蓝色' },
+    { name: '湖水青', color: '#76e4cc', description: '清澈且温和的湖水青' },
+    { name: '孔雀青', color: '#00897b', description: '高贵且深邃的孔雀青' },
+
+    // 蓝色系
+    { name: '蓝色', color: '#0077ff', description: '经典、深邃的蓝色' },
+    { name: '浅蓝色', color: '#80bfff', description: '柔和的蓝色' },
+    { name: '靛青蓝', color: '#3f51b5', description: '经典、深邃的蓝色' },
+    { name: '宝石蓝', color: '#2962ff', description: '深邃且晶莹的宝石蓝' },
+    { name: '极光蓝', color: '#00bcd4', description: '明亮、清新的极光蓝' },
+
+    // 紫色系
+    { name: '紫色', color: '#651fff', description: '深邃、神秘的紫色' },
+    { name: '柔和紫', color: '#9c8eff', description: '柔和的紫色' },
+    { name: '午夜紫', color: '#673ab7', description: '深邃、神秘的紫色' },
+    { name: '薰衣草紫', color: '#b39ddb', description: '浪漫且温柔的薰衣草紫' },
+    { name: '茄子紫', color: '#512da8', description: '沉稳且高雅的茄子紫' },
+
+    // 黑色系
     { name: '经典黑', color: '#000000', description: '纯黑色，经典而稳重' },
     { name: '炭黑', color: '#2c2c2c', description: '深灰色偏黑，现代感强' },
     { name: '墨黑', color: '#4a4a4a', description: '墨黑，带有温暖的深灰调' },
     { name: '午夜黑', color: '#101820', description: '深邃的午夜黑，带有些许蓝色调' },
-    { name: '珍珠黑', color: '#333333', description: '珍珠黑，带有光泽感' },
-    { name: '钢铁黑', color: '#3b3b3b', description: '钢铁黑，带有冷冽的金属感' },
-    { name: '炭灰黑', color: '#1c1c1c', description: '炭灰黑，深沉而略带暖意' },
-    { name: '天鹅绒黑', color: '#1a1a1a', description: '深沉的天鹅绒黑，柔和而优雅' }
+    { name: '钢铁黑', color: '#3b3b3b', description: '钢铁黑，带有冷冽的金属感' }
 ];
+
 
 const paleColor = [
     { name: '雪白', color: '#f8f9fa', description: '带有轻微灰度的白色，柔和舒适' },
@@ -151,12 +180,12 @@ const paleColor = [
 
 function onCollect(name) {
     if (closeList.value.includes(name)) {
-        closeList.value = closeList.value.filter(item => item!== name)
+        closeList.value = closeList.value.filter(item => item !== name)
         console.log(`output->移除`, closeList.value)
     } else {
         closeList.value.push(name)
     }
-    
+
 }
 const railStyle = ({
     focused,
@@ -189,9 +218,12 @@ function onConfirm(color: string) {
 
 <style lang="scss" scoped>
 .control-window {
-    height: 700px;
     overflow: scroll;
+    height: 100vh;
+    background: var(--webkubor-bg);
+    padding: 0 20px;
 }
+
 .color-list {
     display: flex;
     flex-wrap: wrap;
@@ -200,6 +232,7 @@ function onConfirm(color: string) {
     .color-item {
         margin: 20px;
         transition: all 0.3s;
+       
 
         .board {
             width: 150px;
@@ -207,12 +240,29 @@ function onConfirm(color: string) {
             cursor: pointer;
             border-radius: 8px;
             transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 600;
             /* 初始状态无阴影 */
             filter: none;
+            span {
+                display: none;
+            }
 
             &:hover {
                 transform: translateY(-4px) scale(1.05);
+                span {
+                display: block;
             }
+
+            }
+        }
+        .dark {
+            color: #333333;
         }
 
         .name {
