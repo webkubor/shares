@@ -1,23 +1,14 @@
 <template>
     <n-layout has-sider>
         <n-layout-sider bordered content-style="padding: 24px;" :width="350">
-            <n-card title="模型" style="margin-bottom: 16px">
-                <n-tabs type="line" animated size="large">
-                    <n-tab-pane name="移动端" tab="移动端">
-                        Wonderwall
-                    </n-tab-pane>
-                    <n-tab-pane name="PC" tab="PC">
-                        Hey Jude
-                    </n-tab-pane>
-                </n-tabs>
-            </n-card>
-            <n-card title="背景" style="margin-bottom: 16px">
-                    <n-space>
-                        <div class="bg-item" v-for="(item, index) in config.bg">
+            <ModeSilder/>
+            <n-card title="背景" style="margin-bottom: 16px" v-if="paperState.model === modelKeyType.phone">
+                <n-space>
+                    <div class="bg-item" v-for="(item, index) in config.bg">
                         <span>{{ item.name }}</span>
                         <img :src="item.src" alt="">
                     </div>
-                    </n-space>
+                </n-space>
             </n-card>
         </n-layout-sider>
         <n-layout>
@@ -28,12 +19,13 @@
             </n-layout-header>
             <n-layout-content content-style="padding: 24px;">
                 <div class="main-container">
-
                     <n-split direction="horizontal" style="height: 600px" :max="0.75" :min="0.25">
                         <template #1>
                             <n-card title="预览">
-                                <img
-                                    src="https://github.com/webkubor/picx-images-hosting/raw/master/scenery/18159759251_A_laptop_with_photo_editing_software_on_the_screen__a1d46b9a-55c4-4f83-b66f-0e6f4b44bcd6.1vyojlordy.webp">
+                                <div class="frame-border">
+                                    <img
+                                    :src="paperState.modelSrc">
+                                </div>
                             </n-card>
                         </template>
                         <template #2>
@@ -46,7 +38,12 @@
                                         桌面
                                     </n-tab-pane>
                                 </n-tabs>
-                                <n-button type="primary">下载样图</n-button>
+                                <n-space>
+                                    <n-button type="primary">下载样图</n-button>
+                                    <n-button type="primary">添加水印</n-button>
+                                    <n-button type="primary">添加标题</n-button>
+                                </n-space>
+
                             </n-card>
                         </template>
                     </n-split>
@@ -60,8 +57,12 @@
     </n-layout>
 </template>
 <script setup lang="ts">
+import ModeSilder from "./components/ModeSilder.vue";
+import  {useWallpaper} from "./useWallpaper"
 import config from "./config.json"
-console.log(config.bg);
+const {modelKeyType,paperState} = useWallpaper()
+console.log(config.bg, "config.bg");
+console.log(config.mobile, "config.mobile");
 
 </script>
 <style lang="scss" scoped>
@@ -82,23 +83,34 @@ console.log(config.bg);
 
 
 
-    .bg-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 1px solid #fffff0;
-        background: #fffff0;
-        color: #333333;
+.bg-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #fffff0;
+    background: #fffff0;
+    color: #333333;
 
-        img {
-            width: 100px;
-        }
-
-        span {
-            font-weight: 600;
-            font-size: 16px;
-        }
+    img {
+        width: 100px;
     }
+
+    span {
+        font-weight: 600;
+        font-size: 16px;
+    }
+}
+
+.frame-border {
+    position: relative;
+    img {
+        height: 400px;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+
 
 .main-foter {
     width: 100%;
