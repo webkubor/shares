@@ -11,34 +11,30 @@
         {
             "name": "花",
             "src": "https://github.com/webkubor/picx-images-hosting/raw/master/plain-background/8da78db217aaacd0ddebe362cfe4b014106a65ff.8vmy1jxuxm.jpeg"
-        },{
+        },
+        {
             "name": "耳机2",
-            "src":"https://github.com/webkubor/picx-images-hosting/raw/master/plain-background/e6ce4ba8f59265c37479750029587906495b840a.5fkm9gnscq.png"
+            "src": "https://github.com/webkubor/picx-images-hosting/raw/master/plain-background/e6ce4ba8f59265c37479750029587906495b840a.5fkm9gnscq.png"
         }
     ],
-    "mobile":{
-        "phone":{
-            "table": "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/desktop-app-icon-2-2b153438.2rv5z7sffs.png",
-            "frame": "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/iphone.1sf2m1pjpv.png"
-        },
-        "android":{
-            "table": "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/desktop-app-icon-2-2b153438.2rv5z7sffs.png",
-            "frame": "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/iphone.1sf2m1pjpv.png"
-        }
+    "mobile": {
+        "frame": "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/iphone.1sf2m1pjpv.png",
+        "interfaces": [
+            "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/desktop-app-icon-2-2b153438.2rv5z7sffs.png"
+        ]
     },
     "ipad": [
         "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/5de191e1d26b0a93a681cfc6f9937da19bec609b.83a2k3vel8.jpg"
     ],
-    "remix":[ ],
-    "wallpapers":[
+    "remix": [],
+    "wallpapers": [
         {
-            "name":"雪山1",
-            "src":"https://github.com/webkubor/picx-images-hosting/raw/master/scenery/18159759251_Snowy_mountain_landscape_photo_HD_camera_shot_best__c2f3ea8e-8d52-45c9-ae04-f0d890ad42f3.5c10c1ga65.png"
+            "name": "雪山1",
+            "src": "https://github.com/webkubor/picx-images-hosting/raw/master/scenery/18159759251_Snowy_mountain_landscape_photo_HD_camera_shot_best__c2f3ea8e-8d52-45c9-ae04-f0d890ad42f3.5c10c1ga65.png"
         },
         {
-            "name":"雪山2",
-            "src":"https://github.com/webkubor/picx-images-hosting/raw/master/scenery/18159759251_Snowy_mountain_landscape_photo_HD_camera_shot_best__6df1165a-eae2-44a8-8e01-c2af86448377.26lid3lv9e.png"
+            "name": "雪山2",
+            "src": "https://github.com/webkubor/picx-images-hosting/raw/master/scenery/18159759251_Snowy_mountain_landscape_photo_HD_camera_shot_best__6df1165a-eae2-44a8-8e01-c2af86448377.26lid3lv9e.png"
         }
-
-    ] 
+    ]
 }

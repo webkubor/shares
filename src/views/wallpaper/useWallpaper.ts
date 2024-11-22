@@ -1,7 +1,5 @@
-import { number } from "echarts"
 import { reactive } from "vue"
-
-
+import config from "./config.json"
 enum modelKeyType {
     "phone" = 1, //手机
     "ipad" = 2, //ipad
@@ -9,24 +7,20 @@ enum modelKeyType {
 }
 
 const paperState = reactive({
-    bg: null,
-    model: 1,
-    modelSrc: "",
+    bg: config.bg[0].src, //背景
+    model: modelKeyType.phone, // 1手机 2ipad 3混合
+    modelSrc: config.mobile.frame, //终端图片
+    interface: config.mobile.interfaces[0], //图标界面
+    wallpaper: config.wallpapers[0] //壁纸
 })
 
 export function useWallpaper() {
-
-
-
     function setBg(src) {
         paperState.bg = src
+        console.log("setBg", src);
+        window.$toast?.success("setBg success")
     }
 
-    function setModel(model: modelKeyType | null) {
-        paperState.model = Number(model)
-        window.$toast?.success("setModel success")
-        console.log("setModel", paperState.model);
-    }
     function setModelSrc(modelSrc: string | null) {
         paperState.modelSrc = modelSrc
         window.$toast?.success("setModelSrc Success")
@@ -34,12 +28,17 @@ export function useWallpaper() {
     }
 
 
+    function onSetFace(face:string) {
+        paperState.interface = face
+        window.$toast?.success("onSetFace Success")
+    }
+
 
     return {
         paperState,
         setModelSrc,
+        onSetFace,
         modelKeyType,
-        setModel,
         setBg
     }
 

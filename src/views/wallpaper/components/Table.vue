@@ -1,39 +1,36 @@
 <template>
 
     <div class="main-container">
-        <n-split direction="horizontal" style="height: 600px" :max="0.75" :min="0.25">
+        <n-split direction="horizontal" :max="0.85" :min="0.25">
             <template #1>
                 <n-card title="预览">
-                    <div class="frame-border">
-                        <img :src="paperState.modelSrc">
+                    <!-- 背景素材 -->
+                    <div class="bg-view" :style="{ background: `url(${paperState.bg}) no-repeat center/cover` }">
+                        <div class="frame-border" :style="{ background: `url(${paperState.modelSrc}) no-repeat center/cover` }">
+                            <img v-if="paperState.interface" :src="paperState.interface" alt="" srcset="">
+                        </div>
                     </div>
                 </n-card>
             </template>
             <template #2>
-                <n-card title="操作">
-                    <n-tabs type="segment" animated size="large">
-                        <n-tab-pane name="1" tab="锁屏">
-                            锁屏
-                        </n-tab-pane>
-                        <n-tab-pane name="2" tab="桌面">
-                            桌面
-                        </n-tab-pane>
-                    </n-tabs>
+
+                <RightView />
+                <n-card title="操作栏">
                     <n-space>
                         <n-button type="primary">下载样图</n-button>
                         <n-button type="primary">添加水印</n-button>
                         <n-button type="primary">添加标题</n-button>
                     </n-space>
-
                 </n-card>
+
             </template>
         </n-split>
     </div>
 </template>
 <script setup lang="ts">
 import { useWallpaper } from "../useWallpaper"
-import config from "../config.json"
-const { modelKeyType, paperState } = useWallpaper()
+import RightView from "./RightView.vue";
+const { paperState } = useWallpaper()
 
 </script>
 <style lang="scss" scoped>
@@ -42,13 +39,20 @@ const { modelKeyType, paperState } = useWallpaper()
     font-size: 16px;
     height: 80vh;
 
-    .frame-border {
+    .bg-view {
         position: relative;
-
-        img {
+        border: 2px solid $default-primary;
+        height: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .frame-border {
             height: 400px;
+            width: 200px;
             display: block;
-            margin: 0 auto;
+            img {
+                width: 90%;
+            }
         }
     }
 

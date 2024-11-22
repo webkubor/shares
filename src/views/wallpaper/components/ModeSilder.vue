@@ -3,13 +3,9 @@
         <n-tabs type="line" animated size="large" v-model:value="paperState.model">
             <n-tab-pane :name="1" tab="移动端">
                 <n-space>
-                    <div class="m-item" @click="setModelSrc(config.mobile.phone.frame)">
-                        <img :src="config.mobile.phone.frame" alt="">
+                    <div class="m-item" @click="setModelSrc(config.mobile.frame)">
+                        <img :src="config.mobile.frame" alt="">
                         <span>苹果</span>
-                    </div>
-                    <div class="m-item" @click="setModelSrc(config.mobile.android.frame)">
-                        <img :src="config.mobile.android.frame" alt="">
-                        <span>安卓</span>
                     </div>
                 </n-space>
             </n-tab-pane>
