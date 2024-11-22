@@ -1,7 +1,7 @@
 <template>
     <n-card style="margin-bottom: 16px;height: 50vh;">
         <n-tabs type="line" animated size="large" v-model:value="paperState.model">
-            <n-tab-pane name="1" tab="移动端">
+            <n-tab-pane :name="1" tab="移动端">
                 <n-space>
                     <div class="m-item" @click="setModelSrc(config.mobile.phone.frame)">
                         <img :src="config.mobile.phone.frame" alt="">
@@ -13,13 +13,14 @@
                     </div>
                 </n-space>
             </n-tab-pane>
-            <n-tab-pane name="2" tab="PC">
-                <div class="pc-item" v-for="(item,index) in config.pc" @click="setModelSrc(item)">
+            <n-tab-pane :name="2" tab="ipad">
+                <div class="pc-item" v-for="(item,index) in config.ipad" @click="setModelSrc(item)">
                     <img :src="item" >
                     <span>{{ index + 1 }}</span>
                 </div>
             </n-tab-pane>
-            <n-tab-pane name="3" tab="混合">
+            <n-tab-pane :name="3" tab="混合">
+                <div v-if="config.remix.length === 0">当前功能暂未开放</div>
                 <div class="pc-item" v-for="(item,index) in config.remix" @click="setModelSrc(item)">
                     <img :src="item" >
                     <span>{{ index + 1 }}</span>

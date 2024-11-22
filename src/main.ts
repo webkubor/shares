@@ -5,7 +5,6 @@ import i18n from '@/plugins/i18n'
 import copy from "@/directives/copy";
 import ripple from "@/directives/ripple/index";
 
-
 createApp(App)
 .use(copy)
 .use(i18n)

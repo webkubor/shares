@@ -7,7 +7,7 @@
           <slot />
         </section>
         <div v-if="showProgress" class="progress-bar-container">
-          <div class="progress-bar" :style="{ width: `${progress}%`, backgroundColor: 'red' }"></div>
+          <div class="progress-bar" :style="{ width: `${progress}%`}"></div>
         </div>
       </main>
     </div>
@@ -108,7 +108,8 @@ export default {
   height: 100%;
   border-radius: 4px;
   transition: width 1s;
-  box-shadow: 0px 10px 40px -4px rgba(#e42121, 0.4);
+  background: $default-primary;
+  box-shadow: 0px 10px 40px -4px rgba($default-primary, 0.4);
 }
 
 .toast-message {
@@ -118,13 +119,13 @@ export default {
   right: 64px;
   top: 96px;
   margin-left: -325px;
-  background: linear-gradient(145deg, #e42121 2.89%, #23181E 20.36%);
-  box-shadow: 0px 10px 40px -4px rgba(#e42121, 0.4);
-  filter: drop-shadow(0 0 10px #e42121);
+  background: linear-gradient(145deg, $default-primary 2.89%, #23181E 20.36%);
+  box-shadow: 0px 10px 40px -4px rgba($default-primary, 0.4);
+  filter: drop-shadow(0 0 10px $default-primary);
   border-radius: 6px;
   z-index: 10000;
   transition: 0.3s;
-  border: 0.2px solid #e42121;
+  border: 0.2px solid $default-primary;
 
   .toast-message-content {
     position: relative;

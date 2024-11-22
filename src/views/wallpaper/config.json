@@ -26,12 +26,10 @@
             "frame": "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/iphone.1sf2m1pjpv.png"
         }
     },
-    "pc": [
+    "ipad": [
         "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/5de191e1d26b0a93a681cfc6f9937da19bec609b.83a2k3vel8.jpg"
     ],
-    "remix":[
-        "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/5de191e1d26b0a93a681cfc6f9937da19bec609b.83a2k3vel8.jpg"
-    ],
+    "remix":[ ],
     "wallpapers":[
         {
             "name":"雪山1",

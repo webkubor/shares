@@ -19,13 +19,9 @@
 import UserInfo from "./components/UserInfo.vue";
 import ProjectList from "./components/ProjectList.vue";
 import ToolView from './components/Tool.vue'
-import { useMessage, useNotification, useDialog } from "naive-ui";
 import { useMusic } from "@/hooks/useMusic";
-
-
+import { useMessage } from "naive-ui";
 window.$message = useMessage();
-window.$notification = useNotification();
-window.$dialog = useDialog();
 const { initBackgroundMusic } = useMusic()
 
 window.addEventListener('vite:preloadError', (event) => {
