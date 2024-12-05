@@ -1,5 +1,5 @@
 <template>
-     <n-card title="界面切换">
+    <n-card title="界面切换">
         <n-space>
             <n-button :color="getRandomColor()" ghost v-for="(item, index) in config.mobile.interfaces"
                 @click="onSetFace(item)">
@@ -7,14 +7,14 @@
             </n-button>
         </n-space>
     </n-card>
-    <BgSelector  v-if="paperState.model === modelKeyType.phone"/>
-    <n-card >
+    <BgSelector v-if="paperState.model === modelKeyType.phone" />
+    <n-card>
         <n-space>
             <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
                 :on-update:file-list="handleFileListChange" @change="handleUploadChange">
                 <n-button type="primary">上传图片</n-button>
             </n-upload>
-            <n-button type="primary" @click="downloadBgImage">导出</n-button>
+            <n-button type="primary" :loading="exportLoading" @click="downloadBgImage">导出</n-button>
         </n-space>
     </n-card>
 </template>
@@ -25,11 +25,13 @@ import { useWallpaper } from "../useWallpaper"
 import BgSelector from "./BgSelector.vue";
 import config from "../config.json"
 import { getRandomColor } from "@/utils/random";
+import domtoimage from 'dom-to-image-more';
 import { imageToBase64, getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
 const fileListRef = ref([]);
 const previews = ref([]);
+const exportLoading = ref(false)
 
-const { paperState, onSetFace,modelKeyType } = useWallpaper()
+const { paperState, onSetFace, modelKeyType } = useWallpaper()
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList
     previews.value = []
@@ -55,36 +57,21 @@ async function processFile(element: { file: File }): Promise<{ name: string; src
     }
 }
 const downloadBgImage = async () => {
-    const imgUrl = paperState.bg;  // 从 state 获取图像 URL
-    try {
-        const base64Image = await imageToBase64(imgUrl);
-        // 将 Base64 图像嵌入到 HTML 中
-        const bgView = document.querySelector('.bg-view') as HTMLElement;
-        bgView.style.backgroundImage = `url(${base64Image})`;
+    let target = document.getElementById('phone-view') as HTMLDivElement;
+    console.log(target, 'start');
+    exportLoading.value = true
+    domtoimage.toPng(target, { useCORS: true }).then(function (dataUrl) {
+        console.log(dataUrl);
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        // 设置下载的文件名，可根据需求修改
+        link.download = 'downloaded-image.png';
+        // 模拟点击 <a> 标签触发下载
+        link.click();
+    }).finally(() => {
+        exportLoading.value = false
+    });
 
-        // 将 Base64 图像转换为 Canvas 下载
-        const img = new Image();
-        img.src = base64Image;
-
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            if (!ctx) return;
-
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-
-            const imgUrl = canvas.toDataURL('image/png');
-
-            const link = document.createElement('a');
-            link.href = imgUrl;
-            link.download = 'background-image.png';  // 设置下载文件名
-            link.click();  // 触发下载
-        };
-    } catch (error) {
-        console.error('图像转换为 Base64 失败:', error);
-    }
 };
 </script>
 <style lang="scss" scoped></style>

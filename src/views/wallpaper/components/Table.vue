@@ -2,7 +2,7 @@
         <n-split direction="horizontal" :max="0.80" :min="0.2"  :default-size="0.6">
             <template #1>
                 <n-card title="预览">
-                    <div class="bg-view" :style="{ background: `url(${paperState.bg}) no-repeat center/cover` }">
+                    <div id="phone-view" class="bg-view" :style="{ background: `url(${paperState.bg}) no-repeat center/cover` }">
                         <div class="frame-border"
                             :style="{ background: `url(${paperState.modelSrc}) no-repeat center/cover` }">
                             <div class="inner-wallpaper"

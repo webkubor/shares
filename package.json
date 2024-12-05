@@ -10,6 +10,7 @@
   "type": "module",
   "dependencies": {
     "@phosphor-icons/vue": "^2.2.1",
+    "dom-to-image-more": "^3.5.0",
     "echarts": "^5.5.0",
     "gsap": "^3.12.5",
     "lodash": "^4.17.21",
