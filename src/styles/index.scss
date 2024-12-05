@@ -47,6 +47,10 @@ $success-color: #30C0A2;
 @import "./mixins.scss";
 @import "./button.scss";
 
+* {
+  // border: 1px solid;
+}
+
 h1 {
   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
   font-size: 4.7917vw;

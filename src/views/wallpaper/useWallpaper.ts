@@ -18,13 +18,12 @@ const paperState = reactive({
 export function useWallpaper() {
     function setBg(src) {
         paperState.bg = src
-        console.log("setBg", src);
-        window.$toast?.success("setBg success")
+        window.$toast?.success("背景设置成功")
     }
 
     function setModelSrc(modelSrc: string | null) {
         paperState.modelSrc = modelSrc
-        window.$toast?.success("setModelSrc Success")
+        window.$toast?.success("手机模型设置成功")
         console.log("setModelSrc", paperState.modelSrc);
     }
 
@@ -33,7 +32,7 @@ export function useWallpaper() {
         if (item.name === "桌面") {
             paperState.interface = item.src
             paperState.interfaceKey = 0
-            window.$toast?.success("onSetFace Success")
+            window.$toast?.success("桌面设置成功")
         } else {
             paperState.interfaceKey = 1
             paperState.interface = ''
