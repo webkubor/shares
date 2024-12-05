@@ -96,7 +96,7 @@
 import { reactive, ref, toRaw } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
 import StylrConfig from './config.json'
-import { downloadImage, getPreviewUrl, canvasToImg, imgToCanvas } from './watermarkUtils'
+import { downloadImage, getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
 const watermarkText = ref('司南烛');
 const fileListRef = ref([]);
 const previews = ref([]);

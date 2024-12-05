@@ -75,3 +75,30 @@ export function canvasToImg(canvas: HTMLCanvasElement, type = "image/png"): HTML
     image.src = canvas.toDataURL(type);
     return image;
 }
+
+// 将图片转为 Base64 字符串
+export const imageToBase64 = (imgUrl: string) => {
+    return new Promise<string>((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';  // 设置跨域允许
+        img.src = imgUrl;
+        
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                const dataURL = canvas.toDataURL('image/png');
+                resolve(dataURL);
+            } else {
+                reject('Canvas context is null');
+            }
+        };
+
+        img.onerror = (err) => {
+            reject(err);
+        };
+    });
+};
