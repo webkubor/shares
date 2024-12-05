@@ -9,9 +9,10 @@ enum modelKeyType {
 const paperState = reactive({
     bg: config.bg[0].src, //背景
     model: modelKeyType.phone, // 1手机 2ipad 3混合
-    modelSrc: config.mobile.frame, //终端图片
-    interface: config.mobile.interfaces[0], //图标界面
-    wallpaper: config.wallpapers[0] //壁纸
+    modelSrc: config.mobile.frame, //终端边框
+    interfaceKey: 0, // 0桌面 1锁屏
+    interface: '', //图标界面
+    wallpaper: config.wallpapers[0].src //壁纸
 })
 
 export function useWallpaper() {
@@ -28,9 +29,17 @@ export function useWallpaper() {
     }
 
 
-    function onSetFace(face:string) {
-        paperState.interface = face
-        window.$toast?.success("onSetFace Success")
+    function onSetFace(item:string) {
+        if (item.name === "桌面") {
+            paperState.interface = item.src
+            paperState.interfaceKey = 0
+            window.$toast?.success("onSetFace Success")
+        } else {
+            paperState.interfaceKey = 1
+            paperState.interface = ''
+            window.$toast?.success("锁屏设置成功")
+        }
+     
     }
 
 

@@ -20,7 +20,14 @@
     "mobile": {
         "frame": "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/iphone.1sf2m1pjpv.png",
         "interfaces": [
-            "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/desktop-app-icon-2-2b153438.2rv5z7sffs.png"
+            {
+                "name": "桌面",
+                "src":  "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/desktop-app-icon-2-2b153438.2rv5z7sffs.png"
+            },
+            {
+                "name": "锁屏",
+                "src":  "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/desktop-app-icon-2-2b153438.2rv5z7sffs.png"
+            }
         ]
     },
     "ipad": [

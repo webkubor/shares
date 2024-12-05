@@ -2,14 +2,13 @@
     <div class="watermark">
         <n-split direction="horizontal" :max="1" :min="0">
             <template #1>
-                <n-space vertical>
-                    <n-card title="图片水印添加">
-                        <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
-                            :on-update:file-list="handleFileListChange" @change="handleUploadChange">
-                            <n-button>上传文件</n-button>
-                        </n-upload>
-                    </n-card>
-                    <n-card title="操作栏目">
+                <n-card title="操作栏目">
+                    <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
+                        :on-update:file-list="handleFileListChange" @change="handleUploadChange">
+                        <n-button>上传文件</n-button>
+                    </n-upload>
+                    <n-divider />
+                    <n-space>
                         <n-form-item label="水印形式" label-placement="left">
                             <n-radio-group v-model:value="config.watermarkType" name="radiogroup">
                                 <n-space>
@@ -22,51 +21,55 @@
                                 </n-space>
                             </n-radio-group>
                         </n-form-item>
-                        <n-form-item label="水印内容" label-placement="left" v-if="config.watermarkType === '2'">
+                        <n-form-item label="内容" label-placement="left" v-if="config.watermarkType === '2'">
                             <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字" />
                         </n-form-item>
-                        <n-form-item label="图片水印" label-placement="left" v-if="config.watermarkType === '1'">
+                    </n-space>
+
+                    <n-space v-if="config.watermarkType === watermarkTypeKey.image">
+                        <n-form-item label="图片水印" label-placement="left">
                             <n-select v-model:value="config.imageStyle" :options="StylrConfig.imageStyles" />
                             <img :src="getImageUrl(config.imageStyle)" style="height: 40px;">
                         </n-form-item>
-                        <n-form-item label="图片大小" label-placement="left" v-if="config.watermarkType === '1'">
+                        <n-form-item label="图片大小" label-placement="left">
                             <n-input-number v-model:value="config.scaleFactor" placeholder="图片水印大小" :step="0.1" />
                         </n-form-item>
-                        <n-form-item label="透明度" label-placement="left" v-if="config.watermarkType === '1'">
+                        <n-form-item label="透明度" label-placement="left">
                             <n-input-number v-model:value="config.globalAlpha" placeholder="透明度" :step="0.1" />
                         </n-form-item>
-                        <n-form-item label="需要题字" label-placement="left">
-                            <n-checkbox v-model:checked="config.active" label="添加图片标题" />
+                    </n-space>
+
+                    <n-form-item label="需要题字" label-placement="left">
+                        <n-checkbox v-model:checked="config.active" label="添加图片标题" />
+                    </n-form-item>
+                    <n-space v-if="config.active">
+                        <n-form-item label="题字大小" label-placement="left">
+                            <n-select v-model:value="config.font" :options="StylrConfig.sizeOptions" />
                         </n-form-item>
-                        <div v-if="config.active">
-                            <n-form-item label="题字大小" label-placement="left">
-                                <n-select v-model:value="config.font" :options="StylrConfig.sizeOptions" />
-                            </n-form-item>
-                            <n-form-item label="字间距离" label-placement="left">
-                                <n-input-number type="text" v-model:value="config.letterSpacing" placeholder="字间距"
-                                    :min="50" :step="1" />
-                            </n-form-item>
-                            <n-form-item label="题字粗细" label-placement="left">
-                                <n-input-number type="text" v-model:value="config.weight" placeholder="题字粗细" :min="300"
-                                    :step="100" />
-                            </n-form-item>
-                            <n-form-item label="题字内容" label-placement="left">
-                                <n-input type="text" v-model:value="config.title" placeholder="添加图片标题" />
-                            </n-form-item>
-                            <n-form-item label="题字颜色" label-placement="left">
-                                <n-color-picker v-model:value="config.color" :actions="['clear']" :swatches="[
+                        <n-form-item label="字间距离" label-placement="left">
+                            <n-input-number type="text" v-model:value="config.letterSpacing" placeholder="字间距" :min="50"
+                                :step="1" />
+                        </n-form-item>
+                        <n-form-item label="题字粗细" label-placement="left">
+                            <n-input-number type="text" v-model:value="config.weight" placeholder="题字粗细" :min="300"
+                                :step="100" />
+                        </n-form-item>
+                        <n-form-item label="题字内容" label-placement="left">
+                            <n-input type="text" v-model:value="config.title" placeholder="添加图片标题" />
+                        </n-form-item>
+                        <n-form-item label="题字颜色" label-placement="left">
+                            <n-color-picker v-model:value="config.color" style="width: 300px;" :actions="['clear']"
+                                :swatches="[
                                     '#FFFFFF',
                                     '#18A058',
                                     '#2080F0',
                                     '#F0A020',
                                     'rgba(208, 48, 80, 1)',
                                 ]" @complete="onRrewrite" />
-                            </n-form-item>
-                        </div>
+                        </n-form-item>
+                    </n-space>
 
-
-                    </n-card>
-                </n-space>
+                </n-card>
             </template>
             <template #2>
                 <n-card title="预览区域">
@@ -78,7 +81,7 @@
                     <n-space v-if="previews.length">
                         <n-space v-for="(item, index) in previews" vertical>
                             <img class="water-pic" :src="item.src" alt="">
-                            <n-space> <n-button @click="downWaterPic(item.src)">下载图片</n-button>
+                            <n-space> <n-button @click="downloadImage(item.src)">下载图片</n-button>
                                 <n-button @click="remove(index)">移除</n-button></n-space>
                         </n-space>
                     </n-space>
@@ -90,7 +93,7 @@
 
 </template>
 <script setup lang="ts">
-import { reactive, ref,toRaw } from "vue";
+import { reactive, ref, toRaw } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
 import StylrConfig from './config.json'
 import { downloadImage, getPreviewUrl, canvasToImg, imgToCanvas } from './watermarkUtils'
@@ -202,7 +205,6 @@ function onDrawImage(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): 
     });
 }
 
-
 function addName(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): HTMLCanvasElement {
     ctx.fillStyle = config.color;
     ctx.textAlign = 'left';
@@ -220,17 +222,10 @@ function addName(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): HTML
 function downloadAll() {
     downloadImage(toRaw(previews.value), true)
 }
-/**
- * @description: 单独下载
- * @param {*} imageSrc
- * @return {*}
- */
-function downWaterPic(imageSrc) {
-    downloadImage(imageSrc, false)
-}
+
 
 async function processFile(element: { file: File }): Promise<{ name: string; src: string }> {
-    const previewUrl:string = await getPreviewUrl(element.file);
+    const previewUrl: string = await getPreviewUrl(element.file);
     const tempCanvas = await imgToCanvas(previewUrl);
     if (tempCanvas instanceof Error) {
         console.error(tempCanvas.message); // 处理错误

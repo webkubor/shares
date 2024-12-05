@@ -15,6 +15,9 @@
             <template #2>
 
                 <RightView />
+                <n-card title="壁纸">
+                    <n-image width="100" :src="paperState.wallpaper" alt=""/>
+                </n-card>
                 <n-card title="操作栏">
                     <n-space>
                         <n-button type="primary">下载样图</n-button>
@@ -50,8 +53,13 @@ const { paperState } = useWallpaper()
             height: 400px;
             width: 200px;
             display: block;
+            padding-top: 10px;
+            background-color: blue;
             img {
-                width: 90%;
+                width: 85%;
+                height: 95%;
+                margin: 0 auto;
+                display: block;
             }
         }
     }
