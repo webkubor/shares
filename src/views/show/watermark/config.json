@@ -1,0 +1,50 @@
+{
+    "sizeOptions": [
+        {
+            "label": "字体12等分(小)",
+            "value": 12
+        },
+        {
+            "label": "字体10等分(中)",
+            "value": 10
+        },
+        {
+            "label": "字体8等分(大)",
+            "value": 8
+        }
+    ],
+    "imageStyles": [
+        {
+            "label": "红底方正字",
+            "value": "/src/assets/watermark/1.png"
+        },
+        {
+            "label": "红纹路边框楷体",
+            "value": "/src/assets/watermark/2.png"
+        },
+        {
+            "label": "官方红底-官府",
+            "value": "/src/assets/watermark/3.png"
+        },
+        {
+            "label": "红框红字透明底",
+            "value": "/src/assets/watermark/4.png"
+        },
+        {
+            "label": "红底行书",
+            "value": "/src/assets/watermark/5.png"
+        },
+        {
+            "label": "红底艺术字",
+            "value": "/src/assets/watermark/6.png"
+        },
+        {
+            "label": "红底艺术字2",
+            "value": "/src/assets/watermark/7.png"
+        },
+        {
+            "label": "红框艺术字透明底",
+            "value": "/src/assets/watermark/8.png"
+        }
+    ]
+}

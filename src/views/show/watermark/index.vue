@@ -4,73 +4,73 @@
             <template #1>
                 <n-space vertical>
                     <n-card title="图片水印添加">
-                            <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
-                                :on-update:file-list="handleFileListChange" @change="handleUploadChange">
-                                <n-button>上传文件</n-button>
-                            </n-upload>
+                        <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
+                            :on-update:file-list="handleFileListChange" @change="handleUploadChange">
+                            <n-button>上传文件</n-button>
+                        </n-upload>
                     </n-card>
-                        <n-card title="操作栏目">
-                            <n-form-item label="水印形式" label-placement="left">
-                                <n-radio-group v-model:value="config.watermarkType" name="radiogroup">
-                                    <n-space>
-                                        <n-radio value="1">
-                                            图片水印
-                                        </n-radio>
-                                        <n-radio value="2">
-                                            文字水印
-                                        </n-radio>
-                                    </n-space>
-                                </n-radio-group>
+                    <n-card title="操作栏目">
+                        <n-form-item label="水印形式" label-placement="left">
+                            <n-radio-group v-model:value="config.watermarkType" name="radiogroup">
+                                <n-space>
+                                    <n-radio value="1">
+                                        图片水印
+                                    </n-radio>
+                                    <n-radio value="2">
+                                        文字水印
+                                    </n-radio>
+                                </n-space>
+                            </n-radio-group>
+                        </n-form-item>
+                        <n-form-item label="水印内容" label-placement="left" v-if="config.watermarkType === '2'">
+                            <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字" />
+                        </n-form-item>
+                        <n-form-item label="图片水印" label-placement="left" v-if="config.watermarkType === '1'">
+                            <n-select v-model:value="config.imageStyle" :options="StylrConfig.imageStyles" />
+                            <img :src="getImageUrl(config.imageStyle)" style="height: 40px;">
+                        </n-form-item>
+                        <n-form-item label="图片大小" label-placement="left" v-if="config.watermarkType === '1'">
+                            <n-input-number v-model:value="config.scaleFactor" placeholder="图片水印大小" :step="0.1" />
+                        </n-form-item>
+                        <n-form-item label="透明度" label-placement="left" v-if="config.watermarkType === '1'">
+                            <n-input-number v-model:value="config.globalAlpha" placeholder="透明度" :step="0.1" />
+                        </n-form-item>
+                        <n-form-item label="需要题字" label-placement="left">
+                            <n-checkbox v-model:checked="config.active" label="添加图片标题" />
+                        </n-form-item>
+                        <div v-if="config.active">
+                            <n-form-item label="题字大小" label-placement="left">
+                                <n-select v-model:value="config.font" :options="StylrConfig.sizeOptions" />
                             </n-form-item>
-                            <n-form-item label="水印内容" label-placement="left" v-if="config.watermarkType === '2'">
-                                <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字" />
+                            <n-form-item label="字间距离" label-placement="left">
+                                <n-input-number type="text" v-model:value="config.letterSpacing" placeholder="字间距"
+                                    :min="50" :step="1" />
                             </n-form-item>
-                            <n-form-item label="图片水印" label-placement="left" v-if="config.watermarkType === '1'">
-                                <n-select v-model:value="config.imageStyle" :options="imageStyles" />
-                                <img :src="getImageUrl(config.imageStyle)" style="height: 40px;">
+                            <n-form-item label="题字粗细" label-placement="left">
+                                <n-input-number type="text" v-model:value="config.weight" placeholder="题字粗细" :min="300"
+                                    :step="100" />
                             </n-form-item>
-                            <n-form-item label="图片大小" label-placement="left" v-if="config.watermarkType === '1'">
-                                <n-input-number v-model:value="config.scaleFactor" placeholder="图片水印大小" :step="0.1" />
+                            <n-form-item label="题字内容" label-placement="left">
+                                <n-input type="text" v-model:value="config.title" placeholder="添加图片标题" />
                             </n-form-item>
-                            <n-form-item label="透明度" label-placement="left" v-if="config.watermarkType === '1'">
-                                <n-input-number v-model:value="config.globalAlpha" placeholder="透明度" :step="0.1" />
+                            <n-form-item label="题字颜色" label-placement="left">
+                                <n-color-picker v-model:value="config.color" :actions="['clear']" :swatches="[
+                                    '#FFFFFF',
+                                    '#18A058',
+                                    '#2080F0',
+                                    '#F0A020',
+                                    'rgba(208, 48, 80, 1)',
+                                ]" @complete="onRrewrite" />
                             </n-form-item>
-                            <n-form-item label="需要题字" label-placement="left">
-                                <n-checkbox v-model:checked="config.active" label="添加图片标题" />
-                            </n-form-item>
-                            <div v-if="config.active">
-                                <n-form-item label="题字大小" label-placement="left">
-                                    <n-select v-model:value="config.font" :options="sizeOptions" />
-                                </n-form-item>
-                                <n-form-item label="字间距离" label-placement="left">
-                                    <n-input-number type="text" v-model:value="config.letterSpacing" placeholder="字间距"
-                                        :min="50" :step="1" />
-                                </n-form-item>
-                                <n-form-item label="题字粗细" label-placement="left">
-                                    <n-input-number type="text" v-model:value="config.weight" placeholder="题字粗细"
-                                        :min="300" :step="100" />
-                                </n-form-item>
-                                <n-form-item label="题字内容" label-placement="left">
-                                    <n-input type="text" v-model:value="config.title" placeholder="添加图片标题" />
-                                </n-form-item>
-                                <n-form-item label="题字颜色" label-placement="left">
-                                    <n-color-picker v-model:value="config.color" :actions="['clear']" :swatches="[
-                                        '#FFFFFF',
-                                        '#18A058',
-                                        '#2080F0',
-                                        '#F0A020',
-                                        'rgba(208, 48, 80, 1)',
-                                    ]" @complete="onCompleteColor" />
-                                </n-form-item>
-                            </div>
+                        </div>
 
 
-                        </n-card>
+                    </n-card>
                 </n-space>
             </template>
             <template #2>
                 <n-card title="预览区域">
-                 
+
                     <n-space>
                         <n-button v-if="previews.length" @click="onRrewrite">重绘</n-button>
                         <n-button v-if="previews.length" type="primary" @click="downloadAll">批量下载</n-button>
@@ -90,8 +90,10 @@
 
 </template>
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { reactive, ref,toRaw } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
+import StylrConfig from './config.json'
+import { downloadImage, getPreviewUrl, canvasToImg, imgToCanvas } from './watermarkUtils'
 const watermarkText = ref('司南烛');
 const fileListRef = ref([]);
 const previews = ref([]);
@@ -110,57 +112,10 @@ const config = reactive({
     color: "#000000"
 })
 
-const sizeOptions = [
-    {
-        label: '字体12等分(小)',
-        value: 12
-    },
-    {
-        label: '字体10等分(中)',
-        value: 10
-    },
-    {
-        label: '字体8等分(大)',
-        value: 8
-    },
-]
-// 静态资源处理问题：Vite 在开发模式下对静态资源的处理方式与传统的 Webpack 等构建工具可能有所不同。如果直接使用相对路径来引用静态资源，可能会导致资源加载失败。
-
-const imageStyles = [
-
-    {
-        label: '红底方正字',
-        value: '/src/assets/watermark/1.png'
-    },
-    {
-        label: '红纹路边框楷体',
-        value: '/src/assets/watermark/2.png'
-    },
-    {
-        label: '官方红底-官府',
-        value: '/src/assets/watermark/3.png'
-    },
-    {
-        label: '红框红字透明底',
-        value: '/src/assets/watermark/4.png'
-    },
-    {
-        label: '红底行书',
-        value: '/src/assets/watermark/5.png'
-    },
-    {
-        label: '红底艺术字',
-        value: '/src/assets/watermark/6.png'
-    },
-    {
-        label: '红底艺术字2',
-        value: '/src/assets/watermark/7.png'
-    },
-    {
-        label: '红框艺术字透明底',
-        value: '/src/assets/watermark/8.png'
-    }
-]
+enum watermarkTypeKey {
+    image = "1",
+    text = "2"
+}
 
 function getImageUrl(path) {
     return imagePaths[path]?.default;
@@ -174,9 +129,6 @@ function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
 }
 
 
-
-
-
 function onRrewrite() {
     if (!watermarkText.value) {
         window.$message?.warning("请填写水印内容")
@@ -186,29 +138,16 @@ function onRrewrite() {
     handleFileListChange()
 }
 
-
-function onCompleteColor() {
-    onRrewrite()
-}
-
-
 function remove(index) {
     previews.value?.splice(index, 1)
     fileListRef.value?.splice(index, 1)
 }
 
 
-
 async function handleFileListChange() {
     const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
     const previewNames = new Set(previews.value.map(item => item.name));
     previews.value = previews.value.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
-}
-
-
-enum watermarkTypeKey {
-    image = "1",
-    text = "2"
 }
 
 /**
@@ -252,7 +191,7 @@ function onDrawImage(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): 
             const originalHeight = img.height;
             const fixedHeight = 100;
             const scaleFactor = config.scaleFactor;
-            const newWidth = (fixedHeight / originalHeight) * originalWidth  * scaleFactor;
+            const newWidth = (fixedHeight / originalHeight) * originalWidth * scaleFactor;
             const newHeight = fixedHeight * scaleFactor;
             ctx.globalAlpha = config.globalAlpha;
             ctx.drawImage(img, canvas.width / 2 - newWidth / 2, ctx.canvas.height - fixedHeight - padding, newWidth, newHeight);
@@ -279,78 +218,38 @@ function addName(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): HTML
 
 // 批量下载函数
 function downloadAll() {
-    previews.value.forEach((imageSrc) => {
-        const link = document.createElement('a');
-        link.href = imageSrc.src;
-        link.download = `webkubor_${new Date().getTime()}.png`;
-        link.click();
-    });
+    downloadImage(toRaw(previews.value), true)
 }
-
 /**
  * @description: 单独下载
  * @param {*} imageSrc
  * @return {*}
  */
 function downWaterPic(imageSrc) {
-    const link = document.createElement('a');
-    link.href = imageSrc;
-    link.download = `webkubor_${new Date().getTime()}.png`;
-    link.click();
-}
-
-
-
-function getPreviewUrl(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (e) => resolve(e.target.result as string);
-        reader.onerror = (e) => reject(e);
-        reader.readAsDataURL(file);
-    });
+    downloadImage(imageSrc, false)
 }
 
 async function processFile(element: { file: File }): Promise<{ name: string; src: string }> {
-    const previewUrl = await getPreviewUrl(element.file);
+    const previewUrl:string = await getPreviewUrl(element.file);
     const tempCanvas = await imgToCanvas(previewUrl);
-    const canvas = await addWatermark(tempCanvas);
-    const img = convasToImg(canvas);
-    return { name: element.name, src: img.src };
-}
-
-/**
- * Base64转成canvas
- * @param base64
- */
-async function imgToCanvas(base64: string): Promise<HTMLCanvasElement> {
-    const img = document.createElement('img');
-    img.setAttribute('src', base64);
-    await new Promise((resolve) => (img.onload = resolve));
-    const canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    canvas.getContext('2d')?.drawImage(img, 0, 0);
-    return canvas;
-}
-
-
-/**
- * canvas转成img
- * @param {canvas对象} canvas
- */
-function convasToImg(canvas: HTMLCanvasElement, type = "image/png"): HTMLImageElement {
-    let image = new Image();
-    image.src = canvas.toDataURL(type);
-    return image;
+    if (tempCanvas instanceof Error) {
+        console.error(tempCanvas.message); // 处理错误
+        return { name: element.name, src: previewUrl };
+    } else {
+        const canvas = await addWatermark(tempCanvas);
+        const img = canvasToImg(canvas);
+        console.log(img, 'processFile');
+        return { name: element.name, src: img.src };
+    }
 }
 
 </script>
 <style lang="scss">
 .watermark {
     width: 100%;
-    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
     min-height: 1080px;
     padding: 20px;
+    background: var(--webkubor-bg);
 }
 
 

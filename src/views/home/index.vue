@@ -1,19 +1,18 @@
 <template>
-  <n-card style="height: 100vh;">
+  <div class="home-page">
     <UserInfo />
     <div class="show-container">
       <n-tabs type="segment" animated>
         <n-tab-pane name="chap1" tab="有趣的尝试">
           <ToolView />
         </n-tab-pane>
-     
+
         <n-tab-pane name="chap3" tab="项目展示">
           <ProjectList />
         </n-tab-pane>
       </n-tabs>
     </div>
-
-  </n-card>
+  </div>
 </template>
 <script setup>
 import UserInfo from "./components/UserInfo.vue";
@@ -36,11 +35,17 @@ initBackgroundMusic()
 
 </script>
 <style lang="scss" scoped>
-.show-container {
-  margin: 0 auto;
-  border: $default-primary 2px solid;
-  border-radius: 4px;
-  filter: drop-shadow(0px 0px 1em $default-primary);
-  width: 80%;
+.home-page {
+  min-height: 100vh;
+  background: var(--webkubor-bg);
+  border: 1px solid;
+
+  .show-container {
+    margin: 0 auto;
+    border: $default-primary 2px solid;
+    border-radius: 4px;
+    filter: drop-shadow(0px 0px 1em $default-primary);
+    width: 80%;
+  }
 }
 </style>
