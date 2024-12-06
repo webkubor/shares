@@ -3,6 +3,7 @@
    
     <n-card title="应用层实践">
       <n-space>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/wallpaper')">壁纸样机生成器</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/watermark')">小红书水印添加</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/font')">书法类型字体参考</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/money')">利息计算</n-button>
@@ -24,7 +25,6 @@
 
     <n-card title="待开发">
       <n-space>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/wallpaper')">壁纸样机生成器</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/rtc/webWork')">web worker</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/barrage')">弹幕</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/list')">列表滚动测试</n-button>

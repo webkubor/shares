@@ -5,10 +5,11 @@ $error-color: #F0000E;
 $info-color: #5E64DA;
 $success-color: #30C0A2;
 
+
+
 :root {
   --plyr-color-main: $default-primary;
-  --webkubor-bg: #ffffff;
-  --default-primary: $default-primary;
+  --webkubor-bg: r#ffffff;
   --webkubor-text-primary: #000000;
 }
 
@@ -18,9 +19,11 @@ $success-color: #30C0A2;
 }
 
 .dark_theme {
-  --webkubor-bg: #191d28;
-  --webkubor-text-primary: #ffffff;
+  --webkubor-bg: #07060c;
+  --webkubor-text-primary: #ffffff; // 使用反色函数计算文本颜色
 }
+
+
 
 @font-face {
   font-family: 'AiChinese01';
@@ -49,6 +52,7 @@ $success-color: #30C0A2;
 
 * {
   // border: 1px solid;
+  box-sizing: border-box;
 }
 
 h1 {

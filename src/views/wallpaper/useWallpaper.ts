@@ -1,23 +1,25 @@
 import { reactive } from "vue"
-import config from "./config.json"
-enum modelKeyType {
-    "phone" = 1, //手机
-    "ipad" = 2, //ipad
-    "remix" = 3, //混合
+const basePath = "/src/views/wallpaper/assets"
+
+const imagePaths = import.meta.glob('/src/views/wallpaper/assets/*.png', { eager: true });
+
+function getImageUrl(path) {
+ return imagePaths[path]?.default;
 }
 
 const paperState = reactive({
-    bg: config.bg[0].src, //背景
-    model: modelKeyType.phone, // 1手机 2ipad 3混合
-    modelSrc: config.mobile.frame, //终端边框
-    interfaceKey: 0, // 0桌面 1锁屏
+    bgColor: "#ffffff", //背景
+    fontColor: "#000000", //字体颜色
+    modelSrc: getImageUrl(basePath+ '/phone-frame.png'), //终端边框
+    interfaceKey: 1, // 0桌面 1锁屏
     interface: '', //图标界面
-    wallpaper: config.wallpapers[0].src //壁纸
+    wallpaper: '' //壁纸
 })
 
+
 export function useWallpaper() {
-    function setBg(src) {
-        paperState.bg = src
+    function setBgColor(color) {
+        paperState.bgColor = color
         window.$toast?.success("背景设置成功")
     }
 
@@ -28,17 +30,14 @@ export function useWallpaper() {
     }
 
 
-    function onSetFace(item:string) {
+    function onSetFace(item:{name:string,value:number}) {
         if (item.name === "桌面") {
-            paperState.interface = item.src
-            paperState.interfaceKey = 0
-            window.$toast?.success("桌面设置成功")
+            paperState.interface = getImageUrl(basePath+ '/phone-table.png')
+            paperState.interfaceKey = item.value
         } else {
-            paperState.interfaceKey = 1
+            paperState.interfaceKey =  item.value
             paperState.interface = ''
-            window.$toast?.success("锁屏设置成功")
         }
-     
     }
 
 
@@ -46,8 +45,7 @@ export function useWallpaper() {
         paperState,
         setModelSrc,
         onSetFace,
-        modelKeyType,
-        setBg
+        setBgColor
     }
 
 }

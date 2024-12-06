@@ -124,6 +124,7 @@ export default {
   filter: drop-shadow(0 0 10px $default-primary);
   border-radius: 6px;
   z-index: 10000;
+  font-size: 16px;
   transition: 0.3s;
   border: 0.2px solid $default-primary;
 

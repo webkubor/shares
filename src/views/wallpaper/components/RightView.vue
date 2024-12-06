@@ -1,13 +1,31 @@
 <template>
-    <n-card title="界面切换">
-        <n-space>
-            <n-button :color="getRandomColor()" ghost v-for="(item, index) in config.mobile.interfaces"
-                @click="onSetFace(item)">
-                {{ item.name }}
-            </n-button>
-        </n-space>
+    <n-card title="界面">
+        <n-form-item label="切换模式" label-placement="left">
+            <n-space>
+                <n-button :color="getRandomColor()" ghost v-for="(item, index) in config.interfaces"
+                    @click="onSetFace(item)">
+                    {{ item.name }}
+                </n-button>
+            </n-space>
+        </n-form-item>
+        <n-form-item label="背景设置" label-placement="left">
+            <n-color-picker v-model:value="paperState.bgColor" style="width: 300px;" :show-alpha="true"
+                :actions="['clear']" :swatches="[
+                    '#FFFFFF',
+                    '#18A058',
+                    '#2080F0',
+                    '#F0A020',
+                    'rgba(208, 48, 80, 1)',
+                ]" />
+        </n-form-item>
+        <n-form-item label="字体设置" label-placement="left">
+            <n-color-picker v-model:value="paperState.fontColor" style="width: 300px;" :show-alpha="true"
+                :actions="['clear']" :swatches="[
+                    '#FFFFFF',
+                    '#333333'
+                ]" />
+        </n-form-item>
     </n-card>
-    <BgSelector v-if="paperState.model === modelKeyType.phone" />
     <n-card>
         <n-space>
             <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
@@ -31,7 +49,7 @@ const fileListRef = ref([]);
 const previews = ref([]);
 const exportLoading = ref(false)
 
-const { paperState, onSetFace, modelKeyType } = useWallpaper()
+const { paperState, onSetFace, setBgColor } = useWallpaper()
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList
     previews.value = []

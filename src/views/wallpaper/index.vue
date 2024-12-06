@@ -1,5 +1,4 @@
 <template>
-    <n-layout has-sider>
         <n-layout>
             <n-layout-header bordered>
                 <div class="title">
@@ -15,12 +14,11 @@
                 webkubor 技术团队 2024 版权所有
             </n-layout-footer>
         </n-layout>
-    </n-layout>
 </template>
 <script setup lang="ts">
 import  {useWallpaper} from "./useWallpaper"
 import Table from "./components/Table.vue";
-const {modelKeyType,paperState} = useWallpaper()
+const {paperState} = useWallpaper()
 
 </script>
 <style lang="scss" scoped>

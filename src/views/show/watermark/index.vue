@@ -121,10 +121,10 @@ enum watermarkTypeKey {
 }
 
 function getImageUrl(path) {
+    const imagePaths = import.meta.glob('/src/assets/watermark/*.png', { eager: true });
     return imagePaths[path]?.default;
 }
 
-const imagePaths = import.meta.glob('/src/assets/watermark/*.png', { eager: true });
 
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList

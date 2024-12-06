@@ -48,11 +48,10 @@ function toggleTheme() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1080px;
-  width: 50vw;
+  max-width: 1920px;
+  width: 80vw;
   color: var(--webkubor-text-primary);
   padding: 20px 30px;
-  @include glass-effect($default-primary, 10, 0.09);
 
   .love-headers {
     display: flex;
@@ -113,6 +112,7 @@ function toggleTheme() {
     margin: 10px auto;
     padding: 5px;
     box-sizing: border-box;
+    filter: drop-shadow(0px 0px 1em $default-primary);
 
     .sign {
       font-size: 1.25rem;

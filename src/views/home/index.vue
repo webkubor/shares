@@ -45,7 +45,19 @@ initBackgroundMusic()
     border: $default-primary 2px solid;
     border-radius: 4px;
     filter: drop-shadow(0px 0px 1em $default-primary);
-    width: 80%;
+    width: 80vw;
   }
+}
+
+
+
+@media screen and (max-width: 768px) {
+.home-page {
+  .show-container {
+    width: 90%;
+  }
+
+}
+  
 }
 </style>

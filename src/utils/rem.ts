@@ -23,7 +23,6 @@
         //   }
 
         if (width / dpr > 400) {
-          console.log(dpr, 'width / dpr > 400');
           dpr = window.devicePixelRatio || 1; // 显示设备的物理像素分辨率与CSS像素分辨率
             width = 400 * dpr; // 最大 540px
         }

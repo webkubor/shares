@@ -1,47 +1,12 @@
 {
-    "bg": [
-        {
-            "name": "木纹",
-            "src": "https://github.com/webkubor/picx-images-hosting/raw/master/plain-background/1903d62d2c2a4cc5e68c5f020ab7e8d1c311c8de.1ovgo7nxfh.png"
-        },
-        {
-            "name": "耳机",
-            "src": "https://github.com/webkubor/picx-images-hosting/raw/master/plain-background/a3b479790a70bc64d3affaf33981216bc2fd892c.1e8mv28pa8.png"
-        },
-        {
-            "name": "花",
-            "src": "https://github.com/webkubor/picx-images-hosting/raw/master/plain-background/8da78db217aaacd0ddebe362cfe4b014106a65ff.8vmy1jxuxm.jpeg"
-        },
-        {
-            "name": "纯白",
-            "src": "https://github.com/webkubor/picx-images-hosting/raw/master/plain-background/30c0837be250f5dd9210235e3f7a4ff4aab0ebeb732c8-KbIvd6_fw480webp.32i0bzqiwq.png"
-        }
-    ],
-    "mobile": {
-        "frame": "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/iphone.1sf2m1pjpv.png",
         "interfaces": [
             {
                 "name": "桌面",
-                "src":  "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/desktop-app-icon-2-2b153438.2rv5z7sffs.png"
+                "value":  0
             },
             {
                 "name": "锁屏",
-                "src":  "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/desktop-app-icon-2-2b153438.2rv5z7sffs.png"
+                "value":  1
             }
         ]
-    },
-    "ipad": [
-        "https://github.com/webkubor/picx-images-hosting/raw/master/wallpaper-tools/5de191e1d26b0a93a681cfc6f9937da19bec609b.83a2k3vel8.jpg"
-    ],
-    "remix": [],
-    "wallpapers": [
-        {
-            "name": "雪山1",
-            "src": "https://github.com/webkubor/picx-images-hosting/raw/master/scenery/18159759251_Snowy_mountain_landscape_photo_HD_camera_shot_best__c2f3ea8e-8d52-45c9-ae04-f0d890ad42f3.5c10c1ga65.png"
-        },
-        {
-            "name": "雪山2",
-            "src": "https://github.com/webkubor/picx-images-hosting/raw/master/scenery/18159759251_Snowy_mountain_landscape_photo_HD_camera_shot_best__6df1165a-eae2-44a8-8e01-c2af86448377.26lid3lv9e.png"
-        }
-    ]
 }
