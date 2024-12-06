@@ -1,26 +1,26 @@
 <template>
-    <div class="about-me">
-      <n-popover trigger="hover">
-        <template #trigger>
-          <div class="love-headers">
-            <n-avatar round :size="100"
-              src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp"
-              @click="toggleTheme" />
-          </div>
-        </template>
-        <span> this is {{ user.name }}</span>
-      </n-popover>
-      <span class="sign">
-        {{ user.personalSign }}
-        <span></span>
-      </span>
-     <Waiting/>
-      <n-space style="margin-top: 20px;">
-        <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round>
-          {{ item }}
-        </n-tag>
-      </n-space>
-    </div>
+  <div class="about-me">
+    <n-popover trigger="hover">
+      <template #trigger>
+        <div class="love-headers">
+          <n-avatar round :size="100"
+            src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp"
+            @click="toggleTheme" />
+        </div>
+      </template>
+      <span> this is {{ user.name }}</span>
+    </n-popover>
+    <span class="sign">
+      {{ user.personalSign }}
+      <span></span>
+    </span>
+    <Waiting />
+    <n-space style="margin-top: 20px;">
+      <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round>
+        {{ item }}
+      </n-tag>
+    </n-space>
+  </div>
 </template>
 <script setup>
 import { useUser } from "@/hooks/useUser";
@@ -40,9 +40,7 @@ function toggleTheme() {
 </script>
 
 <style lang="scss" scoped>
-
 .about-me {
-  width: 100%;
   position: relative;
   margin: 5vh auto;
   font-size: 12px;
@@ -55,6 +53,7 @@ function toggleTheme() {
   color: var(--webkubor-text-primary);
   padding: 20px 30px;
   @include glass-effect($default-primary, 10, 0.09);
+
   .love-headers {
     display: flex;
     align-items: center;
@@ -105,5 +104,20 @@ function toggleTheme() {
       }
     }
   }
+}
+
+
+@media screen and (max-width: 768px) {
+  .about-me {
+    width: 90%;
+    margin: 10px auto;
+    padding: 5px;
+    box-sizing: border-box;
+
+    .sign {
+      font-size: 1.25rem;
+    }
+  }
+
 }
 </style>
