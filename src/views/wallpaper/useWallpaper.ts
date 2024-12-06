@@ -11,12 +11,13 @@ const paperState = reactive({
     bgColor: "#ffffff", //背景
     fontColor: "#000000", //字体颜色
     modelSrc: getImageUrl(basePath+ '/phone-frame.png'), //终端边框
-    waterMarkName: '司南烛', //水印名称
+    waterMarkName: 'Design by 司南烛', //水印名称
     interfaceKey: 1, // 0桌面 1锁屏
     proportion: 2, // 导出比例 1(1:1) 2(3:4) 3(4:3)
     interface: '', //图标界面
     wallpaper: '', //壁纸
-    waterMarkImage: '' //水印图片
+    waterMarkImage: '', //水印图片
+    help: false //辅助线
 })
 
 
@@ -44,21 +45,21 @@ export function useWallpaper() {
     }
 
     // 导出比例 1(1:1) 2(3:4) 3(4:3)
-    function transExportSize() {
+    function transExportSize(base = 200) {
         if (paperState.proportion === 1) {
             return {
-                width: 800,
-                height: 800
+                width: base * 3,
+                height: base * 3
             }
         } else if (paperState.proportion === 2) {
             return {
-                width: 600,
-                height: 800
+                width:  base * 3,
+                height:  base * 4
             }
         } else if (paperState.proportion === 3) {
             return {
-                width: 800,
-                height: 600
+                width: base * 4,
+                height: base * 3
             }
         }
         

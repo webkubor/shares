@@ -4,16 +4,12 @@
                 <div class="title">
                     壁纸样机生成器
                 </div>
-
             </n-layout-header>
-            <n-layout-content content-style="padding: 24px;">
+            <n-layout-content>
                <div class="main-container">
                 <Table/>
                 </div>
             </n-layout-content>
-            <n-layout-footer bordered class="main-footer">
-                webkubor 技术团队 2024 版权所有
-            </n-layout-footer>
         </n-layout>
 </template>
 <script setup lang="ts">
@@ -27,18 +23,15 @@ const {paperState} = useWallpaper()
     color: var(--webkubor-text-primary);
     line-height: 80px;
     font-size: 25px;
-    padding-left: 20px;
-}
-.main-footer {
-    width: 100%;
     text-align: center;
-    font-size: 18px;
-    line-height: 60px;
-    width: 100%;
+    letter-spacing: 4px;
+    cursor: pointer;
 }
+
 .main-container {
     width: 100%;
     font-size: 16px;
-    height: 80vh;
+    min-height: 1080px;
+    height: 100vh;
 }
 </style>
