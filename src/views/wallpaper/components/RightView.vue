@@ -1,63 +1,70 @@
 <template>
-    <n-card >
-        <ColorBorder>
-        <n-form-item label="切换模式" label-placement="left">
-            <n-space>
-                <n-button :color="getRandomColor()" ghost v-for="(item, index) in config.interfaces"
-                    @click="onSetFace(item)">
-                    {{ item.name }}
-                </n-button>
-            </n-space>
-        </n-form-item>
-        <n-form-item label="背景设置" label-placement="left">
-            <n-color-picker v-model:value="paperState.bgColor" style="width: 300px;" :show-alpha="true"
-                :actions="['clear']" :swatches="[
-                    '#FFFFFF',
-                    '#18A058',
-                    '#2080F0',
-                    '#F0A020',
-                    'rgba(208, 48, 80, 1)',
-                ]" />
-        </n-form-item>
-        <n-form-item label="手机字体颜色" label-placement="left">
-            <n-color-picker v-model:value="paperState.fontColor" style="width: 300px;" :show-alpha="true"
-                :actions="['clear']" :swatches="[
-                    '#FFFFFF',
-                    '#333333'
-                ]" />
-        </n-form-item>
-        <n-form-item label="水印名称" label-placement="left">
-            <n-input type="text" v-model:value="paperState.waterMarkName" placeholder="输入水印文字" />
-        </n-form-item>
-        <n-form-item label="导出比例" label-placement="left">
-            <n-radio-group v-model:value="paperState.proportion" name="radiogroup">
-                <n-space>
-                    <n-radio :value="1">
-                        1 : 1
-                    </n-radio>
-                    <n-radio :value="2">
-                        3 : 4
-                    </n-radio>
-                    <n-radio :value="3">
-                        4 : 3
-                    </n-radio>
-                </n-space>
-            </n-radio-group>
-        </n-form-item>
-    </ColorBorder>
-    </n-card>
     <n-card>
         <ColorBorder>
+            <n-form-item label="切换模式" label-placement="left">
+                <n-space>
+                    <button class="webkubor-action-btn" v-for="(item, index) in config.interfaces"
+                        @click="onSetFace(item)">
+                        {{ item.name }}
+                    </button>
+                </n-space>
+            </n-form-item>
+            <n-form-item label="背景设置" label-placement="left">
+                <n-color-picker v-model:value="paperState.bgColor" style="width: 300px;" :show-alpha="true"
+                    :actions="['clear']" :swatches="[
+                        '#FFFFFF',
+                        '#18A058',
+                        '#2080F0',
+                        '#F0A020',
+                        'rgba(208, 48, 80, 1)',
+                    ]" />
+            </n-form-item>
+            <n-form-item label="手机字体颜色" label-placement="left">
+                <n-color-picker v-model:value="paperState.fontColor" style="width: 300px;" :show-alpha="true"
+                    :actions="['clear']" :swatches="[
+                        '#FFFFFF',
+                        '#333333'
+                    ]" />
+            </n-form-item>
+            <n-form-item label="水印名称" label-placement="left">
+                <n-input type="text" v-model:value="paperState.waterMarkName" placeholder="输入水印文字" />
+            </n-form-item>
+            <n-form-item label="导出比例" label-placement="left">
+                <n-radio-group v-model:value="paperState.proportion" name="radiogroup">
+                    <n-space>
+                        <n-radio :value="1">
+                            1 : 1
+                        </n-radio>
+                        <n-radio :value="2">
+                            3 : 4
+                        </n-radio>
+                        <n-radio :value="3">
+                            4 : 3
+                        </n-radio>
+                    </n-space>
+                </n-radio-group>
+            </n-form-item>
+        </ColorBorder>
+    </n-card>
+    <n-card>
+        <n-spin :show="exportLoading">
+            <ColorBorder>
                 <n-space>
                     <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
                         :on-update:file-list="handleFileListChange" @change="handleUploadChange">
-                        <n-button type="primary">上传图片</n-button>
+                        <button class="common-btn">上传图片</button>
                     </n-upload>
-                    <n-button type="primary" :loading="exportLoading" @click="downloadBgImage">导出</n-button>
+                    <button class="common-btn" @click="downloadBgImage">导出</button>
                 </n-space>
             </ColorBorder>
+
+            <template #description>
+                你不知道你有多幸运
+            </template>
+        </n-spin>
+
     </n-card>
-       
+
 
 </template>
 <script setup lang="ts">
@@ -65,7 +72,6 @@ import { reactive, ref, toRaw } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
 import { useWallpaper } from "../useWallpaper"
 import config from "../config.json"
-import { getRandomColor } from "@/utils/random";
 import domtoimage from 'dom-to-image-more';
 import { getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
 
@@ -102,7 +108,7 @@ const downloadBgImage = async () => {
     let target = document.getElementById('phone-view') as HTMLDivElement;
     console.log(target, 'start');
     exportLoading.value = true
-    domtoimage.toPng(target, { useCORS: true }).then(function (dataUrl) {
+    domtoimage.toPng(target, { useCORS: true, scale: 2 }).then(function (dataUrl) {
         console.log(dataUrl);
         const link = document.createElement('a');
         link.href = dataUrl;
@@ -116,5 +122,4 @@ const downloadBgImage = async () => {
 
 };
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

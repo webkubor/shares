@@ -10,7 +10,7 @@
                 <img v-show="activeIndex === index" src="@/assets/xbox/lucky.png" alt="">
             </div>
         </div>
-        <button class="xbox-action-btn" @click="onStart(8)">开始出奖</button>
+        <button class="webkubor-action-btn" @click="onStart(8)">开始出奖</button>
     </div>
 </template>
 <script setup>
@@ -126,6 +126,9 @@ function generateTimestampWithRandom() {
 
 </script>
 <style lang="scss" scoped>
+$betting-color: #F0000E;
+$warining-color: #FFB31C;
+
 .box-page {
     width: 100%;
     background: #101317;
@@ -135,7 +138,7 @@ function generateTimestampWithRandom() {
     flex-flow: column;
     align-items: center;
     span {
-    filter: brightness(120%) drop-shadow(0 0 10px $error-color);
+    filter: brightness(120%) drop-shadow(0 0 10px $betting-color);
 
         padding: 20px;
         font-size: 20px;
@@ -154,15 +157,15 @@ function generateTimestampWithRandom() {
             line-height: 200px;
             height: 200px;
             cursor: pointer;
-            box-shadow: 0px 2px 20px $error-color;
+            box-shadow: 0px 2px 20px $betting-color;
             border-radius: 4px;
             margin-bottom: 20px;
             margin-right: 20px;
             position: relative;
             transition: all 0.3s ease-in-out;
             &:hover {
-                border: 1px solid $error-color;
-                filter: brightness(120%) drop-shadow(0 0 10px $error-color);
+                border: 1px solid $betting-color;
+                filter: brightness(120%) drop-shadow(0 0 10px $betting-color);
             }
 
             span {
@@ -187,9 +190,9 @@ function generateTimestampWithRandom() {
         }
 
         .active {
-            box-shadow: 0 0 10px $error-color;
+            box-shadow: 0 0 10px $betting-color;
             transform: scale(1.05);
-            filter: drop-shadow(0 0 10px $error-color);
+            filter: drop-shadow(0 0 10px $betting-color);
         }
     }
 }</style>

@@ -9,6 +9,29 @@
 import MovieCom from './video/index.vue';
 </script>
 <style scoped lang="scss">
+
+.common-title {
+  font-family: Inter, sans-serif;
+  font-size: 35px;
+  color: #000000;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  font-weight: 600;
+  z-index: 999;
+  margin: 20px 0;
+  line-height: 40px;
+
+  .more {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: rgb(31 41 55);
+    color: #ffffff;
+  }
+}
+
+
 @keyframes jumbo {
   from {
       background-position: 50% 50%, 50% 50%;

@@ -1,7 +1,7 @@
 <template>
     <n-split direction="horizontal" :max="0.80" :min="0.2" :default-size="0.6">
         <template #1>
-            <div class="border-box">
+            <div class="full-box">
                 <div id="phone-view" class="bg-view"
                     :style="{ background: `${paperState.bgColor}`, width: `${phoneView?.width}px`, height: `${phoneView?.height}px` }">
                     <div class="frame-border shadow-common"
@@ -19,7 +19,7 @@
                             </template>
                             <template v-else>
                                 <div class="time-box" :style="{ color: paperState.fontColor }">
-                                    11:40
+                                    {{getCurrent()}}
                                     <div class="more">{{ getCurrentTime() }}</div>
                                 </div>
                                 <div class="bottom-area">
@@ -54,17 +54,21 @@ const phoneView = computed(() => {
     return transExportSize()
 })
 
-
 function getCurrentTime() {
     const now = dayjs();
     const formattedTime = now.format('dddd | MMM D'); // 使用 'ddd D' 格式来显示星期几和日期
     return formattedTime;
 }
 
+function getCurrent() {
+    const now = dayjs();
+    const formattedTime = now.format('hh:mm'); // 使用 'ddd D' 格式来显示星期几和日期
+    return formattedTime;
+}
 
 </script>
 <style lang="scss" scoped>
-.border-box {
+.full-box {
     width: 100%;
     height: 100%;
     display: flex;
@@ -88,20 +92,22 @@ function getCurrentTime() {
         font-weight: 500;
         transform: translateX(-50%);
     }
+
     .shadow-common {
         box-shadow:
-  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.025),
-  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.035),
-  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.045),
-  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.055),
-  100px 100px 80px rgba(0, 0, 0, 0.08)
-;
+            3.4px 3.4px 2.7px rgba(0, 0, 0, 0.025),
+            8.7px 8.7px 6.9px rgba(0, 0, 0, 0.035),
+            17.7px 17.7px 14.2px rgba(0, 0, 0, 0.045),
+            36.5px 36.5px 29.2px rgba(0, 0, 0, 0.055),
+            100px 100px 80px rgba(0, 0, 0, 0.08);
     }
 
     .frame-border {
         height: 400px;
-        width: 200px;
-        border-radius: 25px;
+        width: 199px;
+        border-radius: 27px;
+        box-sizing: border-box;
+        background-color: black;
         /* 添加阴影效果 */
         transform: scale(1.1) translateZ(20px);
         /* 放大变换并保持3D效果 */
@@ -180,7 +186,7 @@ function getCurrentTime() {
                     font-size: 10px;
                     font-weight: 400;
                     text-align: center;
-                letter-spacing: 0px;
+                    letter-spacing: 0px;
                 }
             }
 

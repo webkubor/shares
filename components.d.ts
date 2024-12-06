@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     ColorBorder: typeof import('./src/components/ColorBorder.vue')['default']
+    ColorBtn: typeof import('./src/components/ColorBtn.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
@@ -36,6 +37,7 @@ declare module 'vue' {
     NSapce: typeof import('naive-ui')['NSapce']
     NSelect: typeof import('naive-ui')['NSelect']
     NSpace: typeof import('naive-ui')['NSpace']
+    NSpin: typeof import('naive-ui')['NSpin']
     NSplit: typeof import('naive-ui')['NSplit']
     NSwitch: typeof import('naive-ui')['NSwitch']
     NTabPane: typeof import('naive-ui')['NTabPane']
