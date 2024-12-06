@@ -124,15 +124,6 @@ const RouterMap = [
     },
     component: () => import("@/views/show/colors.vue")
   },
- 
-  {
-    path: '/show/tabbar',
-    name: 'Tabbar',
-    meta: {
-      title: "tabbar"
-    },
-    component: () => import("@/views/show/tabbar.vue")
-  },
   {
     path: '/show/list',
     name: 'List',

@@ -18,13 +18,33 @@
                     'rgba(208, 48, 80, 1)',
                 ]" />
         </n-form-item>
-        <n-form-item label="字体设置" label-placement="left">
+        <n-form-item label="手机字体颜色" label-placement="left">
             <n-color-picker v-model:value="paperState.fontColor" style="width: 300px;" :show-alpha="true"
                 :actions="['clear']" :swatches="[
                     '#FFFFFF',
                     '#333333'
                 ]" />
         </n-form-item>
+        <n-form-item label="水印名称" label-placement="left">
+            <n-input type="text" v-model:value="paperState.waterMarkName" placeholder="输入水印文字" />
+        </n-form-item>
+        <n-form-item label="导出比例" label-placement="left">
+            <n-radio-group v-model:value="paperState.proportion" name="radiogroup">
+                <n-space>
+                    <n-radio :value="1">
+                        1 : 1
+                    </n-radio>
+                    <n-radio :value="2">
+                        3 : 4
+                    </n-radio>
+                    <n-radio :value="3">
+                        4 : 3
+                    </n-radio>
+                </n-space>
+            </n-radio-group>
+        </n-form-item>
+
+
     </n-card>
     <n-card>
         <n-space>
@@ -40,16 +60,15 @@
 import { reactive, ref, toRaw } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
 import { useWallpaper } from "../useWallpaper"
-import BgSelector from "./BgSelector.vue";
 import config from "../config.json"
 import { getRandomColor } from "@/utils/random";
 import domtoimage from 'dom-to-image-more';
-import { imageToBase64, getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
+import {  getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
 const fileListRef = ref([]);
 const previews = ref([]);
 const exportLoading = ref(false)
 
-const { paperState, onSetFace, setBgColor } = useWallpaper()
+const { paperState, onSetFace } = useWallpaper()
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList
     previews.value = []

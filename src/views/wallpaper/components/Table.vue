@@ -1,32 +1,36 @@
 <template>
     <n-split direction="horizontal" :max="0.80" :min="0.2" :default-size="0.6">
         <template #1>
-                <div id="phone-view" class="bg-view"
-                    :style="{ background: `${paperState.bgColor}` }">
-                    <div class="frame-border"
-                        :style="{ background: `url(${paperState.modelSrc}) no-repeat center/cover` }">
-                        <div class="inner-wallpaper"
-                            :style="{ background: `url(${paperState.wallpaper}) no-repeat center/cover` }">
-                            <div class="light-box"></div>
-                            <div class="phone-top">
-                                <img class="phone-top-center" crossorigin="anonymous" src="../assets/center.png" alt="">
-                                <PhoneTopIcon />
-                            </div>
-                            <template v-if="paperState.interface">
-                                <img class="table" crossorigin="anonymous"
-                                    :src="paperState.interface + '?' + new Date().getTime()">
-                            </template>
-                            <template v-else>
-                                <div class="time-box"  :style="{ color: paperState.fontColor }">
-                                    11:40
-                                </div>
-                                <div class="bottom-area">
-                                    <PhoneLockBottom />
-                                </div>
-                            </template>
+            <div class="border-box">
+                <div id="phone-view" class="bg-view" :style="{ background: `${paperState.bgColor}` , width: `${phoneView?.width}px` , height:`${phoneView?.height}px` }">
+                <div class="frame-border" :style="{ background: `url(${paperState.modelSrc}) no-repeat center/cover` }">
+                    <div class="inner-wallpaper"
+                        :style="{ background: `url(${paperState.wallpaper}) no-repeat center/cover` }">
+                        <div class="light-box"></div>
+                        <div class="phone-top">
+                            <img class="phone-top-center" crossorigin="anonymous" src="../assets/center.png" alt="">
+                            <PhoneTopIcon />
                         </div>
+                        <template v-if="paperState.interface">
+                            <img class="table" crossorigin="anonymous"
+                                :src="paperState.interface + '?' + new Date().getTime()">
+                        </template>
+                        <template v-else>
+                            <div class="time-box" :style="{ color: paperState.fontColor }">
+                                11:40
+                            </div>
+                            <div class="bottom-area">
+                                <PhoneLockBottom />
+                            </div>
+                        </template>
                     </div>
                 </div>
+                <div class="waterMark">
+                    Design by {{paperState.waterMarkName}}
+                </div>
+            </div>
+            </div>
+          
         </template>
         <template #2>
             <RightView />
@@ -38,18 +42,38 @@ import { useWallpaper } from "../useWallpaper"
 import RightView from "./RightView.vue";
 import PhoneTopIcon from "./svg/PhoneTopIcon.vue";
 import PhoneLockBottom from "./svg/PhoneLockBottom.vue";
-const { paperState } = useWallpaper()
-
+import { computed } from "vue";
+const { paperState, transExportSize } = useWallpaper()
+const phoneView = computed(() => {
+    return transExportSize()
+})
 
 
 </script>
 <style lang="scss" scoped>
-.bg-view {
-    position: relative;
-    height: 700px;
+.border-box {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.bg-view {
+    position: relative;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .waterMark {
+        color: #333333;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        font-weight: 500;
+        transform: translateX(-50%);
+    }
 
     .frame-border {
         height: 400px;
