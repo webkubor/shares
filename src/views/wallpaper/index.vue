@@ -10,7 +10,7 @@
                 <Table/>
                 </div>
             </n-layout-content>
-            <n-layout-footer bordered class="main-foter">
+            <n-layout-footer bordered class="main-footer">
                 webkubor 技术团队 2024 版权所有
             </n-layout-footer>
         </n-layout>
@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import  {useWallpaper} from "./useWallpaper"
 import Table from "./components/Table.vue";
+import bottomView from "./components/svg/bottomView.svg";
 const {paperState} = useWallpaper()
 
 </script>
@@ -28,11 +29,11 @@ const {paperState} = useWallpaper()
     font-size: 25px;
     padding-left: 20px;
 }
-.main-foter {
+.main-footer {
     width: 100%;
     text-align: center;
     font-size: 18px;
-    line-height: 80px;
+    line-height: 60px;
     width: 100%;
 }
 .main-container {

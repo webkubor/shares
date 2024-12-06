@@ -1,5 +1,6 @@
 <template>
-    <n-card title="界面">
+    <n-card >
+        <ColorBorder>
         <n-form-item label="切换模式" label-placement="left">
             <n-space>
                 <n-button :color="getRandomColor()" ghost v-for="(item, index) in config.interfaces"
@@ -43,18 +44,21 @@
                 </n-space>
             </n-radio-group>
         </n-form-item>
-
-
+    </ColorBorder>
     </n-card>
     <n-card>
-        <n-space>
-            <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
-                :on-update:file-list="handleFileListChange" @change="handleUploadChange">
-                <n-button type="primary">上传图片</n-button>
-            </n-upload>
-            <n-button type="primary" :loading="exportLoading" @click="downloadBgImage">导出</n-button>
-        </n-space>
+        <ColorBorder>
+                <n-space>
+                    <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
+                        :on-update:file-list="handleFileListChange" @change="handleUploadChange">
+                        <n-button type="primary">上传图片</n-button>
+                    </n-upload>
+                    <n-button type="primary" :loading="exportLoading" @click="downloadBgImage">导出</n-button>
+                </n-space>
+            </ColorBorder>
     </n-card>
+       
+
 </template>
 <script setup lang="ts">
 import { reactive, ref, toRaw } from "vue";
@@ -63,7 +67,8 @@ import { useWallpaper } from "../useWallpaper"
 import config from "../config.json"
 import { getRandomColor } from "@/utils/random";
 import domtoimage from 'dom-to-image-more';
-import {  getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
+import { getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
+
 const fileListRef = ref([]);
 const previews = ref([]);
 const exportLoading = ref(false)
@@ -111,4 +116,5 @@ const downloadBgImage = async () => {
 
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

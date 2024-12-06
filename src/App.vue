@@ -16,17 +16,6 @@ import { Message } from "@/hooks/useToast";
 let { allThemeOverrides, local, initTheme } = useTheme();
 window.$toast = Message;
 
-if (import.meta.env.MODE === 'production') {
-  document.addEventListener('keydown', function (e) {
-    if (e.keyCode === 123) { // F12键的键码
-      e.preventDefault();
-      window.$toast('开发者工具已被禁用！');
-    }
-  });
-}
-
-
-
 onMounted(() => {
   initTheme();
 })

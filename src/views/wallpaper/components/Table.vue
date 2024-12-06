@@ -2,35 +2,38 @@
     <n-split direction="horizontal" :max="0.80" :min="0.2" :default-size="0.6">
         <template #1>
             <div class="border-box">
-                <div id="phone-view" class="bg-view" :style="{ background: `${paperState.bgColor}` , width: `${phoneView?.width}px` , height:`${phoneView?.height}px` }">
-                <div class="frame-border" :style="{ background: `url(${paperState.modelSrc}) no-repeat center/cover` }">
-                    <div class="inner-wallpaper"
-                        :style="{ background: `url(${paperState.wallpaper}) no-repeat center/cover` }">
-                        <div class="light-box"></div>
-                        <div class="phone-top">
-                            <img class="phone-top-center" crossorigin="anonymous" src="../assets/center.png" alt="">
-                            <PhoneTopIcon />
+                <div id="phone-view" class="bg-view"
+                    :style="{ background: `${paperState.bgColor}`, width: `${phoneView?.width}px`, height: `${phoneView?.height}px` }">
+                    <div class="frame-border shadow-common"
+                        :style="{ background: `url(${paperState.modelSrc}) no-repeat center/cover` }">
+                        <div class="inner-wallpaper"
+                            :style="{ background: `url(${paperState.wallpaper}) no-repeat center/cover` }">
+                            <div class="light-box"></div>
+                            <div class="phone-top">
+                                <img class="phone-top-center" crossorigin="anonymous" src="../assets/center.png" alt="">
+                                <PhoneTopIcon />
+                            </div>
+                            <template v-if="paperState.interface">
+                                <img class="table" crossorigin="anonymous"
+                                    :src="paperState.interface + '?' + new Date().getTime()">
+                            </template>
+                            <template v-else>
+                                <div class="time-box" :style="{ color: paperState.fontColor }">
+                                    11:40
+                                    <div class="more">{{ getCurrentTime() }}</div>
+                                </div>
+                                <div class="bottom-area">
+                                    <PhoneLockBottom />
+                                </div>
+                            </template>
                         </div>
-                        <template v-if="paperState.interface">
-                            <img class="table" crossorigin="anonymous"
-                                :src="paperState.interface + '?' + new Date().getTime()">
-                        </template>
-                        <template v-else>
-                            <div class="time-box" :style="{ color: paperState.fontColor }">
-                                11:40
-                            </div>
-                            <div class="bottom-area">
-                                <PhoneLockBottom />
-                            </div>
-                        </template>
+                    </div>
+                    <div class="waterMark">
+                        Design by {{ paperState.waterMarkName }}
                     </div>
                 </div>
-                <div class="waterMark">
-                    Design by {{paperState.waterMarkName}}
-                </div>
             </div>
-            </div>
-          
+
         </template>
         <template #2>
             <RightView />
@@ -43,10 +46,20 @@ import RightView from "./RightView.vue";
 import PhoneTopIcon from "./svg/PhoneTopIcon.vue";
 import PhoneLockBottom from "./svg/PhoneLockBottom.vue";
 import { computed } from "vue";
+import dayjs from "@/utils/dayjs";
+
+window.$logger?.info("当前时间", getCurrentTime())
 const { paperState, transExportSize } = useWallpaper()
 const phoneView = computed(() => {
     return transExportSize()
 })
+
+
+function getCurrentTime() {
+    const now = dayjs();
+    const formattedTime = now.format('dddd | MMM D'); // 使用 'ddd D' 格式来显示星期几和日期
+    return formattedTime;
+}
 
 
 </script>
@@ -58,6 +71,7 @@ const phoneView = computed(() => {
     justify-content: center;
     align-items: center;
 }
+
 .bg-view {
     position: relative;
     height: 800px;
@@ -74,12 +88,20 @@ const phoneView = computed(() => {
         font-weight: 500;
         transform: translateX(-50%);
     }
+    .shadow-common {
+        box-shadow:
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.025),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.045),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.08)
+;
+    }
 
     .frame-border {
         height: 400px;
         width: 200px;
         border-radius: 25px;
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
         /* 添加阴影效果 */
         transform: scale(1.1) translateZ(20px);
         /* 放大变换并保持3D效果 */
@@ -146,10 +168,20 @@ const phoneView = computed(() => {
             .time-box {
                 position: absolute;
                 left: 50%;
-                top: 45px;
+                top: 50px;
+                width: 100%;
+                text-align: center;
                 transform: translateX(-50%);
-                font-size: 32px;
+                font-size: 34px;
+                letter-spacing: 2px;
                 font-weight: 600;
+
+                .more {
+                    font-size: 10px;
+                    font-weight: 400;
+                    text-align: center;
+                letter-spacing: 0px;
+                }
             }
 
             .bottom-area {
