@@ -15,7 +15,8 @@ const paperState = reactive({
     interfaceKey: 1, // 0桌面 1锁屏
     proportion: 2, // 导出比例 1(1:1) 2(3:4) 3(4:3)
     interface: '', //图标界面
-    wallpaper: '' //壁纸
+    wallpaper: '', //壁纸
+    waterMarkImage: '' //水印图片
 })
 
 

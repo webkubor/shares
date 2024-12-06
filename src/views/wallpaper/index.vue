@@ -19,7 +19,6 @@
 <script setup lang="ts">
 import  {useWallpaper} from "./useWallpaper"
 import Table from "./components/Table.vue";
-import bottomView from "./components/svg/bottomView.svg";
 const {paperState} = useWallpaper()
 
 </script>

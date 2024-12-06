@@ -4,8 +4,8 @@
             <div class="full-box">
                 <div id="phone-view" class="bg-view"
                     :style="{ background: `${paperState.bgColor}`, width: `${phoneView?.width}px`, height: `${phoneView?.height}px` }">
-                    <div class="frame-border shadow-common"
-                        :style="{ background: `url(${paperState.modelSrc}) no-repeat center/cover` }">
+                    <div class="frame-border shadow-common">
+                        <img class="border-img" :src="paperState.modelSrc">
                         <div class="inner-wallpaper"
                             :style="{ background: `url(${paperState.wallpaper}) no-repeat center/cover` }">
                             <div class="light-box"></div>
@@ -19,7 +19,7 @@
                             </template>
                             <template v-else>
                                 <div class="time-box" :style="{ color: paperState.fontColor }">
-                                    {{getCurrent()}}
+                                    {{ getCurrent() }}
                                     <div class="more">{{ getCurrentTime() }}</div>
                                 </div>
                                 <div class="bottom-area">
@@ -29,6 +29,7 @@
                         </div>
                     </div>
                     <div class="waterMark">
+                        <img v-if="paperState.waterMarkImage" :src="paperState.waterMarkImage" alt="" srcset="">
                         Design by {{ paperState.waterMarkName }}
                     </div>
                 </div>
@@ -91,6 +92,13 @@ function getCurrent() {
         left: 50%;
         font-weight: 500;
         transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img {
+            width: 60px;
+            height: 60px;
+        }
     }
 
     .shadow-common {
@@ -104,10 +112,9 @@ function getCurrent() {
 
     .frame-border {
         height: 400px;
-        width: 199px;
-        border-radius: 27px;
+        width: 200px;
+        border-radius: 28px;
         box-sizing: border-box;
-        background-color: black;
         /* 添加阴影效果 */
         transform: scale(1.1) translateZ(20px);
         /* 放大变换并保持3D效果 */
@@ -116,12 +123,21 @@ function getCurrent() {
         transition: transform 0.3s ease-in-out;
         /* 添加平滑动画效果 */
         position: relative;
+        padding: 4px 5px 2px;
+
+        .border-img {
+            position: absolute;
+            width: 203px;
+            height: 100%;
+            left: -1px;
+            top: 1px;
+        }
 
         .inner-wallpaper {
             display: block;
             margin: 2px auto;
-            width: calc(100% - 16px);
-            height: calc(100% - 4px);
+            width: calc(100% - 4px);
+            height: calc(100% - 5px);
             position: relative;
             border-radius: 25px;
             font-family: system-ui;

@@ -26,8 +26,13 @@
                         '#333333'
                     ]" />
             </n-form-item>
-            <n-form-item label="水印名称" label-placement="left">
+            <n-form-item label="文字水印" label-placement="left">
                 <n-input type="text" v-model:value="paperState.waterMarkName" placeholder="输入水印文字" />
+            </n-form-item>
+            <n-form-item label="添加图片水印" label-placement="left">
+                <n-upload list-type="image-card" :on-update:file-list="dealWaterMark">
+                    点击上传
+                </n-upload>
             </n-form-item>
             <n-form-item label="导出比例" label-placement="left">
                 <n-radio-group v-model:value="paperState.proportion" name="radiogroup">
@@ -50,8 +55,8 @@
         <n-spin :show="exportLoading">
             <ColorBorder>
                 <n-space>
-                    <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
-                        :on-update:file-list="handleFileListChange" @change="handleUploadChange">
+                    <n-upload :show-file-list="false" v-model:file-list="fileListRef"
+                        :on-update:file-list="dealWallpaper" @change="handleUploadChange">
                         <button class="common-btn">上传图片</button>
                     </n-upload>
                     <button class="common-btn" @click="downloadBgImage">导出</button>
@@ -85,13 +90,19 @@ function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     previews.value = []
 }
 
-async function handleFileListChange() {
+async function dealWallpaper() {
     const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
     const previewNames = new Set(previews.value.map(item => item.name));
     previews.value = previews.value.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
     paperState.wallpaper = previews.value[0].src
 
 }
+async function dealWaterMark(file) {
+    const processedPreviews = await  processFile(file[0]);
+    paperState.waterMarkImage = processedPreviews.src
+    console.log(processedPreviews,111);
+}
+
 
 async function processFile(element: { file: File }): Promise<{ name: string; src: string }> {
     const previewUrl: string = await getPreviewUrl(element.file);
