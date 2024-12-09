@@ -24,5 +24,10 @@
         border-radius: 20px;
         padding: 20px;
     }
+    &:hover {
+        box-shadow: 0px 0px 5px 2px rgba(255,255,255, 0.5);
+    padding: 4px;
+       
+    }
 }
 </style>
