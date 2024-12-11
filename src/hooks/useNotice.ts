@@ -1,3 +1,6 @@
+
+import Tplogo from '@/assets/logo/tp.png'
+
 /**
  * 创建Chrome通知
  * @param {string} title - 通知标题
@@ -36,15 +39,15 @@ function popNotice(message) {
     }
 
     const defaultLink = 'https://www.yuque.com/webkubor/blog';
-    const defaultTitle = '博客通知';
-    const defaultIconURL = 'https://img2.imgtp.com/2024/05/15/BDkFGt9T.png';
+    const defaultTitle = '订单模块';
+
     console.log(Notification.permission)
     if (Notification.permission === 'granted') {
-        createNotification(defaultTitle, message, defaultLink, defaultIconURL);
+        createNotification(defaultTitle, message, defaultLink, Tplogo);
     } else {
         Notification.requestPermission().then((permission) => {
             if (permission === 'granted') {
-                createNotification(defaultTitle, message, defaultLink, defaultIconURL);
+                createNotification(defaultTitle, message, defaultLink, Tplogo);
             } else {
                 console.log('用户拒绝了通知权限');
                 // 可以在此处添加处理拒绝权限的逻辑，比如提示用户
