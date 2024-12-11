@@ -7,6 +7,7 @@
             <n-input v-model:value="message"  clearable type="textarea" autosize
                 style="min-width: 80%"></n-input>
             <n-button @click="sendMessage" type="primary">发送弹幕</n-button>
+            <n-button @click="test" type="primary">test</n-button>
             <n-button dashed type="info" @click="clearMessage">清空弹幕</n-button>
         </div>
         <n-form-item label="弹幕速度:" label-placement="left" label-width="90">
@@ -89,6 +90,13 @@ const sendMessage = () => {
     console.log(danmakus.value, "弹幕列表");
 };
 
+
+const test =() => {
+    popNotice('test!', {
+        type: 'success'
+    });
+
+}
 const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';
