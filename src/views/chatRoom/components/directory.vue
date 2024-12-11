@@ -1,7 +1,7 @@
 <template>
 
     <div class="contant-box">
-        <h1>联系人名单</h1>
+        联系人名单
     </div>
 </template>
 <style lang="scss" scoped>

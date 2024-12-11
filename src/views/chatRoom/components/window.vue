@@ -1,6 +1,6 @@
 <template>
     <div class="room-box">
-        <h1>聊天室</h1>
+        聊天室
     </div>
 </template>
 <style lang="scss" scoped>

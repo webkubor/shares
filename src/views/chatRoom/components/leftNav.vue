@@ -1,7 +1,7 @@
 <template>
 
     <div class="left-nav">
-        <h1>leftNav</h1>
+        leftNav
     </div>
 </template>
 <style lang="scss" scoped>
