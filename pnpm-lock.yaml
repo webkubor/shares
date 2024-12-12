@@ -17,6 +17,9 @@ dependencies:
   gsap:
     specifier: ^3.12.5
     version: 3.12.5
+  kbor-logger:
+    specifier: ^1.0.4
+    version: 1.0.4
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -1473,6 +1476,12 @@ packages:
       verror: 1.10.0
     dev: true
 
+  /kbor-logger@1.0.4:
+    resolution: {integrity: sha512-Vrgtpg3QSy+YjVlPpVgMYRRJTisjXCNtNhtZ2pAXuNVLAOb2yUe9Isn51Pq/2w2A1EGOpEHBBki0JKXDirfV9g==}
+    dependencies:
+      tslib: 2.8.1
+    dev: false
+
   /loader-runner@4.3.0:
     resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==}
     engines: {node: '>=6.11.5'}
@@ -1991,6 +2000,10 @@ packages:
 
   /tslib@2.3.0:
     resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+    dev: false
+
+  /tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
     dev: false
 
   /tunnel-agent@0.6.0:
