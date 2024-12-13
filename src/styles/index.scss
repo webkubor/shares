@@ -59,6 +59,7 @@ h1 {
   text-transform: uppercase;
   text-rendering: optimizeLegibility;
   text-align: center;
+
   &.elegantshadow {
     margin: 0;
     color: #131313;
@@ -101,6 +102,31 @@ h1 {
 }
 
 
+.webkubor-back-btn {
+  text-align: center;
+  font-size: 12px;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  height: fit-content;
+  padding: 8px 25px;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.4);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 2px 20px rgba(255, 255, 255, 0.4);
+  }
+
+  &:active {
+    transform: translateY(2px);
+    filter: drop-shadow(0 0 5px $default-primary);
+
+  }
+}
 
 // 常规操作栏按钮
 .webkubor-action-btn {
@@ -135,6 +161,7 @@ h1 {
   background: transparent;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+
   &:hover {
     background-color: rgba($color: $default-primary, $alpha: 0.2);
     transform: translateY(-2px);

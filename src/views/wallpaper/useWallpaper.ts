@@ -4,16 +4,17 @@ const basePath = "/src/views/wallpaper/assets"
 const imagePaths = import.meta.glob('/src/views/wallpaper/assets/*.png', { eager: true });
 
 function getImageUrl(path) {
- return imagePaths[path]?.default;
+    return imagePaths[path]?.default;
 }
 
 const paperState = reactive({
     bgColor: "#ffffff", //背景
+    perspective: false,
     fontColor: "#000000", //字体颜色
-    modelSrc: getImageUrl(basePath+ '/phone-frame.png'), //终端边框
+    modelSrc: getImageUrl(basePath + '/phone-frame.png'), //终端边框
     waterMarkName: 'Design by 司南烛', //水印名称
     interfaceKey: 1, // 0桌面 1锁屏
-    proportion: 2, // 导出比例 1(1:1) 2(3:4) 3(4:3)
+    proportion: 1, // 导出比例 1(1:1) 2(3:4) 3(4:3)
     interface: '', //图标界面
     wallpaper: '', //壁纸
     waterMarkImage: '', //水印图片
@@ -34,18 +35,18 @@ export function useWallpaper() {
     }
 
 
-    function onSetFace(item:{name:string,value:number}) {
+    function onSetFace(item: { name: string, value: number }) {
         if (item.name === "桌面") {
-            paperState.interface = getImageUrl(basePath+ '/phone-table.png')
+            paperState.interface = getImageUrl(basePath + '/phone-table.png')
             paperState.interfaceKey = item.value
         } else {
-            paperState.interfaceKey =  item.value
+            paperState.interfaceKey = item.value
             paperState.interface = ''
         }
     }
 
     // 导出比例 1(1:1) 2(3:4) 3(4:3)
-    function transExportSize(base = 200) {
+    function transExportSize(base = 180) {
         if (paperState.proportion === 1) {
             return {
                 width: base * 3,
@@ -53,8 +54,8 @@ export function useWallpaper() {
             }
         } else if (paperState.proportion === 2) {
             return {
-                width:  base * 3,
-                height:  base * 4
+                width: base * 3,
+                height: base * 4
             }
         } else if (paperState.proportion === 3) {
             return {
@@ -62,7 +63,7 @@ export function useWallpaper() {
                 height: base * 3
             }
         }
-        
+
     }
 
 

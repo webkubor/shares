@@ -66,6 +66,7 @@ function getCurrent() {
         /* 添加平滑动画效果 */
         position: relative;
         padding: 4px 5px 2px;
+        z-index: 20;
 
         .border-img {
             position: absolute;

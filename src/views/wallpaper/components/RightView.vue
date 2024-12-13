@@ -3,13 +3,16 @@
         <ColorBorder>
             <n-form-item label="切换模式" label-placement="left">
                 <n-space>
-                    <button class="webkubor-action-btn" v-for="(item, index) in config.interfaces"
+                    <button class="webkubor-back-btn" v-for="(item, index) in config.interfaces"
                         @click="onSetFace(item)">
                         {{ item.name }}
                     </button>
                 </n-space>
             </n-form-item>
             <n-form-item label="背景设置" label-placement="left">
+                <n-checkbox v-model:checked="paperState.perspective">
+                透视模式
+                </n-checkbox>
                 <n-color-picker v-model:value="paperState.bgColor" style="width: 300px;" :show-alpha="true"
                     :actions="['clear']" :swatches="[
                         '#FFFFFF',
@@ -18,7 +21,11 @@
                         '#F0A020',
                         'rgba(208, 48, 80, 1)',
                     ]" />
+                    
             </n-form-item>
+
+
+         
             <n-form-item label="字体颜色" label-placement="left">
                 <n-color-picker v-model:value="paperState.fontColor" style="width: 300px;" :show-alpha="true"
                     :actions="['clear']" :swatches="[
@@ -56,9 +63,9 @@
                 <n-space>
                     <n-upload :show-file-list="false" v-model:file-list="fileListRef"
                         :on-update:file-list="dealWallpaper" @change="handleUploadChange">
-                        <button class="common-btn">上传图片</button>
+                        <button class="webkubor-back-btn common-btn">上传图片</button>
                     </n-upload>
-                    <button class="common-btn" @click="downloadBgImage">导出</button>
+                    <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
                 </n-space>
                 <template #description>
                     你不知道你有多幸运
