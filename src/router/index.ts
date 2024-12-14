@@ -27,7 +27,7 @@ const RouterMap = [
   },
   {
     path: '/wallpaper',
-    name: 'Login',
+    name: 'Wallpaper',
     meta: {
       title: "壁纸样机生成器"
     },

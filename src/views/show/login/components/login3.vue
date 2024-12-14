@@ -11,7 +11,7 @@
                         Welcome Back !
                     </div>
                     <div class="descriptiom">
-                        To keep connected with us please login with your personal info
+                        Don't have an account? Sign up now.
                     </div>
 
                 </div>
@@ -19,10 +19,11 @@
             <div class="container">
                 <form class="form" id="a-form" method="" action="">
                     <h2 class="form_title title">Create Account</h2>
-                    <input class="form__input" type="text" placeholder="Name">
-                    <input class="form__input" type="text" placeholder="Email">
+                    <input class="form__input" id="search-input" type="text" autocomplete="off" placeholder="Name"
+                        autofocus>
+                    <input class="form__input" type="text" autocomplete="off" placeholder="Email">
                     <input class="form__input" type="password" placeholder="Password">
-                    <button class="form__button button submit">SIGN UP</button>
+                    <button class="form__button">SIGN UP</button>
                 </form>
 
             </div>
@@ -31,6 +32,23 @@
     </div>
 
 </template>
+<script setup lang="ts">
+import { onMounted } from 'vue';
+import { createSearchHistory } from '@/utils/useSearchHistory';
+const searchHistory = createSearchHistory({
+    key: "search-history", // 指定 localStorage 的存储键
+    limit: 999, // 最多存储 5 条记录
+    filter: (item, query) => item.toLowerCase().includes(query.toLowerCase()), // 忽略大小写的模糊匹配
+    renderItem: (item) => `<li class="history-item">${item}</li>`, // 自定义渲染样式
+});
+onMounted(() => {
+    const input = document.querySelector<HTMLInputElement>("#search-input");
+    if (input) {
+        searchHistory.attachToInput(input);
+    }
+})
+
+</script>
 <style lang="scss" scoped>
 .title {
     font-size: 34px;
@@ -40,19 +58,20 @@
 }
 
 button {
-  width: 180px;
-  height: 50px;
-  border-radius: 25px;
-  margin-top: 50px;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 1.15px;
-  background-color: #0f1011;
-  color: #f9f9f9;
-  box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
-  border: none;
-  outline: none;
+    width: 180px;
+    height: 50px;
+    border-radius: 25px;
+    margin-top: 50px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1.15px;
+    background-color: #0f1011;
+    color: #f9f9f9;
+    box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
+    border: none;
+    outline: none;
 }
+
 .login-view {
     width: 100%;
     height: 100vh;
@@ -103,9 +122,22 @@ button {
                 border-radius: 8px;
                 box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
             }
+
             .form__button {
                 display: block;
                 margin-left: 80px;
+                transition: all 0.25s ease;
+
+                &:hover {
+                    transform: scale(1.02) translateY(-4px);
+                    filter: brightness(1.2);
+                    cursor: pointer;
+                    box-shadow: inset 2px 2px 4px #141619, inset -2px -2px 4px #3a2828;
+                }
+
+                &:active {
+                    transform: translateY(2px);
+                }
             }
         }
 
@@ -153,6 +185,7 @@ button {
                 width: 400px;
                 padding: 50px 55px;
                 transition: 1.25s;
+
                 img {
                     width: 100px;
                     border-radius: 50%;
