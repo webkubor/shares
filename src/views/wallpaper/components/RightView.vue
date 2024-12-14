@@ -138,16 +138,18 @@ function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
 }
 
 async function dealWallpaper() {
+    previews.value = []
     const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
     const previewNames = new Set(previews.value.map(item => item.name));
     previews.value = previews.value.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
     paperState.wallpaper = previews.value[0].src
+    console.log(previews.value, "dealWallpaper");
+    window.$logger?.picture(previews.value[0].src)
 
 }
 async function dealWaterMark(file) {
     const processedPreviews = await processFile(file[0]);
     paperState.waterMarkImage = processedPreviews.src
-    console.log(processedPreviews, 111);
 }
 
 

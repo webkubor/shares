@@ -4,6 +4,7 @@
             <div id="phone-view" class="bg-view"
                 :style="{ background: paperState.perspective ? `url(${paperState.wallpaper}) no-repeat center/cover` : `${paperState.bgColor}`, width: `${phoneSize?.width}`, height: `${phoneSize?.height}`, }"
                 :class="{ help: paperState.help, perspective: paperState.perspective }">
+                <!-- <div class="overlay"></div> -->
                 <n-space :size="[60, 30]">
                     <PhoneView />
                 </n-space>
@@ -124,4 +125,16 @@ const phoneSize = computed(() => {
 }
 
 
+.overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+  pointer-events: none; /* 确保不阻挡鼠标事件 */
+}
 </style>
