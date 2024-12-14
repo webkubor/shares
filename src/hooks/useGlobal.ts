@@ -21,6 +21,7 @@ function handleDeviceType() {
     appConfig.isPcModel = true;
     appConfig.isPortrait = true; // PC 端默认不关心横竖屏
   }
+  console.log("设备类型：", appConfig.isPcModel ? "PC" : "移动端");
 }
 
 // 处理屏幕方向
@@ -48,7 +49,7 @@ function watchOrientationChange() {
 }
 
 // 初始化
-function init() {
+function initView() {
   handleDeviceType(); // 初始化设备类型和屏幕方向
   window.addEventListener("resize", handleDeviceType); // 监听设备宽度变化
 }
@@ -57,6 +58,6 @@ function init() {
 export function useGlobal() {
   return {
     appConfig,
-    init,
+    initView,
   };
 }

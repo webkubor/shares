@@ -1,7 +1,7 @@
 <template>
         <n-layout>
             <n-layout-header bordered>
-                <div class="title"  v-if="appConfig.isPcModel">
+                <div class="title" v-if="appConfig.isPcModel">
                     壁纸样机生成器
                 </div>
             </n-layout-header>

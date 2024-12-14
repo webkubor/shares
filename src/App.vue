@@ -10,12 +10,12 @@ import { Message } from "@/hooks/useToast";
 import { useGlobal } from "./hooks/useGlobal";
 import { Snackbar } from '@varlet/ui'
 let { allThemeOverrides, local, initTheme } = useTheme();
-const { init } = useGlobal();
+const { initView } = useGlobal();
 window.$toast = Message;
 window.$message = Snackbar;
 
 onMounted(() => {
-  init()
+  initView()
   initTheme();
 })
 

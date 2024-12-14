@@ -11,9 +11,6 @@ import '@varlet/ui/es/style'
 
 window.$logger = prettyLog();
 window.$logger?.success('当前环境', import.meta.env.MODE)
-window.$logger?.success('kbor-logger', 'kbor-logger install success')
-
-
 
 
 createApp(App)

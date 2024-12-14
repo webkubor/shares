@@ -7,13 +7,13 @@
           <slot />
         </section>
         <div v-if="showProgress" class="progress-bar-container">
-          <div class="progress-bar" :style="{ width: `${progress}%`}"></div>
+          <div class="progress-bar" :style="{ width: `${progress}%` }"></div>
         </div>
       </main>
     </div>
   </transition>
 </template>
-  
+
 <script>
 import { watchEffect, onMounted, ref } from "vue";
 export default {
@@ -24,7 +24,7 @@ export default {
       type: Boolean,
       default: () => false
     },
-    showProgress:{
+    showProgress: {
       type: Boolean,
       default: () => true
     },
@@ -42,9 +42,9 @@ export default {
     },
     type: {
       type: String,
-      default: () => "success",
+      default: () => "info",
       validator(value) {
-        return ["success", "warning", "error"].includes(value);
+        return ["success", "warning", "error", "info"].includes(value);
       }
     }
   },
@@ -92,7 +92,7 @@ export default {
   }
 };
 </script>
-  
+
 <style lang="scss" scoped>
 .progress-bar-container {
   position: absolute;
@@ -113,17 +113,21 @@ export default {
 }
 
 .toast-message {
-  display: flex;
   position: fixed;
-  width: 320px;
-  right: 64px;
-  top: 96px;
-  margin-left: -325px;
+  top: 10vh;
+  /* 距离顶部屏幕高度的 10% */
+  left: 50%;
+  /* 水平居中 */
+  transform: translateX(-50%);
+  width: 90%;
+  /* 在小屏幕上自适应宽度 */
+  max-width: 320px;
+  /* 最大宽度限制 */
+  z-index: 10000;
   background: linear-gradient(145deg, $default-primary 2.89%, #23181E 20.36%);
   box-shadow: 0px 10px 40px -4px rgba($default-primary, 0.4);
   filter: drop-shadow(0 0 10px $default-primary);
   border-radius: 6px;
-  z-index: 10000;
   font-size: 16px;
   transition: 0.3s;
   border: 0.2px solid $default-primary;
@@ -131,7 +135,8 @@ export default {
   .toast-message-content {
     position: relative;
     color: aliceblue;
-     padding: 0 10px;
+    padding: 0 10px;
+
     :deep(.message-link) {
       display: inline-block;
       text-decoration: underline;
@@ -139,14 +144,30 @@ export default {
       margin-top: 8px;
     }
   }
-}
 
+  .toast-message-main {
+    position: relative;
+    flex: 1;
+    padding: 15px;
+  }
 
+  .progress-bar-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #23181E;
+    border-radius: 4px;
+  }
 
-.toast-message-main {
-  position: relative;
-  flex: 1;
-  padding: 15px;
+  .progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s;
+    background: $default-primary;
+    box-shadow: 0px 10px 40px -4px rgba($default-primary, 0.4);
+  }
 }
 
 .slide-fade-enter-active {
@@ -163,5 +184,20 @@ export default {
   transform: translateX(-20px);
   opacity: 0;
 }
+
+
+@media screen and (max-width: 400px) {
+  .toast-message {
+    width: auto;
+    .toast-message-main {
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+    .progress-bar-container {
+      height: 2px;
+    }
+  }
+
+
+}
 </style>
-  
