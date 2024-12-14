@@ -19,8 +19,6 @@ import UserInfo from "./components/UserInfo.vue";
 import ProjectList from "./components/ProjectList.vue";
 import ToolView from './components/Tool.vue'
 import { useMusic } from "@/hooks/useMusic";
-import { useMessage } from "naive-ui";
-window.$message = useMessage();
 const { initBackgroundMusic } = useMusic()
 
 window.addEventListener('vite:preloadError', (event) => {

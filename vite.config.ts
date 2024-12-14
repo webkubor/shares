@@ -3,6 +3,8 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import { VarletImportResolver } from '@varlet/import-resolver'
+import autoImport from 'unplugin-auto-import/vite'
 import { fileURLToPath, URL } from 'url'
 
 export default defineConfig({
@@ -26,8 +28,11 @@ export default defineConfig({
   plugins: [
     vue(),
     Components({
-      resolvers: [NaiveUiResolver()],
+      resolvers: [NaiveUiResolver(),VarletImportResolver()],
       directoryAsNamespace: true
+    }),
+    autoImport({
+      resolvers: [VarletImportResolver({ autoImport: true })]
     })
   ],
   server: {
