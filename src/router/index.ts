@@ -18,6 +18,14 @@ const RouterMap = [
     component: () => import("@/views/chatRoom/index.vue")
   },
   {
+    path: '/show/ocr',
+    name: 'Ocr',
+    meta: {
+      title: "Ocr"
+    },
+    component: () => import("@/views/ocr/index.vue")
+  },
+  {
     path: '/show/login',
     name: 'Login',
     meta: {
