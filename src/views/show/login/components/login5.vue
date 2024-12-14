@@ -8,7 +8,7 @@
       <div class="board">
         <div ref="btcChart" class="chart"></div>
         <div class="form">
-          <H1>Manager</H1>
+          <div class="title">Manager</div>
           <p>Access your payment services and manage your account.</p>
           <label for="username">账号</label>
           <input id="username" type="text" placeholder="请输入账号" autocomplete="username">
@@ -139,8 +139,6 @@ onBeforeUnmount(() => {
 });
 
 
-
-
 function onsubmit() {
   window.$toast.success('登录成功');
 }
@@ -152,10 +150,6 @@ function onsubmit() {
 $bg-color: #2c3e50;
 $theme-color: #E74C3C;
 
-// 使用 mixin
-input {
-  @include input-standard($theme-color, $bg-color);
-}
 
 button {
   margin-top: 20px;
@@ -164,6 +158,10 @@ button {
 
 .form {
   color: $theme-color;
+  .title {
+    font-size: 35px;
+    font-weight: 600;
+  }
 
   label {
     font-size: 14px;
@@ -171,13 +169,14 @@ button {
   }
 
   input {
+  @include input-standard($theme-color, $bg-color);
     display: inline-block;
   }
 }
 
 .login-view {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -187,8 +186,6 @@ button {
 
   .login-box {
     width: 100%;
-    height: 100%;
-    background: #333854;
     border-radius: 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     background: linear-gradient(to right bottom, #444A6F, #272C43);
@@ -202,7 +199,7 @@ button {
 
     .board {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
     }
 

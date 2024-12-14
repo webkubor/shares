@@ -93,7 +93,7 @@
   background: $input-background;
   outline: none;
   padding: 10px;
-  font-size: 14px;
+  font-size: initial;
   letter-spacing: 4px;
   font-weight: 500;
   caret-color: $input-border;
@@ -109,6 +109,10 @@
   &:active {
     box-shadow: inset 0 -5px 45px rgba($input-border, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
   }
+  &::placeholder {
+		color: #a0a5a8;
+		font-weight: 400;
+	}
   &:-webkit-autofill {
     background-color: $input-background; // 保持背景色一致
     color: $text-color; // 保持文字颜色一致
