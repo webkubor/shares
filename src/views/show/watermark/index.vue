@@ -1,5 +1,5 @@
 <template>
-    <div class="watermark">
+    <div class="book-page">
         <n-split direction="horizontal" :max="1" :min="0">
             <template #1>
                 <n-card title="操作栏目">
@@ -240,7 +240,7 @@ async function processFile(element: { file: File }): Promise<{ name: string; src
 
 </script>
 <style lang="scss">
-.watermark {
+.book-page {
     width: 100%;
     min-height: 1080px;
     padding: 20px;

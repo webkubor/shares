@@ -1,6 +1,6 @@
 <template>
     <div class="color-card">
-        <div class="wrapper">
+        <div class="window">
             <slot></slot>
         </div>
     </div>
@@ -16,7 +16,7 @@
     padding: 2px;
     margin: 5px 10px;
 
-    .wrapper {
+    .window {
         width: 100%;
         height: 100%;
         position: relative;
@@ -24,10 +24,21 @@
         border-radius: 20px;
         padding: 20px;
     }
+
     &:hover {
-        box-shadow: 0px 0px 5px 2px rgba(255,255,255, 0.5);
-    padding: 4px;
-       
+        box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.5);
+        padding: 4px;
+
     }
 }
+
+@media screen and (max-width: 400px) {
+    .color-card {
+        margin: 2px;
+        .window {
+            padding: 0px;
+        }
+    }
+}
+
 </style>

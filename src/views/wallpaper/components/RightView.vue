@@ -43,9 +43,6 @@
                 透视
                 </n-checkbox>
             </n-form-item>
-
-
-
          
             <n-form-item label="字体颜色" label-placement="left">
                 <n-color-picker v-model:value="paperState.fontColor" style="width: 300px;" :show-alpha="true"

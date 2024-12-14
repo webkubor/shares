@@ -13,10 +13,13 @@
 import { useTheme } from "@/hooks/useTheme";
 import { onMounted } from "vue";
 import { Message } from "@/hooks/useToast";
+import { useGlobal } from "./hooks/useGlobal";
 let { allThemeOverrides, local, initTheme } = useTheme();
+const { init } = useGlobal();
 window.$toast = Message;
 
 onMounted(() => {
+  init()
   initTheme();
 })
 

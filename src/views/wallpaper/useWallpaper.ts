@@ -54,18 +54,18 @@ export function useWallpaper() {
     function transExportSize(base = 180) {
         if (paperState.proportion === 1) {
             return {
-                width: base * 3,
-                height: base * 3
+                width: base * 3  + "px",
+                height: base * 3 + "px"
             }
         } else if (paperState.proportion === 2) {
             return {
-                width: base * 3,
-                height: base * 4
+                width: base * 3  + "px",
+                height: base * 4 + "px"
             }
         } else if (paperState.proportion === 3) {
             return {
-                width: base * 4,
-                height: base * 3
+                width: base * 4 +  "px",
+                height: base * 3 + "px"
             }
         }
 

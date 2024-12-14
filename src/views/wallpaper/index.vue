@@ -1,7 +1,7 @@
 <template>
         <n-layout>
             <n-layout-header bordered>
-                <div class="title">
+                <div class="title"  v-if="appConfig.isPcModel">
                     壁纸样机生成器
                 </div>
             </n-layout-header>
@@ -15,7 +15,9 @@
 <script setup lang="ts">
 import  {useWallpaper} from "./useWallpaper"
 import Table from "./components/Table.vue";
+import { useGlobal } from "@/hooks/useGlobal";
 const {paperState} = useWallpaper()
+const { appConfig } = useGlobal()
 
 </script>
 <style lang="scss" scoped>
@@ -33,5 +35,12 @@ const {paperState} = useWallpaper()
     font-size: 16px;
     padding-bottom: 10vh;
     padding-top: 5vh;
+}
+
+@media screen and (max-width: 500px) {
+    .main-container  {
+        min-height: 100vh;
+        padding: 0;
+    }
 }
 </style>
