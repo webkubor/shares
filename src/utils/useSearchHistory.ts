@@ -84,22 +84,31 @@ export function createSearchHistory(config: HistoryConfig) {
         historyList.style.display = "none";
       }
     });
+    
+    historyList.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      if (target.classList.contains("history-item")) {
+        input.value = target.textContent || ""; // 填入点击的历史记录
+        input.dispatchEvent(new Event("input")); // 触发输入事件
+        historyList.style.display = "none"; // 隐藏历史记录
+      }
+    });
 
     input.parentElement?.appendChild(historyList);
   };
 
   const positionList = (input: HTMLInputElement) => {
     const rect = input.getBoundingClientRect(); // 获取输入框的位置和尺寸
-  const parentRect = input.offsetParent?.getBoundingClientRect(); // 获取父容器的位置
-  const scrollX = parentRect ? 0 : window.scrollX; // 根据父容器是否存在调整
-  const scrollY = parentRect ? 0 : window.scrollY;
+    const parentRect = input.offsetParent?.getBoundingClientRect(); // 获取父容器的位置
+    const scrollX = parentRect ? 0 : window.scrollX; // 根据父容器是否存在调整
+    const scrollY = parentRect ? 0 : window.scrollY;
 
-  console.log(rect, "input rect");
-  console.log(parentRect, "parent rect");
+    console.log(rect, "input rect");
+    console.log(parentRect, "parent rect");
 
-  historyList.style.top = `${rect.bottom - (parentRect?.top || 0) + scrollY}px`;
-  historyList.style.left = `${rect.left - (parentRect?.left || 0) + scrollX}px`;
-  historyList.style.width = `${rect.width}px`;
+    historyList.style.top = `${rect.bottom - (parentRect?.top || 0) + scrollY}px`;
+    historyList.style.left = `${rect.left - (parentRect?.left || 0) + scrollX}px`;
+    historyList.style.width = `${rect.width}px`;
   };
 
   return {
