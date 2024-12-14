@@ -17,6 +17,11 @@ const paperState = reactive({
     proportion: 1, // 导出比例 1(1:1) 2(3:4) 3(4:3)
     interface: '', //图标界面
     wallpaper: '', //壁纸
+    waterColor: '#000000', //水印颜色
+    backgroundPositon: {
+        x: "center",
+        y: "center"
+    },
     waterMarkImage: '', //水印图片
     help: false //辅助线
 })

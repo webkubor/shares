@@ -1,7 +1,10 @@
 <template>
     <div class="frame-border shadow-common">
         <img class="border-img" :src="paperState.modelSrc">
-        <div class="inner-wallpaper" :style="{ background: `url(${paperState.wallpaper}) no-repeat center/cover` }">
+        <div class="inner-wallpaper" :style="{ background: `url(${paperState.wallpaper}) no-repeat center/cover`,
+            backgroundPositionX: paperState.backgroundPositon.x,
+            backgroundPositionY: paperState.backgroundPositon.y
+             }">
             <div class="light-box"></div>
             <div class="phone-top">
                 <img class="phone-top-center" crossorigin="anonymous" src="../assets/center.png" alt="">

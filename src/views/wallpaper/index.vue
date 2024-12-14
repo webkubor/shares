@@ -31,6 +31,7 @@ const {paperState} = useWallpaper()
 .main-container {
     width: 100%;
     font-size: 16px;
-    height: 100vh;
+    padding-bottom: 10vh;
+    padding-top: 5vh;
 }
 </style>
