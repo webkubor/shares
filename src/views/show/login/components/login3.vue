@@ -53,9 +53,12 @@ onMounted(() => {
 .title {
     font-size: 34px;
     font-weight: 700;
-    line-height: 3;
+    line-height: 2;
+    text-align: left;
     color: #181818;
 }
+
+
 
 button {
     width: 180px;

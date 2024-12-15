@@ -1,7 +1,11 @@
 <template>
+
 	<Login3 />
 	<Login5 />
 	<div class="input-layout">
+		<div class="common-title">
+			Input Styles
+		</div>
 		<input class="input-white" type="text" placeholder="请输入用户名" />
 		<input class="input-base" type="text" placeholder="请输入用户名" />
 		<input type="text" placeholder="请输入用户名" />
@@ -14,6 +18,8 @@ import Login3 from "./components/login3.vue"
 import Login5 from "./components/login5.vue"
 </script>
 <style lang="scss" scoped>
+
+
 .input-layout {
 	background: #ffffff;
 	height: 100vh;
@@ -29,6 +35,20 @@ import Login5 from "./components/login5.vue"
 		font-size: 16px;
 		width: 300px;
 	}
+
+	.common-title {
+	letter-spacing: 5px;
+	color: #e6e6e6;
+	text-shadow: 1px -1px #ffffff, -1px 1px #999999, -4px 4px 10px #80808080;
+	font-size: 70px;
+	line-height: 2;
+	text-align: center;
+	font-weight: bold;
+	&:hover {
+		color: #3b2116;
+		cursor: pointer;
+	}
+}
 }
 
 .input-white {
