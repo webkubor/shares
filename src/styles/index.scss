@@ -74,37 +74,39 @@ h1 {
 }
 
 .history-list {
-  background: rgba(255, 255, 255, 0.98); // 增加透明度，柔化背景
-  border-radius: 8px; // 保持统一的圆角
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // 添加阴影提升层次感
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   max-height: 200px;
   overflow-y: auto;
   list-style: none;
-  color: #333; // 调整字体颜色为较柔和的深色
+  color: #333;  /* Soft dark text color */
   font-weight: 500;
-  padding: 4px 0; // 增加上下间距让内容更通透
+  padding: 4px 0;  /* Adds vertical spacing */
   margin: 0;
 
   .history-item {
-    padding: 8px 16px; // 增大点击区域，提高交互体验
-    line-height: 1.5; // 优化行间距
+    padding: 8px 16px;  /* Increases touch target size */
+    line-height: 1.5;
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease; // 添加动画过渡
-
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease; /* Added transform for subtle lift effect */
+    
     &:hover {
-      background: #f7f7f7; // 使用浅灰色做 hover 提示
-      color: #000; // 确保文字颜色清晰
+      background: #f7f7f7;
+      color: #000;
+      transform: translateY(-1px); /* Adds a slight lift on hover */
     }
 
     &:active {
-      background: #e0e0e0; // 提供按压反馈
+      background: #e0e0e0;
+      transform: translateY(1px); /* Slight press effect */
     }
 
     &:focus {
       outline: none;
-      background: #d9efff; // 提供键盘导航样式
-      color: #007acc; // 突出文本颜色
+      background: #d9efff;
+      color: #007acc;
     }
   }
 }
