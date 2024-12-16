@@ -77,9 +77,6 @@ export default {
         el.addEventListener("blur", () => {
           let value = fectchInnerInput()
           addHistory(value); // 保存历史记录
-          setTimeout(() => {
-            historyList.style.display = "none";
-          }, 500);
         });
 
         const fectchInnerInput = () => {
@@ -92,25 +89,19 @@ export default {
           }
         }
 
-        document.addEventListener("click", (e) => {
-          const target = e.target as HTMLElement;
-
-          // Hide historyList if the click is outside of both `el` and `historyList`
-          if (!el.contains(target) && !historyList.contains(target)) {
+        historyList.addEventListener("click", (e) => {
+          const target = (e.target as HTMLElement).closest(".history-item");
+          if (target) {
+            el.value = target.textContent || "";
+            el.dispatchEvent(new Event("input"));
             historyList.style.display = "none";
           }
-
-          console.log(el, "document.addEventListener");
-          // Handle selection of an item from the historyList
-          if (historyList.contains(target)) {
-            const historyItem = target.closest(".history-item");
-            console.log(historyItem, "document.addEventListener");
-
-            if (historyItem) {
-              el.value = historyItem.textContent || "";
-              el.dispatchEvent(new Event("input"));
-              historyList.style.display = "none";
-            }
+        });
+        
+        document.addEventListener("click", (e) => {
+          const target = e.target as HTMLElement;
+          if (!el.contains(target) && !historyList.contains(target)) {
+            historyList.style.display = "none";
           }
         });
 

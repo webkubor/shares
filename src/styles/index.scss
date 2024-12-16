@@ -50,6 +50,9 @@ $default-primary: #0077ff;
 * {
   box-sizing: border-box;
 }
+body {
+  position: relative;
+}
 
 h1 {
   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
@@ -85,6 +88,7 @@ h1 {
   font-weight: 500;
   padding: 4px 0;  /* Adds vertical spacing */
   margin: 0;
+  font-size: 14px;
  position: absolute;
   .history-item {
     padding: 8px 16px;  /* Increases touch target size */
