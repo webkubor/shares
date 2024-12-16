@@ -31,7 +31,7 @@ export default {
               history = history.slice(0, limit);
             }
             saveHistory(history);
-            window.$logger?.success("addHistory");
+            window.$logger?.success("addHistory", "addHistory");
 
           };
   
