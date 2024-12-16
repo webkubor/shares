@@ -19,7 +19,7 @@
             <div class="container">
                 <form class="form" id="a-form" method="" action="">
                     <h2 class="form_title title">Create Account</h2>
-                    <input class="form__input" id="search-input" type="text" autocomplete="off" placeholder="Name"
+                    <input class="form__input"  type="text" autocomplete="off" placeholder="Name"
                         autofocus>
                     <input class="form__input" type="text" autocomplete="off" placeholder="Email">
                     <input class="form__input" type="password" placeholder="Password">
@@ -34,19 +34,6 @@
 </template>
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { createSearchHistory } from '@/utils/useSearchHistory';
-const searchHistory = createSearchHistory({
-    key: "search-history", // 指定 localStorage 的存储键
-    limit: 999, // 最多存储 5 条记录
-    filter: (item, query) => item.toLowerCase().includes(query.toLowerCase()), // 忽略大小写的模糊匹配
-    renderItem: (item) => `<li class="history-item">${item}</li>`, // 自定义渲染样式
-});
-onMounted(() => {
-    const input = document.querySelector<HTMLInputElement>("#search-input");
-    if (input) {
-        searchHistory.attachToInput(input);
-    }
-})
 
 </script>
 <style lang="scss" scoped>

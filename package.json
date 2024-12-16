@@ -1,5 +1,5 @@
 {
-  "name": "shares",
+  "name": "share WebUI",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --host --open",
