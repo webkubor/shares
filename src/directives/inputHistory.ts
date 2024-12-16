@@ -63,7 +63,7 @@ export default {
 
         el.addEventListener("focus", () => {
           renderHistory();
-          positionList();
+          positionList()
         });
 
         el.addEventListener("keydown", (e) => {
