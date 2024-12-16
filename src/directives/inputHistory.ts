@@ -56,7 +56,7 @@ export default {
         };
 
         el.addEventListener("input", (e) => {
-          let value =  fectchInnerInput()
+          let value = fectchInnerInput()
           console.log(value, `inputElement.value`);
           renderHistory(value); // 渲染历史记录列表
         });
@@ -68,20 +68,21 @@ export default {
 
         el.addEventListener("keydown", (e) => {
           if (e.key === "Enter") {
-          let value =  fectchInnerInput()
-          addHistory(value); // 保存历史记录
-          renderHistory(); // 渲染历史记录列表
+            let value = fectchInnerInput()
+            addHistory(value); // 保存历史记录
+            renderHistory(); // 渲染历史记录列表
           }
         });
 
         el.addEventListener("blur", () => {
-          let value =  fectchInnerInput()
+          let value = fectchInnerInput()
           addHistory(value); // 保存历史记录
-          historyList.style.display = "none";
+          setTimeout(() => {
+            historyList.style.display = "none";
+          }, 500);
         });
 
         const fectchInnerInput = () => {
-          // 判断 el 是否是 input 元素
           const inputElement = el.tagName.toLowerCase() === 'input' ? el : el.querySelector('input');
           if (inputElement) {
             const inputValue = inputElement.value.trim();
@@ -92,20 +93,24 @@ export default {
         }
 
         document.addEventListener("click", (e) => {
-          if (
-            !el.contains(e.target as Node) &&
-            !historyList.contains(e.target as Node)
-          ) {
+          const target = e.target as HTMLElement;
+
+          // Hide historyList if the click is outside of both `el` and `historyList`
+          if (!el.contains(target) && !historyList.contains(target)) {
             historyList.style.display = "none";
           }
-        });
 
-        historyList.addEventListener("click", (e) => {
-          const target = (e.target as HTMLElement).closest(".history-item");
-          if (target) {
-            el.value = target.textContent || "";
-            el.dispatchEvent(new Event("input"));
-            historyList.style.display = "none";
+          console.log(el, "document.addEventListener");
+          // Handle selection of an item from the historyList
+          if (historyList.contains(target)) {
+            const historyItem = target.closest(".history-item");
+            console.log(historyItem, "document.addEventListener");
+
+            if (historyItem) {
+              el.value = historyItem.textContent || "";
+              el.dispatchEvent(new Event("input"));
+              historyList.style.display = "none";
+            }
           }
         });
 
