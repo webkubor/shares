@@ -46,11 +46,16 @@ export default {
           };
   
           const positionList = () => {
-            const { top, left, width, height } = el.getBoundingClientRect();
-            historyList.style.top = `${top + height + window.scrollY}px`;
-            historyList.style.left = `${left + window.scrollX}px`;
-            historyList.style.width = `${width}px`;
-            console.log(top, left, width, height, "positionList");
+            const rect = el.getBoundingClientRect();
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+            
+            historyList.style.top = `${rect.top + rect.height + scrollTop}px`;
+            historyList.style.left = `${rect.left + scrollLeft}px`;
+            historyList.style.width = `${rect.width}px`;
+          
+            console.log(el, "object");
+            console.log(rect.top, rect.left, rect.width, rect.height, "positionList");
           };
   
           el.addEventListener("input", (e) => {
@@ -91,7 +96,7 @@ export default {
             }
           });
   
-          el.parentElement?.appendChild(historyList);
+          document.body.appendChild(historyList); // fix el.parentElement后添加导致部分下拉的窗口不准确的问题,因为很多无法确定父组件的定位样式,考虑到绝对定位,所以可以window 对象元素,加入全局的定位,这样能相对的准确无误
         },
       });
     },
