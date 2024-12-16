@@ -11,7 +11,7 @@
           <div class="title">Manager</div>
           <p>Access your payment services and manage your account.</p>
           <label for="username">账号</label>
-          <input id="username" type="text" placeholder="请输入账号" autocomplete="username">
+          <input id="username" type="text" v-history placeholder="请输入账号" autocomplete="username">
           <label for="password">密码</label>
           <input id="password" type="password" placeholder="请输入密码" autocomplete="current-password">
           <button type="submit" @click="onsubmit">提交</button>

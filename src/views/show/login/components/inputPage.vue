@@ -4,32 +4,16 @@
         <div class="common-title">
             Input Styles
         </div>
-        <input class="input-white" type="text" placeholder="请输入用户名" />
-        <input class="input-base" type="text" placeholder="请输入用户名" />
-        <input type="text" placeholder="请输入用户名" />
-        <input type="text" placeholder="请输入用户名" />
-        <n-input type="text" style="width:300px;" id="search-input" placeholder="请输入用户名" />
+        <input class="input-white" type="text" v-history placeholder="请输入用户名" />
+        <input class="input-base" type="text" v-history  placeholder="请输入用户名" />
+        <input type="text" v-history  placeholder="请输入用户名" />
+        <input type="text" v-history placeholder="请输入用户名" />
+        <n-input type="text" style="width:300px;" v-history placeholder="请输入用户名" />
     </div>
 
 </template>
 <script setup lang="ts">
-import { createSearchHistory } from '@/utils/useSearchHistory';
 import { onMounted } from 'vue';
-
-const searchHistory = createSearchHistory({
-    key: "search-history", // 指定 localStorage 的存储键
-    limit: 999,
-    filter: (item, query) => item.toLowerCase().includes(query.toLowerCase()), // 忽略大小写的模糊匹配
-    renderItem: (item) => `<li class="history-item">${item}</li>`, // 自定义渲染样式
-});
-onMounted(() => {
-    const input = document.querySelector<HTMLInputElement>("#search-input");
-    if (input) {
-        searchHistory.attachToInput(input);
-    }
-})
-
-
 
 </script>
 <style lang="scss" scoped>
