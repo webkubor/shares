@@ -57,7 +57,7 @@ export default {
 
         el.addEventListener("input", (e) => {
           let value = fectchInnerInput()
-          console.log(value, `inputElement.value`);
+          console.log(value, `inputElement.value`, e);
           renderHistory(value); // 渲染历史记录列表
         });
 
@@ -75,6 +75,7 @@ export default {
         });
 
         el.addEventListener("blur", () => {
+          console.log('获取到失焦事件');
           let value = fectchInnerInput()
           addHistory(value); // 保存历史记录
         });

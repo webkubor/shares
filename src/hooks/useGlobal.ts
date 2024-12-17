@@ -21,7 +21,7 @@ function handleDeviceType() {
     appConfig.isPcModel = true;
     appConfig.isPortrait = true; // PC 端默认不关心横竖屏
   }
-  console.log("设备类型：", appConfig.isPcModel ? "PC" : "移动端");
+  // console.log("设备类型：", appConfig.isPcModel ? "PC" : "移动端");
 }
 
 // 处理屏幕方向
