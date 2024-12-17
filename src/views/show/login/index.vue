@@ -1,9 +1,7 @@
 <template>
-
+	<inputPage></inputPage>
 	<Login3 />
 	<Login5 />
-	<inputPage></inputPage>
-	
 </template>
 <script setup>
 import Login3 from "./components/login3.vue"

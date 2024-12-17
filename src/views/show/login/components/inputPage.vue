@@ -4,11 +4,11 @@
         <div class="common-title">
             Input Styles
         </div>
+        <n-input type="text" style="width:300px;" v-history placeholder="UI 框架" />
         <input class="input-white" type="text" v-history placeholder=" 测试输入框 1" />
         <input class="input-base" type="text" v-history  placeholder=" 测试输入框 2" />
         <input type="text" v-history  placeholder=" 测试输入框 3" />
         <input type="text" v-history placeholder="测试输入框 4" />
-        <n-input type="text" style="width:300px;" v-history placeholder="UI 框架" />
     </div>
 
 </template>
