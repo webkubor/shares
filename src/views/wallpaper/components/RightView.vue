@@ -8,10 +8,7 @@
                     </n-upload>
                     <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
                 </n-space>
-                <template #description>
-                    你不知道你有多幸运
-                </template>
-            </n-spin>
+              
             <n-form-item label="壁纸位置" label-placement="left" style="margin-top: 20px;">
                 <n-space>
             <n-select v-model:value="paperState.backgroundPositon.x" style="width: 100px;" placeholder="X轴偏移" :options="backgroundPositonXOptions" />
@@ -83,7 +80,10 @@
                     </n-space>
                 </n-radio-group>
             </n-form-item>
-         
+            <template #description>
+                    你不知道你有多幸运
+                </template>
+            </n-spin>
         </ColorBorder>
 </template>
 <script setup lang="ts">
@@ -141,10 +141,8 @@ async function dealWallpaper() {
     const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
     const previewNames = new Set(previews.value.map(item => item.name));
     previews.value = previews.value.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
-    paperState.wallpaper = previews.value[0].src
+    paperState.wallpaper = previews.value[previews.value.length -1].src
     console.log(previews.value, "dealWallpaper");
-    window.$logger?.picture(previews.value[0].src)
-
 }
 async function dealWaterMark(file) {
     const processedPreviews = await processFile(file[0]);

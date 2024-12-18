@@ -27,7 +27,7 @@ import { computed } from "vue";
 const { appConfig } = useGlobal()
 const { paperState, transExportSize } = useWallpaper()
 const phoneSize = computed(() => {
-    if (appConfig.PcModel) {
+    if (appConfig.isPcModel) {
         return transExportSize(250)
     } else {
         return {
