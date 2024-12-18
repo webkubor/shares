@@ -96,8 +96,8 @@ import { getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
 import dayjs from "@/utils/dayjs";
 
 const fileListRef = ref([]);
-const previews = ref([]);
 const exportLoading = ref(false)
+const { paperState, onSetFace } = useWallpaper()
 
 
 const backgroundPositonXOptions = [
@@ -130,19 +130,17 @@ const backgroundPositonYOptions = [
     }
 ]
 
-const { paperState, onSetFace } = useWallpaper()
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList
-    previews.value = []
+    paperState.previews = []
 }
 
 async function dealWallpaper() {
-    previews.value = []
     const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
-    const previewNames = new Set(previews.value.map(item => item.name));
-    previews.value = previews.value.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
-    paperState.wallpaper = previews.value[previews.value.length -1].src
-    console.log(previews.value, "dealWallpaper");
+    const previewNames = new Set(paperState.previews .map(item => item.name));
+    paperState.previews  = paperState.previews .concat(processedPreviews.filter(item => !previewNames.has(item.name)));
+    paperState.wallpaper = paperState.previews [paperState.previews .length -1].src
+    console.log(paperState.previews , "dealWallpaper");
 }
 async function dealWaterMark(file) {
     const processedPreviews = await processFile(file[0]);

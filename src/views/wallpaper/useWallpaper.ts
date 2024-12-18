@@ -18,6 +18,7 @@ const paperState = reactive({
     interface: '', //图标界面
     wallpaper: '', //壁纸
     waterColor: '#000000', //水印颜色
+    previews: [], //预览图片
     backgroundPositon: {
         x: "center",
         y: "center"

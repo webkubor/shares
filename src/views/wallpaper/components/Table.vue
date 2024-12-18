@@ -13,6 +13,11 @@
                     {{ paperState.waterMarkName }}
                 </div>
             </div>
+            <div class="preview-list">
+                <img :src="item.src" :class="{
+                    active: paperState.wallpaper === item.src
+                }" v-for="(item,index) in paperState.previews" @click="onChoose(item)">
+            </div>
         </ColorBorder>
         <RightView class="right-view" v-if="appConfig.isPcModel" />
     </div>
@@ -37,6 +42,10 @@ const phoneSize = computed(() => {
     }
 })
 
+
+function onChoose(wallpaper) {
+    paperState.wallpaper = wallpaper.src
+}
 
 
 </script>
@@ -92,6 +101,20 @@ const phoneSize = computed(() => {
 
         .help {
             border: 1px dotted #333333;
+        }
+        .preview-list {
+            display: flex;
+            height: 100px;
+            margin-top: 10px;
+            img {
+            height: 100px;
+                width: auto;
+                margin-right: 10px;
+                border-radius: 8px;
+            }
+            .active {
+                border: 2px solid orangered;
+            }
         }
     }
 
