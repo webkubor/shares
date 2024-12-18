@@ -33,8 +33,8 @@ const { appConfig } = useGlobal()
 .main-container {
     width: 100%;
     font-size: 16px;
-    padding-bottom: 10vh;
-    padding-top: 5vh;
+    padding-top: 20px;
+    padding-bottom:10vh ;
 }
 
 @media screen and (max-width: 500px) {

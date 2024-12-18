@@ -75,10 +75,10 @@
                     </n-space>
                 </n-radio-group>
             </n-form-item>
-            <n-form-item label="基本配置" label-placement="left">
+            <n-form-item label="本地配置" label-placement="left">
                 <n-space>
-                    <button class="webkubor-back-btn common-btn" @click="setConfigHistory">保存数据</button>
-                    <button class="webkubor-back-btn common-btn" @click="getConfigHistory">读取数据</button>
+                    <button class="webkubor-back-btn common-btn" @click="getConfigHistory">读取</button>
+                    <button class="webkubor-back-btn common-btn" @click="setConfigHistory">保存/更新</button>
                 </n-space>
             </n-form-item>
             <template #description>
