@@ -17,7 +17,7 @@
     margin: 5px 10px;
     border: 2px solid transparent;
     background-clip: padding-box;
-
+font-size: 14px;
     .window {
         width: 100%;
         height: 100%;
@@ -25,7 +25,6 @@
         background: #000000;
         border-radius: 20px;
         padding: 20px;
-        overflow: hidden;
     }
 
     &:hover {

@@ -62,6 +62,7 @@ function getCurrent() {
     position: relative;
     padding: 4px 5px 2px;
     z-index: 20;
+    overflow: hidden;
     box-shadow:
         3.4px 3.4px 2.7px rgba(0, 0, 0, 0.025),
         8.7px 8.7px 6.9px rgba(0, 0, 0, 0.035),

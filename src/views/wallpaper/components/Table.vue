@@ -1,10 +1,9 @@
 <template>
     <div class="layout-paper">
         <ColorBorder class="left-view">
-            <div id="phone-view" class="bg-view"
+                <div  id="phone-view"  class="bg-view"
                 :style="{ background: paperState.perspective ? `url(${paperState.wallpaper}) no-repeat center/cover` : `${paperState.bgColor}`, width: `${phoneSize?.width}`, height: `${phoneSize?.height}`, }"
-                :class="{ help: paperState.help, perspective: paperState.perspective }">
-                <!-- <div class="overlay"></div> -->
+                :class="{ perspective: paperState.perspective }">
                 <n-space :size="[60, 30]">
                     <PhoneView />
                 </n-space>
@@ -13,6 +12,7 @@
                     {{ paperState.waterMarkName }}
                 </div>
             </div>
+          
             <div class="preview-list">
                 <img :src="item.src" :class="{
                     active: paperState.wallpaper === item.src

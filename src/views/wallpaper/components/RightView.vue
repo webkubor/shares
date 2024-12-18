@@ -82,7 +82,7 @@
                 </n-space>
             </n-form-item>
             <template #description>
-                    你不知道你有多幸运
+                    导出中.......
                 </template>
             </n-spin>
         </ColorBorder>
@@ -165,13 +165,13 @@ async function processFile(element: { file: File }): Promise<{ name: string; src
         return { name: element.name, src: img.src };
     }
 }
+
+
 const downloadBgImage = async () => {
-    let target = document.getElementById('phone-view') as HTMLDivElement;
-    console.log(target, 'start');
+    let target = document.getElementById('phone-view') as HTMLDivElement
     exportLoading.value = true
     const formattedDate = dayjs().format('YYYY-MM-DD'); // 使用 dayjs 格式化日期
     domtoimage.toPng(target, { useCORS: true, scale: 2 }).then(function (dataUrl) {
-        console.log(dataUrl);
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = `bg-image-${formattedDate}.png`;
