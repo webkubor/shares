@@ -2,7 +2,7 @@
         <ColorBorder>
             <n-spin :show="exportLoading">
                 <n-space>
-                    <n-upload :show-file-list="false" v-model:file-list="fileListRef"
+                    <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
                         :on-update:file-list="dealWallpaper" @change="handleUploadChange">
                         <button class="webkubor-back-btn common-btn">上传壁纸</button>
                     </n-upload>
@@ -32,14 +32,10 @@
                         '#F0A020',
                         'rgba(208, 48, 80, 1)',
                     ]" />
-                    
-            </n-form-item>
-            <n-form-item label="背景透视" label-placement="left" >
-                <n-checkbox v-model:checked="paperState.perspective">
+                       <n-checkbox v-model:checked="paperState.perspective">
                 透视
                 </n-checkbox>
             </n-form-item>
-         
             <n-form-item label="字体颜色" label-placement="left">
                 <n-color-picker v-model:value="paperState.fontColor" style="width: 300px;" :show-alpha="true"
                     :actions="['clear']" :swatches="[
@@ -62,9 +58,7 @@
                     点击上传
                 </n-upload>
             </n-form-item>
-            <n-form-item label="辅助线"  label-placement="left">
-                <n-checkbox size="large" label="显示"  v-model:checked="paperState.help" />
-            </n-form-item>
+        
             <n-form-item label="导出比例" label-placement="left">
                 <n-radio-group v-model:value="paperState.proportion" name="radiogroup">
                     <n-space>

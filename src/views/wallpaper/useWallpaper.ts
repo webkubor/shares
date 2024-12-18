@@ -23,8 +23,7 @@ const paperState = reactive({
         x: "center",
         y: "center"
     },
-    waterMarkImage: '', //水印图片
-    help: false //辅助线
+    waterMarkImage: '' //水印图片
 })
 
 
