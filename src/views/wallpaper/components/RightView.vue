@@ -1,5 +1,4 @@
 <template>
-    <n-card>
         <ColorBorder>
             <n-spin :show="exportLoading">
                 <n-space>
@@ -38,7 +37,7 @@
                     ]" />
                     
             </n-form-item>
-            <n-form-item label="背景透视" label-placement="left">
+            <n-form-item label="背景透视" label-placement="left" >
                 <n-checkbox v-model:checked="paperState.perspective">
                 透视
                 </n-checkbox>
@@ -86,7 +85,6 @@
             </n-form-item>
          
         </ColorBorder>
-    </n-card>
 </template>
 <script setup lang="ts">
 import { reactive, ref, toRaw } from "vue";
@@ -95,6 +93,7 @@ import { useWallpaper } from "../useWallpaper"
 import config from "../config.json"
 import domtoimage from 'dom-to-image-more';
 import { getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
+import dayjs from "@/utils/dayjs";
 
 const fileListRef = ref([]);
 const previews = ref([]);
@@ -168,18 +167,15 @@ const downloadBgImage = async () => {
     let target = document.getElementById('phone-view') as HTMLDivElement;
     console.log(target, 'start');
     exportLoading.value = true
+    const formattedDate = dayjs().format('YYYY-MM-DD'); // 使用 dayjs 格式化日期
     domtoimage.toPng(target, { useCORS: true, scale: 2 }).then(function (dataUrl) {
         console.log(dataUrl);
         const link = document.createElement('a');
         link.href = dataUrl;
-        // 设置下载的文件名，可根据需求修改
-        link.download = 'downloaded-image.png';
-        // 模拟点击 <a> 标签触发下载
+        link.download = `bg-image-${formattedDate}.png`;
         link.click();
     }).finally(() => {
         exportLoading.value = false
     });
-
 };
 </script>
-<style lang="scss" scoped></style>
