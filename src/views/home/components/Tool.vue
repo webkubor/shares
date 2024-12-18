@@ -7,6 +7,7 @@
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/font')">书法类型字体参考</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/money')">利息计算</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/betting')">三色球/下注/自定义切换</n-button>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/list')">indexDB</n-button>
       </n-space>
 
     </n-card>
@@ -25,8 +26,6 @@
       <n-space>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/rtc/webWork')">web worker</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/barrage')">弹幕</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/list')">列表滚动测试</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/chat/room')">聊天室(未完成)</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/rtc/index')">WebRTC</n-button>
       </n-space>
     </n-card>

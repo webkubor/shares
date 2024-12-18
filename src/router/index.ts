@@ -10,14 +10,6 @@ const RouterMap = [
     component: () => import('@/views/home/index.vue')
   },
   {
-    path: '/chat/room',
-    name: 'ChatRoom',
-    meta: {
-      title: "聊天室测试"
-    },
-    component: () => import("@/views/chatRoom/index.vue")
-  },
-  {
     path: '/show/ocr',
     name: 'Ocr',
     meta: {
@@ -115,14 +107,6 @@ const RouterMap = [
       title: "图片水印添加"
     },
     component: () => import("@/views/show/watermark/index.vue")
-  },
-  {
-    path: '/show/font',
-    name: 'Font',
-    meta: {
-      title: "Font"
-    },
-    component: () => import("@/views/show/font.vue")
   },
   {
     path: '/show/colors',
