@@ -11,13 +11,13 @@ const paperState = reactive({
     bgColor: "#ffffff", //背景
     perspective: false,
     fontColor: "#000000", //字体颜色
+    waterColor: '#000000', //水印颜色
     modelSrc: getImageUrl(basePath + '/phone-frame.png'), //终端边框
     waterMarkName: 'Design by 司南烛', //水印名称
     interfaceKey: 1, // 0桌面 1锁屏
     proportion: 1, // 导出比例 1(1:1) 2(3:4) 3(4:3)
     interface: '', //图标界面
     wallpaper: '', //壁纸
-    waterColor: '#000000', //水印颜色
     previews: [], //预览图片
     backgroundPositon: {
         x: "center",
@@ -28,6 +28,40 @@ const paperState = reactive({
 
 
 export function useWallpaper() {
+
+    function setConfigHistory() {
+        let params = {
+            bgColor: paperState.bgColor,
+            waterColor: paperState.waterColor,
+            perspective: paperState.perspective,
+            interface: paperState.interface,
+            interfaceKey: paperState.interfaceKey,
+            proportion: paperState.proportion,
+            waterMarkName: paperState.waterMarkName,
+            waterMarkImage: paperState.waterMarkImage,
+            previews: paperState.previews,
+            backgroundPositon: paperState.backgroundPositon
+        }
+        window.$toast?.success("配置已保存")
+        localStorage.setItem("paperConfig", JSON.stringify(params))
+    }
+
+    function getConfigHistory() {
+        let params = localStorage.getItem("paperConfig")
+        if (params) {
+            let config = JSON.parse(params)
+            window.$toast?.success("配置读取成功")
+            paperState.bgColor = config.bgColor
+            paperState.waterColor = config.waterColor
+            paperState.perspective = config.perspective
+            paperState.waterMarkName = config.waterMarkName
+            paperState.interface = config.interface
+            paperState.previews = config.previews
+            paperState.backgroundPositon = config.backgroundPositon
+            console.log(config, "config");
+        }
+    }
+
     function setBgColor(color) {
         paperState.bgColor = color
         window.$toast?.success("背景设置成功")
@@ -54,17 +88,17 @@ export function useWallpaper() {
     function transExportSize(base = 180) {
         if (paperState.proportion === 1) {
             return {
-                width: base * 3  + "px",
+                width: base * 3 + "px",
                 height: base * 3 + "px"
             }
         } else if (paperState.proportion === 2) {
             return {
-                width: base * 3  + "px",
+                width: base * 3 + "px",
                 height: base * 4 + "px"
             }
         } else if (paperState.proportion === 3) {
             return {
-                width: base * 4 +  "px",
+                width: base * 4 + "px",
                 height: base * 3 + "px"
             }
         }
@@ -77,7 +111,9 @@ export function useWallpaper() {
         setModelSrc,
         onSetFace,
         transExportSize,
-        setBgColor
+        setBgColor,
+        getConfigHistory,
+        setConfigHistory
     }
 
 }

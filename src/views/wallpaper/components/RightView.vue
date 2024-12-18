@@ -58,6 +58,7 @@
                     点击上传
                 </n-upload>
             </n-form-item>
+
         
             <n-form-item label="导出比例" label-placement="left">
                 <n-radio-group v-model:value="paperState.proportion" name="radiogroup">
@@ -74,6 +75,12 @@
                     </n-space>
                 </n-radio-group>
             </n-form-item>
+            <n-form-item label="基本配置" label-placement="left">
+                <n-space>
+                    <button class="webkubor-back-btn common-btn" @click="setConfigHistory">保存数据</button>
+                    <button class="webkubor-back-btn common-btn" @click="getConfigHistory">读取数据</button>
+                </n-space>
+            </n-form-item>
             <template #description>
                     你不知道你有多幸运
                 </template>
@@ -81,7 +88,7 @@
         </ColorBorder>
 </template>
 <script setup lang="ts">
-import { reactive, ref, toRaw } from "vue";
+import { reactive, ref, toRaw, watchEffect } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
 import { useWallpaper } from "../useWallpaper"
 import config from "../config.json"
@@ -91,8 +98,13 @@ import dayjs from "@/utils/dayjs";
 
 const fileListRef = ref([]);
 const exportLoading = ref(false)
-const { paperState, onSetFace } = useWallpaper()
+const { paperState, onSetFace,getConfigHistory,setConfigHistory } = useWallpaper()
 
+watchEffect(() => {
+    if (paperState.fontColor) {
+        paperState.waterColor = paperState.fontColor
+    }
+})
 
 const backgroundPositonXOptions = [
     {
