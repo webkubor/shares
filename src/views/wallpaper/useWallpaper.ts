@@ -14,6 +14,7 @@ const paperState = reactive({
     waterColor: '#000000', //水印颜色
     modelSrc: getImageUrl(basePath + '/phone-frame.png'), //终端边框
     waterMarkName: 'Design by 司南烛', //水印名称
+    wallpaperView: false, //壁纸预览
     interfaceKey: 1, // 0桌面 1锁屏
     proportion: 1, // 导出比例 1(1:1) 2(3:4) 3(4:3)
     interface: '', //图标界面
@@ -35,6 +36,7 @@ export function useWallpaper() {
             waterColor: paperState.waterColor,
             perspective: paperState.perspective,
             interface: paperState.interface,
+            wallpaperView: paperState.wallpaperView,
             interfaceKey: paperState.interfaceKey,
             proportion: paperState.proportion,
             waterMarkName: paperState.waterMarkName,
@@ -51,13 +53,7 @@ export function useWallpaper() {
         if (params) {
             let config = JSON.parse(params)
             window.$toast?.success("配置读取成功")
-            paperState.bgColor = config.bgColor
-            paperState.waterColor = config.waterColor
-            paperState.perspective = config.perspective
-            paperState.waterMarkName = config.waterMarkName
-            paperState.interface = config.interface
-            paperState.previews = config.previews
-            paperState.backgroundPositon = config.backgroundPositon
+            Object.assign(paperState, config) // Simplified assignment
             console.log(config, "config");
         }
     }

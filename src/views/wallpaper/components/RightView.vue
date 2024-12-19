@@ -1,18 +1,20 @@
 <template>
-        <ColorBorder>
-            <n-spin :show="exportLoading">
-                <n-space>
-                    <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
-                        :on-update:file-list="dealWallpaper" @change="handleUploadChange">
-                        <button class="webkubor-back-btn common-btn">上传壁纸</button>
-                    </n-upload>
-                    <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
-                </n-space>
-              
+    <ColorBorder>
+        <n-spin :show="exportLoading">
+            <n-space>
+                <n-upload :show-file-list="false" multiple v-model:file-list="fileListRef"
+                    :on-update:file-list="dealWallpaper" @change="handleUploadChange">
+                    <button class="webkubor-back-btn common-btn">上传壁纸</button>
+                </n-upload>
+                <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
+            </n-space>
+
             <n-form-item label="壁纸位置" label-placement="left" style="margin-top: 20px;">
                 <n-space>
-            <n-select v-model:value="paperState.backgroundPositon.x" style="width: 100px;" placeholder="X轴偏移" :options="backgroundPositonXOptions" />
-            <n-select v-model:value="paperState.backgroundPositon.y" style="width: 100px"  placeholder="Y轴偏移" :options="backgroundPositonYOptions" />
+                    <n-select v-model:value="paperState.backgroundPositon.x" style="width: 100px;" placeholder="X轴偏移"
+                        :options="backgroundPositonXOptions" />
+                    <n-select v-model:value="paperState.backgroundPositon.y" style="width: 100px" placeholder="Y轴偏移"
+                        :options="backgroundPositonYOptions" />
                 </n-space>
             </n-form-item>
             <n-form-item label="切换模式" label-placement="left" style="margin-top: 20px;">
@@ -32,8 +34,11 @@
                         '#F0A020',
                         'rgba(208, 48, 80, 1)',
                     ]" />
-                       <n-checkbox v-model:checked="paperState.perspective">
-                透视
+                <n-checkbox v-model:checked="paperState.perspective">
+                    透视
+                </n-checkbox>
+                <n-checkbox v-model:checked="paperState.wallpaperView">
+                   纯背景
                 </n-checkbox>
             </n-form-item>
             <n-form-item label="字体颜色" label-placement="left">
@@ -59,7 +64,7 @@
                 </n-upload>
             </n-form-item>
 
-        
+
             <n-form-item label="导出比例" label-placement="left">
                 <n-radio-group v-model:value="paperState.proportion" name="radiogroup">
                     <n-space>
@@ -82,10 +87,10 @@
                 </n-space>
             </n-form-item>
             <template #description>
-                    导出中.......
-                </template>
-            </n-spin>
-        </ColorBorder>
+                导出中.......
+            </template>
+        </n-spin>
+    </ColorBorder>
 </template>
 <script setup lang="ts">
 import { reactive, ref, toRaw, watchEffect } from "vue";
@@ -98,7 +103,7 @@ import dayjs from "@/utils/dayjs";
 
 const fileListRef = ref([]);
 const exportLoading = ref(false)
-const { paperState, onSetFace,getConfigHistory,setConfigHistory } = useWallpaper()
+const { paperState, onSetFace, getConfigHistory, setConfigHistory } = useWallpaper()
 
 watchEffect(() => {
     if (paperState.fontColor) {
@@ -143,10 +148,10 @@ function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
 
 async function dealWallpaper() {
     const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
-    const previewNames = new Set(paperState.previews .map(item => item.name));
-    paperState.previews  = paperState.previews .concat(processedPreviews.filter(item => !previewNames.has(item.name)));
-    paperState.wallpaper = paperState.previews [paperState.previews .length -1].src
-    console.log(paperState.previews , "dealWallpaper");
+    const previewNames = new Set(paperState.previews.map(item => item.name));
+    paperState.previews = paperState.previews.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
+    paperState.wallpaper = paperState.previews[paperState.previews.length - 1].src
+    console.log(paperState.previews, "dealWallpaper");
 }
 async function dealWaterMark(file) {
     const processedPreviews = await processFile(file[0]);

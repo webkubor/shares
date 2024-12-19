@@ -5,7 +5,8 @@
                 :style="{ background: paperState.perspective ? `url(${paperState.wallpaper}) no-repeat center/cover` : `${paperState.bgColor}`, width: `${phoneSize?.width}`, height: `${phoneSize?.height}`, }"
                 :class="{ perspective: paperState.perspective }">
                 <n-space :size="[60, 30]">
-                    <PhoneView />
+                    <WallpaperView v-if="paperState.wallpaperView" />
+                    <PhoneView v-else />
                 </n-space>
                 <div class="water-mark" :style="{ color: paperState.waterColor }">
                     <img v-if="paperState.waterMarkImage" :src="paperState.waterMarkImage" alt="" srcset="">
@@ -28,6 +29,7 @@ import { useGlobal } from "@/hooks/useGlobal";
 import { useWallpaper } from "../useWallpaper"
 import RightView from "./RightView.vue";
 import PhoneView from './phoneView.vue'
+import WallpaperView from "./wallpaperView.vue";
 import { computed } from "vue";
 const { appConfig } = useGlobal()
 const { paperState, transExportSize } = useWallpaper()
@@ -59,7 +61,6 @@ function onChoose(wallpaper) {
     padding-bottom:10vh ;
 
     .left-view {
-        flex: 1;
         display: flex;
         justify-content: center;
 
@@ -101,9 +102,6 @@ function onChoose(wallpaper) {
             }
         }
 
-        .help {
-            border: 1px dotted #333333;
-        }
         .preview-list {
             display: flex;
             height: 100px;
@@ -121,7 +119,7 @@ function onChoose(wallpaper) {
     }
 
     .right-view {
-        width: 30%;
+        flex: 1;
     }
 }
 

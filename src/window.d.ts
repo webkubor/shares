@@ -1,6 +1,6 @@
 /*
  * @Date: 2022-03-22 09:22:56
- * @LastEditTime: 2024-12-06 12:03:26
+ * @LastEditTime: 2024-12-19 10:26:02
  */
 
 import type {
@@ -12,6 +12,9 @@ import type {
   
   declare global {
     interface Window {
+      $toast?: {
+        success: (message: string) => void;
+    };
       $logger?: {
         info: (title: string, content: string) => void;
         error: (title: string, content: string) => void;
