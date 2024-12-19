@@ -9,7 +9,7 @@
                 <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
             </n-space>
 
-            <n-form-item  v-if="!paperState.wallpaperView" label="壁纸位置" label-placement="left" style="margin-top: 20px;">
+            <n-form-item v-if="!paperState.wallpaperView" label="壁纸位置" label-placement="left" style="margin-top: 20px;">
                 <n-space>
                     <n-select v-model:value="paperState.backgroundPositon.x" style="width: 100px;" placeholder="X轴偏移"
                         :options="backgroundPositonXOptions" />
@@ -38,7 +38,7 @@
                     透视
                 </n-checkbox>
                 <n-checkbox v-model:checked="paperState.wallpaperView">
-                   纯背景
+                    纯背景
                 </n-checkbox>
             </n-form-item>
             <n-form-item label="字体颜色" label-placement="left">
@@ -48,8 +48,13 @@
                         '#333333'
                     ]" />
             </n-form-item>
+          
             <n-form-item label="文字水印" label-placement="left">
                 <n-input type="text" v-model:value="paperState.waterMarkName" placeholder="输入水印(Design by 司南烛)" />
+            </n-form-item>
+            <n-form-item label="水印字体" label-placement="left">
+                <n-select v-model:value="paperState.waterFontFiamily" placeholder="请选择字体" :options="fontOptions">
+                </n-select>
             </n-form-item>
             <n-form-item label="水印颜色" label-placement="left">
                 <n-color-picker v-model:value="paperState.waterColor" style="width: 300px;" :show-alpha="true"
@@ -103,43 +108,13 @@ import dayjs from "@/utils/dayjs";
 
 const fileListRef = ref([]);
 const exportLoading = ref(false)
-const { paperState, onSetFace, getConfigHistory, setConfigHistory } = useWallpaper()
+const { paperState, onSetFace, getConfigHistory, setConfigHistory, fontOptions, backgroundPositonXOptions, backgroundPositonYOptions } = useWallpaper()
 
 watchEffect(() => {
     if (paperState.fontColor) {
         paperState.waterColor = paperState.fontColor
     }
 })
-
-const backgroundPositonXOptions = [
-    {
-        label: '图左',
-        value: 'left'
-    },
-    {
-        label: '图中',
-        value: 'center'
-    },
-    {
-        label: '图右',
-        value: 'right'
-    }
-]
-
-const backgroundPositonYOptions = [
-    {
-        label: '上',
-        value: 'top'
-    },
-    {
-        label: '中',
-        value: 'center'
-    },
-    {
-        label: '下',
-        value: 'bottom'
-    }
-]
 
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList
@@ -172,7 +147,7 @@ async function processFile(element: { file: File }): Promise<{ name: string; src
 }
 
 
-const renderDom =()=> {
+const renderDom = () => {
     if (paperState.wallpaperView) {
         return document.getElementById('wallpaper-view') as HTMLDivElement
     } else {
