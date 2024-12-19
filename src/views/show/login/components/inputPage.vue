@@ -1,7 +1,7 @@
 <template>
 
     <div class="input-layout">
-        <div class="common-title">
+        <div class="common-title-white">
             Input Styles
         </div>
         <n-input type="text" style="width:300px;" v-history placeholder="UI 框架" />
@@ -32,21 +32,6 @@ import { onMounted } from 'vue';
         font-size: 16px;
         width: 300px;
         color: #333333;
-    }
-
-    .common-title {
-        letter-spacing: 5px;
-        color: #e6e6e6;
-        text-shadow: 1px -1px #ffffff, -1px 1px #999999, -4px 4px 10px #80808080;
-        font-size: 70px;
-        line-height: 2;
-        text-align: center;
-        font-weight: bold;
-
-        &:hover {
-            color: #3b2116;
-            cursor: pointer;
-        }
     }
 }
 

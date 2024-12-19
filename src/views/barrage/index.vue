@@ -1,6 +1,6 @@
 <template>
     <div class="common-bg-move page-bg"></div>
-    <div class="common-title">webkubor
+    <div class="common-title-black">webkubor
         <span class="more">UI</span>
     </div>
     <MovieCom :barrage="true" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"></MovieCom>
@@ -10,26 +10,6 @@ import MovieCom from './video/index.vue';
 </script>
 <style scoped lang="scss">
 
-.common-title {
-  font-family: Inter, sans-serif;
-  font-size: 35px;
-  color: #000000;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  font-weight: 600;
-  z-index: 999;
-  margin: 20px 0;
-  line-height: 40px;
-
-  .more {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 15px;
-    background: rgb(31 41 55);
-    color: #ffffff;
-  }
-}
 
 
 @keyframes jumbo {

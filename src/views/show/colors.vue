@@ -1,5 +1,9 @@
 <template>
     <n-card :style="{ background: theme === '1' ? '#000000' : '#ffffff' }">
+        <div :class="titleClass">
+                Color   
+                <span class="more">Palette</span> 
+        </div>
         <n-space align="center">
             <n-switch v-model:value="theme" checked-value="1" unchecked-value="0" :rail-style="railStyle">
                 <template #checked>
@@ -69,13 +73,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref,computed } from 'vue'
 import { writeClipboard } from "@/utils/copy"
 import type { CSSProperties } from 'vue'
 const hoverColor = ref('')
 const confirmColor = ref('')
 const theme = ref('1')
 
+const titleClass = computed(() => {
+  return theme.value === '1'? 'common-title-white' : 'common-title-black';
+});
 const closeList = ref([])
 const solidColor = [
     // 红色系

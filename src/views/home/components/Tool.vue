@@ -14,9 +14,9 @@
     <n-card title="UI视觉">
       <n-space>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/animation/index')">Animation</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/colors')">Colors</n-button>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/colors')">主题色选择器</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/login')">Login登录页</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/apple')">苹果官网流动</n-button>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/apple')">苹果官网流动参考</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/battle')">对战竞技样式参考</n-button>
       </n-space>
     </n-card>
