@@ -140,7 +140,7 @@ onBeforeUnmount(() => {
 
 
 function onsubmit() {
-  window.$toast.success('登录成功');
+  window.$message.success('登录成功');
 }
 
 </script>

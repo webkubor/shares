@@ -2,6 +2,8 @@
 
 域名配置:http://webkubor.online/#/home
 
+UI: https://primevue.org/
+
 netify托管:https://share-webkubor.netlify.app/#/home
 
 ### Title

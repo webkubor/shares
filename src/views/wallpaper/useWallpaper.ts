@@ -45,7 +45,7 @@ export function useWallpaper() {
             previews: paperState.previews,
             backgroundPositon: paperState.backgroundPositon
         }
-        window.$toast?.success("配置已保存")
+        window.$message?.success("配置已保存")
         localStorage.setItem("paperConfig", JSON.stringify(params))
     }
 
@@ -53,7 +53,7 @@ export function useWallpaper() {
         let params = localStorage.getItem("paperConfig")
         if (params) {
             let config = JSON.parse(params)
-            window.$toast?.success("配置读取成功")
+            window.$message?.success("配置读取成功")
             Object.assign(paperState, config) // Simplified assignment
             console.log(config, "config");
         }
@@ -61,12 +61,12 @@ export function useWallpaper() {
 
     function setBgColor(color) {
         paperState.bgColor = color
-        window.$toast?.success("背景设置成功")
+        window.$message?.success("背景设置成功")
     }
 
     function setModelSrc(modelSrc: string | null) {
         paperState.modelSrc = modelSrc
-        window.$toast?.success("手机模型设置成功")
+        window.$message?.success("手机模型设置成功")
         console.log("setModelSrc", paperState.modelSrc);
     }
 

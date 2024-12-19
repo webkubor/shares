@@ -7,13 +7,15 @@ import ripple from "@/directives/ripple/index";
 import InputHistory from "@/directives/inputHistory";
 import globalComponents from "@/components";
 import "@/utils/rem"
-import {prettyLog} from "kbor-logger";
-
-window.$logger = prettyLog();
-window.$logger?.success('当前环境', import.meta.env.MODE)
+import PrimeVue from 'primevue/config';
+import Aura from '@primevue/themes/aura';
 
 
 createApp(App)
+.use(PrimeVue, {
+    theme: {
+        preset: Aura
+    }})
 .use(copy)
 .use(i18n)
 .use(ripple)
