@@ -13,12 +13,17 @@
     </n-card>
     <n-card title="UI视觉">
       <n-space>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/animation/index')">Animation</n-button>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/animation/index')">动画组</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/colors')">主题色选择器</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/login')">Login登录页</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/apple')">苹果官网流动参考</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/battle')">对战竞技样式参考</n-button>
       </n-space>
+    </n-card>
+
+
+    <n-card title="官网预览">
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/public/apple')">苹果官网流动参考</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/public/poster')">海报滚动</n-button>
+      <n-button :color="getRandomColor()" ghost @click="$router.push('/public/wall')">图片墙纸</n-button>
     </n-card>
 
 

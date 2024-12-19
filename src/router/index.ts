@@ -59,14 +59,6 @@ const RouterMap = [
     component: () => import("@/views/xbox/betting.vue")
   },
   {
-    path: '/xbox/battle',
-    name: 'Battle',
-    meta: {
-      title: "对战竞技"
-    },
-    component: () => import("@/views/xbox/battle.vue")
-  },
-  {
     path: '/animation/index',
     name: 'Animation',
     meta: {
@@ -133,12 +125,28 @@ const RouterMap = [
     component: () => import("@/views/show/money.vue")
   },
   {
-    path: '/show/apple',
+    path: '/public/apple',
     name: 'Apple-Page',
     meta: {
       title: "苹果官网流动"
     },
-    component: () => import("@/views/show/apple.vue")
+    component: () => import("@/views/public/apple.vue")
+  },
+  {
+    path: '/public/poster',
+    name: 'Poster-Page',
+    meta: {
+      title: "海报"
+    },
+    component: () => import("@/views/public/poster/index.vue")
+  },
+  {
+    path: '/public/wall',
+    name: 'Poster-Page',
+    meta: {
+      title: "图片轮播"
+    },
+    component: () => import("@/views/public/wall/index.vue")
   }
  
 ]
