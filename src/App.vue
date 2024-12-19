@@ -8,7 +8,6 @@ import { useTheme } from "@/hooks/useTheme";
 import { onMounted } from "vue";
 import { Message } from "@/hooks/useToast";
 import { useGlobal } from "./hooks/useGlobal";
-import { Snackbar } from '@varlet/ui'
 let { allThemeOverrides, local, initTheme } = useTheme();
 const { initView } = useGlobal();
 window.$toast = Message;
