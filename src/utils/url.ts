@@ -1,45 +1,29 @@
-
-
-
-// 调用函数并传入目标 URL 和要包含的参数列表
-// redirectToTargetURLWithParams("https://test.xboxcsgo.com", ["token"]);
-
 /**
- * @description: 携带参数重定向(可以指定携带参数)
- * @param {*} targetURL
- * @param {*} paramsToInclude
- * @return {*}
+ * @description: 带参数重定向，支持指定携带的查询参数
+ * @param {string} targetURL - 目标 URL
+ * @param {Array} paramsToInclude - 要包含的查询参数列表
  */
 function redirectToTargetURLWithParams(targetURL, paramsToInclude = []) {
-    // 获取当前页面的 URL
-    const currentURL = window.location.href;
+    // 获取当前页面的查询参数
+    const currentSearchParams = new URLSearchParams(window.location.search);
 
-    // 提取当前页面的查询参数部分
-    const searchParamsIndex = currentURL.indexOf('?');
-    const currentSearchParams = searchParamsIndex !== -1 ? currentURL.slice(searchParamsIndex) : '';
+    // 创建最终的 URL 对象
+    const finalURL = new URL(targetURL, window.location.origin); // 支持相对路径
 
-    // 构建最终的重定向 URL
-    let finalURL = targetURL;
-
-    // 检查是否要包含特定的查询参数
-    if (paramsToInclude.length > 0) {
-        const searchParams = new URLSearchParams(currentSearchParams);
-
-        // 循环遍历传入的参数，如果存在则添加到新的查询参数中
-        paramsToInclude.forEach(param => {
-            if (searchParams.has(param)) {
-                if (finalURL.includes('?')) {
-                    finalURL += `&${param}=${searchParams.get(param)}`;
-                } else {
-                    finalURL += `?${param}=${searchParams.get(param)}`;
-                }
-            }
+    // 如果没有传入要携带的参数，默认携带所有当前页面的查询参数
+    if (paramsToInclude.length === 0) {
+        currentSearchParams.forEach((value, key) => {
+            finalURL.searchParams.append(key, value);
         });
     } else {
-        // 如果没有传入参数，则默认携带所有当前页面的查询参数
-        finalURL += currentSearchParams;
+        // 只携带指定的参数
+        paramsToInclude.forEach(param => {
+            if (currentSearchParams.has(param)) {
+                finalURL.searchParams.append(param, currentSearchParams.get(param) || '');
+            }
+        });
     }
 
-    // 重定向到最终 URL
-    window.location.href = finalURL;
+    // 重定向到最终构建的 URL
+    window.location.href = finalURL.toString();
 }
