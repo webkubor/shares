@@ -169,12 +169,13 @@ async function processFile(element: { file: File }): Promise<{ name: string; src
 
 const downloadBgImage = async () => {
     let target = document.getElementById('phone-view') as HTMLDivElement
+    console.log(target.offsetWidth, target.offsetHeight);
     exportLoading.value = true
-    const formattedDate = dayjs().format('YYYY-MM-DD'); // 使用 dayjs 格式化日期
-    domtoimage.toPng(target, { useCORS: true, scale: 2 }).then(function (dataUrl) {
+    const formattedDate = dayjs().format('YYYY-MM-DD HH:mm'); // 2021-09-01 12:00
+    domtoimage.toPng(target, { useCORS: true, scale: 3 }).then(function (dataUrl) {
         const link = document.createElement('a');
         link.href = dataUrl;
-        link.download = `bg-image-${formattedDate}.png`;
+        link.download = `wallpaper-${formattedDate}.png`;
         link.click();
     }).finally(() => {
         exportLoading.value = false
