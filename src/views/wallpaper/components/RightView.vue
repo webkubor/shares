@@ -9,7 +9,7 @@
                 <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
             </n-space>
 
-            <n-form-item label="壁纸位置" label-placement="left" style="margin-top: 20px;">
+            <n-form-item  v-if="!paperState.wallpaperView" label="壁纸位置" label-placement="left" style="margin-top: 20px;">
                 <n-space>
                     <n-select v-model:value="paperState.backgroundPositon.x" style="width: 100px;" placeholder="X轴偏移"
                         :options="backgroundPositonXOptions" />
@@ -34,7 +34,7 @@
                         '#F0A020',
                         'rgba(208, 48, 80, 1)',
                     ]" />
-                <n-checkbox v-model:checked="paperState.perspective">
+                <n-checkbox v-if="!paperState.wallpaperView" v-model:checked="paperState.perspective">
                     透视
                 </n-checkbox>
                 <n-checkbox v-model:checked="paperState.wallpaperView">
@@ -172,8 +172,18 @@ async function processFile(element: { file: File }): Promise<{ name: string; src
 }
 
 
+const renderDom =()=> {
+    if (paperState.wallpaperView) {
+        return document.getElementById('wallpaper-view') as HTMLDivElement
+    } else {
+        return document.getElementById('phone-view') as HTMLDivElement
+    }
+
+}
+
+
 const downloadBgImage = async () => {
-    let target = document.getElementById('phone-view') as HTMLDivElement
+    let target = renderDom() as HTMLDivElement
     console.log(target.offsetWidth, target.offsetHeight);
     exportLoading.value = true
     const formattedDate = dayjs().format('YYYY-MM-DD HH:mm'); // 2021-09-01 12:00

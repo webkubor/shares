@@ -30,8 +30,8 @@
 import { useWallpaper } from "../useWallpaper"
 import PhoneTopIcon from "./svg/PhoneTopIcon.vue";
 import PhoneLockBottom from "./svg/PhoneLockBottom.vue";
-const { paperState } = useWallpaper()
 import dayjs from "@/utils/dayjs";
+const { paperState } = useWallpaper()
 
 function getCurrentTime() {
     const now = dayjs();

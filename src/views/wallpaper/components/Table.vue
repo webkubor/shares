@@ -1,12 +1,12 @@
 <template>
     <div class="layout-paper">
         <ColorBorder class="left-view">
-                <div  id="phone-view"  class="bg-view"
-                :style="{ background: paperState.perspective ? `url(${paperState.wallpaper}) no-repeat center/cover` : `${paperState.bgColor}`, width: `${phoneSize?.width}`, height: `${phoneSize?.height}`, }"
+                <WallpaperView id="wallpaper-view" v-if="paperState.wallpaperView" />
+                <div  v-else id="phone-view"  class="bg-view"
+                :style="{ background: paperState.perspective ? `url(${paperState.wallpaper}) no-repeat center/cover` : `${paperState.bgColor}`, width: `${phoneSize?.width}`, height: `${phoneSize?.height}`}"
                 :class="{ perspective: paperState.perspective }">
                 <n-space :size="[60, 30]">
-                    <WallpaperView v-if="paperState.wallpaperView" />
-                    <PhoneView v-else />
+                    <PhoneView />
                 </n-space>
                 <div class="water-mark" :style="{ color: paperState.waterColor }">
                     <img v-if="paperState.waterMarkImage" :src="paperState.waterMarkImage" alt="" srcset="">

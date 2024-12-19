@@ -100,12 +100,29 @@ export function useWallpaper() {
         }
 
     }
-
+// 自定义字体选项与前面定义的字体整合
+const fontOptions = [
+    { label: '宋体', value:'simSun' },
+    { label: '黑体', value: 'SimHei' },
+    { label: '楷体', value: 'KaiTi' },
+    { label: '华文行楷', value: 'STXingkai' },
+    { label: '幼圆', value: 'YouYuan' },
+    { label: '隶书', value: 'LiSu' },
+    { label: '仿宋', value: 'FangSong' },
+    { label: 'Arial', value: 'Arial' },
+    { label: 'Times New Roman', value: 'Times New Roman' },
+    { label: 'Verdana', value: 'Verdana' },
+    { label: 'Helvetica', value: 'Helvetica' },
+    { label: 'AiChinese01', value: 'AiChinese01' },
+    { label: 'AiChinese02', value: 'AiChinese02' },
+    { label: 'Chinese3', value: 'Chinese3' }
+  ];
 
     return {
         paperState,
         setModelSrc,
         onSetFace,
+        fontOptions,
         transExportSize,
         setBgColor,
         getConfigHistory,
