@@ -21,9 +21,11 @@
 
 
     <n-card title="官网预览">
-      <n-button :color="getRandomColor()" ghost @click="$router.push('/public/apple')">苹果官网流动参考</n-button>
-      <n-button :color="getRandomColor()" ghost @click="$router.push('/public/poster')">海报滚动</n-button>
-      <n-button :color="getRandomColor()" ghost @click="$router.push('/public/wall')">图片墙纸</n-button>
+      <n-space>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/public/apple')">苹果官网流动参考</n-button>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/public/poster')">海报滚动</n-button>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/public/wall')">图片墙纸</n-button>
+      </n-space>
     </n-card>
 
 
