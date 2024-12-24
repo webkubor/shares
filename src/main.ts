@@ -7,15 +7,9 @@ import ripple from "@/directives/ripple/index";
 import InputHistory from "@/directives/inputHistory";
 import globalComponents from "@/components";
 import "@/utils/rem"
-import PrimeVue from 'primevue/config';
-import Aura from '@primevue/themes/aura';
-
 
 createApp(App)
-.use(PrimeVue, {
-    theme: {
-        preset: Aura
-    }})
+
 .use(copy)
 .use(i18n)
 .use(ripple)
