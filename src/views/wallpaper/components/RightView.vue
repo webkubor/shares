@@ -7,6 +7,7 @@
                     <button class="webkubor-back-btn common-btn">上传壁纸</button>
                 </n-upload>
                 <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
+                <n-input type="text" v-model:value="exportName" placeholder="默认日期" />
             </n-space>
 
             <n-form-item v-if="!paperState.wallpaperView" label="壁纸位置" label-placement="left" style="margin-top: 20px;">
@@ -108,6 +109,7 @@ import { getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
 import dayjs from "@/utils/dayjs";
 
 const fileListRef = ref([]);
+const exportName = ref('')
 const exportLoading = ref(false)
 const { paperState, onSetFace, getConfigHistory, setConfigHistory, fontOptions, backgroundPositonXOptions, backgroundPositonYOptions } = useWallpaper()
 
@@ -162,7 +164,7 @@ const downloadBgImage = async () => {
     let target = renderDom() as HTMLDivElement
     console.log(target.offsetWidth, target.offsetHeight);
     exportLoading.value = true
-    const formattedDate = dayjs().format('YYYY-MM-DD HH:mm'); // 2021-09-01 12:00
+    const formattedDate = exportName.value || dayjs().format('YYYY-MM-DD HH:mm'); // 2021-09-01 12:00
     domtoimage.toPng(target, { useCORS: true, scale: 3 }).then(function (dataUrl) {
         const link = document.createElement('a');
         link.href = dataUrl;
