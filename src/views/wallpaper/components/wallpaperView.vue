@@ -17,12 +17,19 @@
              :style="{
                  color: paperState.waterColor,
                  fontFamily: paperState.waterFontFiamily,
-                 fontSize: `${paperState.titleFontSize || 24}px`
+                 fontSize: `${paperState.titleFontSize || 24}px`,
+                 writingMode: paperState.titleVertical ? 'vertical-rl' : 'horizontal-tb'
              }">
             {{ paperState.customTitle }}
-            <div class="drag-handle">
-                <div class="drag-icon">⋮⋮</div>
-                <span class="drag-tip">拖动调整位置</span>
+            <div class="control-panel">
+                <div class="control-item" @click="toggleTitleDirection">
+                    <i class="iconfont" :class="paperState.titleVertical ? 'icon-horizontal' : 'icon-vertical'"></i>
+                    <span class="tip">{{ paperState.titleVertical ? '切换横排' : '切换竖排' }}</span>
+                </div>
+                <div class="drag-handle">
+                    <div class="drag-icon">⋮⋮</div>
+                    <span class="drag-tip">拖动调整位置</span>
+                </div>
             </div>
         </div>
     </div>
@@ -82,6 +89,10 @@ const phoneSize = computed(() => {
         }
     }
 })
+
+const toggleTitleDirection = () => {
+    paperState.titleVertical = paperState.titleVertical === 'center' ? 'top' : 'center'
+}
 </script>
 <style lang="scss" scoped>
 .wallpaper-box {
@@ -98,6 +109,13 @@ const phoneSize = computed(() => {
         width: 100%;
         height: 100%;
         pointer-events: none; // 禁止图片容器接收鼠标事件
+        color: $default-primary;
+        span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
         img {
             width: 100%;
@@ -191,6 +209,48 @@ const phoneSize = computed(() => {
             padding: 2px 6px;
             border-radius: 2px;
         }
+    }
+
+    .control-panel {
+        position: absolute;
+        right: -40px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .control-item {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        
+        .iconfont {
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.5);
+            margin-right: 4px;
+        }
+
+        .tip {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2px 6px;
+            border-radius: 2px;
+            display: none;
+        }
+
+        &:hover .tip {
+            display: block;
+        }
+    }
+
+    &:hover .control-panel {
+        opacity: 1;
     }
 }
 </style>
