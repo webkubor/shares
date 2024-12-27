@@ -25,7 +25,9 @@ const paperState = reactive({
         x: "center",
         y: "center"
     },
-    waterMarkImage: '' //水印图片
+    waterMarkImage: '', //水印图片
+    customTitle: '',
+    titleFontSize: 24,
 })
 
 

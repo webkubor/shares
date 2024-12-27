@@ -54,6 +54,10 @@
             <n-form-item label="文字水印" label-placement="left">
                 <n-input type="text" v-model:value="paperState.waterMarkName" placeholder="输入水印(Design by 司南烛)" />
             </n-form-item>
+            <n-form-item v-if="paperState.wallpaperView" label="自定义标题" label-placement="left">
+                <n-input type="text" v-model:value="paperState.customTitle" placeholder="输入标题文字" />
+                <n-input-number v-model:value="paperState.titleFontSize" :min="12" :max="100" placeholder="字体大小" />
+            </n-form-item>
             <n-form-item label="水印字体" label-placement="left">
                 <n-select v-model:value="paperState.waterFontFiamily" placeholder="请选择字体" :options="fontOptions">
                 </n-select>
@@ -107,11 +111,25 @@ import config from "../config.json"
 import domtoimage from 'dom-to-image-more';
 import { getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
 import dayjs from "@/utils/dayjs";
+import { useDraggable } from '@vueuse/core'
 
 const fileListRef = ref([]);
 const exportName = ref('')
 const exportLoading = ref(false)
 const { paperState, onSetFace, getConfigHistory, setConfigHistory, fontOptions, backgroundPositonXOptions, backgroundPositonYOptions } = useWallpaper()
+
+const titleRef = ref<HTMLElement | null>(null)
+const initialPosition = reactive({ x: 100, y: 100 })
+
+watchEffect(() => {
+    if (titleRef.value) {
+        const { x, y } = useDraggable(titleRef.value, {
+            initialValue: initialPosition,
+        })
+        
+        titleRef.value.style.transform = `translate(${x.value}px, ${y.value}px)`
+    }
+})
 
 watchEffect(() => {
     if (paperState.fontColor) {
@@ -175,3 +193,12 @@ const downloadBgImage = async () => {
     });
 };
 </script>
+
+<style scoped>
+.draggable-title {
+    position: absolute;
+    cursor: move;
+    user-select: none;
+    z-index: 1000;
+}
+</style>
