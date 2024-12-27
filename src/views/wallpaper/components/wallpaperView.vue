@@ -2,8 +2,7 @@
     <div class="wallpaper-box" :style="{ width: `${phoneSize?.width}`, height: `${phoneSize?.height}` }">
         <img v-if="paperState.wallpaper" :src="paperState.wallpaper" alt="wallpaper" />
         <span v-else>请上传图片</span>
-
-        <div class="water-mark" :style="{ color: paperState.waterColor }">
+        <div class="water-mark" :style="{ color: paperState.waterColor, fontFamily: paperState.waterFontFiamily }">
             <img v-if="paperState.waterMarkImage" :src="paperState.waterMarkImage" alt="" srcset="">
             {{ paperState.waterMarkName }}
         </div>
@@ -45,13 +44,15 @@ const phoneSize = computed(() => {
 
     .water-mark {
         position: absolute;
-        bottom: 40px;
+        bottom: 60px;
         left: 50%;
-        font-weight: 500;
+        font-weight: 800;
+        font-size: clamp(16px, 1.5vw, 20px); // 动态字体大小
         transform: translateX(-50%);
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); // 添加阴影
         z-index: 50;
 
         img {
