@@ -41,6 +41,9 @@ dependencies:
   vue-clipboard3:
     specifier: ^2.0.0
     version: 2.0.0
+  vue-cropper:
+    specifier: ^1.1.4
+    version: 1.1.4
 
 devDependencies:
   '@types/node':
@@ -1837,7 +1840,6 @@ packages:
 
   /picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
-    dev: false
 
   /picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
@@ -2318,7 +2320,7 @@ packages:
     dependencies:
       browserslist: 4.23.3
       escalade: 3.1.2
-      picocolors: 1.0.1
+      picocolors: 1.1.1
     dev: true
 
   /uri-js@4.4.1:
@@ -2405,6 +2407,10 @@ packages:
     resolution: {integrity: sha512-Q9S7dzWGax7LN5iiSPcu/K1GGm2gcBBlYwmMsUc5/16N6w90cbKow3FnPmPs95sungns4yvd9/+JhbAznECS2A==}
     dependencies:
       clipboard: 2.0.11
+    dev: false
+
+  /vue-cropper@1.1.4:
+    resolution: {integrity: sha512-5m98vBsCEI9rbS4JxELxXidtAui3qNyTHLHg67Qbn7g8cg+E6LcnC+hh3SM/p94x6mFh6KRxT1ttnta+wCYqWA==}
     dev: false
 
   /vue-i18n@9.7.0(vue@3.3.8):

@@ -27,6 +27,7 @@ const paperState = reactive({
     },
     waterMarkImage: '', //水印图片
     titleVertical: 'center', //标题垂直位置
+    enableCrop: false, //是否裁剪
     customTitle: '',
     titleFontSize: 24,
 })

@@ -22,11 +22,19 @@
                     <n-collapse-item title="布局与样式" name="2">
                         <n-space vertical>
                             <n-form-item v-if="!paperState.wallpaperView" label="壁纸位置" label-placement="left">
-                                <n-space>
-                                    <n-select v-model:value="paperState.backgroundPositon.x" style="width: 100px;"
-                                        placeholder="X轴偏移" :options="backgroundPositonXOptions" />
-                                    <n-select v-model:value="paperState.backgroundPositon.y" style="width: 100px"
-                                        placeholder="Y轴偏移" :options="backgroundPositonYOptions" />
+                                <n-space vertical>
+                                    <n-space>
+                                        <n-select v-model:value="paperState.backgroundPositon.x" style="width: 100px;"
+                                            placeholder="X轴偏移" :options="backgroundPositonXOptions" />
+                                        <n-select v-model:value="paperState.backgroundPositon.y" style="width: 100px"
+                                            placeholder="Y轴偏移" :options="backgroundPositonYOptions" />
+                                    </n-space>
+                                    <n-space>
+                                        <n-checkbox v-model:checked="paperState.enableCrop">启用裁剪</n-checkbox>
+                                        <n-button v-if="paperState.enableCrop" @click="openCropModal" size="small">
+                                            裁剪图片
+                                        </n-button>
+                                    </n-space>
                                 </n-space>
                             </n-form-item>
 
@@ -103,7 +111,7 @@
                         </n-space>
                     </n-collapse-item>
 
-                    <!-- 4. 导���设置组 -->
+                    <!-- 4. 导出设置组 -->
                     <n-collapse-item title="导出设置" name="4">
                         <n-form-item label="导出名称" label-placement="left">
                             <n-input type="text" v-model:value="exportName" placeholder="默认日期" />
@@ -127,6 +135,22 @@
             </template>
         </n-spin>
     </ColorBorder>
+
+    <!-- 添加裁剪弹窗 -->
+    <n-modal v-model:show="showCropModal" preset="card" style="width: 800px">
+        <vue-cropper
+            ref="cropperRef"
+            :src="paperState.wallpaper"
+            :aspect-ratio="getCropAspectRatio()"
+            @crop-success="cropSuccess"
+        />
+        <template #footer>
+            <n-space justify="end">
+                <n-button @click="showCropModal = false">取消</n-button>
+                <n-button type="primary" @click="confirmCrop">确认</n-button>
+            </n-space>
+        </template>
+    </n-modal>
 </template>
 
 <script setup lang="ts">
@@ -138,6 +162,8 @@ import domtoimage from 'dom-to-image-more';
 import { getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
 import dayjs from "@/utils/dayjs";
 import { useDraggable } from '@vueuse/core'
+import VueCropper from 'vue-cropper'
+import 'vue-cropper/dist/index.css'
 
 const fileListRef = ref([]);
 const exportName = ref('')
@@ -218,6 +244,33 @@ const downloadBgImage = async () => {
         exportLoading.value = false
     });
 };
+
+const showCropModal = ref(false)
+const cropperRef = ref()
+
+const openCropModal = () => {
+    showCropModal.value = true
+}
+
+const getCropAspectRatio = () => {
+    switch (paperState.proportion) {
+        case 1: return 1
+        case 2: return 3/4
+        case 3: return 4/3
+        default: return undefined
+    }
+}
+
+const cropSuccess = (imgData: string) => {
+    paperState.wallpaper = imgData
+}
+
+const confirmCrop = () => {
+    cropperRef.value?.getCropData((data: string) => {
+        cropSuccess(data)
+        showCropModal.value = false
+    })
+}
 </script>
 
 <style lang="scss" scoped>
