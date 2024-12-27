@@ -21,20 +21,21 @@
                     <!-- 2. 布局与样式设置组 -->
                     <n-collapse-item title="布局与样式" name="2">
                         <n-space vertical>
-                            <n-form-item v-if="!paperState.wallpaperView" label="壁纸位置" label-placement="left">
+                            <n-form-item  label="壁纸位置" label-placement="left">
                                 <n-space vertical>
-                                    <n-space>
-                                        <n-select v-model:value="paperState.backgroundPositon.x" style="width: 100px;"
-                                            placeholder="X轴偏移" :options="backgroundPositonXOptions" />
-                                        <n-select v-model:value="paperState.backgroundPositon.y" style="width: 100px"
-                                            placeholder="Y轴偏移" :options="backgroundPositonYOptions" />
-                                    </n-space>
-                                    <n-space>
+                                    <n-space v-if="paperState.wallpaperView">
                                         <n-checkbox v-model:checked="paperState.enableCrop">启用裁剪</n-checkbox>
                                         <n-button v-if="paperState.enableCrop" @click="openCropModal" size="small">
                                             裁剪图片
                                         </n-button>
                                     </n-space>
+                                    <n-space v-else>
+                                        <n-select v-model:value="paperState.backgroundPositon.x" style="width: 100px;"
+                                            placeholder="X轴偏移" :options="backgroundPositonXOptions" />
+                                        <n-select v-model:value="paperState.backgroundPositon.y" style="width: 100px"
+                                            placeholder="Y轴偏移" :options="backgroundPositonYOptions" />
+                                    </n-space>
+
                                 </n-space>
                             </n-form-item>
 
@@ -138,12 +139,23 @@
 
     <!-- 添加裁剪弹窗 -->
     <n-modal v-model:show="showCropModal" preset="card" style="width: 800px">
-        <vue-cropper
-            ref="cropperRef"
-            :src="paperState.wallpaper"
-            :aspect-ratio="getCropAspectRatio()"
-            @crop-success="cropSuccess"
-        />
+        <div class="cropper-container">
+            <VueCropper
+                v-if="showCropModal && paperState.wallpaper"
+                ref="cropperRef"
+                :img="paperState.wallpaper"
+                :aspect-ratio="getCropAspectRatio()"
+                @crop-success="cropSuccess"
+                :auto-crop="true"
+                :center-box="true"
+                :info="true"
+                :full="true"
+                :canvas-background="paperState.bgColor"
+                mode="contain"
+                :output-size="1"
+                :output-type="'png'"
+            />
+        </div>
         <template #footer>
             <n-space justify="end">
                 <n-button @click="showCropModal = false">取消</n-button>
@@ -162,7 +174,7 @@ import domtoimage from 'dom-to-image-more';
 import { getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
 import dayjs from "@/utils/dayjs";
 import { useDraggable } from '@vueuse/core'
-import VueCropper from 'vue-cropper'
+import { VueCropper } from 'vue-cropper'
 import 'vue-cropper/dist/index.css'
 
 const fileListRef = ref([]);
@@ -249,6 +261,11 @@ const showCropModal = ref(false)
 const cropperRef = ref()
 
 const openCropModal = () => {
+    if (!paperState.wallpaper) {
+        // 如果没有壁纸，给出提示
+        window.$message?.warning('请先上传壁纸')
+        return
+    }
     showCropModal.value = true
 }
 
@@ -262,11 +279,13 @@ const getCropAspectRatio = () => {
 }
 
 const cropSuccess = (imgData: string) => {
+    console.log('裁剪成功')
     paperState.wallpaper = imgData
 }
 
 const confirmCrop = () => {
-    cropperRef.value?.getCropData((data: string) => {
+    if (!cropperRef.value) return
+    cropperRef.value.getCropData((data: string) => {
         cropSuccess(data)
         showCropModal.value = false
     })
@@ -312,6 +331,17 @@ const confirmCrop = () => {
                 margin-bottom: 0;
             }
         }
+    }
+}
+
+.cropper-container {
+    height: 500px;
+    width: 100%;
+    background: #f0f0f0;
+    
+    :deep(.vue-cropper) {
+        height: 100%;
+        width: 100%;
     }
 }
 </style>
