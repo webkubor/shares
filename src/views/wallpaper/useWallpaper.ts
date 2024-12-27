@@ -19,7 +19,7 @@ const paperState = reactive({
     proportion: 1, // 导出比例 1(1:1) 2(3:4) 3(4:3)
     interface: '', //图标界面
     wallpaper: '', //壁纸
-    waterFontFiamily: 'monospace', //字体
+    waterFontFiamily: 'Chinese3', //字体
     previews: [], //预览图片
     backgroundPositon: {
         x: "center",
@@ -34,13 +34,14 @@ export function useWallpaper() {
     function setConfigHistory() {
         let params = {
             bgColor: paperState.bgColor,
-            waterColor: paperState.waterColor,
             perspective: paperState.perspective,
             interface: paperState.interface,
             wallpaperView: paperState.wallpaperView,
             interfaceKey: paperState.interfaceKey,
             proportion: paperState.proportion,
             waterMarkName: paperState.waterMarkName,
+            waterFontFiamily:paperState.waterFontFiamily,
+            waterColor: paperState.waterColor,
             waterMarkImage: paperState.waterMarkImage,
             previews: paperState.previews,
             backgroundPositon: paperState.backgroundPositon

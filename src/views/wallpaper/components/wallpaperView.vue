@@ -43,6 +43,7 @@ const phoneSize = computed(() => {
     }
 
     .water-mark {
+        opacity: 0.8; // 半透明效果
         position: absolute;
         bottom: 60px;
         left: 50%;
@@ -58,6 +59,7 @@ const phoneSize = computed(() => {
         img {
             height: 30px;
             margin: 10px;
+            
         }
     }
 }
@@ -66,7 +68,7 @@ const phoneSize = computed(() => {
 @media screen and (max-width: 400px) {
     .wallpaper-box {
         .water-mark {
-            font-size: 12px;
+            font-size: clamp(12px, 1.8vw, 16px);
             bottom: 20px;
         }
     }
