@@ -20,7 +20,10 @@ $default-primary: #0077ff;
   --webkubor-text-primary: #ffffff; // 使用反色函数计算文本颜色
 }
 
-
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
 
 @font-face {
   font-family: 'AiChinese01';

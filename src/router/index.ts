@@ -10,6 +10,11 @@ const RouterMap = [
     component: () => import('@/views/home/index.vue')
   },
   {
+    path: '/bot/kimi',
+    name:"Kimi",
+    component: () => import('@/views/bot/kimi.vue')
+  },
+  {
     path: '/show/ocr',
     name: 'Ocr',
     meta: {
