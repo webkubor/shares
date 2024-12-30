@@ -26,8 +26,7 @@ const handleMouseMove = (event: MouseEvent) => {
   const centerY = rect.top + rect.height / 2;
   const deltaX = event.clientX - centerX;
   const deltaY = event.clientY - centerY;
-
-  bot.value.style.transform = `translate(${deltaX * 0.1}px, ${deltaY * 0.1}px) rotate(${deltaX * 0.05}deg)`;
+  bot.value.style.transform = `translate(${deltaX * 0.3}px, ${deltaY * 0.3}px) rotate(${deltaX * 0.15}deg)`;
 };
 
 // 设置不定时弹跳效果
