@@ -34,6 +34,7 @@ initBackgroundMusic()
 </script>
 <style lang="scss" scoped>
 .home-page {
+  padding-bottom: 50px;
   .show-container {
     margin: 0 auto;
     border: $default-primary 2px solid;
