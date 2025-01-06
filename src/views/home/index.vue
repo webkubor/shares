@@ -34,10 +34,6 @@ initBackgroundMusic()
 </script>
 <style lang="scss" scoped>
 .home-page {
-  min-height: 100vh;
-  background: var(--webkubor-bg);
-  border: 1px solid;
-
   .show-container {
     margin: 0 auto;
     border: $default-primary 2px solid;
@@ -54,8 +50,6 @@ initBackgroundMusic()
   .show-container {
     width: 90%;
   }
-
 }
-  
 }
 </style>

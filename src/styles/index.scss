@@ -54,7 +54,12 @@ $default-primary: #0077ff;
 }
 body {
   position: relative;
+  min-height: 100vh;
+  background: var(--webkubor-bg);
 }
+
+
+
 
 h1 {
   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
