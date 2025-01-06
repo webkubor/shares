@@ -168,7 +168,7 @@
 <script setup lang="ts">
 import { reactive, ref, toRaw, watchEffect } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
-import { useWallpaper } from "../useWallpaper"
+import { useWallpaper } from "@/hooks/useWallpaper"
 import config from "../config.json"
 import domtoimage from 'dom-to-image-more';
 import { getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'

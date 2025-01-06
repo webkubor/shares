@@ -26,7 +26,7 @@
 </template>
 <script setup lang="ts">
 import { useGlobal } from "@/hooks/useGlobal";
-import { useWallpaper } from "../useWallpaper"
+import { useWallpaper } from "@/hooks/useWallpaper"
 import RightView from "./RightView.vue";
 import PhoneView from './phoneView.vue'
 import WallpaperView from "./wallpaperView.vue";

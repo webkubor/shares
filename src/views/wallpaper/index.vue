@@ -11,7 +11,7 @@
     </n-layout>
 </template>
 <script setup lang="ts">
-import { useWallpaper } from "./useWallpaper"
+import { useWallpaper } from "@/hooks/useWallpaper"
 import Table from "./components/Table.vue";
 import { useGlobal } from "@/hooks/useGlobal";
 const { paperState } = useWallpaper()

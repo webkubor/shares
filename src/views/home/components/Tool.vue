@@ -16,6 +16,7 @@
         <n-button :color="getRandomColor()" ghost @click="$router.push('/animation/index')">动画组</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/colors')">主题色选择器</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/login')">Login登录页</n-button>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/book/share')">摘录分享</n-button>
       </n-space>
     </n-card>
 

@@ -35,7 +35,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { useWallpaper } from "../useWallpaper"
+import { useWallpaper } from "@/hooks/useWallpaper"
 import { useGlobal } from "@/hooks/useGlobal";
 import { computed, ref, onMounted, watch } from "vue";
 import { useDraggable } from '@vueuse/core'

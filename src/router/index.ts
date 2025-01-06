@@ -106,6 +106,14 @@ const RouterMap = [
     component: () => import("@/views/show/watermark/index.vue")
   },
   {
+    path: '/book/share',
+    name: 'BookShare',
+    meta: {
+      title: "书面摘录分享"
+    },
+    component: () => import("@/views/book/index.vue")
+  },
+  {
     path: '/show/colors',
     name: 'Colors',
     meta: {

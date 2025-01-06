@@ -27,7 +27,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { useWallpaper } from "../useWallpaper"
+import { useWallpaper } from "@/hooks/useWallpaper"
 import PhoneTopIcon from "./svg/PhoneTopIcon.vue";
 import PhoneLockBottom from "./svg/PhoneLockBottom.vue";
 import dayjs from "@/utils/dayjs";
