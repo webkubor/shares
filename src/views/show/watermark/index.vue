@@ -176,7 +176,7 @@ async function addWatermark(canvas: HTMLCanvasElement): Promise<HTMLCanvasElemen
         ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
-        ctx.font = `bold ${(ctx.canvas.width / 14)}px AiChinese01 `;
+        ctx.font = `bold ${(ctx.canvas.width / 14)}px AiChinese02 `;
         const padding = (ctx.canvas.width / 18);
         ctx.fillText(watermarkText.value, canvas.width / 2, canvas.height - padding);
         return config.active ? addName(ctx, canvas) : canvas;
@@ -208,7 +208,7 @@ function onDrawImage(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): 
 function addName(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): HTMLCanvasElement {
     ctx.fillStyle = config.color;
     ctx.textAlign = 'left';
-    ctx.font = `${config.weight} ${(ctx.canvas.width / config.font)}px AiChinese01 `;
+    ctx.font = `${config.weight} ${(ctx.canvas.width / config.font)}px AiChinese02 `;
     const textToAdd = config.title;
     const padding = canvas.width / 18;
     const paddingH = canvas.height / 15;

@@ -25,13 +25,34 @@ $default-primary: #0077ff;
   box-sizing: border-box;
 }
 
+
+
 @font-face {
-  font-family: 'AiChinese01';
-  src: url('@/assets/fonts/AiChinese01.ttf') format('truetype');
+  /* 这是字体指定的名字 */
+  font-family: 'AlimamaFangYuanTiVF-Thin';
+  /* 这是字体文件路径和格式 */
+  src: url('@/assets/fonts/AlimamaFangYuanTiVF-Thin.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
+@font-face {
+  /* 这是字体指定的名字 */
+  font-family: 'drizzle';
+  /* 这是字体文件路径和格式 */
+  src: url('@/assets/fonts/drizzle.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  /* 这是字体指定的名字 */
+  font-family: 'cute';
+  /* 这是字体文件路径和格式 */
+  src: url('@/assets/fonts/cute.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @font-face {
   font-family: 'AiChinese02';

@@ -109,19 +109,32 @@ export function useWallpaper() {
 // 自定义字体选项与前面定义的字体整合
 const fontOptions = [
     { label: '宋体', value: '"Songti SC", "SimSun", "STSong", "serif"' },
-    { label: '黑体', value: '"Heiti SC", "SimHei", "STHeiti", "sans-serif"' },
     { label: '楷体', value: '"Kaiti SC", "KaiTi", "STKaiti", "serif"' },
     { label: '华文行楷', value: '"STXingkai", "华文行楷", "HanWangXingKai", "cursive"' },
     { label: '仿宋', value: '"FangSong SC", "FangSong", "STFangsong", "serif"' },
     { label: 'Arial', value: 'Arial' },
     { label: 'monospace', value: 'monospace' },
+    { label: '方圆体', value: 'AlimamaFangYuanTiVF-Thin' },
+    { label: '那么热爱细雨体', value: 'drizzle' },
+    { label: '那么热爱卡哇伊', value: 'cute' },
     { label: 'Times New Roman', value: 'Times New Roman' },
     { label: 'Verdana', value: 'Verdana' },
     { label: 'Helvetica', value: 'Helvetica' },
-    { label: 'AI书面体', value: 'AiChinese01' },
     { label: 'AI书面-粗', value: 'AiChinese02' },
     { label: '艺术手写体', value: 'Chinese3' }
   ];
+
+
+  const ChineseFont = [
+    { label: '宋体', value: '"Songti SC", "SimSun", "STSong", "serif"' },
+    { label: '楷体', value: '"Kaiti SC", "KaiTi", "STKaiti", "serif"' },
+    { label: '华文行楷', value: '"STXingkai", "华文行楷", "HanWangXingKai", "cursive"' },
+    { label: '方圆体', value: 'AlimamaFangYuanTiVF-Thin' },
+    { label: '那么热爱细雨体', value: 'drizzle' },
+    { label: '那么热爱卡哇伊', value: 'cute' },
+    { label: 'AI书面-粗', value: 'AiChinese02' },
+    { label: '艺术手写体', value: 'Chinese3' }
+  ]
 
   const backgroundPositonXOptions = [
     {
@@ -160,6 +173,7 @@ const backgroundPositonYOptions = [
         backgroundPositonYOptions,
         backgroundPositonXOptions,
         fontOptions,
+        ChineseFont,
         transExportSize,
         setBgColor,
         getConfigHistory,

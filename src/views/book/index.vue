@@ -17,7 +17,7 @@
                             :actions="['clear']" :swatches="['#fddde6', '#f2b5d4', '#faf3e0', '#a3d9a5', '#f5f5dc']" />
                     </n-form-item>
                     <n-form-item label="字体选择" label-placement="left">
-                        <n-select v-model:value="config.fontFamily" placeholder="请选择字体" :options="fontOptions"
+                        <n-select v-model:value="config.fontFamily" placeholder="请选择字体" :options="ChineseFont"
                             style="width: 200px;" />
                     </n-form-item>
                     <n-form-item label="字体颜色" label-placement="left">
@@ -60,7 +60,7 @@ import { useWallpaper } from "@/hooks/useWallpaper"
 import dayjs from "@/utils/dayjs";
 import domtoimage from 'dom-to-image-more';
 import Drops from './drops.vue';
-const { fontOptions } = useWallpaper()
+const { ChineseFont } = useWallpaper()
 
 let exportLoading = ref(false)
 let bookState = reactive({
@@ -116,7 +116,7 @@ const downloadBgImage = async () => {
 .border {
     width: 100%; // 自适应布局
     max-width: 75%; // 限制最大宽度
-    margin: 20px auto 10px;
+    margin: 20px auto 50px;
 }
 .book-view {
     min-height: 40vh; // 保证视图高度适应不同设备
@@ -139,7 +139,7 @@ const downloadBgImage = async () => {
         width: 80%;
         margin: 50px 0;
         text-align: left;
-        background: rgba(255, 255, 255, 0.75); // 替代玻璃效果，可以结合 backdrop-filter
+        background: rgba(255, 255, 255, 0.45);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); // 增加立体感
         border-radius: 12px; // 增加圆角
         padding: 20px;
