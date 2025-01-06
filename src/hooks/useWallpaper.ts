@@ -120,6 +120,7 @@ const fontOptions = [
     { label: 'Times New Roman', value: 'Times New Roman' },
     { label: 'Verdana', value: 'Verdana' },
     { label: 'Helvetica', value: 'Helvetica' },
+    { label: 'vampire-wars', value: 'vampire-wars' },
     { label: 'AI书面-粗', value: 'AiChinese02' },
     { label: '艺术手写体', value: 'Chinese3' }
   ];
