@@ -3,6 +3,7 @@
         <div class="border">
             <div class="actions-view">
             <n-card title="操作">
+
                 <n-form-item label="文案内容" label-placement="left">
                     <n-input v-model:value="bookState.content" placeholder="请输入文案内容" type="textarea" autosize show-count
                         clearable />
@@ -25,7 +26,8 @@
                     </n-form-item>
                 </n-space>
 
-                <n-space justify="end">
+                <n-space justify="end" align="center">
+                    <img  src="./assets/fly.png" alt="">
                     <button class="webkubor-back-btn common-btn" @click="resetConfig">Reset</button>
                     <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
                 </n-space>
@@ -34,6 +36,7 @@
         </div>
         <div id="book-view" class="book-view"
             :style="{ fontFamily: config.fontFamily, background: config.bgColor, color: config.fontColor }">
+            <Drops class="fly"/>
             <div class="main">
                 <span>
                     {{ bookState.content }}
@@ -41,7 +44,6 @@
                 <div class="more" v-if="bookState.more">
                     {{ bookState.more }}
                 </div>
-                <img class="fly" src="./assets/fly.png" alt="">
             </div>
 
         </div>
@@ -57,6 +59,7 @@ import { reactive, ref } from 'vue';
 import { useWallpaper } from "@/hooks/useWallpaper"
 import dayjs from "@/utils/dayjs";
 import domtoimage from 'dom-to-image-more';
+import Drops from './drops.vue';
 const { fontOptions } = useWallpaper()
 
 let exportLoading = ref(false)
@@ -67,14 +70,14 @@ let bookState = reactive({
 
 
 let config = reactive({
-    bgColor: '#fffff0',
+    bgColor: '#A3D9A5FF',
     fontColor: "#101820",
     fontFamily: 'Chinese3',
 })
 
 
 const resetConfig = () => {
-    config.bgColor = '#fffff0';
+    config.bgColor = '#A3D9A5FF';
     config.fontColor = '#101820';
     config.fontFamily = 'Chinese3';
     bookState.content = '...';
@@ -126,13 +129,17 @@ const downloadBgImage = async () => {
     font-size: clamp(12px, 1.8vw, 18px); // 主内容字体大小范围
     position: relative;
     overflow: hidden;
+    .fly {
+            position: absolute;
+            left: 120px;
+            top: 40px;
+        }
 
     .main {
         width: 80%;
         margin: 50px 0;
         text-align: left;
-        background: rgba(255, 255, 255, 0.45); // 替代玻璃效果，可以结合 backdrop-filter
-        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.75); // 替代玻璃效果，可以结合 backdrop-filter
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); // 增加立体感
         border-radius: 12px; // 增加圆角
         padding: 20px;
@@ -140,31 +147,25 @@ const downloadBgImage = async () => {
         line-height: 1.5;
         position: relative;
 
-        .fly {
-            position: absolute;
-            width: 80px;
-            left: -40px;
-            top: -80px;
-            filter: drop-shadow(0px 2em #EE5A5AD9) brightness(1.05);
-        }
-
+    
 
         .more {
             width: 100%;
             text-align: right;
             font-style: italic; // 引用来源用斜体显示更显优雅
-            color: rgba(0, 0, 0, 0.6); // 降低对比度以区分主内容
         }
     }
 }
 
 .actions-view {
     margin: 20px auto;
-
     display: flex;
     flex-wrap: wrap; // 支持多列布局
     justify-content: space-between; // 均匀分布内容
     gap: 16px; // 增加组件间距
+    img {
+        height: 50px;
+    }
 }
 
 @media (max-width: 768px) {
