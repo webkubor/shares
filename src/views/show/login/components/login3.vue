@@ -20,7 +20,7 @@
                 <form class="form" id="a-form" method="" action="">
                     <h2 class="form_title title">Create Account</h2>
                     <input class="form__input"  v-history type="text"  placeholder="Name"
-                        autofocus>
+                        >
                     <input class="form__input" v-history  type="text" placeholder="Email">
                     <input class="form__input" type="password" placeholder="Password">
                     <button class="form__button">SIGN UP</button>
