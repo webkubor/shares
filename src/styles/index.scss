@@ -19,59 +19,9 @@ $default-primary: #0077ff;
   --webkubor-second: #3b3a44;
   --webkubor-text-primary: #ffffff; // 使用反色函数计算文本颜色
 }
-
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
-
-@font-face {
-  font-family: 'AlimamaFangYuanTiVF-Thin';
-  src: url('@/assets/fonts/AlimamaFangYuanTiVF-Thin.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'drizzle';
-  src: url('@/assets/fonts/drizzle.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'cute';
-  src: url('@/assets/fonts/cute.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'vampire-wars';
-  src: url('@/assets/fonts/vampire-wars.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'AiChinese02';
-  src: url('@/assets/fonts/AiChinese02.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Chinese3';
-  src: url('@/assets/fonts/Chinese3.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 @import "./mixins.scss";
+@import "./font.scss";
 
-* {
-  box-sizing: border-box;
-}
 body {
   position: relative;
   min-height: 100vh;
