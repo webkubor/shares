@@ -1,7 +1,7 @@
 import chooseClick from '@/assets/click/choose.mp3';
 import noticeClick from '@/assets/click/notice.mp3';
 import commonClick from '@/assets/click/common.mp3';
-import bgMusic from '@/assets/bg.mp3';
+// import bgMusic from '@/assets/bg.mp3';
 import { ref } from 'vue';
 let currentBgMusic = ref<any>(null);
 
@@ -51,7 +51,7 @@ function onClickBox() {
 function initBackgroundMusic() {
     let soundSwitch = localStorage.getItem("soundSwitch");
     if (soundSwitch == 'false'|| currentBgMusic.value) return
-    currentBgMusic.value = new Audio(bgMusic);
+    // currentBgMusic.value = new Audio(bgMusic);
     currentBgMusic.value.loop = true;
     currentBgMusic.value.play();
     console.log('initBackgroundMusic',currentBgMusic.value);

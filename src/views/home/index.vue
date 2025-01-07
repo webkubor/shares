@@ -18,8 +18,6 @@
 import UserInfo from "./components/UserInfo.vue";
 import ProjectList from "./components/ProjectList.vue";
 import ToolView from './components/Tool.vue'
-import { useMusic } from "@/hooks/useMusic";
-const { initBackgroundMusic } = useMusic()
 
 window.addEventListener('vite:preloadError', (event) => {
   window.$message?.warning('检测到有新版本，5秒后即将自动刷新...');
