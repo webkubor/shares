@@ -2,7 +2,8 @@
     <n-spin :show="exportLoading">
         <div class="border">
             <div class="actions-view">
-            <n-card title="操作">
+               <div class="common-title-white">book Share</div>
+            <n-card>
 
                 <n-form-item label="文案内容" label-placement="left">
                     <n-input v-model:value="bookState.content" placeholder="请输入文案内容" type="textarea" autosize show-count
@@ -160,6 +161,7 @@ const downloadBgImage = async () => {
 .actions-view {
     margin: 20px auto;
     display: flex;
+    text-align: center;
     flex-wrap: wrap; // 支持多列布局
     justify-content: space-between; // 均匀分布内容
     gap: 16px; // 增加组件间距
