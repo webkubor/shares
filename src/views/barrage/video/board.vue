@@ -32,6 +32,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useNotice } from '@/hooks/useNotice';
+import { getRandomColor } from "@/utils/random";
 const message = ref('');
 const fontSize = ref('22');
 const speed = ref(20);
@@ -97,14 +98,7 @@ const test =() => {
     });
 
 }
-const getRandomColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-};
+
 
 // 生成随机位置，从 10% 到 80%
 const getRandomPosition = () => {

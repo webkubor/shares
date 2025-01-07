@@ -147,7 +147,7 @@ const RouterMap = [
   },
   {
     path: '/public/poster',
-    name: 'Poster-Page',
+    name: 'Poster-Scroll',
     meta: {
       title: "海报"
     },
