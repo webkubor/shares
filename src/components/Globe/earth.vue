@@ -8,7 +8,7 @@ import { Color } from 'three'
 <template>
     <div class="globe-container">
         <!-- clear-color="#040d21" 这里可直接覆盖画布原色 -->
-        <TresCanvas window-size antialias :alpha="true" :shadows="true">
+        <TresCanvas window-size antialias :alpha="true"  clear-color="#040d21">
             <TresPerspectiveCamera :position='[0, 0, 300]'>
                 <TresAmbientLight :color="new Color(0xbbbbbb)" :intensity="1" />
                 <TresDirectionalLight :position="[-800, 2000, 400]" :color="new Color(0xffffff)" :intensity="8" />
@@ -23,26 +23,13 @@ import { Color } from 'three'
     </div>
 </template>
 <style lang="scss" scope>
-html,
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-}
-
-#app {
-    width:100%;
-    height:100%;
-}
-
 .globe-container {
-    /* position: absolute;
+     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; */
+    z-index: -1;
     cursor:pointer;
 }
 </style>

@@ -6,6 +6,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     ColorBorder: typeof import('./src/components/ColorBorder.vue')['default']
     ColorBtn: typeof import('./src/components/ColorBtn.vue')['default']
+    GlobeEarth: typeof import('./src/components/Globe/earth.vue')['default']
+    GlobeModel: typeof import('./src/components/Globe/model.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']

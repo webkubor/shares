@@ -4,6 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { fileURLToPath, URL } from 'url'
+import { templateCompilerOptions } from '@tresjs/core'
 
 export default defineConfig({
   base: './',
@@ -24,7 +25,11 @@ export default defineConfig({
     chunkSizeWarningLimit: 1500
   },
   plugins: [
-    vue(),
+    vue(
+      {
+        ...templateCompilerOptions
+      }
+    ),
     Components({
       resolvers: [NaiveUiResolver()],
       directoryAsNamespace: true

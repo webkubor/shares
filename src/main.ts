@@ -7,6 +7,7 @@ import ripple from "@/directives/ripple/index";
 import InputHistory from "@/directives/inputHistory";
 import globalComponents from "@/components";
 import "@/utils/rem"
+import 'core-js/stable';
 
 createApp(App)
 

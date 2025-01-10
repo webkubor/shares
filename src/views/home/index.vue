@@ -26,7 +26,6 @@ window.addEventListener('vite:preloadError', (event) => {
     console.log('页面已更新为最新版本...');
   }, 5000)
 })
-initBackgroundMusic()
 
 
 </script>
