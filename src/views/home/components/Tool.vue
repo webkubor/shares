@@ -9,8 +9,8 @@
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/list')">indexDB</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/book/share')">摘录分享</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/colors')">主题色选择器</n-button>
+        <n-button :color="getRandomColor()" ghost @click="$router.push('/music')">小白转调器</n-button>
       </n-space>
-
     </n-card>
     <n-card title="UI视觉">
       <n-space>

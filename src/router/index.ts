@@ -15,6 +15,11 @@ const RouterMap = [
     component: () => import('@/views/bot/kimi.vue')
   },
   {
+    path: '/music',
+    name:"MusicEdit",
+    component: () => import('@/views/music/index.vue')
+  },
+  {
     path: '/show/ocr',
     name: 'Ocr',
     meta: {
