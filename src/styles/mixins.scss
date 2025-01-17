@@ -124,43 +124,61 @@
   }
 }
 
+@mixin button-standard($color) {
+  $text-color: lighten($color, 30%);
+  $bg-color: lighten($color, 50%);
+  $hover-bg-color: darken($bg-color, 10%);
+  $focus-shadow-color: rgba($color, 0.4);
+  $active-bg-color: lighten($bg-color, 8%);
+  $disabled-text-color: lighten($color, 60%);
+  $disabled-bg-color: darken($bg-color, 15%);
+  $border-color: $color;
+  $transition-duration: 0.2s;
 
-@mixin button-standard($theme-color, $bg-color) {
-  // 根据主题色动态生成文字颜色和悬停效果
-  $text-color: lighten($theme-color, 20%);
-  $hover-bg-color: darken($bg-color, 5%);
-  $focus-shadow-color: rgba($theme-color, 0.3);
   width: 100%;
   display: inline-block;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 400;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
   text-align: center;
   text-decoration: none;
   color: $text-color;
   background-color: $bg-color;
-  border: 1px solid $theme-color;
-  border-radius: 4px;
+  border: 2px solid $border-color;
+  border-radius: 8px;
   cursor: pointer;
   outline: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: color $transition-duration ease, 
+              background-color $transition-duration ease, 
+              transform $transition-duration ease, 
+              box-shadow $transition-duration ease;
 
   &:hover {
-    color: $theme-color;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transform: translateY(-4px);
+    color: $color;
+    background-color: $hover-bg-color;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
   }
 
   &:focus {
-    box-shadow: 0 0 0 3px $theme-color;
+    box-shadow: 0 0 0 4px $focus-shadow-color;
   }
 
   &:active {
-    background-color: darken($bg-color, 10%);
-    filter: drop-shadow(0 0 5px $theme-color);
+    background-color: $active-bg-color;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
-    transform: translateY(2px);
+    transform: translateY(1px);
+    filter: brightness(0.95);
+  }
 
+  &:disabled {
+    cursor: not-allowed;
+    color: $disabled-text-color;
+    background-color: $disabled-bg-color;
+    border-color: darken($border-color, 15%);
+    box-shadow: none;
+    opacity: 0.8;
   }
 }

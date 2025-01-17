@@ -1,17 +1,21 @@
 <template>
   <div class="audio-pitch-control">
     <!-- 白色背景板 -->
-    <div class="background-overlay">
-      <div class="container">
-        <h1>音频音高调节</h1>
-        <p>上传音频文件并调整音高，您可以试听并下载调整后的音频。</p>
+    <div class="container">
+      <h1>音频音高调节工具</h1>
+      <p class="description">
+        上传音频文件，调整音高，并试听或下载调整后的音频。
+      </p>
 
-        <!-- 文件上传 -->
+      <!-- 上传音频 -->
+      <div class="upload-section">
         <input type="file" @change="onFileChange" accept="audio/mp3, audio/wav" />
-        <div v-if="uploadMessage" class="upload-message">{{ uploadMessage }}</div>
+        <p v-if="uploadMessage" class="upload-message">{{ uploadMessage }}</p>
+      </div>
 
-        <!-- 音高调节 -->
-        <label for="pitch">音高调整（半音）:</label>
+      <!-- 音高调节 -->
+      <div v-if="audioFile" class="control-section">
+        <label for="pitch" class="pitch-label">音高调整（半音）:</label>
         <input
           type="range"
           v-model="pitch"
@@ -20,17 +24,22 @@
           max="12"
           step="1"
         />
-        <span>{{ pitch }} 半音</span>
-
-        <!-- 播放调整后音频 -->
-        <button @click="playAudio" :disabled="!audioFile">试听调整后的音频</button>
-
-        <!-- 下载调整后的音频 -->
-        <button @click="downloadAudio" :disabled="!audioFile">下载调整后的音频</button>
-
-        <!-- 显示音频播放器 -->
-        <audio ref="audioPlayer" :src="audioSrc" controls v-if="audioFile"></audio>
+        <span class="pitch-value">{{ pitch > 0 ? "+" + pitch : pitch }} 半音</span>
       </div>
+
+      <!-- 播放控制 -->
+      <div v-if="audioFile" class="player-section">
+        <button @click="playOriginalAudio">播放原始音频</button>
+        <button @click="playAdjustedAudio">播放调整后音频</button>
+      </div>
+
+      <!-- 下载调整后音频 -->
+      <div v-if="audioFile" class="download-section">
+        <button @click="downloadAudio">下载调整后的音频</button>
+      </div>
+
+      <!-- 播放器 -->
+      <audio ref="audioPlayer" :src="audioSrc" controls v-if="audioFile"></audio>
     </div>
   </div>
 </template>
@@ -46,12 +55,13 @@ const audioFile = ref<File | null>(null);
 const uploadMessage = ref<string | null>(null);
 // 存储音频的 URL
 const audioSrc = ref<string | null>(null);
-
-// 记录当前的音频上下文
+// Web Audio API 相关变量
 let audioContext: AudioContext | null = null;
 let audioSource: AudioBufferSourceNode | null = null;
 let audioBuffer: AudioBuffer | null = null;
-let pitchShiftNode: GainNode | null = null;
+
+// 播放器引用
+const audioPlayer = ref<HTMLAudioElement | null>(null);
 
 // 处理文件上传
 const onFileChange = (event: Event) => {
@@ -64,41 +74,51 @@ const onFileChange = (event: Event) => {
   }
 };
 
+// 播放原始音频
+const playOriginalAudio = () => {
+  if (audioSrc.value && audioPlayer.value) {
+    stopAllAudio();
+    audioPlayer.value.src = audioSrc.value;
+    audioPlayer.value.play();
+  }
+};
+
 // 播放调整后的音频
-const playAudio = async () => {
+const playAdjustedAudio = async () => {
   if (audioFile.value) {
-    // 创建音频上下文，如果已存在则重用
+    stopAllAudio();
+
     if (!audioContext) {
       audioContext = new (window.AudioContext || window.webkitAudioContext)();
     }
-    
-    // 如果已经有音频正在播放，则停止
+
     if (audioSource) {
       audioSource.stop();
     }
-    
-    // 读取上传的音频文件并创建音频缓冲区
+
     const response = await fetch(audioSrc.value!);
     const arrayBuffer = await response.arrayBuffer();
     audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
 
-    // 创建音频源节点
     audioSource = audioContext.createBufferSource();
     audioSource.buffer = audioBuffer;
 
-    // 创建音高调整节点（我们用 GainNode 进行音高处理）
-    pitchShiftNode = audioContext.createGain();
-    
-    // 根据音高调整值计算音频播放的速率
-    const pitchFactor = Math.pow(2, pitch.value / 12); // 音高转换公式（半音 -> 速率）
+    const pitchFactor = Math.pow(2, pitch.value / 12);
     audioSource.playbackRate.setValueAtTime(pitchFactor, audioContext.currentTime);
-    
-    // 将音频源节点连接到音高调整节点，并将其连接到音频上下文的输出
-    audioSource.connect(pitchShiftNode);
-    pitchShiftNode.connect(audioContext.destination);
 
-    // 播放音频
+    audioSource.connect(audioContext.destination);
     audioSource.start();
+  }
+};
+
+// 停止所有音频播放
+const stopAllAudio = () => {
+  if (audioPlayer.value) {
+    audioPlayer.value.pause();
+    audioPlayer.value.currentTime = 0;
+  }
+  if (audioSource) {
+    audioSource.stop();
   }
 };
 
@@ -113,69 +133,84 @@ const downloadAudio = () => {
     URL.revokeObjectURL(url);
   }
 };
-
 </script>
 
 <style lang="scss" scoped>
 .audio-pitch-control {
-  text-align: center;
-  padding: 20px;
-  position: relative;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
 
-.background-overlay {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+  .container {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 600px;
+    text-align: center;
 
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-}
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
 
-h1 {
-  font-size: 28px;
-  margin-bottom: 15px;
-}
+    .description {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
 
-input[type="file"] {
-  margin-bottom: 15px;
-}
+    .upload-section {
+      input[type="file"] {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 10px;
+      }
 
-input[type="range"] {
-  width: 300px;
-  margin-top: 15px;
-}
+      .upload-message {
+        color: #4caf50;
+        font-size: 14px;
+      }
+    }
 
-button {
-  padding: 10px 20px;
+    .control-section {
+      margin: 20px 0;
+
+      .pitch-label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .pitch-value {
+        font-size: 14px;
+        color: #333;
+      }
+    }
+
+    .player-section {
+      button {
   margin-top: 20px;
-  cursor: pointer;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  &:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+        @include button-standard(#2783e5);
+      }
+    }
+
+    .download-section {
+      button {
+  margin-top: 20px;
+        @include button-standard(#2bcd30);
+      }
+    }
+
+   
   }
-}
-
-button + button {
-  margin-left: 10px;
-}
-
-.upload-message {
-  margin-top: 10px;
-  color: #4caf50;
-  font-size: 16px;
-}
-
-audio {
-  margin-top: 20px;
-  max-width: 100%;
 }
 </style>
