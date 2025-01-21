@@ -26,9 +26,6 @@ dependencies:
   gsap:
     specifier: ^3.12.5
     version: 3.12.5
-  kbor-logger:
-    specifier: ^1.0.4
-    version: 1.0.4
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -70,6 +67,9 @@ devDependencies:
   flyio:
     specifier: ^0.6.14
     version: 0.6.14
+  kbor-logger:
+    specifier: ^1.0.9
+    version: 1.0.9
   naive-ui:
     specifier: ^2.40.1
     version: 2.40.1(vue@3.3.8)
@@ -1657,11 +1657,11 @@ packages:
       lodash-es: 4.17.21
     dev: false
 
-  /kbor-logger@1.0.4:
-    resolution: {integrity: sha512-Vrgtpg3QSy+YjVlPpVgMYRRJTisjXCNtNhtZ2pAXuNVLAOb2yUe9Isn51Pq/2w2A1EGOpEHBBki0JKXDirfV9g==}
+  /kbor-logger@1.0.9:
+    resolution: {integrity: sha512-LAmqsRM6e7sUu1o2UB/W9WFuglLZ9llV2XUT5g7es27JmG19j9roafIdv+RTR2ljdWaVVTWOUTXh/383qj/pfA==}
     dependencies:
       tslib: 2.8.1
-    dev: false
+    dev: true
 
   /loadjs@4.2.0:
     resolution: {integrity: sha512-AgQGZisAlTPbTEzrHPb6q+NYBMD+DP9uvGSIjSUM5uG+0jG15cb8axWpxuOIqrmQjn6scaaH8JwloiP27b2KXA==}
@@ -2306,7 +2306,6 @@ packages:
 
   /tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
-    dev: false
 
   /tunnel-agent@0.6.0:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}

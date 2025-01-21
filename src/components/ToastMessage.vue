@@ -62,8 +62,6 @@ export default {
     onMounted(() => {
       startProgress();
     });
-
-
     watchEffect(() => {
       clearTimeout(timer);
       if (props.modelValue) {

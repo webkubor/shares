@@ -1,8 +1,7 @@
 <template>
   <div class="audio-pitch-control">
     <!-- 白色背景板 -->
-    <div class="container">
-      <h1>音频音高调节工具</h1>
+    <n-card class="container" title="音频音高调节工具">
       <p class="description">
         上传音频文件，调整音高，并试听或下载调整后的音频。
       </p>
@@ -26,21 +25,15 @@
         />
         <span class="pitch-value">{{ pitch > 0 ? "+" + pitch : pitch }} 半音</span>
       </div>
-
       <!-- 播放控制 -->
-      <div v-if="audioFile" class="player-section">
-        <button @click="playOriginalAudio">播放原始音频</button>
-        <button @click="playAdjustedAudio">播放调整后音频</button>
-      </div>
-
-      <!-- 下载调整后音频 -->
-      <div v-if="audioFile" class="download-section">
-        <button @click="downloadAudio">下载调整后的音频</button>
-      </div>
-
+      <n-space>
+        <n-button v-if="audioFile" @click="playOriginalAudio">播放原始音频</n-button>
+        <n-button v-if="audioFile" @click="playAdjustedAudio">播放调整后音频</n-button>
+        <n-button v-if="audioFile" @click="downloadAudio">下载调整后的音频</n-button>
+      </n-space>
       <!-- 播放器 -->
-      <audio ref="audioPlayer" :src="audioSrc" controls v-if="audioFile"></audio>
-    </div>
+      <audio ref="audioPlayer"  style="margin-top: 20px;" :src="audioSrc" controls v-if="audioFile"></audio>
+    </n-card>
   </div>
 </template>
 
@@ -141,21 +134,11 @@ const downloadAudio = () => {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f9f9f9;
   font-family: Arial, sans-serif;
 
   .container {
-    background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 600px;
-    text-align: center;
 
-    h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
+  
 
     .description {
       font-size: 16px;
@@ -196,19 +179,6 @@ const downloadAudio = () => {
       }
     }
 
-    .player-section {
-      button {
-  margin-top: 20px;
-        @include button-standard(#2783e5);
-      }
-    }
-
-    .download-section {
-      button {
-  margin-top: 20px;
-        @include button-standard(#2bcd30);
-      }
-    }
 
    
   }
