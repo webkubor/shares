@@ -2,54 +2,59 @@
     <n-spin :show="exportLoading">
         <div class="border">
             <div class="actions-view">
-               <div class="common-title-white">book Share</div>
-            <n-card>
-
-                <n-form-item label="文案内容" label-placement="left">
-                    <n-input v-model:value="bookState.content" placeholder="请输入文案内容" type="textarea" autosize show-count
-                        clearable />
-                </n-form-item>
-                <n-form-item label="引用来源" label-placement="left">
-                    <n-input type="text" v-model:value="bookState.more" placeholder="引用来源(可不填)" show-count clearable />
-                </n-form-item>
-                <n-space>
-                    <n-form-item label="底部背景" label-placement="left">
-                        <n-color-picker v-model:value="config.bgColor" style="width: 150px;" :show-alpha="true"
-                            :actions="['clear']" :swatches="['#fddde6', '#f2b5d4', '#faf3e0', '#a3d9a5', '#f5f5dc']" />
+                <div class="common-title-white">book Share</div>
+                <n-card>
+                    <n-form-item label="文案内容" label-placement="left">
+                        <n-input v-model:value="bookState.content" placeholder="请输入文案内容" type="textarea" autosize
+                            show-count clearable />
                     </n-form-item>
-                    <n-form-item label="字体选择" label-placement="left">
-                        <n-select v-model:value="config.fontFamily" placeholder="请选择字体" :options="ChineseFont"
-                            style="width: 200px;" />
+                    <n-form-item label="引用来源" label-placement="left">
+                        <n-input type="text" v-model:value="bookState.more" placeholder="引用来源(可不填)" show-count
+                            clearable />
                     </n-form-item>
-                    <n-form-item label="字体颜色" label-placement="left">
-                        <n-color-picker v-model:value="config.fontColor" style="width: 150px;" :show-alpha="true"
-                            :actions="['clear']" :swatches="['#2c2c2c', '#333333', '#4a4a4a', '#101820', '#f5f5dc']" />
-                    </n-form-item>
-                </n-space>
+                    <n-space>
+                        <n-form-item label="底部背景" label-placement="left">
+                            <n-color-picker v-model:value="config.bgColor" style="width: 150px;" :show-alpha="true"
+                                :actions="['clear']"
+                                :swatches="['#fddde6', '#f2b5d4', '#faf3e0', '#a3d9a5', '#f5f5dc']" />
+                        </n-form-item>
+                        <n-form-item label="字体选择" label-placement="left">
+                            <n-select v-model:value="config.fontFamily" placeholder="请选择字体" :options="ChineseFont"
+                                style="width: 200px;" />
+                        </n-form-item>
+                        <n-form-item label="字体颜色" label-placement="left">
+                            <n-color-picker v-model:value="config.fontColor" style="width: 150px;" :show-alpha="true"
+                                :actions="['clear']"
+                                :swatches="['#2c2c2c', '#333333', '#4a4a4a', '#101820', '#f5f5dc']" />
+                        </n-form-item>
+                    </n-space>
 
-                <n-space justify="end" align="center">
-                    <img  src="./assets/fly.png" alt="">
-                    <button class="webkubor-back-btn common-btn" @click="resetConfig">Reset</button>
-                    <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
-                </n-space>
+                    <n-space justify="end" align="center">
+                        <img src="./assets/fly.png" alt="">
+                        <button class="webkubor-back-btn common-btn" @click="resetConfig">Reset</button>
+                        <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
+                    </n-space>
 
-            </n-card>
-        </div>
-        <div id="book-view" class="book-view"
-            :style="{ fontFamily: config.fontFamily, background: config.bgColor, color: config.fontColor }">
-            <Drops class="fly"/>
-            <div class="main">
-                <span>
-                    {{ bookState.content }}
-                </span>
-                <div class="more" v-if="bookState.more">
-                    {{ bookState.more }}
-                </div>
+                </n-card>
             </div>
+            <div id="book-view" class="book-view"
+                :style="{ fontFamily: config.fontFamily, background: config.bgColor, color: config.fontColor }">
+                <Drops class="fly" />
+                <div class="main">
+                    <span>
+                        {{ bookState.content }}
+                    </span>
+                    <div class="more" v-if="bookState.more">
+                        {{ bookState.more }}
+                    </div>
+                </div>
 
+            </div>
+         <SpontlightCard>
+            2222222222
+         </SpontlightCard>
         </div>
-        </div>
-     
+
         <template #description>
             导出中.......
         </template>
@@ -61,6 +66,7 @@ import { useWallpaper } from "@/hooks/useWallpaper"
 import dayjs from "@/utils/dayjs";
 import domtoimage from 'dom-to-image-more';
 import Drops from './drops.vue';
+import SpontlightCard from '@/components/SpotlightCard/index.vue';
 const { ChineseFont } = useWallpaper()
 
 let exportLoading = ref(false)
@@ -87,10 +93,10 @@ const resetConfig = () => {
 
 
 const exportOptions = {
-    useCORS: true, 
+    useCORS: true,
     scale: 3,
-    width:0,
-    height:0
+    width: 0,
+    height: 0
 }
 
 const downloadBgImage = async () => {
@@ -113,12 +119,12 @@ const downloadBgImage = async () => {
 
 </script>
 <style lang="scss" scoped>
-
 .border {
     width: 100%; // 自适应布局
     max-width: 75%; // 限制最大宽度
     margin: 20px auto 50px;
 }
+
 .book-view {
     min-height: 40vh; // 保证视图高度适应不同设备
     display: flex;
@@ -130,11 +136,12 @@ const downloadBgImage = async () => {
     font-size: clamp(12px, 1.8vw, 18px); // 主内容字体大小范围
     position: relative;
     overflow: hidden;
+
     .fly {
-            position: absolute;
-            left: 120px;
-            top: 40px;
-        }
+        position: absolute;
+        left: 120px;
+        top: 40px;
+    }
 
     .main {
         width: 80%;
@@ -148,7 +155,7 @@ const downloadBgImage = async () => {
         line-height: 1.5;
         position: relative;
 
-    
+
 
         .more {
             width: 100%;
@@ -165,6 +172,7 @@ const downloadBgImage = async () => {
     flex-wrap: wrap; // 支持多列布局
     justify-content: space-between; // 均匀分布内容
     gap: 16px; // 增加组件间距
+
     img {
         height: 50px;
     }

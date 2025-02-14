@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import ToastMessage from "@/components/ToastMessage.vue";
+import ToastMessage from "./ToastMessage.vue";
 
 let queue = []; // message 队列，用于管理多个消息实例
 const defaultTop = 10; // 默认的顶部距离

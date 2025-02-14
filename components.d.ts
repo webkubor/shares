@@ -23,6 +23,7 @@ declare module 'vue' {
     NFormItem: typeof import('naive-ui')['NFormItem']
     NGrid: typeof import('naive-ui')['NGrid']
     NGridItem: typeof import('naive-ui')['NGridItem']
+    NIcon: typeof import('naive-ui')['NIcon']
     NImage: typeof import('naive-ui')['NImage']
     NInput: typeof import('naive-ui')['NInput']
     NInputNumber: typeof import('naive-ui')['NInputNumber']
@@ -36,6 +37,7 @@ declare module 'vue' {
     NModal: typeof import('naive-ui')['NModal']
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     NOption: typeof import('naive-ui')['NOption']
+    NoticeToastMessage: typeof import('./src/components/Notice/ToastMessage.vue')['default']
     NPopover: typeof import('naive-ui')['NPopover']
     NProgress: typeof import('naive-ui')['NProgress']
     NRadio: typeof import('naive-ui')['NRadio']
@@ -43,6 +45,7 @@ declare module 'vue' {
     NResult: typeof import('naive-ui')['NResult']
     NSapce: typeof import('naive-ui')['NSapce']
     NSelect: typeof import('naive-ui')['NSelect']
+    NSlider: typeof import('naive-ui')['NSlider']
     NSpace: typeof import('naive-ui')['NSpace']
     NSpin: typeof import('naive-ui')['NSpin']
     NSplit: typeof import('naive-ui')['NSplit']
@@ -53,7 +56,9 @@ declare module 'vue' {
     NUpload: typeof import('naive-ui')['NUpload']
     NWatermark: typeof import('naive-ui')['NWatermark']
     Spider: typeof import('./src/components/Spider.vue')['default']
+    SpotlightCard: typeof import('./src/components/SpotlightCard/index.vue')['default']
     ToastMessage: typeof import('./src/components/ToastMessage.vue')['default']
+    Tooltip: typeof import('./src/components/tooltip.vue')['default']
     WaveAnimation: typeof import('./src/components/WaveAnimation/index.vue')['default']
   }
 }
