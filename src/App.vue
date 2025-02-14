@@ -6,7 +6,7 @@
 <script setup>
 import { useTheme } from "@/hooks/useTheme";
 import { onMounted } from "vue";
-import { Message } from "@/hooks/useToast";
+import { Message } from "@/components/Notice/useToast";
 import { useGlobal } from "./hooks/useGlobal";
 import {klogger} from "kbor-logger";
 let { allThemeOverrides, local, initTheme } = useTheme();
@@ -24,3 +24,4 @@ onMounted(() => {
 <style lang="scss">
 @import "@/styles/index.scss";
 </style>
+@/components/Notice/useToast

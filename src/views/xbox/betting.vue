@@ -15,7 +15,6 @@
 </template>
 <script setup>
 import { reactive, ref,onMounted } from 'vue'
-import { Message } from "@/hooks/useToast";
 import dayjs from 'dayjs';
 import lark from '@/assets/xbox/lucky.png'
 import { useMusic } from "@/hooks/useMusic";
@@ -39,12 +38,12 @@ onMounted(()=>{
 function onChoose(index) {
     onCommonClick()
     if (chooseList.value && chooseList.value.includes(index)) {
-        Message({
+        window.$message({
             content: `不可重复下注`,
         })
     } else {
         chooseList.value.push(index)
-        Message({
+        window.$message({
         time:3000,
         content: `<div>投注${index}号箱子，中奖预计为获得
             <div style="display:flex;align-items:center;justify-content:space-between;margin-top: 8px;">
@@ -79,7 +78,7 @@ function onStart(number) {
     setTimeout(() => {
         clearInterval(timer);
         timer = null
-        Message({
+        window.$message({
             time: 5000,
             content: `本期中奖码为${number}`,
         })
@@ -94,7 +93,7 @@ function sleep(ms) {
 
 async function showResult(number) {
     if (chooseList.value.includes(number)) {
-        Message({
+        window.$message({
             time: 4000,
             content: `恭喜！${number}号箱子已经中奖`,
         })
