@@ -17,7 +17,7 @@
     margin: 5px 10px;
     border: 2px solid transparent;
     background-clip: padding-box;
-font-size: 14px;
+    font-size: 14px;
     .window {
         width: 100%;
         height: 100%;

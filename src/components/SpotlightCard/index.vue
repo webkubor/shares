@@ -26,8 +26,8 @@ const handleMouseMove = (e) => {
 .card-spotlight {
     position: relative;
     border-radius: 20px;
-    border: 1px solid #222;
-    background-color: #111;
+     border: 1px solid #222; 
+    background-color: #111; 
     padding: 20px;
     overflow: hidden;
     --mouse-x: 50%;
