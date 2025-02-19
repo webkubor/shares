@@ -153,7 +153,8 @@ $theme-color: #E74C3C;
 
 button {
   margin-top: 20px;
-  @include button-standard($theme-color, #323753);
+  @include button-standard($theme-color);
+  background: #2c335e;
 }
 
 .form {
