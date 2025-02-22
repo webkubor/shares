@@ -13,6 +13,7 @@
         </n-form-item>
       </n-form>
     </n-card>
+    111111
     <div class="border-box">
       <div class="info-item">
         <h3>等额本息贷款</h3>
@@ -117,21 +118,51 @@ let format = (value: number | null) => {
 // 计算等额本金贷款
 let equalPrincipalPayments = computed(() => {
   if (model.years && model.loanAmount && model.annualInterestRate) {
-    return calculateEqualPrincipalLoan(model.years, model.annualInterestRate, model.loanAmount)
+    const result = calculateEqualPrincipalLoan(model.years, model.annualInterestRate, model.loanAmount);
+    return {
+      monthlyPayment: _.round(result.monthlyPayment, 2).toLocaleString('en-US'),
+      totalPayment: _.round(result.totalPayment, 2).toLocaleString('en-US'),
+      totalInterest: _.round(result.totalInterest, 2).toLocaleString('en-US')
+    };
   } else {
-    return { monthlyPayment: 0, totalPayment: 0, totalInterest: 0 };
+    return { monthlyPayment: '0', totalPayment: '0', totalInterest: '0' };
   }
-})
+});
 
 // 等额本息贷款
 let equalInstallmentPayments = computed(() => {
   if (model.years && model.loanAmount && model.annualInterestRate) {
-    console.log(calculateLoan(model.years, model.annualInterestRate, model.loanAmount), 11111)
-    return calculateLoan(model.years, model.annualInterestRate, model.loanAmount)
+    const result = calculateLoan(model.years, model.annualInterestRate, model.loanAmount);
+    return {
+      monthlyPayment: _.round(result.monthlyPayment, 2).toLocaleString('en-US'),
+      totalPayment: _.round(result.totalPayment, 2).toLocaleString('en-US'),
+      totalInterest: _.round(result.totalInterest, 2).toLocaleString('en-US')
+    };
   } else {
-    return { monthlyPayment: 0, totalPayment: 0, totalInterest: 0 };
+    return { monthlyPayment: '0', totalPayment: '0', totalInterest: '0' };
   }
-})
+});
+
+// 计算等额本息贷款
+function calculateLoan(years, annualInterestRate, loanAmount) {
+  const totalMonths = years * 12;
+  const monthlyInterestRate = _.divide(annualInterestRate, 12);
+
+  const compoundFactor = Math.pow(1 + monthlyInterestRate, totalMonths);
+  const monthlyPayment = _.multiply(
+    _.multiply(loanAmount, monthlyInterestRate),
+    _.divide(compoundFactor, _.subtract(compoundFactor, 1))
+  );
+
+  const totalPayment = _.multiply(monthlyPayment, totalMonths);
+  const totalInterest = _.subtract(totalPayment, loanAmount);
+
+  return {
+    monthlyPayment,
+    totalInterest,
+    totalPayment
+  };
+}
 
 
 // 计算等额本金贷款
@@ -157,25 +188,6 @@ function calculateEqualPrincipalLoan(years, annualInterestRate, loanAmount) {
   };
 }
 
-// 计算等额本息贷款
-function calculateLoan(years, annualInterestRate, loanAmount) {
-  const totalMonths = years * 12;
-  const monthlyInterestRate = _.divide(annualInterestRate, 12);
-  console.log(monthlyInterestRate, "月利率")
-
-  const compoundFactor = Math.pow(1 + monthlyInterestRate, totalMonths);
-  console.log(compoundFactor, "复利因子")
-
-  const monthlyPayment = _.multiply(_.multiply(loanAmount, monthlyInterestRate), _.divide(compoundFactor, _.subtract(compoundFactor, 1)));
-
-  console.log('%c%s', 'color: #aa00ff', monthlyPayment, '计算每月还款额')
-  return {
-    monthlyPayment: monthlyPayment,
-    totalInterest: _.subtract(_.multiply(monthlyPayment, totalMonths), loanAmount),
-    totalPayment: _.multiply(monthlyPayment, totalMonths)
-  };
-}
-
 
 
 </script>
@@ -194,6 +206,7 @@ function calculateLoan(years, annualInterestRate, loanAmount) {
     border: 1px dotted #999999;
     padding: 20px;
     margin-right: 20px;
+    color: #ffffff;
     cursor: pointer;
   }
 }

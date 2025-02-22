@@ -8,6 +8,7 @@ declare module 'vue' {
     ColorBtn: typeof import('./src/components/ColorBtn.vue')['default']
     GlobeEarth: typeof import('./src/components/Globe/earth.vue')['default']
     GlobeModel: typeof import('./src/components/Globe/model.vue')['default']
+    LightMove: typeof import('./src/components/lightMove.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
