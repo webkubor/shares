@@ -1,15 +1,13 @@
 <template>
 	<n-card>
 		<n-space>
-			<n-card title="指定路径滑动" class="card-common ">
+			<n-card title="指定路径滑动" class="card-common">
 				<div class="circle">
 				</div>
-
 			</n-card>
 			<n-card title="水波纹点击" class="card-common">
 				<div class="area" ref="clickAreaRef" @click="handleClick">
 				</div>
-
 			</n-card>
 			<n-card title="卡片交互" class="card-common card3">
 				<img
@@ -19,30 +17,22 @@
 					<h3>Card 3</h3>
 					<p>Hover to reveal more content.</p>
 				</div>
-
 			</n-card>
 		</n-space>
 	</n-card>
-
 </template>
 <script setup lang="ts">
-
-import { gsap } from 'gsap';
 import { onMounted, ref } from 'vue';
+
 let clickAreaRef = ref(null)
 
 onMounted(() => {
-	animateElement()
+	// 添加动画类
+	const circle = document.querySelector('.circle');
+	if (circle) {
+		circle.classList.add('animate');
+	}
 })
-function animateElement() {
-	const tl = gsap.timeline();
-	tl.to('.circle', { x: 200, duration: 1, ease: 'power2.inOut' })
-		.to('.circle', { y: 100, duration: 1.5, ease: 'bounce' }, '-=0.5')
-		.to('.circle', { x: 0, duration: 1.5, ease: 'power2.inOut' }, '-=0.5')
-		.to('.circle', { y: 0, duration: 1.5, ease: 'power2.inOut' }, '-=0.5')
-}
-
-
 
 const handleClick = (event) => {
 	const rect = event.currentTarget.getBoundingClientRect();
@@ -53,7 +43,7 @@ const handleClick = (event) => {
 	let y = event.pageY - rect.top;
 	console.log(`output->rect`, x, y)
 	let ripples = document.createElement("span");
-	ripples.className = 'ripple-item'; // Add the ripple clas
+	ripples.className = 'ripple-item';
 	ripples.style.left = x + "px";
 	ripples.style.top = y + "px";
 	event.currentTarget.appendChild(ripples);
@@ -75,6 +65,24 @@ const handleClick = (event) => {
 		width: 500px;
 		height: 500px;
 		opacity: 0;
+	}
+}
+
+@keyframes circlePath {
+	0% {
+		transform: translate(0, 0);
+	}
+	25% {
+		transform: translate(200px, 0);
+	}
+	50% {
+		transform: translate(200px, 100px);
+	}
+	75% {
+		transform: translate(0, 100px);
+	}
+	100% {
+		transform: translate(0, 0);
 	}
 }
 
@@ -108,8 +116,11 @@ const handleClick = (event) => {
 	border-radius: 50%;
 	background: #FFC000;
 	filter: drop-shadow(0 0 20px #FFC000);
+	
+	&.animate {
+		animation: circlePath 5s ease-in-out infinite;
+	}
 }
-
 
 .area {
 	width: 50%;
@@ -138,7 +149,6 @@ const handleClick = (event) => {
 	}
 }
 
-
 .card3 {
 	position: relative;
 
@@ -156,9 +166,6 @@ const handleClick = (event) => {
 		img {
 			opacity: 0.3;
 		}
-
 	}
-
-
 }
 </style>
