@@ -19,14 +19,7 @@ const RouterMap = [
     name:"MusicEdit",
     component: () => import('@/views/music/index.vue')
   },
-  {
-    path: '/show/ocr',
-    name: 'Ocr',
-    meta: {
-      title: "Ocr"
-    },
-    component: () => import("@/views/ocr/index.vue")
-  },
+
   {
     path: '/show/login',
     name: 'Login',
