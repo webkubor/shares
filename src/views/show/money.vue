@@ -93,15 +93,12 @@
 </template>
 <script lang="ts" setup>
 import { reactive, computed } from 'vue';
-import _ from 'lodash'
 
 let model = reactive({
   loanAmount: 100000,
   years: 5,
   annualInterestRate: 0.05,
 })
-
-
 
 let parse = (input: string) => {
   const nums = input.replace(/,/g, '').trim()
@@ -133,12 +130,11 @@ let equalInstallmentPayments = computed(() => {
   }
 })
 
-
 // 计算等额本金贷款
 function calculateEqualPrincipalLoan(years, annualInterestRate, loanAmount) {
   const totalMonths = years * 12;
-  const monthlyInterestRate = _.divide(annualInterestRate, 12);
-  const monthlyPayment = _.divide(loanAmount, totalMonths);
+  const monthlyInterestRate = annualInterestRate / 12;
+  const monthlyPayment = loanAmount / totalMonths;
 
   let totalPayment = 0;
   let totalInterest = 0;
@@ -151,32 +147,30 @@ function calculateEqualPrincipalLoan(years, annualInterestRate, loanAmount) {
   }
 
   return {
-    monthlyPayment: _.round(monthlyPayment, 2),
-    totalInterest: _.round(totalInterest, 2),
-    totalPayment: _.round(totalPayment + totalInterest, 2)
+    monthlyPayment: Number(monthlyPayment.toFixed(2)),
+    totalInterest: Number(totalInterest.toFixed(2)),
+    totalPayment: Number((totalPayment + totalInterest).toFixed(2))
   };
 }
 
 // 计算等额本息贷款
 function calculateLoan(years, annualInterestRate, loanAmount) {
   const totalMonths = years * 12;
-  const monthlyInterestRate = _.divide(annualInterestRate, 12);
+  const monthlyInterestRate = annualInterestRate / 12;
   console.log(monthlyInterestRate, "月利率")
 
   const compoundFactor = Math.pow(1 + monthlyInterestRate, totalMonths);
   console.log(compoundFactor, "复利因子")
 
-  const monthlyPayment = _.multiply(_.multiply(loanAmount, monthlyInterestRate), _.divide(compoundFactor, _.subtract(compoundFactor, 1)));
+  const monthlyPayment = loanAmount * monthlyInterestRate * (compoundFactor / (compoundFactor - 1));
 
   console.log('%c%s', 'color: #aa00ff', monthlyPayment, '计算每月还款额')
   return {
-    monthlyPayment: monthlyPayment,
-    totalInterest: _.subtract(_.multiply(monthlyPayment, totalMonths), loanAmount),
-    totalPayment: _.multiply(monthlyPayment, totalMonths)
+    monthlyPayment: Number(monthlyPayment.toFixed(2)),
+    totalInterest: Number((monthlyPayment * totalMonths - loanAmount).toFixed(2)),
+    totalPayment: Number((monthlyPayment * totalMonths).toFixed(2))
   };
 }
-
-
 
 </script>
 <style lang="scss" scoped>
