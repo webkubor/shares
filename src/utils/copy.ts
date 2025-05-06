@@ -16,7 +16,6 @@ export async function writeClipboard(
     }
   try {
     const { copy } = useClipboard()
-    // await navigator.clipboard?.writeText(text);
     await copy(text)
     console.log('Copied to clipboard')
     window.$message?.success(successContent);
