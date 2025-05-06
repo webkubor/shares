@@ -1,4 +1,4 @@
-import useClipboard from 'vue-clipboard3'
+import { useClipboard } from '@vueuse/core'
 
 
 /**
@@ -15,9 +15,9 @@ export async function writeClipboard(
       return
     }
   try {
-    const { toClipboard } = useClipboard()
+    const { copy } = useClipboard()
     // await navigator.clipboard?.writeText(text);
-    await toClipboard(text)
+    await copy(text)
     console.log('Copied to clipboard')
     window.$message?.success(successContent);
   } catch (error) {
