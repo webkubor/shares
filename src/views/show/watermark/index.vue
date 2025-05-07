@@ -35,17 +35,37 @@
                     </n-space>
 
                     <n-space v-if="config.watermarkType === watermarkTypeKey.image">
-                        <n-form-item label="图片水印" label-placement="left">
-                            <n-select v-model:value="config.imageStyle" :options="StylrConfig.imageStyles" />
-                            <img :src="getImageUrl(config.imageStyle)" style="height: 40px;">
-                        </n-form-item>
-                        <n-form-item label="图片大小" label-placement="left">
-                            <n-input-number v-model:value="config.scaleFactor" placeholder="图片水印大小" :step="0.1" />
-                        </n-form-item>
-                        <n-form-item label="透明度" label-placement="left">
-                            <n-input-number v-model:value="config.globalAlpha" placeholder="透明度" :step="0.1" />
-                        </n-form-item>
-                    </n-space>
+    <n-form-item label="图片水印" label-placement="left">
+        <n-select v-model:value="config.imageStyle" :options="StylrConfig.imageStyles" />
+        <img :src="getImageUrl(config.imageStyle)" style="height: 40px; margin-left:8px; border:1px solid #eee;">
+    </n-form-item>
+
+    <n-form-item label="图片设置" label-placement="left">
+        <n-input-number v-model:value="config.scaleFactor" placeholder="图片水印大小" :step="0.1" />
+    </n-form-item>
+    <n-form-item label="透明度" label-placement="left">
+        <n-input-number v-model:value="config.globalAlpha" placeholder="透明度" :step="0.1" />
+    </n-form-item>
+
+    <n-form-item label="水印位置" label-placement="left">
+        <n-space>
+            <n-button :type="config.watermarkPosition==='top-left'?'primary':'default'" @click="config.watermarkPosition='top-left'; onRrewrite();">左上</n-button>
+            <n-button :type="config.watermarkPosition==='top-right'?'primary':'default'" @click="config.watermarkPosition='top-right'; onRrewrite();">右上</n-button>
+            <n-button :type="config.watermarkPosition==='center'?'primary':'default'" @click="config.watermarkPosition='center'; onRrewrite();">居中</n-button>
+            <n-button :type="config.watermarkPosition==='bottom-left'?'primary':'default'" @click="config.watermarkPosition='bottom-left'; onRrewrite();">左下</n-button>
+            <n-button :type="config.watermarkPosition==='bottom-right'?'primary':'default'" @click="config.watermarkPosition='bottom-right'; onRrewrite();">右下</n-button>
+        </n-space>
+    </n-form-item>
+    <n-form-item label="X轴偏移" label-placement="left">
+        <n-input-number v-model:value="config.offsetX" :min="-100" :max="100" :step="1" style="width:100px;" @update:value="onRrewrite" />
+        <span style="margin-left:8px; color:#888;">{{ config.offsetX }}%</span>
+    </n-form-item>
+    <n-form-item label="Y轴偏移" label-placement="left">
+        <n-input-number v-model:value="config.offsetY" :min="-100" :max="100" :step="1" style="width:100px;" @update:value="onRrewrite" />
+        <span style="margin-left:8px; color:#888;">{{ config.offsetY }}%</span>
+    </n-form-item>
+</n-space>
+                    
 
                     <n-form-item label="需要题字" label-placement="left">
                         <n-checkbox v-model:checked="config.active" label="添加图片标题" />
@@ -204,14 +224,20 @@ const config = reactive({
     letterSpacing: 70,
     title: "小鬼阿七",
     color: "#000000",
-    fontFamily: "AiChinese02"
+    fontFamily: "AiChinese02",
+    watermarkPosition: "center",
+    offsetX: 0,
+    offsetY: 0
 })
 
 // 监听配置变更，自动触发重绘
 watch(
     () => ({
         ...toRaw(config),
-        watermarkText: watermarkText.value
+        watermarkText: watermarkText.value,
+        watermarkPosition: config.watermarkPosition,
+        offsetX: config.offsetX,
+        offsetY: config.offsetY
     }),
     () => {
         if (previews.value.length > 0) {
@@ -238,6 +264,15 @@ const fontOptions = [
     { label: '华文仿宋', value: 'STFangsong' },
     { label: '华文细黑', value: 'STXihei' },
     { label: 'AI中文字体', value: 'AiChinese02' }
+]
+
+// 水印位置选项
+const positionOptions = [
+    { label: '居中', value: 'center' },
+    { label: '左上角', value: 'top-left' },
+    { label: '右上角', value: 'top-right' },
+    { label: '左下角', value: 'bottom-left' },
+    { label: '右下角', value: 'bottom-right' }
 ]
 
 enum watermarkTypeKey {
@@ -309,7 +344,7 @@ async function addWatermark(canvas: HTMLCanvasElement): Promise<HTMLCanvasElemen
     if (config.watermarkType === watermarkTypeKey.image) {
         try {
             const imageUrl = getImageUrl(config.imageStyle);
-            await drawImageWatermark(canvas, ctx, imageUrl, config.scaleFactor, config.globalAlpha);
+            await drawImageWatermark(canvas, ctx, imageUrl, config.scaleFactor, config.globalAlpha, config.watermarkPosition, config.offsetX, config.offsetY);
             return config.active ? addName(ctx, canvas) : canvas;
         } catch (error) {
             console.error('图片水印加载错误:', error);

@@ -5,6 +5,9 @@
  * @param imageUrl 图片水印的 URL
  * @param scaleFactor 缩放因子
  * @param globalAlpha 透明度
+ * @param position 水印位置 'center', 'top-left', 'top-right', 'bottom-left', 'bottom-right'
+ * @param offsetX X轴偏移量（百分比，-100到100）
+ * @param offsetY Y轴偏移量（百分比，-100到100）
  * @returns Promise<CanvasRenderingContext2D>
  */
 export async function drawImageWatermark(
@@ -12,16 +15,56 @@ export async function drawImageWatermark(
   ctx: CanvasRenderingContext2D,
   imageUrl: string,
   scaleFactor: number = 0.5,
-  globalAlpha: number = 0.7
+  globalAlpha: number = 0.7,
+  position: string = 'center',
+  offsetX: number = 0,
+  offsetY: number = 0
 ): Promise<CanvasRenderingContext2D> {
   return new Promise((resolve, reject) => {
     const watermarkImg = new Image();
     watermarkImg.onload = () => {
       const imgWidth = watermarkImg.width * scaleFactor;
       const imgHeight = watermarkImg.height * scaleFactor;
+
+      // 调试输出图片水印参数
+      console.log('[水印调试] imageUrl:', imageUrl);
+      console.log('[水印调试] imgWidth:', imgWidth, 'imgHeight:', imgHeight, 'canvas.width:', canvas.width, 'canvas.height:', canvas.height);
+      console.log('[水印调试] scaleFactor:', scaleFactor, 'globalAlpha:', globalAlpha, 'position:', position, 'offsetX:', offsetX, 'offsetY:', offsetY);
       
-      const x = (canvas.width - imgWidth) / 2;
-      const y = (canvas.height - imgHeight) / 2;
+      // 计算基础位置
+      let x = 0;
+      let y = 0;
+      
+      // 根据位置参数设置水印位置
+      switch (position) {
+        case 'center':
+          x = (canvas.width - imgWidth) / 2;
+          y = (canvas.height - imgHeight) / 2;
+          break;
+        case 'top-left':
+          x = canvas.width * 0.05;
+          y = canvas.height * 0.05;
+          break;
+        case 'top-right':
+          x = canvas.width * 0.95 - imgWidth;
+          y = canvas.height * 0.05;
+          break;
+        case 'bottom-left':
+          x = canvas.width * 0.05;
+          y = canvas.height * 0.95 - imgHeight;
+          break;
+        case 'bottom-right':
+          x = canvas.width * 0.95 - imgWidth;
+          y = canvas.height * 0.95 - imgHeight;
+          break;
+        default:
+          x = (canvas.width - imgWidth) / 2;
+          y = (canvas.height - imgHeight) / 2;
+      }
+      
+      // 应用偏移量调整（将百分比转换为像素）
+      x += (canvas.width * offsetX / 100);
+      y += (canvas.height * offsetY / 100);
       
       ctx.globalAlpha = globalAlpha;
       ctx.drawImage(watermarkImg, x, y, imgWidth, imgHeight);
@@ -30,6 +73,7 @@ export async function drawImageWatermark(
       resolve(ctx);
     };
     watermarkImg.onerror = (error) => {
+      console.error('[水印调试] 图片加载失败:', imageUrl, error);
       reject(error);
     };
     watermarkImg.src = imageUrl;
