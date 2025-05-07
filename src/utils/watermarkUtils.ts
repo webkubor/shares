@@ -50,11 +50,45 @@ export async function imgToCanvas(base64: string): Promise<HTMLCanvasElement | E
 
         // 等待图片加载完成
         await new Promise((resolve) => (img.onload = resolve));
-        // 创建 Canvas，并绘制图像
+        
+        // 计算图片原始宽高比
+        const originalRatio = img.width / img.height;
+        
+        // 设置合理的尺寸限制
+        const MAX_WIDTH = 800;
+        const MAX_HEIGHT = 600;
+        
+        let width = img.width;
+        let height = img.height;
+        
+        // 先检查宽度是否超出限制
+        if (width > MAX_WIDTH) {
+            width = MAX_WIDTH;
+            height = Math.round(width / originalRatio);
+        }
+        
+        // 再检查高度是否超出限制
+        if (height > MAX_HEIGHT) {
+            height = MAX_HEIGHT;
+            width = Math.round(height * originalRatio);
+        }
+        
+        // 确保宽高比与原图一致，防止图片变形
+        console.log(`原始尺寸: ${img.width} x ${img.height}, 缩放后: ${width} x ${height}`);
+        
+        // 创建 Canvas，并绘制缩放后的图像
         const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        canvas.getContext('2d')?.drawImage(img, 0, 0);
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        
+        if (ctx) {
+            // 设置平滑缩放
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.drawImage(img, 0, 0, width, height);
+        }
+        
         return canvas;
     } catch (error) {
         // 捕获并返回错误信息
