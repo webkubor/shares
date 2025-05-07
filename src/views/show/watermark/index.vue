@@ -25,7 +25,12 @@
                             <n-input type="text" v-model:value="watermarkText" placeholder="输入水印文字" />
                         </n-form-item>
                         <n-form-item label="字体" label-placement="left" v-if="config.watermarkType === '2'">
-                            <n-select v-model:value="config.fontFamily" :options="fontOptions" placeholder="选择水印字体" />
+                            <n-select 
+                                v-model:value="config.fontFamily" 
+                                :options="fontOptions" 
+                                placeholder="选择水印字体"
+                                @update:value="onFontChange" 
+                            />
                         </n-form-item>
                     </n-space>
 
@@ -82,51 +87,53 @@
                         <n-button v-if="previews.length" type="primary" @click="exportZip">导出为ZIP</n-button>
                     </n-space>
                     
-                    <div class="sortable-container" v-if="previews.length">
-                        <p class="tip">提示: 可拖动图片进行排序，导出时将按排序命名</p>
-                        <n-grid :cols="3" :x-gap="12" :y-gap="12">
-                            <n-grid-item v-for="(item, index) in previews" :key="index">
-                                <div class="preview-item" :class="{ 'dragging': draggingIndex === index }" 
-                                     draggable="true"
-                                     @dragstart="onDragStart(index, $event)"
-                                     @dragover.prevent
-                                     @dragenter.prevent
-                                     @drop="onDrop(index, $event)">
-                                    <div class="img-order">{{ index + 1 }}</div>
-                                    <div class="image-container">
-                                        <img 
-                                            class="water-pic" 
-                                            :src="item.src" 
-                                            alt="水印图片"
-                                            @click="previewImage(item.src)"
-                                        />
+                    <div class="sortable-container">
+                        <div class="tip">拖拽图片可调整顺序，按顺序导出</div>
+                        <n-spin :show="isLoading" description="处理中...">
+                            <n-grid :cols="3" :x-gap="12" :y-gap="12">
+                                <n-grid-item v-for="(item, index) in previews" :key="index">
+                                    <div class="preview-item" :class="{ 'dragging': draggingIndex === index }" 
+                                         draggable="true"
+                                         @dragstart="onDragStart(index, $event)"
+                                         @dragover.prevent
+                                         @dragenter.prevent
+                                         @drop="onDrop(index, $event)">
+                                        <div class="img-order">{{ index + 1 }}</div>
+                                        <div class="image-container">
+                                            <img 
+                                                class="water-pic" 
+                                                :src="item.src" 
+                                                alt="水印图片"
+                                                @click="previewImage(item.src)"
+                                            />
+                                        </div>
+                                        <div class="preview-actions">
+                                            <n-tooltip placement="bottom" trigger="hover">
+                                                <template #trigger>
+                                                    <n-button size="small" quaternary circle type="primary" @click="downloadImage(item.src)">
+                                                        <template #icon>
+                                                            <n-icon><download-outline /></n-icon>
+                                                        </template>
+                                                    </n-button>
+                                                </template>
+                                                <span>下载图片</span>
+                                            </n-tooltip>
+                                            
+                                            <n-tooltip placement="bottom" trigger="hover">
+                                                <template #trigger>
+                                                    <n-button size="small" quaternary circle type="error" @click="remove(index)">
+                                                        <template #icon>
+                                                            <n-icon><trash-outline /></n-icon>
+                                                        </template>
+                                                    </n-button>
+                                                </template>
+                                                <span>移除图片</span>
+                                            </n-tooltip>
+                                        </div>
                                     </div>
-                                    <div class="preview-actions">
-                                        <n-tooltip placement="bottom" trigger="hover">
-                                            <template #trigger>
-                                                <n-button size="small" quaternary circle type="primary" @click="downloadImage(item.src)">
-                                                    <template #icon>
-                                                        <n-icon><download-outline /></n-icon>
-                                                    </template>
-                                                </n-button>
-                                            </template>
-                                            <span>下载图片</span>
-                                        </n-tooltip>
-                                        
-                                        <n-tooltip placement="bottom" trigger="hover">
-                                            <template #trigger>
-                                                <n-button size="small" quaternary circle type="error" @click="remove(index)">
-                                                    <template #icon>
-                                                        <n-icon><trash-outline /></n-icon>
-                                                    </template>
-                                                </n-button>
-                                            </template>
-                                            <span>移除图片</span>
-                                        </n-tooltip>
-                                    </div>
-                                </div>
-                            </n-grid-item>
-                        </n-grid>
+                                </n-grid-item>
+                            </n-grid>
+                        </n-spin>
                     </div>
                 </n-card>
             </template>
@@ -148,24 +155,41 @@
     </n-modal>
 </template>
 <script setup lang="ts">
-import { reactive, ref, toRaw } from "vue";
+import { reactive, ref, toRaw, watch } from "vue";
 import type { UploadFileInfo } from 'naive-ui'
 import StylrConfig from './config.json'
 import { downloadImage, getPreviewUrl, canvasToImg, imgToCanvas } from '@/utils/watermarkUtils'
-import JSZip from 'jszip'
-import { saveAs } from 'file-saver'
 import { DownloadOutline, TrashOutline, EyeOutline } from '@vicons/ionicons5'
+import { drawImageWatermark, addTextTitle, addTextWatermark, exportImagesToZip } from './watermarkHelpers'
 const watermarkText = ref('司南烛');
 const fileListRef = ref([]);
-const previews = ref([]);
+// 定义预览图片的类型
+interface PreviewItem {
+    src: string;
+    name: string;
+    id?: string | number;
+}
+
+const previews = ref<PreviewItem[]>([]);
 const draggingIndex = ref(-1); // 当前拖拽的图片索引
 const previewVisible = ref(false);
 const previewSrc = ref('');
+const isLoading = ref(false); // 添加 loading 状态
+const rewriteTimer = ref<number | null>(null); // 存储防抖定时器ID
 
 // 预览图片
 function previewImage(src) {
     previewSrc.value = src;
     previewVisible.value = true;
+}
+
+// 字体变更处理
+function onFontChange(fontFamily: string) {
+    console.log('字体已更改为:', fontFamily);
+    // 强制触发重绘
+    if (previews.value.length > 0) {
+        onRrewrite();
+    }
 }
 
 
@@ -182,6 +206,27 @@ const config = reactive({
     color: "#000000",
     fontFamily: "AiChinese02"
 })
+
+// 监听配置变更，自动触发重绘
+watch(
+    () => ({
+        ...toRaw(config),
+        watermarkText: watermarkText.value
+    }),
+    () => {
+        if (previews.value.length > 0) {
+            // 添加防抖，避免频繁触发
+            if (rewriteTimer.value !== null) {
+                clearTimeout(rewriteTimer.value);
+            }
+            rewriteTimer.value = window.setTimeout(() => {
+                onRrewrite();
+                rewriteTimer.value = null;
+            }, 300);
+        }
+    },
+    { deep: true }
+)
 
 // 字体选项
 const fontOptions = [
@@ -217,8 +262,21 @@ function onRrewrite() {
         window.$message?.warning("请填写水印内容")
         return
     }
+    
+    // 设置 loading 状态
+    isLoading.value = true;
+    
+    // 保存当前预览的文件名，以便重新生成后保持顺序
+    const currentFiles = fileListRef.value.map(file => file.name);
     previews.value = []
-    handleFileListChange()
+    
+    // 使用 setTimeout 让 UI 有时间更新 loading 状态
+    setTimeout(() => {
+        handleFileListChange().finally(() => {
+            // 处理完成后关闭 loading
+            isLoading.value = false;
+        });
+    }, 50);
 }
 
 function remove(index) {
@@ -228,9 +286,14 @@ function remove(index) {
 
 
 async function handleFileListChange() {
-    const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
-    const previewNames = new Set(previews.value.map(item => item.name));
-    previews.value = previews.value.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
+    try {
+        const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
+        const previewNames = new Set(previews.value.map(item => item.name));
+        previews.value = previews.value.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
+    } catch (error) {
+        console.error('处理图片失败:', error);
+        window.$message?.error('处理图片失败');
+    }
 }
 
 /**
@@ -245,7 +308,8 @@ async function addWatermark(canvas: HTMLCanvasElement): Promise<HTMLCanvasElemen
     }
     if (config.watermarkType === watermarkTypeKey.image) {
         try {
-            await onDrawImage(canvas, ctx);
+            const imageUrl = getImageUrl(config.imageStyle);
+            await drawImageWatermark(canvas, ctx, imageUrl, config.scaleFactor, config.globalAlpha);
             return config.active ? addName(ctx, canvas) : canvas;
         } catch (error) {
             console.error('图片水印加载错误:', error);
@@ -253,49 +317,14 @@ async function addWatermark(canvas: HTMLCanvasElement): Promise<HTMLCanvasElemen
         }
     } else {
         //文字水印
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-        ctx.font = `bold ${(ctx.canvas.width / 14)}px AiChinese02 `;
-        const padding = (ctx.canvas.width / 18);
-        ctx.fillText(watermarkText.value, canvas.width / 2, canvas.height - padding);
+        addTextWatermark(ctx, canvas, watermarkText.value, config.fontFamily);
         return config.active ? addName(ctx, canvas) : canvas;
     }
 }
 
 
-function onDrawImage(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): Promise<CanvasRenderingContext2D> {
-    return new Promise((resolve, reject) => {
-        const padding = (ctx.canvas.width / 18);
-        const img = new Image();
-        img.src = getImageUrl(config.imageStyle);
-        img.onload = function () {
-            const originalWidth = img.width;
-            const originalHeight = img.height;
-            const fixedHeight = 100;
-            const scaleFactor = config.scaleFactor;
-            const newWidth = (fixedHeight / originalHeight) * originalWidth * scaleFactor;
-            const newHeight = fixedHeight * scaleFactor;
-            ctx.globalAlpha = config.globalAlpha;
-            ctx.drawImage(img, canvas.width / 2 - newWidth / 2, ctx.canvas.height - fixedHeight - padding, newWidth, newHeight);
-            ctx.globalAlpha = 1;
-            resolve(ctx);
-        };
-        img.onerror = reject;
-    });
-}
-
 function addName(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): HTMLCanvasElement {
-    ctx.fillStyle = config.color;
-    // 使用选择的字体
-    ctx.font = `${config.weight} ${(ctx.canvas.width / config.font)}px ${config.fontFamily}`;
-    const textToAdd = config.title;
-    const padding = canvas.width / 18;
-    const paddingH = canvas.height / 15;
-    for (let i = 0; i < textToAdd.length; i++) {
-        ctx.fillText(textToAdd[i], padding, (i + 1) * (config.letterSpacing) + paddingH + i * config.letterSpacing);
-    }
-    return canvas;
+    return addTextTitle(ctx, canvas, config);
 }
 
 // 导出为ZIP函数
@@ -306,31 +335,7 @@ async function exportZip() {
     }
     
     try {
-        const zip = new JSZip();
-        const promises = [];
-        
-        // 按排序添加图片到ZIP
-        for (let i = 0; i < previews.value.length; i++) {
-            const item = previews.value[i];
-            const imgName = `image_${i + 1}.png`;
-            
-            // 将base64转换为binary
-            const promise = fetch(item.src)
-                .then(res => res.blob())
-                .then(blob => {
-                    zip.file(imgName, blob);
-                });
-                
-            promises.push(promise);
-        }
-        
-        await Promise.all(promises);
-        
-        // 生成并下载ZIP
-        const content = await zip.generateAsync({ type: 'blob' });
-        const timestamp = new Date().getTime();
-        saveAs(content, `watermark_images_${timestamp}.zip`);
-        
+        await exportImagesToZip(toRaw(previews.value));
         window.$message?.success('导出ZIP成功');
     } catch (error) {
         console.error('ZIP导出错误:', error);
@@ -369,18 +374,13 @@ function onDrop(targetIndex, event) {
 }
 
 
-async function processFile(element: { file: File }): Promise<{ name: string; src: string }> {
-    const previewUrl: string = await getPreviewUrl(element.file);
-    const tempCanvas = await imgToCanvas(previewUrl);
-    if (tempCanvas instanceof Error) {
-        console.error(tempCanvas.message); // 处理错误
-        return { name: element.name, src: previewUrl };
-    } else {
-        const canvas = await addWatermark(tempCanvas);
-        const img = canvasToImg(canvas);
-        console.log(img, 'processFile');
-        return { name: element.name, src: img.src };
-    }
+async function processFile(file: UploadFileInfo): Promise<PreviewItem> {
+    const { id, name } = file;
+    const url = await getPreviewUrl(file.file as File);
+    const canvas = await imgToCanvas(url);
+    const watermarkedCanvas = await addWatermark(canvas as HTMLCanvasElement);
+    const base64 = watermarkedCanvas.toDataURL('image/png');
+    return { id, name, src: base64 };
 }
 
 </script>
