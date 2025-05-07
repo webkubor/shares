@@ -56,15 +56,25 @@ const gradient = computed(() => {
     content: '';
     position: absolute;
     inset: 0;
+    z-index: 1;
+    border-radius: 20px;
+    background: var(--gradient);
+    background-size: 300% 300%;
+    animation: borderFlow 8s linear infinite;
+}
+
+.color-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     z-index: 0;
     border-radius: 20px;
     background: var(--gradient);
     background-size: 300% 300%;
     animation: borderFlow 8s linear infinite;
-    /* 更精致的发光效果 */
-    box-shadow:
-        0 0 4px 1.5px var(--glow, #fff),
-        0 0 12px 3px var(--glow, #fff);
+    opacity: 0.6;
+    filter: blur(6px);
+    pointer-events: none;
 }
 
 .color-card .window {

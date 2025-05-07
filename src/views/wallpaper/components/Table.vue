@@ -14,7 +14,7 @@
                 </div>
             </div>
           
-            <div class="preview-list">
+            <div class="preview-list" v-if="paperState.previews.length">
                 <img :src="item.src" :class="{
                     active: paperState.wallpaper === item.src
                 }" v-for="(item,index) in paperState.previews" @click="onChoose(item)">
