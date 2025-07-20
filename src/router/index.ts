@@ -10,6 +10,11 @@ const RouterMap = [
     component: () => import('@/views/home/index.vue')
   },
   {
+    path: '/design',
+    name:"Design",
+    component: () => import('@/views/design/index.vue')
+  },
+  {
     path: '/bot/kimi',
     name:"Kimi",
     component: () => import('@/views/bot/kimi.vue')
