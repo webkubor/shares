@@ -34,6 +34,10 @@ interface PaperState {
         x: string;
         y: string;
     };
+    waterMarkPosition: { //水印位置
+        x: number;
+        y: number;
+    };
     waterMarkImage: string; //水印图片
     titleVertical: string; //标题方向，horizontal为横排，vertical为竖排
     enableCrop: boolean; //是否裁剪
@@ -61,6 +65,10 @@ const paperState = reactive<PaperState>({
         x: "center",
         y: "center"
     },
+    waterMarkPosition: {
+        x: 50,
+        y: 50
+    },
     waterMarkImage: '', //水印图片
     titleVertical: 'vertical', //标题方向，horizontal为横排，vertical为竖排，默认竖排
     enableCrop: false, //是否裁剪
@@ -76,17 +84,25 @@ export function useWallpaper() {
             bgColor: paperState.bgColor,
             perspective: paperState.perspective,
             interface: paperState.interface,
-            wallpaperView: paperState.wallpaperView,
-            interfaceKey: paperState.interfaceKey,
-            proportion: paperState.proportion,
-            waterMarkName: paperState.waterMarkName,
-            waterFontFiamily:paperState.waterFontFiamily,
+            fontColor: paperState.fontColor,
             waterColor: paperState.waterColor,
             titleColor: paperState.titleColor,
             watermarkOpacity: paperState.watermarkOpacity,
-            waterMarkImage: paperState.waterMarkImage,
+            modelSrc: paperState.modelSrc,
+            waterMarkName: paperState.waterMarkName,
+            wallpaperView: paperState.wallpaperView,
+            interfaceKey: paperState.interfaceKey,
+            proportion: paperState.proportion,
+            wallpaper: paperState.wallpaper,
+            waterFontFiamily: paperState.waterFontFiamily,
             previews: paperState.previews,
-            backgroundPositon: paperState.backgroundPositon
+            backgroundPositon: paperState.backgroundPositon,
+            waterMarkPosition: paperState.waterMarkPosition,
+            waterMarkImage: paperState.waterMarkImage,
+            titleVertical: paperState.titleVertical,
+            enableCrop: paperState.enableCrop,
+            customTitle: paperState.customTitle,
+            titleFontSize: paperState.titleFontSize
         }
         window.$message?.success("配置已保存")
         localStorage.setItem("paperConfig", JSON.stringify(params))

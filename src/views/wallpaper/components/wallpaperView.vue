@@ -4,9 +4,23 @@
             <img v-if="paperState.wallpaper" :src="paperState.wallpaper" alt="wallpaper" />
             <span v-else>请上传图片</span>
         </div>
-        <div class="water-mark" :style="{ color: paperState.waterColor, fontFamily: paperState.waterFontFiamily, opacity: paperState.watermarkOpacity }">
+        <div ref="waterMarkRef" 
+             class="water-mark draggable-watermark" 
+             :class="{ 'is-dragging': isWaterMarkDragging }" 
+             :style="{ 
+                color: paperState.waterColor, 
+                fontFamily: paperState.waterFontFiamily, 
+                opacity: paperState.watermarkOpacity,
+                left: `${paperState.waterMarkPosition.x}px`,
+                top: `${paperState.waterMarkPosition.y}px`,
+                transform: 'none'
+             }">
             <img v-if="paperState.waterMarkImage" :src="paperState.waterMarkImage" alt="" srcset="">
             {{ paperState.waterMarkName }}
+            <div class="drag-handle watermark-drag-handle">
+                <div class="drag-icon">⋮⋮</div>
+                <span class="drag-tip">拖动调整水印位置</span>
+            </div>
         </div>
         <div v-if="paperState.wallpaperView && paperState.customTitle" 
              ref="titleRef"
@@ -41,11 +55,14 @@ import { useDraggable } from '@vueuse/core'
 const { appConfig } = useGlobal()
 const { paperState, transExportSize } = useWallpaper()
 const titleRef = ref<HTMLElement | null>(null)
+const waterMarkRef = ref<HTMLElement | null>(null)
 const isDragging = ref(false)
+const isWaterMarkDragging = ref(false)
 
 // 自定义拖拽实现
 const mouseOffset = ref({ x: 0, y: 0 })
 const isMouseDown = ref(false)
+const isWaterMarkMouseDown = ref(false)
 
 // 初始化拖拽功能
 const initDraggable = () => {
@@ -125,10 +142,76 @@ watch(() => paperState.customTitle, (newVal) => {
     }
 }, { immediate: true })
 
+// 水印拖拽功能初始化
+const initWaterMarkDraggable = () => {
+    if (!waterMarkRef.value) return
+    
+    // 鼠标按下事件
+    const handleMouseDown = (e: MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        
+        if (!waterMarkRef.value) return
+        
+        isWaterMarkMouseDown.value = true
+        isWaterMarkDragging.value = true
+        
+        // 计算鼠标与元素左上角的偏移量
+        const rect = waterMarkRef.value.getBoundingClientRect()
+        mouseOffset.value = {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        }
+        
+        // 添加全局事件监听
+        document.addEventListener('mousemove', handleMouseMove)
+        document.addEventListener('mouseup', handleMouseUp)
+    }
+    
+    // 鼠标移动事件
+    const handleMouseMove = (e: MouseEvent) => {
+        if (!isWaterMarkMouseDown.value || !waterMarkRef.value) return
+        
+        const containerRect = waterMarkRef.value.parentElement?.getBoundingClientRect()
+        if (!containerRect) return
+        
+        // 计算新位置，考虑鼠标与元素的偏移
+        const newLeft = e.clientX - containerRect.left - mouseOffset.value.x
+        const newTop = e.clientY - containerRect.top - mouseOffset.value.y
+        
+        // 限制在容器内
+        const waterMarkRect = waterMarkRef.value.getBoundingClientRect()
+        const maxX = containerRect.width - waterMarkRect.width
+        const maxY = containerRect.height - waterMarkRect.height
+        
+        // 更新水印位置状态
+        paperState.waterMarkPosition.x = Math.min(Math.max(newLeft, 0), maxX)
+        paperState.waterMarkPosition.y = Math.min(Math.max(newTop, 0), maxY)
+    }
+    
+    // 鼠标松开事件
+    const handleMouseUp = () => {
+        isWaterMarkMouseDown.value = false
+        isWaterMarkDragging.value = false
+        
+        // 移除全局事件监听
+        document.removeEventListener('mousemove', handleMouseMove)
+        document.removeEventListener('mouseup', handleMouseUp)
+    }
+    
+    // 添加鼠标按下事件监听
+    waterMarkRef.value.addEventListener('mousedown', handleMouseDown)
+}
+
 // 组件挂载后初始化拖拽
 onMounted(() => {
     if (paperState.customTitle && titleRef.value) {
         initDraggable()
+    }
+    
+    // 初始化水印拖拽
+    if (waterMarkRef.value) {
+        initWaterMarkDraggable()
     }
 })
 
@@ -181,11 +264,8 @@ const toggleTitleDirection = () => {
     .water-mark {
         opacity: 0.8; // 半透明效果
         position: absolute;
-        bottom: 60px;
-        left: 50%;
         font-weight: 800;
         font-size: clamp(16px, 1.5vw, 20px); // 动态字体大小
-        transform: translateX(-50%);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -195,7 +275,57 @@ const toggleTitleDirection = () => {
         img {
             height: 30px;
             margin: 10px;
+        }
+        
+        &.draggable-watermark {
+            cursor: move;
+            user-select: none;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
             
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+                
+                .watermark-drag-handle {
+                    opacity: 1;
+                }
+            }
+            
+            &.is-dragging {
+                background-color: rgba(0, 0, 0, 0.15);
+                .watermark-drag-handle {
+                    opacity: 1;
+                }
+            }
+        }
+        
+        .watermark-drag-handle {
+            opacity: 0;
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            transition: opacity 0.3s;
+            
+            .drag-icon {
+                font-size: 20px;
+                color: rgba(0, 0, 0, 0.5);
+                margin-right: 4px;
+                writing-mode: vertical-lr;
+                line-height: 1;
+            }
+            
+            .drag-tip {
+                font-size: 12px;
+                color: rgba(0, 0, 0, 0.5);
+                white-space: nowrap;
+                background-color: rgba(255, 255, 255, 0.8);
+                padding: 2px 6px;
+                border-radius: 2px;
+            }
         }
     }
 }
