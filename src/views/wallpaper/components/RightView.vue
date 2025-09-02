@@ -214,6 +214,8 @@ async function dealWallpaper() {
     paperState.wallpaper = lastPreview.src;
     // 显示上传的壁纸图片文件名
     window.$message?.success(`已上传壁纸图片: ${lastPreview.name}`);
+    // 设置标题内容默认为上传图片的名字
+    paperState.customTitle = lastPreview.name.split('.')[0]; // 去掉文件后缀名
     console.log(paperState.previews, "dealWallpaper");
 }
 async function dealWaterMark(file) {

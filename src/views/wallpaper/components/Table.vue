@@ -52,6 +52,8 @@ function onChoose(wallpaper) {
     paperState.wallpaper = wallpaper.src
     // 显示当前选中图片的文件名
     window.$message?.success(`已选择图片: ${wallpaper.name}`)
+    // 设置标题内容默认为选择图片的名字
+    paperState.customTitle = wallpaper.name.split('.')[0] // 去掉文件后缀名
 }
 
 
