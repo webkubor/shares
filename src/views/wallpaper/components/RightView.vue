@@ -77,6 +77,10 @@
                                     :show-alpha="true" :actions="['clear']" :swatches="['#FFFFFF', '#333333']" />
                             </n-form-item>
 
+                            <n-form-item label="水印透明度" label-placement="left">
+                                <n-slider v-model:value="paperState.watermarkOpacity" :step="0.1" :min="0" :max="1" style="width: 300px;" />
+                            </n-form-item>
+
                             <n-form-item v-if="paperState.wallpaperView" label="标题设置" label-placement="left">
                                 <n-space vertical>
                                     <n-space>

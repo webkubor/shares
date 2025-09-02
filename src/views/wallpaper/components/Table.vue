@@ -8,7 +8,7 @@
                 <n-space :size="[60, 30]">
                     <PhoneView />
                 </n-space>
-                <div class="water-mark" :style="{ fontFamily: paperState.waterFontFiamily, color: paperState.waterColor}">
+                <div class="water-mark" :style="{ fontFamily: paperState.waterFontFiamily, color: paperState.waterColor, opacity: paperState.watermarkOpacity}">
                     <img v-if="paperState.waterMarkImage" :src="paperState.waterMarkImage">
                     {{ paperState.waterMarkName }}
                 </div>

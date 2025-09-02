@@ -4,7 +4,7 @@
             <img v-if="paperState.wallpaper" :src="paperState.wallpaper" alt="wallpaper" />
             <span v-else>请上传图片</span>
         </div>
-        <div class="water-mark" :style="{ color: paperState.waterColor, fontFamily: paperState.waterFontFiamily }">
+        <div class="water-mark" :style="{ color: paperState.waterColor, fontFamily: paperState.waterFontFiamily, opacity: paperState.watermarkOpacity }">
             <img v-if="paperState.waterMarkImage" :src="paperState.waterMarkImage" alt="" srcset="">
             {{ paperState.waterMarkName }}
         </div>
