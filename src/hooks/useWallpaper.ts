@@ -14,7 +14,7 @@ const paperState = reactive({
     waterColor: '#000000', //水印颜色
     modelSrc: getImageUrl(basePath + '/phone-frame.png'), //终端边框
     waterMarkName: 'Design by 司南烛', //水印名称
-    wallpaperView: false, //壁纸预览
+    wallpaperView: true, //壁纸预览
     interfaceKey: 1, // 0桌面 1锁屏
     proportion: 1, // 导出比例 1(1:1) 2(3:4) 3(4:3)
     interface: '', //图标界面
@@ -26,7 +26,7 @@ const paperState = reactive({
         y: "center"
     },
     waterMarkImage: '', //水印图片
-    titleVertical: 'center', //标题垂直位置
+    titleVertical: 'horizontal', //标题方向，horizontal为横排，vertical为竖排
     enableCrop: false, //是否裁剪
     customTitle: '',
     titleFontSize: 24,

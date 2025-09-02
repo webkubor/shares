@@ -86,8 +86,8 @@
                                     </n-space>
                                     <n-radio-group v-model:value="paperState.titleVertical" name="titleDirection">
                                         <n-space>
-                                            <n-radio :value="false">横排</n-radio>
-                                            <n-radio :value="true">竖排</n-radio>
+                                            <n-radio value="horizontal">横排</n-radio>
+                                            <n-radio value="vertical">竖排</n-radio>
                                         </n-space>
                                     </n-radio-group>
                                 </n-space>

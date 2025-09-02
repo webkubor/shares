@@ -11,20 +11,18 @@
         <div v-if="paperState.wallpaperView && paperState.customTitle" 
              ref="titleRef"
              class="draggable-title"
-             @mousedown.stop="isDragging = true"
-             @mouseup.stop="isDragging = false"
              :class="{ 'is-dragging': isDragging }"
              :style="{
                  color: paperState.waterColor,
                  fontFamily: paperState.waterFontFiamily,
                  fontSize: `${paperState.titleFontSize || 24}px`,
-                 writingMode: paperState.titleVertical ? 'vertical-rl' : 'horizontal-tb'
+                 writingMode: paperState.titleVertical === 'vertical' ? 'vertical-rl' : 'horizontal-tb'
              }">
             {{ paperState.customTitle }}
             <div class="control-panel">
                 <div class="control-item" @click="toggleTitleDirection">
-                    <i class="iconfont" :class="paperState.titleVertical ? 'icon-horizontal' : 'icon-vertical'"></i>
-                    <span class="tip">{{ paperState.titleVertical ? '切换横排' : '切换竖排' }}</span>
+                    <i class="iconfont" :class="paperState.titleVertical === 'vertical' ? 'icon-horizontal' : 'icon-vertical'"></i>
+                    <span class="tip">{{ paperState.titleVertical === 'vertical' ? '切换横排' : '切换竖排' }}</span>
                 </div>
                 <div class="drag-handle">
                     <div class="drag-icon">⋮⋮</div>
@@ -45,30 +43,28 @@ const { paperState, transExportSize } = useWallpaper()
 const titleRef = ref<HTMLElement | null>(null)
 const isDragging = ref(false)
 
-// 监听 paperState.customTitle 的变化
-watch(() => paperState.customTitle, (newVal) => {
-    if (newVal && titleRef.value) {
+// 初始化拖拽功能
+const initDraggable = () => {
+    if (titleRef.value) {
         const { style } = titleRef.value
         useDraggable(titleRef.value, {
             initialValue: { x: 50, y: 50 },
+            onStart() {
+                isDragging.value = true
+            },
             onMove(position, event) {
                 const containerRect = titleRef.value?.parentElement?.getBoundingClientRect()
                 const titleRect = titleRef.value?.getBoundingClientRect()
                 
-                console.log({
-                    mouseY: event.clientY,
-                    containerTop: containerRect?.top,
-                    relativeY: event.clientY - (containerRect?.top || 0),
-                    position
-                })
-
                 if (containerRect && titleRect) {
+                    const maxX = containerRect.width - titleRect.width
                     const maxY = containerRect.height - titleRect.height
-                    // 计算相对于容器的Y坐标
-                    const relativeY = event.clientY - containerRect.top
-                    const y = Math.min(Math.max(relativeY, 0), maxY)
                     
-                    style.left = `${position.x}px`
+                    // 限制在容器内
+                    const x = Math.min(Math.max(position.x, 0), maxX)
+                    const y = Math.min(Math.max(position.y, 0), maxY)
+                    
+                    style.left = `${x}px`
                     style.top = `${y}px`
                 }
             },
@@ -77,7 +73,24 @@ watch(() => paperState.customTitle, (newVal) => {
             }
         })
     }
+}
+
+// 监听 customTitle 变化
+watch(() => paperState.customTitle, (newVal) => {
+    if (newVal) {
+        // 等待DOM更新后初始化拖拽
+        setTimeout(() => {
+            initDraggable()
+        }, 100)
+    }
 }, { immediate: true })
+
+// 组件挂载后初始化拖拽
+onMounted(() => {
+    if (paperState.customTitle && titleRef.value) {
+        initDraggable()
+    }
+})
 
 const phoneSize = computed(() => {
     if (appConfig.isPcModel) {
@@ -91,7 +104,8 @@ const phoneSize = computed(() => {
 })
 
 const toggleTitleDirection = () => {
-    paperState.titleVertical = paperState.titleVertical === 'center' ? 'top' : 'center'
+    // 在'horizontal'和'vertical'之间切换
+    paperState.titleVertical = paperState.titleVertical === 'vertical' ? 'horizontal' : 'vertical'
 }
 </script>
 <style lang="scss" scoped>

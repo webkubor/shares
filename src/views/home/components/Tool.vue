@@ -3,7 +3,6 @@
     <n-card title="应用层实践">
       <n-space>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/wallpaper')">壁纸样机生成器</n-button>
-        <n-button :color="getRandomColor()" ghost @click="$router.push('/show/watermark')">小红书水印添加</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/money')">利息计算</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/xbox/betting')">三色球/下注/自定义切换</n-button>
         <n-button :color="getRandomColor()" ghost @click="$router.push('/show/list')">indexDB</n-button>
