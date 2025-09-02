@@ -15,9 +15,12 @@
             </div>
           
             <div class="preview-list" v-if="paperState.previews.length">
-                <img :src="item.src" :class="{
-                    active: paperState.wallpaper === item.src
-                }" v-for="(item,index) in paperState.previews" @click="onChoose(item)">
+                <div class="preview-item" v-for="(item,index) in paperState.previews" @click="onChoose(item)">
+                    <img :src="item.src" :class="{
+                        active: paperState.wallpaper === item.src
+                    }">
+                    <div class="preview-name">{{ item.name }}</div>
+                </div>
             </div>
         </ColorBorder>
         <RightView class="right-view" v-if="appConfig.isPcModel" />
@@ -47,6 +50,8 @@ const phoneSize = computed(() => {
 
 function onChoose(wallpaper) {
     paperState.wallpaper = wallpaper.src
+    // 显示当前选中图片的文件名
+    window.$message?.success(`已选择图片: ${wallpaper.name}`)
 }
 
 
@@ -104,16 +109,37 @@ function onChoose(wallpaper) {
 
         .preview-list {
             display: flex;
-            height: 100px;
             margin-top: 10px;
-            img {
-            height: 100px;
-                width: auto;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding-bottom: 5px;
+
+            .preview-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 margin-right: 10px;
-                border-radius: 8px;
-            }
-            .active {
-                border: 2px solid orangered;
+                cursor: pointer;
+                
+                img {
+                    height: 100px;
+                    border-radius: 5px;
+                    transition: all 0.3s;
+
+                    &.active {
+                        border: 2px solid #3366cc;
+                    }
+                }
+                
+                .preview-name {
+                    font-size: 12px;
+                    margin-top: 5px;
+                    width: 100px;
+                    text-align: center;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
             }
         }
     }

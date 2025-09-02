@@ -46,7 +46,7 @@ const paperState = reactive<PaperState>({
     perspective: false,
     fontColor: "#000000", //字体颜色
     waterColor: '#000000', //水印颜色
-    titleColor: '#3366cc', //标题颜色，默认与水印颜色不同
+    titleColor: '#333333', //标题颜色，默认值#333333
     watermarkOpacity: 0.8, //水印透明度，默认值0.8
     modelSrc: getImageUrl(basePath + '/phone-frame.png'), //终端边框
     waterMarkName: 'Design by 司南烛', //水印名称
@@ -62,10 +62,10 @@ const paperState = reactive<PaperState>({
         y: "center"
     },
     waterMarkImage: '', //水印图片
-    titleVertical: 'horizontal', //标题方向，horizontal为横排，vertical为竖排
+    titleVertical: 'vertical', //标题方向，horizontal为横排，vertical为竖排，默认竖排
     enableCrop: false, //是否裁剪
     customTitle: '',
-    titleFontSize: 24,
+    titleFontSize: 55, //标题字体大小，默认值55
 })
 
 

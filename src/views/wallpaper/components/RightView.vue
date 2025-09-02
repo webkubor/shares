@@ -210,12 +210,16 @@ async function dealWallpaper() {
     const processedPreviews = await Promise.all(fileListRef.value.map(processFile));
     const previewNames = new Set(paperState.previews.map(item => item.name));
     paperState.previews = paperState.previews.concat(processedPreviews.filter(item => !previewNames.has(item.name)));
-    paperState.wallpaper = paperState.previews[paperState.previews.length - 1].src
+    const lastPreview = paperState.previews[paperState.previews.length - 1];
+    paperState.wallpaper = lastPreview.src;
+    // 显示上传的壁纸图片文件名
+    window.$message?.success(`已上传壁纸图片: ${lastPreview.name}`);
     console.log(paperState.previews, "dealWallpaper");
 }
 async function dealWaterMark(file) {
     const processedPreviews = await processFile(file[0]);
-    paperState.waterMarkImage = processedPreviews.src
+    paperState.waterMarkImage = processedPreviews.src;
+    window.$message?.success(`已上传水印图片: ${processedPreviews.name}`);
 }
 
 
