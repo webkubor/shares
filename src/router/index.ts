@@ -101,14 +101,6 @@ const RouterMap = [
     component: () => import("@/views/barrage/index.vue")
   },
   {
-    path: '/show/watermark',
-    name: 'UI',
-    meta: {
-      title: "图片水印添加"
-    },
-    component: () => import("@/views/show/watermark/index.vue")
-  },
-  {
     path: '/book/share',
     name: 'BookShare',
     meta: {
