@@ -43,36 +43,76 @@ const { paperState, transExportSize } = useWallpaper()
 const titleRef = ref<HTMLElement | null>(null)
 const isDragging = ref(false)
 
+// 自定义拖拽实现
+const mouseOffset = ref({ x: 0, y: 0 })
+const isMouseDown = ref(false)
+
 // 初始化拖拽功能
 const initDraggable = () => {
-    if (titleRef.value) {
-        const { style } = titleRef.value
-        useDraggable(titleRef.value, {
-            initialValue: { x: 50, y: 50 },
-            onStart() {
-                isDragging.value = true
-            },
-            onMove(position, event) {
-                const containerRect = titleRef.value?.parentElement?.getBoundingClientRect()
-                const titleRect = titleRef.value?.getBoundingClientRect()
-                
-                if (containerRect && titleRect) {
-                    const maxX = containerRect.width - titleRect.width
-                    const maxY = containerRect.height - titleRect.height
-                    
-                    // 限制在容器内
-                    const x = Math.min(Math.max(position.x, 0), maxX)
-                    const y = Math.min(Math.max(position.y, 0), maxY)
-                    
-                    style.left = `${x}px`
-                    style.top = `${y}px`
-                }
-            },
-            onEnd() {
-                isDragging.value = false
-            }
-        })
+    if (!titleRef.value) return
+    
+    // 设置初始位置，如果没有设置过
+    if (!titleRef.value.style.left) {
+        titleRef.value.style.left = '50px'
     }
+    if (!titleRef.value.style.top) {
+        titleRef.value.style.top = '50px'
+    }
+    
+    // 鼠标按下事件
+    const handleMouseDown = (e: MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        
+        if (!titleRef.value) return
+        
+        isMouseDown.value = true
+        isDragging.value = true
+        
+        // 计算鼠标与元素左上角的偏移量
+        const rect = titleRef.value.getBoundingClientRect()
+        mouseOffset.value = {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        }
+        
+        // 添加全局事件监听
+        document.addEventListener('mousemove', handleMouseMove)
+        document.addEventListener('mouseup', handleMouseUp)
+    }
+    
+    // 鼠标移动事件
+    const handleMouseMove = (e: MouseEvent) => {
+        if (!isMouseDown.value || !titleRef.value) return
+        
+        const containerRect = titleRef.value.parentElement?.getBoundingClientRect()
+        if (!containerRect) return
+        
+        // 计算新位置，考虑鼠标与元素的偏移
+        const newLeft = e.clientX - containerRect.left - mouseOffset.value.x
+        const newTop = e.clientY - containerRect.top - mouseOffset.value.y
+        
+        // 限制在容器内
+        const titleRect = titleRef.value.getBoundingClientRect()
+        const maxX = containerRect.width - titleRect.width
+        const maxY = containerRect.height - titleRect.height
+        
+        titleRef.value.style.left = `${Math.min(Math.max(newLeft, 0), maxX)}px`
+        titleRef.value.style.top = `${Math.min(Math.max(newTop, 0), maxY)}px`
+    }
+    
+    // 鼠标松开事件
+    const handleMouseUp = () => {
+        isMouseDown.value = false
+        isDragging.value = false
+        
+        // 移除全局事件监听
+        document.removeEventListener('mousemove', handleMouseMove)
+        document.removeEventListener('mouseup', handleMouseUp)
+    }
+    
+    // 添加鼠标按下事件监听
+    titleRef.value.addEventListener('mousedown', handleMouseDown)
 }
 
 // 监听 customTitle 变化
