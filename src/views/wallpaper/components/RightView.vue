@@ -94,9 +94,9 @@
                             </n-form-item>
 
                             <n-form-item label="标题颜色" label-placement="left" v-if="paperState.wallpaperView">
-                                <n-color-picker v-model:value="paperState.fontColor" style="width: 150px;"
+                                <n-color-picker v-model:value="paperState.titleColor" style="width: 150px;"
                                     :show-alpha="true" :actions="['clear']"
-                                    :swatches="['#FFFFFF', '#333333', '#EE5A5AD9']" />
+                                    :swatches="['#FFFFFF', '#333333', '#3366cc', '#EE5A5AD9']" />
                             </n-form-item>
 
                             <n-form-item label="字体选择" label-placement="left">
@@ -195,11 +195,7 @@ watchEffect(() => {
     }
 })
 
-watchEffect(() => {
-    if (paperState.fontColor) {
-        paperState.waterColor = paperState.fontColor
-    }
-})
+// 移除同步颜色的watchEffect，确保水印颜色和标题颜色可以独立设置
 
 function handleUploadChange(data: { fileList: UploadFileInfo[] }) {
     fileListRef.value = data.fileList

@@ -13,7 +13,7 @@
              class="draggable-title"
              :class="{ 'is-dragging': isDragging }"
              :style="{
-                 color: paperState.waterColor,
+                 color: paperState.titleColor,
                  fontFamily: paperState.waterFontFiamily,
                  fontSize: `${paperState.titleFontSize || 24}px`,
                  writingMode: paperState.titleVertical === 'vertical' ? 'vertical-rl' : 'horizontal-tb'

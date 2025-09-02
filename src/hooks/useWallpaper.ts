@@ -19,6 +19,7 @@ interface PaperState {
     perspective: boolean;
     fontColor: string; //字体颜色
     waterColor: string; //水印颜色
+    titleColor: string; //标题颜色
     modelSrc: string; //终端边框
     waterMarkName: string; //水印名称
     wallpaperView: boolean; //壁纸预览
@@ -44,6 +45,7 @@ const paperState = reactive<PaperState>({
     perspective: false,
     fontColor: "#000000", //字体颜色
     waterColor: '#000000', //水印颜色
+    titleColor: '#3366cc', //标题颜色，默认与水印颜色不同
     modelSrc: getImageUrl(basePath + '/phone-frame.png'), //终端边框
     waterMarkName: 'Design by 司南烛', //水印名称
     wallpaperView: true, //壁纸预览
@@ -78,6 +80,7 @@ export function useWallpaper() {
             waterMarkName: paperState.waterMarkName,
             waterFontFiamily:paperState.waterFontFiamily,
             waterColor: paperState.waterColor,
+            titleColor: paperState.titleColor,
             waterMarkImage: paperState.waterMarkImage,
             previews: paperState.previews,
             backgroundPositon: paperState.backgroundPositon
