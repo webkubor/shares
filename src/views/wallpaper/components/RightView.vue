@@ -1,5 +1,5 @@
 <template>
-    <ColorBorder class="right-view-container">
+    <ColorBorder :class="['right-view-container', $attrs.class]">
         <n-spin :show="exportLoading">
             <div class="settings-scroll">
                 <n-collapse :default-expanded-names="['1']">

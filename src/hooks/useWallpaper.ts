@@ -7,7 +7,39 @@ function getImageUrl(path) {
     return imagePaths[path]?.default;
 }
 
-const paperState = reactive({
+// 定义预览图片类型
+interface PreviewImage {
+    name: string;
+    src: string;
+}
+
+// 定义paperState的类型
+interface PaperState {
+    bgColor: string; //背景
+    perspective: boolean;
+    fontColor: string; //字体颜色
+    waterColor: string; //水印颜色
+    modelSrc: string; //终端边框
+    waterMarkName: string; //水印名称
+    wallpaperView: boolean; //壁纸预览
+    interfaceKey: number; // 0桌面 1锁屏
+    proportion: number; // 导出比例 1(1:1) 2(3:4) 3(4:3)
+    interface: string; //图标界面
+    wallpaper: string; //壁纸
+    waterFontFiamily: string; //字体
+    previews: PreviewImage[]; //预览图片
+    backgroundPositon: {
+        x: string;
+        y: string;
+    };
+    waterMarkImage: string; //水印图片
+    titleVertical: string; //标题方向，horizontal为横排，vertical为竖排
+    enableCrop: boolean; //是否裁剪
+    customTitle: string;
+    titleFontSize: number;
+}
+
+const paperState = reactive<PaperState>({
     bgColor: "#ffffff", //背景
     perspective: false,
     fontColor: "#000000", //字体颜色
@@ -70,7 +102,7 @@ export function useWallpaper() {
     }
 
     function setModelSrc(modelSrc: string | null) {
-        paperState.modelSrc = modelSrc
+        paperState.modelSrc = modelSrc || ''; // 确保不为null
         window.$message?.success("手机模型设置成功")
         console.log("setModelSrc", paperState.modelSrc);
     }
