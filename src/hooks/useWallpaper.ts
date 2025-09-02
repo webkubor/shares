@@ -66,8 +66,8 @@ const paperState = reactive<PaperState>({
         y: "center"
     },
     waterMarkPosition: {
-        x: 50,
-        y: 50
+        x: 50, // 初始尺寸会在组件挂载后动态计算
+        y: 400 // 初始尺寸会在组件挂载后动态计算
     },
     waterMarkImage: '', //水印图片
     titleVertical: 'vertical', //标题方向，horizontal为横排，vertical为竖排，默认竖排

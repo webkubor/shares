@@ -142,6 +142,16 @@ watch(() => paperState.customTitle, (newVal) => {
     }
 }, { immediate: true })
 
+// 监听壁纸图片变化
+watch(() => paperState.wallpaper, (newVal) => {
+    if (newVal && waterMarkRef.value) {
+        // 等待壁纸图片加载完成后重新计算水印位置
+        setTimeout(() => {
+            initWaterMarkPosition()
+        }, 300)
+    }
+}, { immediate: true })
+
 // 水印拖拽功能初始化
 const initWaterMarkDraggable = () => {
     if (!waterMarkRef.value) return
@@ -203,6 +213,22 @@ const initWaterMarkDraggable = () => {
     waterMarkRef.value.addEventListener('mousedown', handleMouseDown)
 }
 
+// 初始化水印位置为底部中间
+const initWaterMarkPosition = () => {
+    if (!waterMarkRef.value) return
+    
+    // 获取容器尺寸
+    const containerRect = waterMarkRef.value.parentElement?.getBoundingClientRect()
+    if (!containerRect) return
+    
+    // 获取水印尺寸
+    const waterMarkRect = waterMarkRef.value.getBoundingClientRect()
+    
+    // 计算水印位置，使其在底部中间
+    paperState.waterMarkPosition.x = (containerRect.width - waterMarkRect.width) / 2
+    paperState.waterMarkPosition.y = containerRect.height - waterMarkRect.height - 60 // 距离底部 60px
+}
+
 // 组件挂载后初始化拖拽
 onMounted(() => {
     if (paperState.customTitle && titleRef.value) {
@@ -212,6 +238,10 @@ onMounted(() => {
     // 初始化水印拖拽
     if (waterMarkRef.value) {
         initWaterMarkDraggable()
+        // 初始化水印位置
+        setTimeout(() => {
+            initWaterMarkPosition()
+        }, 100) // 等待DOM渲染完成
     }
 })
 
