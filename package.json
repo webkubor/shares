@@ -13,12 +13,9 @@
   "dependencies": {
     "@tresjs/cientos": "^4.0.3",
     "@tresjs/core": "^4.3.2",
-    "@vicons/ionicons5": "^0.13.0",
     "@vueuse/core": "^12.2.0",
     "core-js": "^3.42.0",
     "dom-to-image-more": "^3.5.0",
-    "file-saver": "^2.0.5",
-    "jszip": "^3.10.1",
     "mathjs": "^12.4.1",
     "plyr": "^3.7.8",
     "three": "^0.172.0",
