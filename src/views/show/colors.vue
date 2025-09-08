@@ -1,93 +1,144 @@
 <template>
-    <n-card :style="{ background: theme === '1' ? '#000000' : '#ffffff' }">
-        <div :class="titleClass">
-                Color   
-                <span class="more">Palette</span> 
-        </div>
-        <n-space align="center">
-            <n-switch v-model:value="theme" checked-value="1" unchecked-value="0"  :rail-style="railStyle">
-                <template #checked>
-                    暗黑模式
+    <div class="color-palette-container" :class="theme === '1' ? 'dark-theme' : 'light-theme'">
+        <!-- 顶部预览区域 -->
+        <n-card class="preview-card" :style="{ 
+            background: theme === '1' ? '#1a1a1a' : '#ffffff',
+            borderRadius: '16px',
+            boxShadow: '0 8px 30px ' + (confirmColor || '#18a058') + '40',
+            border: '1px solid ' + (confirmColor || '#18a058') + '30',
+            transition: 'all 0.3s ease'
+        }">
+            <div class="header-section">
+                <div class="title-section">
+                    <div :class="titleClass" :style="{
+                        borderLeft: '4px solid ' + (confirmColor || '#18a058'),
+                        paddingLeft: '16px',
+                        transition: 'all 0.3s ease'
+                    }">
+                        Color <span class="more" :style="{ color: confirmColor || '#18a058' }">Palette</span> 
+                    </div>
+                    <div class="color-code" :style="{ color: confirmColor || '#18a058' }">
+                        {{ confirmColor || '#18a058' }}
+                    </div>
+                </div>
+                
+                <n-switch v-model:value="theme" checked-value="1" unchecked-value="0" :rail-style="railStyle" class="theme-switch">
+                    <template #checked>
+                        <span class="switch-label">暗黑模式</span>
+                    </template>
+                    <template #unchecked>
+                        <span class="switch-label">浅色模式</span>
+                    </template>
+                </n-switch>
+            </div>
+            
+            <div class="preview-section">
+                <div class="color-preview" :style="{ backgroundColor: confirmColor || '#18a058' }"></div>
+                <div class="button-showcase">
+                    <n-button :color="confirmColor" class="showcase-button">模板按钮</n-button>
+                    <n-button dashed :color="confirmColor" class="showcase-button">Dashed</n-button>
+                    <n-button ghost :color="confirmColor" class="showcase-button">Ghost</n-button>
+                    <n-button tertiary :color="confirmColor" class="showcase-button">Tertiary</n-button>
+                    <div class="text-showcase" :style="{ color: confirmColor || '#18a058' }">这是一段使用当前颜色的文字</div>
+                </div>
+            </div>
+        </n-card>
+        <!-- 颜色选择区域 -->
+        <div class="color-selection-container">
+            <!-- 自定义颜色选择器 -->
+            <n-card class="selection-card" title="自定义颜色" :bordered="false">
+                <template #header-extra>
+                    <n-button tertiary :color="confirmColor" @click="onCollect('0')" class="collapse-button">
+                        {{ closeList.includes('0') ? '展开' : '收起' }}
+                    </n-button>
                 </template>
-                <template #unchecked>
-                    浅色模式
-                </template>
-            </n-switch>
-            <n-button :color="confirmColor">模板按钮</n-button>
-            <n-button dashed :color="confirmColor">
-                Default
-            </n-button>
-            <n-button ghost :color="confirmColor">
-                Default
-            </n-button>
-            <n-button tertiary :color="confirmColor">
-                Default
-            </n-button>
-            <span :style="{ color: confirmColor }">这是一段普通的文字</span>
-        </n-space>
-
-    </n-card>
-    <div class="control-window">
-        <n-card title="自定义颜色">
-            <template #header-extra>
-                <n-button tertiary :color="confirmColor" @click="onCollect('0')">
-                    收起
-                </n-button>
-            </template>
-            <div class="custom-color-panel" v-if="!closeList.includes('0')">
-                <n-space vertical>
-                    <n-color-picker v-model:value="customColor" :show-alpha="false" size="large" @update:value="onCustomColorChange" />
-                    <div class="custom-color-preview">
-                        <div class="preview-box" :style="{ backgroundColor: customColor }"></div>
-                        <div class="color-info">
-                            <div class="color-value">{{ customColor }}</div>
-                            <n-button size="small" @click="onConfirm(customColor)">应用此颜色</n-button>
+                <div class="custom-color-panel" v-if="!closeList.includes('0')">
+                    <div class="color-picker-container">
+                        <div class="picker-section">
+                            <n-color-picker 
+                                v-model:value="customColor" 
+                                :show-alpha="false" 
+                                size="large" 
+                                @update:value="onCustomColorChange"
+                                class="color-picker"
+                            />
+                        </div>
+                        <div class="custom-color-preview">
+                            <div class="preview-box" :style="{ backgroundColor: customColor }"></div>
+                            <div class="color-info">
+                                <div class="color-value">{{ customColor }}</div>
+                                <n-button 
+                                    size="large" 
+                                    @click="onConfirm(customColor)"
+                                    class="apply-button"
+                                    :style="{
+                                        backgroundColor: confirmColor || '#18a058'
+                                    }"
+                                >应用此颜色</n-button>
+                            </div>
                         </div>
                     </div>
-                </n-space>
-            </div>
-        </n-card>
-        
-        <n-card title="基础-色板" style="margin-top: 20px;">
-            <template #header-extra>
-                <n-button tertiary :color="confirmColor" @click="onCollect('1')">
-                    收起
-                </n-button>
-            </template>
-            <div class="color-list" v-if="!closeList.includes('1')">
-                <div class="color-item" v-for="item in solidColor" :key="item.color" @click="onConfirm(item.color)">
-                    <div class="board" :style="{
-                        backgroundColor: item.color,
-                        filter: item.color === hoverColor ? `drop-shadow(0 0 2em ${item.color})` : 'none'
-                    }" @mouseover="hoverColor = item.color" @mouseleave="hoverColor = ''">
-                       <span>
-                        {{ item.description }}
-                       </span> 
-                    </div>
-                    <div class="name" :style="{ color: item.color }"> {{ item.name }}{{ item.color }}</div>
                 </div>
-            </div>
-        </n-card>
-        <n-card title="淡色-色板" style="margin-top: 20px;">
-            <template #header-extra>
-                <n-button tertiary :color="confirmColor" @click="onCollect('2')">
-                    收起
-                </n-button>
-            </template>
-            <div class="color-list" v-if="!closeList.includes('2')">
-                <div class="color-item" v-for="item in paleColor" :key="item.color" @click="onConfirm(item.color)">
-                    <div class="board dark" :style="{
-                        backgroundColor: item.color,
-                        filter: item.color === hoverColor ? `drop-shadow(0 0 2em ${item.color})` : 'none'
-                    }" @mouseover="hoverColor = item.color" @mouseleave="hoverColor = ''">
-                       <span>
-                        {{ item.description }}
-                       </span> 
+            </n-card>
+            
+            <!-- 基础色板 -->
+            <n-card class="selection-card" title="基础色板" :bordered="false">
+                <template #header-extra>
+                    <n-button tertiary :color="confirmColor" @click="onCollect('1')" class="collapse-button">
+                        {{ closeList.includes('1') ? '展开' : '收起' }}
+                    </n-button>
+                </template>
+                <div class="color-grid" v-if="!closeList.includes('1')">
+                    <div class="color-grid-item" 
+                         v-for="item in solidColor" 
+                         :key="item.color" 
+                         @click="onConfirm(item.color)"
+                         @mouseover="hoverColor = item.color" 
+                         @mouseleave="hoverColor = ''">
+                        <div class="color-swatch" :style="{
+                            backgroundColor: item.color,
+                            transform: item.color === hoverColor ? 'scale(1.05)' : 'scale(1)',
+                            boxShadow: item.color === hoverColor ? '0 8px 20px ' + item.color + '80' : 'none'
+                        }">
+                            <div class="color-tooltip">
+                                <div class="tooltip-name">{{ item.name }}</div>
+                                <div class="tooltip-desc">{{ item.description }}</div>
+                                <div class="tooltip-code">{{ item.color }}</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="name" :style="{ color: item.color }"> {{ item.name }}{{ item.color }}</div>
                 </div>
-            </div>
-        </n-card>
+            </n-card>
+            
+            <!-- 淡色色板 -->
+            <n-card class="selection-card" title="淡色色板" :bordered="false">
+                <template #header-extra>
+                    <n-button tertiary :color="confirmColor" @click="onCollect('2')" class="collapse-button">
+                        {{ closeList.includes('2') ? '展开' : '收起' }}
+                    </n-button>
+                </template>
+                <div class="color-grid" v-if="!closeList.includes('2')">
+                    <div class="color-grid-item" 
+                         v-for="item in paleColor" 
+                         :key="item.color" 
+                         @click="onConfirm(item.color)"
+                         @mouseover="hoverColor = item.color" 
+                         @mouseleave="hoverColor = ''">
+                        <div class="color-swatch pale" :style="{
+                            backgroundColor: item.color,
+                            transform: item.color === hoverColor ? 'scale(1.05)' : 'scale(1)',
+                            boxShadow: item.color === hoverColor ? '0 8px 20px ' + item.color + '80' : 'none'
+                        }">
+                            <div class="color-tooltip">
+                                <div class="tooltip-name">{{ item.name }}</div>
+                                <div class="tooltip-desc">{{ item.description }}</div>
+                                <div class="tooltip-code">{{ item.color }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </n-card>
+        </div>
     </div>
 
 </template>
@@ -96,6 +147,7 @@
 import { ref, computed } from 'vue'
 import { writeClipboard } from "@/utils/copy"
 import type { CSSProperties } from 'vue'
+import colorData from './colorData.json'
 
 // 定义响应式变量
 const hoverColor = ref<string>('')
@@ -111,106 +163,16 @@ const titleClass = computed<string>(() => {
 // 定义列表和数据
 const closeList = ref<string[]>([])
 
-// 颜色数据
-const solidColor = [
-    // 红色系
-    { name: '红色', color: '#f50057', description: '明亮、鲜艳的红色' },
-    { name: '柔和红', color: '#ff6f91', description: '柔和的红色' },
-    { name: '蔷薇红', color: '#e91e63', description: '柔和、浪漫的红色' },
-    { name: '洋气红', color: '#c81045', description: '明亮且洋气的红色' },
-    { name: '深红色', color: '#b03a2e', description: '深沉、具有深度的红色' },
-    { name: '玫瑰红', color: '#d16d82', description: '典雅的玫瑰红色' },
-    { name: '暗红色', color: '#7f1d1d', description: '更深邃的红色' },
+// 颜色数据接口
+interface ColorItem {
+  name: string;
+  color: string;
+  description: string;
+}
 
-    // 橙色系
-    { name: '橙色', color: '#ff6200', description: '鲜亮、充满活力的橙色' },
-    { name: '浅橙色', color: '#ff9e6d', description: '柔和的橙色' },
-    { name: '橘子橙', color: '#ff9800', description: '活力、热情的橙色' },
-    { name: '琥珀黄', color: '#ffc107', description: '明亮、温暖的黄色' },
-    { name: '香槟橙', color: '#ffa726', description: '温暖且优雅的香槟橙' },
-
-    // 黄色系
-    { name: '柔和黄', color: '#ffe082', description: '柔和的黄色' },
-    { name: '琥珀黄', color: '#ffc107', description: '明亮、温暖的黄色' },
-    { name: '明亮黄', color: '#ffeb3b', description: '吸引目光的明亮黄色' },
-    { name: '柠檬黄', color: '#fdd835', description: '充满活力的柠檬黄色' },
-    { name: '金色', color: '#ffca28', description: '带有贵气的金黄色' },
-
-    // 绿色系
-    { name: '绿色', color: '#00c853', description: '清新、自然的绿色' },
-    { name: '浅绿色', color: '#66ffa6', description: '柔和的绿色' },
-    { name: '明亮绿', color: '#2ecc71', description: '明亮且鲜艳的绿色' },
-    { name: '薄荷绿', color: '#4caf50', description: '清新、自然的绿色' },
-    { name: '翠绿', color: '#009975', description: '强烈的翠绿色' },
-    { name: '深森林绿', color: '#004d00', description: '更深沉、浓郁的森林绿' },
-    { name: '温暖绿', color: '#6abf69', description: '柔和、温暖的绿色' },
-
-    // 青色系
-    { name: '青色', color: '#00bfa5', description: '冷静、沉稳的青色' },
-    { name: '柔和青', color: '#5df2d6', description: '柔和的青色' },
-    { name: '青竹蓝', color: '#00acc1', description: '冷静、沉稳的蓝色' },
-    { name: '湖水青', color: '#76e4cc', description: '清澈且温和的湖水青' },
-    { name: '孔雀青', color: '#00897b', description: '高贵且深邃的孔雀青' },
-
-    // 蓝色系
-    { name: '蓝色', color: '#0077ff', description: '经典、深邃的蓝色' },
-    { name: '浅蓝色', color: '#80bfff', description: '柔和的蓝色' },
-    { name: '靛青蓝', color: '#3f51b5', description: '经典、深邃的蓝色' },
-    { name: '宝石蓝', color: '#2962ff', description: '深邃且晶莹的宝石蓝' },
-    { name: '极光蓝', color: '#00bcd4', description: '明亮、清新的极光蓝' },
-
-    // 紫色系
-    { name: '紫色', color: '#651fff', description: '深邃、神秘的紫色' },
-    { name: '柔和紫', color: '#9c8eff', description: '柔和的紫色' },
-    { name: '午夜紫', color: '#673ab7', description: '深邃、神秘的紫色' },
-    { name: '薰衣草紫', color: '#b39ddb', description: '浪漫且温柔的薰衣草紫' },
-    { name: '茄子紫', color: '#512da8', description: '沉稳且高雅的茄子紫' },
-
-    // 黑色系
-    { name: '经典黑', color: '#000000', description: '纯黑色，经典而稳重' },
-    { name: '炭黑', color: '#2c2c2c', description: '深灰色偏黑，现代感强' },
-    { name: '墨黑', color: '#4a4a4a', description: '墨黑，带有温暖的深灰调' },
-    { name: '午夜黑', color: '#101820', description: '深邃的午夜黑，带有些许蓝色调' },
-    { name: '钢铁黑', color: '#3b3b3b', description: '钢铁黑，带有冷冽的金属感' }
-];
-
-
-const paleColor = [
-    { name: '雪白', color: '#f8f9fa', description: '带有轻微灰度的白色，柔和舒适' },
-    { name: '米白', color: '#f0e5de', description: '米色调的白色，带有自然的暖意' },
-    { name: '淡灰白', color: '#e0e0e0', description: '淡灰色调的白色，现代且清新' },
-    { name: '冰雪白', color: '#e6f1f5', description: '带有冰蓝色调的白色，清凉而清新' },
-    { name: '象牙白', color: '#fffff0', description: '带有象牙色调的白色，古典而优雅' },
-    { name: '珍珠白', color: '#f5f5f5', description: '珍珠感的白色，带有微光泽' },
-    { name: '奶茶色', color: '#f5e3e2', description: '经典奶茶色，温暖柔和' },
-    { name: '浅奶咖色', color: '#d4bda4', description: '浅奶咖色，带有一点咖啡的深度' },
-    { name: '淡米色', color: '#f5f5dc', description: '清新的米色，柔和舒适' },
-    { name: '浅杏色', color: '#f2b5d4', description: '淡淡的杏色，甜美而清新' },
-    { name: '奶油色', color: '#fef5e7', description: '细腻的奶油色，清爽而不刺眼' },
-    { name: '柔和棕色', color: '#d6a55e', description: '温暖的柔和棕色，具有自然质感' },
-    { name: '浅杏仁色', color: '#f5d1b1', description: '轻柔的杏仁色，带有些微暖意' },
-    { name: '奶白色', color: '#f8f4e3', description: '温暖、柔和的白色' },
-    { name: '奶灰色', color: '#d3d3d3', description: '低调、现代的灰白色' },
-    { name: '鹅黄色', color: '#f8e58c', description: '轻盈、愉悦的黄色' },
-    { name: '青瓷绿', color: '#a8d5ba', description: '清凉、治愈的绿色' },
-    { name: '水泥灰', color: '#b0b0b0', description: '工业风格的灰色，冷静' },
-    { name: '米白色', color: '#faf3e0', description: '自然、简约的白色' },
-    { name: '浅褐色', color: '#d2b48c', description: '温和、舒适的褐色' },
-    { name: '卡其色', color: '#d0b67f', description: '温暖的卡其色' },
-    { name: '浅棕色', color: '#bfa98a', description: '柔和的浅棕色' },
-    { name: '砂色', color: '#e0c8a2', description: '轻柔的砂色' },
-    { name: '浅巧克力色', color: '#d5a95b', description: '柔和的巧克力色' },
-    { name: '奶咖色', color: '#d8cfc4', description: '温暖的奶咖色' },
-    { name: '浅粉色', color: '#f8cfd8', description: '柔和的浅粉色' },  // 柔和的浅粉色
-    { name: '浅粉色', color: '#fddde6', description: '柔美、优雅' },  // 柔美、优雅
-    { name: '粉红色', color: '#f7a0b3', description: '温暖的粉红色' },
-    { name: '淡玫瑰色', color: '#f5b7b1', description: '温柔的淡玫瑰色' },
-    { name: '粉橙色', color: '#f7b3a8', description: '淡粉橙色' },    // 淡粉橙色
-    { name: '樱花粉', color: '#f9c5d1', description: '柔和的樱花粉' },
-    { name: '桃色', color: '#f6a1b2', description: '清新的桃色' },
-    { name: '明亮绿', color: '#76c7c0', description: '清新的桃色' },
-    { name: '温暖绿', color: '#a3d9a5', description: '温暖的绿，偏黄绿色调' },
-];
+// 从JSON文件导入颜色数据
+const solidColor: ColorItem[] = colorData.solidColor;
+const paleColor: ColorItem[] = colorData.paleColor;
 
 
 // 收起/展开面板函数
@@ -258,93 +220,384 @@ function onConfirm(color: string): void {
     confirmColor.value = color
     writeClipboard(color, 'color is copied to clipboard')
 }
+
+// 虽然在Vue 3的<script setup>中，所有顶层变量和函数都会自动暴露给模板使用
+// 但为了解决编译器可能的问题，我们显式导出这些变量和函数
+defineExpose({
+  hoverColor,
+  confirmColor,
+  theme,
+  customColor,
+  titleClass,
+  closeList,
+  solidColor,
+  paleColor,
+  onCollect,
+  railStyle,
+  onCustomColorChange,
+  onConfirm
+})
 </script>
 
 <style lang="scss" scoped>
-.control-window {
-    overflow: scroll;
-    height: 100vh;
-    background: var(--webkubor-bg);
-    padding: 0 20px;
+.color-palette-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    
+    &.dark-theme {
+        --text-color: #ffffff;
+        --bg-color: #1a1a1a;
+        --card-bg: #242424;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --hover-bg: rgba(255, 255, 255, 0.05);
+    }
+    
+    &.light-theme {
+        --text-color: #333333;
+        --bg-color: #f5f5f5;
+        --card-bg: #ffffff;
+        --border-color: rgba(0, 0, 0, 0.1);
+        --hover-bg: rgba(0, 0, 0, 0.03);
+    }
 }
 
-.custom-color-panel {
-    padding: 20px 0;
+// 顶部预览卡片样式
+.preview-card {
+    margin-bottom: 16px;
     
-    .custom-color-preview {
+    .header-section {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
+        margin-bottom: 24px;
         
-        .preview-box {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            margin-right: 20px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .color-info {
+        .title-section {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             
-            .color-value {
+            .common-title-white, .common-title-black {
+                font-size: 28px;
+                font-weight: 700;
+                margin: 0;
+                
+                .more {
+                    font-weight: 800;
+                    letter-spacing: 1px;
+                }
+            }
+            
+            .common-title-white {
+                color: #ffffff;
+            }
+            
+            .common-title-black {
+                color: #333333;
+            }
+            
+            .color-code {
+                font-family: monospace;
+                font-size: 16px;
+                font-weight: 600;
+                margin-top: 4px;
+                margin-left: 20px;
+            }
+        }
+        
+        .theme-switch {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px v-bind('(confirmColor || "#18a058") + "30"');
+            transition: all 0.3s ease;
+            
+            .switch-label {
+                font-weight: bold;
+                font-size: 12px;
+            }
+        }
+    }
+    
+    .preview-section {
+        display: flex;
+        gap: 24px;
+        margin-top: 16px;
+        
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+        
+        .color-preview {
+            flex: 1;
+            min-height: 180px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px v-bind('(confirmColor || "#18a058") + "40"');
+            transition: all 0.3s ease;
+            
+            &:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 30px v-bind('(confirmColor || "#18a058") + "60"');
+            }
+        }
+        
+        .button-showcase {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 16px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            
+            .showcase-button {
+                height: 40px;
+                font-weight: 600;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 16px v-bind('(confirmColor || "#18a058") + "30"');
+                }
+            }
+            
+            .text-showcase {
                 font-size: 16px;
                 font-weight: 500;
+                padding: 12px;
+                border-radius: 8px;
+                background-color: var(--hover-bg);
+                text-align: center;
             }
         }
     }
 }
 
-.color-list {
+// 颜色选择容器
+.color-selection-container {
     display: flex;
-    flex-wrap: wrap;
-    transition: all 0.3s;
-
-    .color-item {
-        margin: 20px;
-        transition: all 0.3s;
-       
-
-        .board {
-            width: 150px;
-            height: 100px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: #ffffff;
+    flex-direction: column;
+    gap: 24px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 16px;
+    border-radius: 16px;
+    background: var(--bg-color);
+    border: 1px solid v-bind('(confirmColor || "#18a058") + "30"');
+    box-shadow: 0 8px 24px v-bind('(confirmColor || "#18a058") + "20"');
+    scrollbar-width: thin;
+    scrollbar-color: v-bind('confirmColor || "#18a058"') transparent;
+    
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: v-bind('(confirmColor || "#18a058") + "60"');
+        border-radius: 6px;
+    }
+    
+    .selection-card {
+        border-radius: 16px;
+        box-shadow: 0 6px 20px v-bind('(confirmColor || "#18a058") + "20"');
+        transition: all 0.3s ease;
+        overflow: hidden;
+        margin-bottom: 16px;
+        
+        &:hover {
+            box-shadow: 0 10px 30px v-bind('(confirmColor || "#18a058") + "30"');
+            transform: translateY(-2px);
+        }
+        
+        .collapse-button {
             font-weight: 600;
-            /* 初始状态无阴影 */
-            filter: none;
-            span {
-                display: none;
+            border-radius: 6px;
+        }
+    }
+    
+    // 自定义颜色面板
+    .custom-color-panel {
+        padding: 24px;
+        border-radius: 12px;
+        background-color: var(--card-bg);
+        border-left: 4px solid v-bind('confirmColor || "#18a058"');
+        transition: all 0.3s ease;
+        
+        .color-picker-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            
+            @media (max-width: 768px) {
+                flex-direction: column;
             }
-
-            &:hover {
-                transform: translateY(-4px) scale(1.05);
-                span {
-                display: block;
+            
+            .picker-section {
+                flex: 1;
+                min-width: 280px;
+                display: flex;
+                justify-content: center;
+                
+                .color-picker {
+                    border: 1px solid v-bind('(confirmColor || "#18a058") + "40"');
+                    border-radius: 12px;
+                    padding: 16px;
+                    box-shadow: 0 8px 20px v-bind('(confirmColor || "#18a058") + "20"');
+                    transition: all 0.3s ease;
+                    background-color: var(--card-bg);
+                    
+                    &:hover {
+                        box-shadow: 0 12px 24px v-bind('(confirmColor || "#18a058") + "30"');
+                    }
+                }
             }
-
+            
+            .custom-color-preview {
+                flex: 1;
+                min-width: 280px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                
+                .preview-box {
+                    width: 100%;
+                    height: 120px;
+                    border-radius: 12px;
+                    box-shadow: 0 8px 20px v-bind('(confirmColor || "#18a058") + "30"');
+                    transition: all 0.3s ease;
+                    border: 2px solid v-bind('(confirmColor || "#18a058") + "50"');
+                    
+                    &:hover {
+                        transform: scale(1.02);
+                        box-shadow: 0 12px 24px v-bind('(confirmColor || "#18a058") + "40"');
+                    }
+                }
+                
+                .color-info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                    
+                    .color-value {
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: var(--text-color);
+                        padding: 12px;
+                        border-radius: 8px;
+                        background-color: var(--hover-bg);
+                        border-left: 4px solid v-bind('confirmColor || "#18a058"');
+                        text-align: center;
+                        font-family: monospace;
+                        letter-spacing: 1px;
+                    }
+                    
+                    .apply-button {
+                        color: #ffffff;
+                        border-radius: 8px;
+                        font-weight: 600;
+                        padding: 8px 16px;
+                        box-shadow: 0 6px 16px v-bind('(confirmColor || "#18a058") + "40"');
+                        transition: all 0.3s ease;
+                        border: none;
+                        width: 100%;
+                        font-size: 16px;
+                        letter-spacing: 1px;
+                        
+                        &:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 8px 20px v-bind('(confirmColor || "#18a058") + "60"');
+                        }
+                    }
+                }
             }
         }
-        .dark {
-            color: #333333;
+    }
+    
+    // 颜色网格
+    .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 16px;
+        padding: 16px;
+        
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
         }
-
-        .name {
-            font-size: 14px;
-            text-align: center;
-            margin-top: 8px;
-            transition: color 0.3s ease;
-            text-decoration: underline;
+        
+        .color-grid-item {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+            .color-swatch {
+                width: 100%;
+                aspect-ratio: 1/1;
+                border-radius: 12px;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                border: 2px solid transparent;
+                
+                &:hover {
+                    border-color: v-bind('confirmColor || "#18a058"');
+                    
+                    .color-tooltip {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                &.pale {
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    
+                    .color-tooltip {
+                        color: #333;
+                        background-color: rgba(255, 255, 255, 0.95);
+                    }
+                }
+                
+                .color-tooltip {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background-color: rgba(0, 0, 0, 0.8);
+                    color: #fff;
+                    padding: 8px;
+                    font-size: 12px;
+                    opacity: 0;
+                    transform: translateY(10px);
+                    transition: all 0.3s ease;
+                    border-radius: 0 0 12px 12px;
+                    
+                    .tooltip-name {
+                        font-weight: 600;
+                        margin-bottom: 2px;
+                    }
+                    
+                    .tooltip-desc {
+                        font-size: 10px;
+                        opacity: 0.8;
+                        margin-bottom: 2px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    
+                    .tooltip-code {
+                        font-family: monospace;
+                        font-size: 11px;
+                        font-weight: 600;
+                    }
+                }
+            }
         }
     }
 }

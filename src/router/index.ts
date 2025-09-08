@@ -26,12 +26,28 @@ const RouterMap = [
   },
 
   {
-    path: '/show/login',
-    name: 'Login',
+    path: '/show/login/1',
+    name: 'Login1',
     meta: {
-      title: "Login"
+      title: "Login1"
     },
-    component: () => import("@/views/show/login/index.vue")
+    component: () => import("@/views/show/login/login1.vue")
+  },
+    {
+    path: '/show/login/3',
+    name: 'Login3',
+    meta: {
+      title: "Login3"
+    },
+    component: () => import("@/views/show/login/login3.vue")
+  },
+     {
+    path: '/show/login/5',
+    name: 'Login5',
+    meta: {
+      title: "Login5"
+    },
+    component: () => import("@/views/show/login/login5.vue")
   },
   {
     path: '/wallpaper',
