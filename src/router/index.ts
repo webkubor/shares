@@ -10,21 +10,10 @@ const RouterMap = [
     component: () => import('@/views/home/index.vue')
   },
   {
-    path: '/design',
-    name:"Design",
-    component: () => import('@/views/design/index.vue')
-  },
-  {
     path: '/bot/kimi',
     name:"Kimi",
     component: () => import('@/views/bot/kimi.vue')
   },
-  {
-    path: '/music',
-    name:"MusicEdit",
-    component: () => import('@/views/music/index.vue')
-  },
-
   {
     path: '/show/login/1',
     name: 'Login1',
@@ -57,40 +46,6 @@ const RouterMap = [
     },
     component: () => import("@/views/wallpaper/index.vue")
   },
-  {
-    path: '/rtc/index',
-    name: 'Rtc',
-    meta: {
-      title: "WebRTC"
-    },
-    component: () => import("@/views/rtc/index.vue")
-  },
-  {
-    path: '/rtc/webWork',
-    name: 'Worker',
-    meta: {
-      title: "Web Worker"
-    },
-    component: () => import("@/views/rtc/webWork.vue")
-  },
- 
-  {
-    path: '/xbox/betting',
-    name: 'betting',
-    meta: {
-      title: "三色球"
-    },
-    component: () => import("@/views/xbox/betting.vue")
-  },
-  {
-    path: '/animation/index',
-    name: 'Animation',
-    meta: {
-      title: "Animation"
-    },
-    component: () => import("@/views/animation/index.vue")
-  },
-
   {
     path: '/vertify/google',
     name: 'google',
@@ -130,7 +85,7 @@ const RouterMap = [
     meta: {
       title: "Colors"
     },
-    component: () => import("@/views/show/colors.vue")
+    component: () => import("@/views/show/colors/index.vue")
   },
   {
     path: '/show/list',
