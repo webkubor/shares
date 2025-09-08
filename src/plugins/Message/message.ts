@@ -91,6 +91,7 @@ function createMessage() {
   return messageInstance;
 }
 
+
 // 导出类型和实例
 export const Message = createMessage();
 export const Notice = createMessage();

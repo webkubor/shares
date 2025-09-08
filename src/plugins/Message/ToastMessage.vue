@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { watchEffect, onMounted, ref, computed } from 'vue'
+import { watchEffect, onMounted, ref, computed, onUnmounted } from 'vue'
 
 const props = defineProps({
   modelValue: {
@@ -71,6 +71,7 @@ onMounted(() => {
   startProgress()
 })
 
+
 watchEffect(() => {
   clearTimeout(timer)
   if (props.modelValue) {
@@ -78,6 +79,10 @@ watchEffect(() => {
       onClose()
     }, props.time)
   }
+})
+
+onUnmounted(() => {
+  clearTimeout(timer)
 })
 </script>
 

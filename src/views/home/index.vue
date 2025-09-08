@@ -79,31 +79,54 @@ window.addEventListener('vite:preloadError', (event) => {
     margin: 0 auto;
     width: 90%;
     max-width: 1200px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     
-    :deep(.n-tabs-nav) {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    .light_theme & {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       
-      .n-tabs-tab {
-        color: rgba(255, 255, 255, 0.7);
-        font-weight: 500;
-        transition: all 0.3s ease;
+      :deep(.n-tabs-nav) {
+        background: rgba(255, 255, 255, 0.7);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         
-        &:hover {
-          color: white;
-          background: rgba(255, 255, 255, 0.1);
+        .n-tabs-tab {
+          color: rgba(0, 0, 0, 0.7);
+          
+          &:hover {
+            color: #2354FF;
+            background: rgba(0, 0, 0, 0.05);
+          }
+          
+          &.n-tabs-tab--active {
+            color: #2354FF;
+            background: rgba(0, 0, 0, 0.05);
+          }
         }
+      }
+    }
+    
+    .dark_theme & {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      
+      :deep(.n-tabs-nav) {
+        background: rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         
-        &.n-tabs-tab--active {
-          color: white;
-          background: rgba(255, 255, 255, 0.15);
+        .n-tabs-tab {
+          color: rgba(255, 255, 255, 0.7);
+          
+          &:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+          }
+          
+          &.n-tabs-tab--active {
+            color: white;
+            background: rgba(255, 255, 255, 0.15);
+          }
         }
       }
     }
