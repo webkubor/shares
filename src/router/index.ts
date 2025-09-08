@@ -118,14 +118,6 @@ const RouterMap = [
       title: "海报"
     },
     component: () => import("@/views/public/poster/index.vue")
-  },
-  {
-    path: '/public/wall',
-    name: 'Poster-Page',
-    meta: {
-      title: "图片轮播"
-    },
-    component: () => import("@/views/public/wall/index.vue")
   }
  
 ]
