@@ -452,8 +452,8 @@ defineExpose({
 
 // 颜色选择容器
 .color-selection-container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-auto-rows: min-content;
     gap: 24px;
     max-height: 70vh;
     overflow-y: auto;

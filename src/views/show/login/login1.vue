@@ -13,6 +13,5 @@ import Globe from '@/components/Globe/earth.vue';
        height: 100vh;
        position: relative;
        overflow: hidden;
-       border: 1px solid #ffffff;
 }
 </style>

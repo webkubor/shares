@@ -15,10 +15,10 @@ const RouterMap = [
     component: () => import('@/views/bot/kimi.vue')
   },
   {
-    path: '/show/login/1',
-    name: 'Login1',
+    path: '/show/earth',
+    name: 'Earth',
     meta: {
-      title: "Login1"
+      title: "earth"
     },
     component: () => import("@/views/show/login/login1.vue")
   },
@@ -85,7 +85,7 @@ const RouterMap = [
     meta: {
       title: "Colors"
     },
-    component: () => import("@/views/show/colors/index.vue")
+    component: () => import("@/views/colors/index.vue")
   },
   {
     path: '/show/list',
