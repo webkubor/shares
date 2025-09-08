@@ -5,12 +5,12 @@
                 <span class="more">Palette</span> 
         </div>
         <n-space align="center">
-            <n-switch v-model:value="theme" checked-value="1" unchecked-value="0" :rail-style="railStyle">
+            <n-switch v-model:value="theme" checked-value="1" unchecked-value="0"  :rail-style="railStyle">
                 <template #checked>
-                    浅色模式
+                    暗黑模式
                 </template>
                 <template #unchecked>
-                    暗黑模式
+                    浅色模式
                 </template>
             </n-switch>
             <n-button :color="confirmColor">模板按钮</n-button>
@@ -28,7 +28,27 @@
 
     </n-card>
     <div class="control-window">
-        <n-card title="基础-色板">
+        <n-card title="自定义颜色">
+            <template #header-extra>
+                <n-button tertiary :color="confirmColor" @click="onCollect('0')">
+                    收起
+                </n-button>
+            </template>
+            <div class="custom-color-panel" v-if="!closeList.includes('0')">
+                <n-space vertical>
+                    <n-color-picker v-model:value="customColor" :show-alpha="false" size="large" @update:value="onCustomColorChange" />
+                    <div class="custom-color-preview">
+                        <div class="preview-box" :style="{ backgroundColor: customColor }"></div>
+                        <div class="color-info">
+                            <div class="color-value">{{ customColor }}</div>
+                            <n-button size="small" @click="onConfirm(customColor)">应用此颜色</n-button>
+                        </div>
+                    </div>
+                </n-space>
+            </div>
+        </n-card>
+        
+        <n-card title="基础-色板" style="margin-top: 20px;">
             <template #header-extra>
                 <n-button tertiary :color="confirmColor" @click="onCollect('1')">
                     收起
@@ -73,17 +93,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref,computed } from 'vue'
+import { ref, computed } from 'vue'
 import { writeClipboard } from "@/utils/copy"
 import type { CSSProperties } from 'vue'
-const hoverColor = ref('')
-const confirmColor = ref('')
-const theme = ref('1')
 
-const titleClass = computed(() => {
+// 定义响应式变量
+const hoverColor = ref<string>('')
+const confirmColor = ref<string>('')
+const theme = ref<string>('1')
+const customColor = ref<string>('#18a058')
+
+// 计算属性
+const titleClass = computed<string>(() => {
   return theme.value === '1'? 'common-title-white' : 'common-title-black';
 });
-const closeList = ref([])
+
+// 定义列表和数据
+const closeList = ref<string[]>([])
+
+// 颜色数据
 const solidColor = [
     // 红色系
     { name: '红色', color: '#f50057', description: '明亮、鲜艳的红色' },
@@ -185,14 +213,13 @@ const paleColor = [
 ];
 
 
-function onCollect(name) {
+function onCollect(name: string): void {
     if (closeList.value.includes(name)) {
         closeList.value = closeList.value.filter(item => item !== name)
         console.log(`output->移除`, closeList.value)
     } else {
         closeList.value.push(name)
     }
-
 }
 const railStyle = ({
     focused,
@@ -200,24 +227,30 @@ const railStyle = ({
 }: {
     focused: boolean
     checked: boolean
-}) => {
+}): CSSProperties => {
     const style: CSSProperties = {}
     if (checked) {
-        style.background = '#101820'
+        // 浅色模式下使用主题色
+        style.background = confirmColor.value || '#18a058'
         if (focused) {
-            style.boxShadow = '0 0 0 2px #101820'
+            style.boxShadow = `0 0 0 2px ${confirmColor.value || '#18a058'}`
         }
     } else {
-        style.background = confirmColor.value
+        // 暗黑模式下使用主题色
+        style.background = confirmColor.value || '#18a058'
         if (focused) {
-            style.boxShadow = `0 0 0 2px ${confirmColor.value}`
+            style.boxShadow = `0 0 0 2px ${confirmColor.value || '#18a058'}`
         }
     }
     return style
 }
 
 
-function onConfirm(color: string) {
+function onCustomColorChange(color: string): void {
+    customColor.value = color
+}
+
+function onConfirm(color: string): void {
     confirmColor.value = color
     writeClipboard(color, 'color is copied to clipboard')
 }
@@ -229,6 +262,36 @@ function onConfirm(color: string) {
     height: 100vh;
     background: var(--webkubor-bg);
     padding: 0 20px;
+}
+
+.custom-color-panel {
+    padding: 20px 0;
+    
+    .custom-color-preview {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        
+        .preview-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .color-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            
+            .color-value {
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+    }
 }
 
 .color-list {
