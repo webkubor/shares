@@ -213,6 +213,7 @@ const paleColor = [
 ];
 
 
+// 收起/展开面板函数
 function onCollect(name: string): void {
     if (closeList.value.includes(name)) {
         closeList.value = closeList.value.filter(item => item !== name)
@@ -221,6 +222,8 @@ function onCollect(name: string): void {
         closeList.value.push(name)
     }
 }
+
+// 开关样式函数
 const railStyle = ({
     focused,
     checked
@@ -230,13 +233,13 @@ const railStyle = ({
 }): CSSProperties => {
     const style: CSSProperties = {}
     if (checked) {
-        // 浅色模式下使用主题色
+        // 暗黑模式下使用主题色
         style.background = confirmColor.value || '#18a058'
         if (focused) {
             style.boxShadow = `0 0 0 2px ${confirmColor.value || '#18a058'}`
         }
     } else {
-        // 暗黑模式下使用主题色
+        // 浅色模式下使用主题色
         style.background = confirmColor.value || '#18a058'
         if (focused) {
             style.boxShadow = `0 0 0 2px ${confirmColor.value || '#18a058'}`
@@ -245,11 +248,12 @@ const railStyle = ({
     return style
 }
 
-
+// 自定义颜色变更函数
 function onCustomColorChange(color: string): void {
     customColor.value = color
 }
 
+// 确认颜色函数
 function onConfirm(color: string): void {
     confirmColor.value = color
     writeClipboard(color, 'color is copied to clipboard')
