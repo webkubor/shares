@@ -162,7 +162,7 @@ onUnmounted(() => {
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateX(-20px) translateY(-10px);
+  transform: translateX(-50%) translateY(-20px);
   opacity: 0;
 }
 

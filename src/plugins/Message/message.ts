@@ -93,5 +93,6 @@ function createMessage() {
 
 
 // 导出类型和实例
-export const Message = createMessage();
-export const Notice = createMessage();
+const messageApi = createMessage();
+export const Message = messageApi;
+export const Notice = messageApi;
