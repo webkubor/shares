@@ -14,188 +14,167 @@
   </transition>
 </template>
 
-<script>
-import { watchEffect, onMounted, ref } from "vue";
-export default {
-  name: "ToastMessage",
-  inheritAttrs: false,
-  props: {
-    modelValue: {
-      type: Boolean,
-      default: () => false
-    },
-    showProgress: {
-      type: Boolean,
-      default: () => true
-    },
-    content: {
-      type: String,
-      default: () => ""
-    },
-    time: {
-      type: Number,
-      default: () => 3000
-    },
-    destroy: {
-      type: Function,
-      default: () => { }
-    },
-    type: {
-      type: String,
-      default: () => "info",
-      validator(value) {
-        return ["success", "warning", "error", "info"].includes(value);
-      }
-    }
+<script setup>
+import { watchEffect, onMounted, ref, computed } from 'vue'
+
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    default: false
   },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    let timer = null;
-
-    const progress = ref(100);
-    const totalTime = props.time || 5000; // 接受外部传入的时间参数，默认为 5000 毫秒
-
-    function onClose() {
-      emit("update:modelValue", false);
-      props.destroy();
+  showProgress: {
+    type: Boolean,
+    default: true
+  },
+  content: {
+    type: String,
+    default: ''
+  },
+  time: {
+    type: Number,
+    default: 3000
+  },
+  destroy: {
+    type: Function,
+    default: () => {}
+  },
+  type: {
+    type: String,
+    default: 'info',
+    validator(value) {
+      return ['success', 'warning', 'error', 'info'].includes(value)
     }
-    onMounted(() => {
-      startProgress();
-    });
-    watchEffect(() => {
-      clearTimeout(timer);
-      if (props.modelValue) {
-        timer = setTimeout(() => {
-          onClose();
-        }, props.time);
-      }
-    });
-
-
-
-    const startProgress = () => {
-      const interval = setInterval(() => {
-        progress.value -= (100 / totalTime) * 1000;
-        if (progress.value <= 0) {
-          clearInterval(interval);
-        }
-      }, 1000);
-    }
-
-
-    return {
-      progress,
-      onClose
-    };
   }
-};
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+const progress = ref(100)
+const totalTime = computed(() => props.time || 5000)
+let timer = null
+
+const onClose = () => {
+  emit('update:modelValue', false)
+  props.destroy()
+}
+
+const startProgress = () => {
+  const interval = setInterval(() => {
+    progress.value -= (100 / totalTime.value) * 1000
+    if (progress.value <= 0) {
+      clearInterval(interval)
+    }
+  }, 1000)
+}
+
+onMounted(() => {
+  startProgress()
+})
+
+watchEffect(() => {
+  clearTimeout(timer)
+  if (props.modelValue) {
+    timer = setTimeout(() => {
+      onClose()
+    }, props.time)
+  }
+})
 </script>
 
 <style lang="scss" scoped>
+.toast-message {
+  position: fixed;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 380px;
+  z-index: 10000;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  
+  .toast-message-main {
+    padding: 16px 20px;
+    position: relative;
+  }
+
+  .toast-message-content {
+    color: white;
+    line-height: 1.5;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  &[data-type="success"] {
+    background: rgba(40, 167, 69, 0.15);
+    border-color: rgba(40, 167, 69, 0.2);
+  }
+  
+  &[data-type="error"] {
+    background: rgba(220, 53, 69, 0.15);
+    border-color: rgba(220, 53, 69, 0.2);
+  }
+  
+  &[data-type="warning"] {
+    background: rgba(255, 193, 7, 0.15);
+    border-color: rgba(255, 193, 7, 0.2);
+  }
+  
+  &[data-type="info"] {
+    background: rgba(23, 162, 184, 0.15);
+    border-color: rgba(23, 162, 184, 0.2);
+  }
+}
+
 .progress-bar-container {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 5px;
-  background-color: #23181E;
-  border-radius: 4px;
-}
-
-.progress-bar {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 1s;
-  background: $default-primary;
-  box-shadow: 0px 10px 40px -4px rgba($default-primary, 0.4);
-}
-
-.toast-message {
-  position: fixed;
-  top: 10vh;
-  /* 距离顶部屏幕高度的 10% */
-  left: 50%;
-  /* 水平居中 */
-  transform: translateX(-50%);
-  width: 90%;
-  /* 在小屏幕上自适应宽度 */
-  max-width: 320px;
-  /* 最大宽度限制 */
-  z-index: 10000;
-  background: linear-gradient(145deg, $default-primary 2.89%, #23181E 20.36%);
-  box-shadow: 0px 10px 40px -4px rgba($default-primary, 0.4);
-  filter: drop-shadow(0 0 10px $default-primary);
-  border-radius: 6px;
-  font-size: 16px;
-  transition: 0.3s;
-  border: 0.2px solid $default-primary;
-
-  .toast-message-content {
-    position: relative;
-    color: aliceblue;
-    padding: 0 10px;
-
-    :deep(.message-link) {
-      display: inline-block;
-      text-decoration: underline;
-      color: #d08fff;
-      margin-top: 8px;
-    }
-  }
-
-  .toast-message-main {
-    position: relative;
-    flex: 1;
-    padding: 15px;
-  }
-
-  .progress-bar-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background-color: #23181E;
-    border-radius: 4px;
-  }
-
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  
   .progress-bar {
     height: 100%;
-    border-radius: 4px;
-    transition: width 1s;
-    background: $default-primary;
-    box-shadow: 0px 10px 40px -4px rgba($default-primary, 0.4);
+    transition: width 1s linear;
+    background: rgba(255, 255, 255, 0.8);
   }
 }
 
 .slide-fade-enter-active {
-  opacity: 1;
-  transition: all 0.3s;
+  transition: all 0.3s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateX(-20px);
+  transform: translateX(-20px) translateY(-10px);
   opacity: 0;
 }
 
-
 @media screen and (max-width: 400px) {
   .toast-message {
-    width: auto;
+    width: calc(100% - 32px);
+    max-width: none;
+    border-radius: 8px;
+    
     .toast-message-main {
-      font-size: 12px;
-      padding: 6px 12px;
+      padding: 12px 16px;
+      font-size: 14px;
     }
+    
     .progress-bar-container {
-      height: 2px;
+      height: 3px;
     }
   }
-
-
 }
 </style>

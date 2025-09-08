@@ -76,6 +76,21 @@ const MessagePlugin = {
 
 export default MessagePlugin;
 
+// 创建独立的Message实例
+let messageInstance: any = null;
+
+function createMessage() {
+  if (!messageInstance) {
+    const fakeApp = { 
+      config: { globalProperties: {} },
+      provide: () => {}
+    };
+    MessagePlugin.install(fakeApp);
+    messageInstance = fakeApp.config.globalProperties.$message;
+  }
+  return messageInstance;
+}
+
 // 导出类型和实例
-export const Message = MessagePlugin.install.Message;
-export const Notice = MessagePlugin.install.Message;
+export const Message = createMessage();
+export const Notice = createMessage();
