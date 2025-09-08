@@ -1,9 +1,9 @@
 <template>
-    <div class="color-palette-container" :class="theme === '1' ? 'dark-theme' : 'light-theme'">
+    <div class="color-palette-container" :class="[theme === '1' ? 'dark-theme' : 'light-theme', isMobile ? 'mobile-view' : 'desktop-view']">
         <!-- 顶部预览区域 -->
         <n-card class="preview-card" :style="{ 
             background: theme === '1' ? '#1a1a1a' : '#ffffff',
-            borderRadius: '16px',
+            borderRadius: isMobile ? '12px' : '16px',
             boxShadow: '0 8px 30px ' + (confirmColor || '#18a058') + '40',
             border: '1px solid ' + (confirmColor || '#18a058') + '30',
             transition: 'all 0.3s ease'
@@ -12,7 +12,7 @@
                 <div class="title-section">
                     <div :class="titleClass" :style="{
                         borderLeft: '4px solid ' + (confirmColor || '#18a058'),
-                        paddingLeft: '16px',
+                        paddingLeft: isMobile ? '12px' : '16px',
                         transition: 'all 0.3s ease'
                     }">
                         Color <span class="more" :style="{ color: confirmColor || '#18a058' }">Palette</span> 
@@ -24,10 +24,10 @@
                 
                 <n-switch v-model:value="theme" checked-value="1" unchecked-value="0" :rail-style="railStyle" class="theme-switch">
                     <template #checked>
-                        <span class="switch-label">暗黑模式</span>
+                        <span class="switch-label">{{ isMobile ? '暗' : '暗黑模式' }}</span>
                     </template>
                     <template #unchecked>
-                        <span class="switch-label">浅色模式</span>
+                        <span class="switch-label">{{ isMobile ? '亮' : '浅色模式' }}</span>
                     </template>
                 </n-switch>
             </div>
@@ -35,10 +35,14 @@
             <div class="preview-section">
                 <div class="color-preview" :style="{ backgroundColor: confirmColor || '#18a058' }"></div>
                 <div class="button-showcase">
-                    <n-button :color="confirmColor" class="showcase-button">模板按钮</n-button>
-                    <n-button dashed :color="confirmColor" class="showcase-button">Dashed</n-button>
-                    <n-button ghost :color="confirmColor" class="showcase-button">Ghost</n-button>
-                    <n-button tertiary :color="confirmColor" class="showcase-button">Tertiary</n-button>
+                    <div class="button-row">
+                        <n-button :color="confirmColor" class="showcase-button">模板按钮</n-button>
+                        <n-button dashed :color="confirmColor" class="showcase-button">Dashed</n-button>
+                    </div>
+                    <div class="button-row">
+                        <n-button ghost :color="confirmColor" class="showcase-button">Ghost</n-button>
+                        <n-button tertiary :color="confirmColor" class="showcase-button">Tertiary</n-button>
+                    </div>
                     <div class="text-showcase" :style="{ color: confirmColor || '#18a058' }">这是一段使用当前颜色的文字</div>
                 </div>
             </div>
@@ -58,7 +62,7 @@
                             <n-color-picker 
                                 v-model:value="customColor" 
                                 :show-alpha="false" 
-                                size="large" 
+                                :size="isMobile ? 'medium' : 'large'" 
                                 @update:value="onCustomColorChange"
                                 class="color-picker"
                             />
@@ -68,7 +72,7 @@
                             <div class="color-info">
                                 <div class="color-value">{{ customColor }}</div>
                                 <n-button 
-                                    size="large" 
+                                    :size="isMobile ? 'medium' : 'large'" 
                                     @click="onConfirm(customColor)"
                                     class="apply-button"
                                     :style="{
@@ -100,10 +104,9 @@
                             transform: item.color === hoverColor ? 'scale(1.05)' : 'scale(1)',
                             boxShadow: item.color === hoverColor ? '0 8px 20px ' + item.color + '80' : 'none'
                         }">
-                            <div class="color-tooltip">
-                                <div class="tooltip-name">{{ item.name }}</div>
-                                <div class="tooltip-desc">{{ item.description }}</div>
-                                <div class="tooltip-code">{{ item.color }}</div>
+                            <div class="color-info-card">
+                                <div class="color-name">{{ item.name }}</div>
+                                <div class="color-code">{{ item.color }}</div>
                             </div>
                         </div>
                     </div>
@@ -129,10 +132,9 @@
                             transform: item.color === hoverColor ? 'scale(1.05)' : 'scale(1)',
                             boxShadow: item.color === hoverColor ? '0 8px 20px ' + item.color + '80' : 'none'
                         }">
-                            <div class="color-tooltip">
-                                <div class="tooltip-name">{{ item.name }}</div>
-                                <div class="tooltip-desc">{{ item.description }}</div>
-                                <div class="tooltip-code">{{ item.color }}</div>
+                            <div class="color-info-card">
+                                <div class="color-name">{{ item.name }}</div>
+                                <div class="color-code">{{ item.color }}</div>
                             </div>
                         </div>
                     </div>
@@ -144,7 +146,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { writeClipboard } from "@/utils/copy"
 import type { CSSProperties } from 'vue'
 import colorData from './colorData.json'
@@ -154,6 +156,22 @@ const hoverColor = ref<string>('')
 const confirmColor = ref<string>('')
 const theme = ref<string>('1')
 const customColor = ref<string>('#18a058')
+const isMobile = ref<boolean>(false)
+
+// 检测设备类型
+const checkDeviceType = () => {
+  isMobile.value = window.innerWidth <= 768
+}
+
+// 监听窗口大小变化
+onMounted(() => {
+  checkDeviceType()
+  window.addEventListener('resize', checkDeviceType)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkDeviceType)
+})
 
 // 计算属性
 const titleClass = computed<string>(() => {
@@ -263,6 +281,11 @@ defineExpose({
         --border-color: rgba(0, 0, 0, 0.1);
         --hover-bg: rgba(0, 0, 0, 0.03);
     }
+    
+    &.mobile-view {
+        padding: 12px;
+        gap: 16px;
+    }
 }
 
 // 顶部预览卡片样式
@@ -289,6 +312,10 @@ defineExpose({
                     font-weight: 800;
                     letter-spacing: 1px;
                 }
+                
+                .mobile-view & {
+                    font-size: 22px;
+                }
             }
             
             .common-title-white {
@@ -305,6 +332,11 @@ defineExpose({
                 font-weight: 600;
                 margin-top: 4px;
                 margin-left: 20px;
+                
+                .mobile-view & {
+                    font-size: 14px;
+                    margin-left: 12px;
+                }
             }
         }
         
@@ -313,9 +345,17 @@ defineExpose({
             box-shadow: 0 4px 12px v-bind('(confirmColor || "#18a058") + "30"');
             transition: all 0.3s ease;
             
+            .mobile-view & {
+                transform: scale(1);
+            }
+            
             .switch-label {
                 font-weight: bold;
                 font-size: 12px;
+                
+                .mobile-view & {
+                    font-size: 10px;
+                }
             }
         }
     }
@@ -325,8 +365,9 @@ defineExpose({
         gap: 24px;
         margin-top: 16px;
         
-        @media (max-width: 768px) {
+        .mobile-view & {
             flex-direction: column;
+            gap: 16px;
         }
         
         .color-preview {
@@ -335,6 +376,11 @@ defineExpose({
             border-radius: 16px;
             box-shadow: 0 8px 24px v-bind('(confirmColor || "#18a058") + "40"');
             transition: all 0.3s ease;
+            
+            .mobile-view & {
+                min-height: 120px;
+                border-radius: 12px;
+            }
             
             &:hover {
                 transform: translateY(-4px);
@@ -352,11 +398,33 @@ defineExpose({
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             
+            .mobile-view & {
+                padding: 12px;
+                gap: 12px;
+                border-radius: 12px;
+            }
+            
+            .button-row {
+                display: flex;
+                gap: 12px;
+                
+                .mobile-view & {
+                    gap: 8px;
+                }
+            }
+            
             .showcase-button {
+                flex: 1;
                 height: 40px;
                 font-weight: 600;
                 border-radius: 8px;
                 transition: all 0.3s ease;
+                
+                .mobile-view & {
+                    height: 36px;
+                    font-size: 12px;
+                    border-radius: 6px;
+                }
                 
                 &:hover {
                     transform: translateY(-2px);
@@ -371,6 +439,12 @@ defineExpose({
                 border-radius: 8px;
                 background-color: var(--hover-bg);
                 text-align: center;
+                
+                .mobile-view & {
+                    font-size: 14px;
+                    padding: 10px;
+                    border-radius: 6px;
+                }
             }
         }
     }
@@ -391,8 +465,19 @@ defineExpose({
     scrollbar-width: thin;
     scrollbar-color: v-bind('confirmColor || "#18a058"') transparent;
     
+    .mobile-view & {
+        gap: 16px;
+        padding: 12px;
+        border-radius: 12px;
+        max-height: 65vh;
+    }
+    
     &::-webkit-scrollbar {
         width: 6px;
+        
+        .mobile-view & {
+            width: 4px;
+        }
     }
     
     &::-webkit-scrollbar-track {
@@ -411,6 +496,11 @@ defineExpose({
         overflow: hidden;
         margin-bottom: 16px;
         
+        .mobile-view & {
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        
         &:hover {
             box-shadow: 0 10px 30px v-bind('(confirmColor || "#18a058") + "30"');
             transform: translateY(-2px);
@@ -419,6 +509,11 @@ defineExpose({
         .collapse-button {
             font-weight: 600;
             border-radius: 6px;
+            
+            .mobile-view & {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
         }
     }
     
@@ -430,13 +525,19 @@ defineExpose({
         border-left: 4px solid v-bind('confirmColor || "#18a058"');
         transition: all 0.3s ease;
         
+        .mobile-view & {
+            padding: 16px;
+            border-radius: 10px;
+        }
+        
         .color-picker-container {
             display: flex;
             flex-wrap: wrap;
             gap: 32px;
             
-            @media (max-width: 768px) {
+            .mobile-view & {
                 flex-direction: column;
+                gap: 20px;
             }
             
             .picker-section {
@@ -445,6 +546,10 @@ defineExpose({
                 display: flex;
                 justify-content: center;
                 
+                .mobile-view & {
+                    min-width: auto;
+                }
+                
                 .color-picker {
                     border: 1px solid v-bind('(confirmColor || "#18a058") + "40"');
                     border-radius: 12px;
@@ -452,6 +557,12 @@ defineExpose({
                     box-shadow: 0 8px 20px v-bind('(confirmColor || "#18a058") + "20"');
                     transition: all 0.3s ease;
                     background-color: var(--card-bg);
+                    
+                    .mobile-view & {
+                        padding: 12px;
+                        border-radius: 10px;
+                        width: 100%;
+                    }
                     
                     &:hover {
                         box-shadow: 0 12px 24px v-bind('(confirmColor || "#18a058") + "30"');
@@ -466,6 +577,11 @@ defineExpose({
                 flex-direction: column;
                 gap: 20px;
                 
+                .mobile-view & {
+                    min-width: auto;
+                    gap: 16px;
+                }
+                
                 .preview-box {
                     width: 100%;
                     height: 120px;
@@ -473,6 +589,11 @@ defineExpose({
                     box-shadow: 0 8px 20px v-bind('(confirmColor || "#18a058") + "30"');
                     transition: all 0.3s ease;
                     border: 2px solid v-bind('(confirmColor || "#18a058") + "50"');
+                    
+                    .mobile-view & {
+                        height: 80px;
+                        border-radius: 10px;
+                    }
                     
                     &:hover {
                         transform: scale(1.02);
@@ -485,6 +606,10 @@ defineExpose({
                     flex-direction: column;
                     gap: 16px;
                     
+                    .mobile-view & {
+                        gap: 12px;
+                    }
+                    
                     .color-value {
                         font-size: 18px;
                         font-weight: 600;
@@ -496,6 +621,12 @@ defineExpose({
                         text-align: center;
                         font-family: monospace;
                         letter-spacing: 1px;
+                        
+                        .mobile-view & {
+                            font-size: 16px;
+                            padding: 10px;
+                            border-radius: 6px;
+                        }
                     }
                     
                     .apply-button {
@@ -510,6 +641,12 @@ defineExpose({
                         font-size: 16px;
                         letter-spacing: 1px;
                         
+                        .mobile-view & {
+                            font-size: 14px;
+                            padding: 6px 12px;
+                            border-radius: 6px;
+                        }
+                        
                         &:hover {
                             transform: translateY(-3px);
                             box-shadow: 0 8px 20px v-bind('(confirmColor || "#18a058") + "60"');
@@ -523,80 +660,118 @@ defineExpose({
     // 颜色网格
     .color-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 16px;
         padding: 16px;
         
-        @media (max-width: 768px) {
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        .mobile-view & {
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 12px;
+            padding: 12px;
         }
         
         .color-grid-item {
             position: relative;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
             
             .color-swatch {
                 width: 100%;
                 aspect-ratio: 1/1;
-                border-radius: 12px;
+                border-radius: 12px 12px 0 0;
                 transition: all 0.3s ease;
                 position: relative;
-                overflow: hidden;
                 border: 2px solid transparent;
+                border-bottom: none;
                 
-                &:hover {
+                .mobile-view & {
+                    border-radius: 8px 8px 0 0;
+                }
+                
+                &:hover, &:active {
                     border-color: v-bind('confirmColor || "#18a058"');
-                    
-                    .color-tooltip {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
                 }
                 
                 &.pale {
                     border: 1px solid rgba(0, 0, 0, 0.1);
+                    border-bottom: none;
+                }
+                
+                .color-info-card {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: rgba(255, 255, 255, 0.9);
+                    color: #333;
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                    font-size: 10px;
+                    text-align: center;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    pointer-events: none;
+                    white-space: nowrap;
                     
-                    .color-tooltip {
-                        color: #333;
-                        background-color: rgba(255, 255, 255, 0.95);
+                    .color-name {
+                        font-weight: 600;
+                    }
+                    
+                    .color-code {
+                        font-family: monospace;
+                        font-size: 9px;
                     }
                 }
                 
-                .color-tooltip {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    background-color: rgba(0, 0, 0, 0.8);
-                    color: #fff;
-                    padding: 8px;
+                &:hover .color-info-card {
+                    opacity: 1;
+                }
+            }
+            
+            .color-info-card {
+                width: 100%;
+                background-color: var(--card-bg);
+                padding: 8px;
+                border-radius: 0 0 12px 12px;
+                border: 2px solid transparent;
+                border-top: none;
+                transition: all 0.3s ease;
+                
+                .mobile-view & {
+                    padding: 6px;
+                    border-radius: 0 0 8px 8px;
+                }
+                
+                .color-name {
+                    font-weight: 600;
                     font-size: 12px;
-                    opacity: 0;
-                    transform: translateY(10px);
-                    transition: all 0.3s ease;
-                    border-radius: 0 0 12px 12px;
+                    margin-bottom: 2px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     
-                    .tooltip-name {
-                        font-weight: 600;
-                        margin-bottom: 2px;
-                    }
-                    
-                    .tooltip-desc {
-                        font-size: 10px;
-                        opacity: 0.8;
-                        margin-bottom: 2px;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                    }
-                    
-                    .tooltip-code {
-                        font-family: monospace;
+                    .mobile-view & {
                         font-size: 11px;
-                        font-weight: 600;
                     }
                 }
+                
+                .color-code {
+                    font-family: monospace;
+                    font-size: 11px;
+                    color: v-bind('confirmColor || "#18a058"');
+                    
+                    .mobile-view & {
+                        font-size: 10px;
+                    }
+                }
+            }
+            
+            &:hover .color-swatch + .color-info-card,
+            &:active .color-swatch + .color-info-card {
+                border-color: v-bind('confirmColor || "#18a058"');
+                border-top: none;
             }
         }
     }
