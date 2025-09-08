@@ -7,6 +7,8 @@
     "depoly": "sh -x ./build_depoly.sh ",
     "dev-check": "npx depcheck",
     "ts-check": "npx vue-tsc --noEmit",
+        "changelog": "node scripts/generate-changelog.mjs",
+    
     "show": "vite preview"
   },
   "type": "module",
