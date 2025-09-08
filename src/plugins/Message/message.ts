@@ -3,7 +3,7 @@ import ToastMessage from "./ToastMessage.vue";
 
 const MessagePlugin = {
   install(app: any) {
-    let queue = [];
+    let queue: HTMLElement[] = [];
     const defaultTop = 10;
 
     function Message(option) {
@@ -21,7 +21,7 @@ const MessagePlugin = {
         destroy: () => {
           queue = queue.slice(1);
           const el = dom.firstElementChild;
-          if (el) {
+          if (el && el instanceof HTMLElement) {
             el.style.transform = `translateX(${2 * defaultTop}px)`;
             el.style.opacity = "0";
             setTimeout(() => {
@@ -48,9 +48,10 @@ const MessagePlugin = {
 
       queue.push(vm.$el);
 
-      function moveDownMessages(end) {
+      function moveDownMessages(end: number) {
+        const movedQueue: HTMLElement[] = [];
         for (let index = 0; index < end; index++) {
-          const el = queue[index];
+          const el = movedQueue[index];
           const rect = el.getBoundingClientRect();
           const distance = rect.height + 15;
           el.style.marginTop = `${(index + 1) * distance + defaultTop}px`;
