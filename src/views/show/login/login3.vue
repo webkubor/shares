@@ -10,7 +10,7 @@
                     <div class="switch__title title">
                         Welcome Back !
                     </div>
-                    <div class="descriptiom">
+                    <div class="description">
                         Don't have an account? Sign up now.
                     </div>
 
