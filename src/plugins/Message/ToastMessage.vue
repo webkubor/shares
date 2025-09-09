@@ -103,6 +103,7 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: message-appear 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
   
   .toast-message-main {
     padding: 16px 20px;
@@ -153,17 +154,36 @@ onUnmounted(() => {
 }
 
 .slide-fade-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.4s cubic-bezier(0.38, 0.1, 0.36, 0.9);
 }
 
 .slide-fade-leave-active {
-  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.4s cubic-bezier(0.5, 0, 0.66, 0.33);
 }
 
-.slide-fade-enter-from,
+.slide-fade-enter-from {
+  transform: translateX(-50%) translateY(-10px);
+  opacity: 0;
+  filter: blur(4px);
+}
+
 .slide-fade-leave-to {
   transform: translateX(-50%) translateY(-20px);
   opacity: 0;
+  filter: blur(4px);
+}
+
+@keyframes message-appear {
+  0% {
+    transform: translateX(-50%) scale(0.95);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
 }
 
 @media screen and (max-width: 400px) {

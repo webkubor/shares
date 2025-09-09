@@ -19,42 +19,76 @@ const MessagePlugin = {
 
       const app = createApp(ToastMessage, {
         destroy: () => {
-          queue = queue.slice(1);
-          const el = dom.firstElementChild;
-          if (el && el instanceof HTMLElement) {
-            el.style.transform = `translateX(${2 * defaultTop}px)`;
-            el.style.opacity = "0";
-            setTimeout(() => {
-              app.unmount(dom);
-              if (document.body.contains(dom)) {
-                document.body.removeChild(dom);
-              }
-            }, 300);
+          const index = queue.findIndex(item => item === vm.$el);
+          if (index !== -1) {
+            queue.splice(index, 1);
           }
+          
+          // 不需要手动设置样式，由 Vue transition 处理
+          setTimeout(() => {
+            app.unmount(dom);
+            if (document.body.contains(dom)) {
+              document.body.removeChild(dom);
+            }
+            // 更新剩余消息的位置，添加动画过渡
+            updateMessagePositions(true);
+          }, 400); // 增加时间以匹配动画持续时间
         },
         ...option
       });
 
       const vm = app.mount(dom);
       vm.$el.setAttribute("id", id);
-
-      setTimeout(() => {
-        vm.$el.style.marginTop = `${defaultTop}px`;
-      });
-
-      if (queue.length > 0) {
-        moveDownMessages(queue.length);
+      
+      // 设置消息类型属性
+      if (option.type) {
+        vm.$el.setAttribute("data-type", option.type);
       }
-
+      
+      // 初始化时设置为不可见，等待位置计算完成后再显示
+      vm.$el.style.opacity = "0";
+      
       queue.push(vm.$el);
+      
+      // 计算新消息的位置
+      setTimeout(() => {
+        updateMessagePositions();
+        // 计算完位置后淡入显示
+        setTimeout(() => {
+          vm.$el.style.opacity = "1";
+          vm.$el.style.transition = "opacity 0.3s ease-out";
+        }, 50);
+      }, 10);
 
-      function moveDownMessages(end: number) {
-        const movedQueue: HTMLElement[] = [];
-        for (let index = 0; index < end; index++) {
-          const el = movedQueue[index];
-          const rect = el.getBoundingClientRect();
-          const distance = rect.height + 15;
-          el.style.marginTop = `${(index + 1) * distance + defaultTop}px`;
+      function updateMessagePositions(animate = false) {
+        let totalHeight = defaultTop;
+        
+        // 为所有消息添加过渡效果
+        if (animate) {
+          queue.forEach(el => {
+            el.style.transition = 'margin-top 0.3s ease-out';
+          });
+        }
+        
+        // 第一个消息（最早的）放在顶部
+        if (queue.length > 0) {
+          queue[0].style.marginTop = `${totalHeight}px`;
+          totalHeight += queue[0].getBoundingClientRect().height + 15;
+        }
+        
+        // 后续消息依次向下排列
+        for (let i = 1; i < queue.length; i++) {
+          queue[i].style.marginTop = `${totalHeight}px`;
+          totalHeight += queue[i].getBoundingClientRect().height + 15;
+        }
+        
+        // 如果是动画过渡，添加延时后移除过渡效果
+        if (animate) {
+          setTimeout(() => {
+            queue.forEach(el => {
+              el.style.transition = '';
+            });
+          }, 300);
         }
       }
     }
