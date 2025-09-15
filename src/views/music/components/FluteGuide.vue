@@ -1,8 +1,8 @@
 <template>
   <div class="flute-guide">
     <!-- 如何挑选你的第一支竹笛 -->
-    <div class="section-card">
-      <h3>🧐 如何挑选你的第一支竹笛</h3>
+    <n-card title="🧐 如何挑选你的第一支竹笛" class="section-card">
+      <div class="card-content">
       <p>对于初学者，选择竹笛时可以考虑以下几点：</p>
       
       <div class="guide-section">
@@ -29,12 +29,13 @@
         <h4>购买渠道</h4>
         <p>如果条件允许，最好能到实体乐器店亲自挑选和试吹。如果线上购买，要选择信誉良好的店家，并了解清楚退换货政策。</p>
       </div>
-    </div>
+      </div>
+    </n-card>
     
     <!-- 竹笛的保养 -->
-    <div class="section-card">
-      <h3>💡 竹笛的保养</h3>
-      <p>一支好的竹笛如果保养得当，可以陪伴你很久：</p>
+    <n-card title="💡 竹笛的保养" class="section-card">
+      <div class="card-content">
+        <p>一支好的竹笛如果保养得当，可以陪伴你很久：</p>
       
       <div class="maintenance-list">
         <div class="maintenance-item">
@@ -52,7 +53,8 @@
           <p>可以定期在接口处涂抹少量凡士林起到润滑和密封作用。</p>
         </div>
       </div>
-    </div>
+      </div>
+    </n-card>
   </div>
 </template>
 
@@ -63,50 +65,61 @@
 <style lang="scss" scoped>
 .flute-guide {
   .section-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     transition: all 0.3s ease;
-
+    
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
     }
+    
+    :deep(.n-card-header) {
+      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 24px 32px;
+      
+      .n-card-header__main {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1e293b;
+      }
+    }
+    
+    :deep(.n-card__content) {
+      padding: 32px;
+    }
+  }
 
-    h3 {
-      color: #fff;
-      font-size: 1.4rem;
-      margin-bottom: 16px;
-      font-weight: 600;
-    }
-
-    p {
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
+  p {
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 16px;
+    font-size: 1rem;
   }
 
   .guide-section {
     margin-bottom: 20px;
     padding: 16px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(76, 175, 80, 0.05);
     border-radius: 12px;
     border-left: 4px solid #4CAF50;
 
     h4 {
-      color: #4CAF50;
+      color: #2e7d32;
       font-size: 1.1rem;
       margin-bottom: 8px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     p {
       margin-bottom: 0;
+      color: #475569;
     }
 
     ul {
@@ -114,7 +127,7 @@
       padding-left: 20px;
 
       li {
-        color: rgba(255, 255, 255, 0.9);
+        color: #475569;
         line-height: 1.6;
         margin-bottom: 8px;
 
@@ -129,7 +142,7 @@
     .maintenance-item {
       margin-bottom: 16px;
       padding: 16px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 152, 0, 0.05);
       border-radius: 12px;
       border-left: 4px solid #FF9800;
 
@@ -138,14 +151,15 @@
       }
 
       h4 {
-        color: #FF9800;
+        color: #e65100;
         font-size: 1.1rem;
         margin-bottom: 8px;
-        font-weight: 500;
+        font-weight: 600;
       }
 
       p {
         margin-bottom: 0;
+        color: #475569;
       }
     }
   }
@@ -154,17 +168,25 @@
 @media (max-width: 768px) {
   .flute-guide {
     .section-card {
-      padding: 16px;
-      margin-bottom: 16px;
-
-      h3 {
-        font-size: 1.2rem;
+      margin-bottom: 24px;
+      
+      :deep(.n-card-header) {
+        padding: 20px 24px;
+        
+        .n-card-header__main {
+          font-size: 1.3rem;
+        }
+      }
+      
+      :deep(.n-card__content) {
+        padding: 24px;
       }
     }
 
     .guide-section,
     .maintenance-item {
       padding: 12px;
+      margin-bottom: 12px;
     }
   }
 }

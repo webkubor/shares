@@ -38,23 +38,20 @@ import FluteGuide from './components/FluteGuide.vue'
   .header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    padding: 60px 20px;
+    padding: 40px 20px;
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     
     .title {
-      font-size: 3.5rem;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 15px;
-      font-weight: 700;
-      letter-spacing: -1px;
+      font-size: 2.2rem;
+      color: #1e293b;
+      margin-bottom: 12px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
     
     .subtitle {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: #64748b;
       margin: 0;
       font-weight: 400;
@@ -62,23 +59,31 @@ import FluteGuide from './components/FluteGuide.vue'
   }
   
   .content {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 32px 20px 60px;
+    
+    > * {
+      margin-bottom: 24px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 
 @media (max-width: 768px) {
   .flute-guide {
     .header {
-      padding: 40px 15px;
+      padding: 30px 15px;
       
       .title {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
       }
       
       .subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
     }
     
