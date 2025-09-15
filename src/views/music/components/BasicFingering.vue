@@ -34,8 +34,8 @@
   p {
     line-height: 1.6;
     color: #475569;
-    margin-bottom: 16px;
-    font-size: 0.9rem;
+    margin-bottom: 14px;
+    font-size: 14px;
   }
 }
 

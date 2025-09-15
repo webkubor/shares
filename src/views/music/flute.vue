@@ -1,9 +1,6 @@
 <template>
   <div class="flute-page">
-    <div class="header">
-      <h1 class="title">竹笛演奏指导</h1>
-      <p class="subtitle">学习竹笛演奏的基础知识和技巧</p>
-    </div>
+
     
     <div class="content">
       <n-collapse :default-expanded-names="['basic', 'practice', 'faq']">
@@ -47,28 +44,7 @@ import FluteGuide from './components/FluteGuide.vue'
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 0;
   
-  .header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    padding: 32px 20px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    
-    .title {
-      font-size: 1.8rem;
-      color: #1e293b;
-      margin-bottom: 10px;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-    }
-    
-    .subtitle {
-      font-size: 0.95rem;
-      color: #64748b;
-      margin: 0;
-      font-weight: 400;
-    }
-  }
+
   
   .content {
     max-width: 900px;
@@ -100,7 +76,7 @@ import FluteGuide from './components/FluteGuide.vue'
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 18px;
   padding: 16px 20px;
 }
 
@@ -122,11 +98,11 @@ import FluteGuide from './components/FluteGuide.vue'
       padding: 30px 15px;
       
       .title {
-        font-size: 1.8rem;
+        font-size: 28px;
       }
       
       .subtitle {
-        font-size: 1rem;
+        font-size: 16px;
       }
     }
     

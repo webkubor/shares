@@ -84,7 +84,7 @@
     padding: 28px;
     
     h3 {
-      font-size: 1.2rem;
+      font-size: 19px;
       font-weight: 600;
       color: #1e293b;
       margin-bottom: 16px;
@@ -97,7 +97,7 @@
     line-height: 1.6;
     color: #475569;
     margin-bottom: 14px;
-    font-size: 0.9rem;
+    font-size: 14px;
   }
 
   .guide-section {
@@ -109,7 +109,7 @@
 
     h4 {
       color: #2e7d32;
-      font-size: 1rem;
+      font-size: 16px;
       margin-bottom: 6px;
       font-weight: 600;
     }

@@ -43,7 +43,7 @@
   padding: 32px;
   
   h3 {
-    font-size: 1rem;
+    font-size: 19px;
     font-weight: 600;
     color: #1e293b;
     margin-bottom: 16px;
@@ -73,16 +73,17 @@
   }
   
   h4 {
-    color: #334155;
-    margin-bottom: 12px;
+    color: #374151;
+    margin: 16px 0 8px 0;
+    font-size: 16px;
     font-weight: 600;
   }
   
   p {
-    line-height: 1.7;
+    line-height: 1.6;
     color: #475569;
-    margin-bottom: 16px;
-    font-size: 1rem;
+    margin-bottom: 12px;
+    font-size: 14px;
   }
   
   ul, ol {

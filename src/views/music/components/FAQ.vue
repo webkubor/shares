@@ -44,7 +44,7 @@
   h3 {
     color: #1e293b;
     margin-bottom: 20px;
-    font-size: 1rem;
+    font-size: 18px;
     font-weight: 600;
     position: relative;
     padding-left: 16px;
@@ -69,10 +69,10 @@
   }
   
   p {
-    line-height: 1.7;
+    line-height: 1.6;
     color: #475569;
-    margin-bottom: 16px;
-    font-size: 1rem;
+    margin-bottom: 14px;
+    font-size: 14px;
   }
   
   ul, ol {
