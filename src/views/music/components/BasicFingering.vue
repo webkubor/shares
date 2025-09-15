@@ -31,25 +31,25 @@
   :deep(.n-card-header) {
     background: #ffffff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    padding: 20px 24px;
+    padding: 18px 24px;
     
     .n-card-header__main {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: #1e293b;
     }
   }
   
   :deep(.n-card__content) {
-    padding: 24px;
+    padding: 20px 24px;
     background: #ffffff;
   }
   
   p {
-    line-height: 1.7;
+    line-height: 1.6;
     color: #475569;
-    margin-bottom: 20px;
-    font-size: 1rem;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
   }
 }
 

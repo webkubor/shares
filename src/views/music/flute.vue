@@ -38,20 +38,20 @@ import FluteGuide from './components/FluteGuide.vue'
   .header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    padding: 40px 20px;
+    padding: 32px 20px;
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     
     .title {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       color: #1e293b;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       font-weight: 600;
       letter-spacing: -0.5px;
     }
     
     .subtitle {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       color: #64748b;
       margin: 0;
       font-weight: 400;

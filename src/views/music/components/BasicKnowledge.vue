@@ -3,6 +3,9 @@
     <div class="basics">
       <h3>竹笛简介</h3>
       <p>竹笛是中国传统的木管乐器，由竹子制成，音色清脆悠扬，是民族音乐中重要的独奏和合奏乐器。</p>
+      <div class="image-container">
+        <img src="../assets/introduce.png" alt="竹笛简介" class="intro-image">
+      </div>
       
       <h3>竹笛构造</h3>
       <ul>
@@ -96,6 +99,23 @@
       strong {
         color: #1e293b;
         font-weight: 600;
+      }
+    }
+  }
+  
+  .image-container {
+    text-align: center;
+    margin: 20px 0;
+    
+    .intro-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.02);
       }
     }
   }

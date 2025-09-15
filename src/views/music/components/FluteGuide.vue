@@ -82,25 +82,25 @@
     :deep(.n-card-header) {
       background: linear-gradient(135deg, #f8fafc, #e2e8f0);
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      padding: 24px 32px;
+      padding: 20px 28px;
       
       .n-card-header__main {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: 600;
         color: #1e293b;
       }
     }
     
     :deep(.n-card__content) {
-      padding: 32px;
+      padding: 28px;
     }
   }
 
   p {
-    line-height: 1.7;
+    line-height: 1.6;
     color: #475569;
-    margin-bottom: 16px;
-    font-size: 1rem;
+    margin-bottom: 14px;
+    font-size: 0.9rem;
   }
 
   .guide-section {
@@ -112,8 +112,8 @@
 
     h4 {
       color: #2e7d32;
-      font-size: 1.1rem;
-      margin-bottom: 8px;
+      font-size: 1rem;
+      margin-bottom: 6px;
       font-weight: 600;
     }
 
@@ -152,8 +152,8 @@
 
       h4 {
         color: #e65100;
-        font-size: 1.1rem;
-        margin-bottom: 8px;
+        font-size: 1rem;
+        margin-bottom: 6px;
         font-weight: 600;
       }
 
@@ -171,10 +171,10 @@
       margin-bottom: 24px;
       
       :deep(.n-card-header) {
-        padding: 20px 24px;
+        padding: 18px 20px;
         
         .n-card-header__main {
-          font-size: 1.3rem;
+          font-size: 1.1rem;
         }
       }
       
