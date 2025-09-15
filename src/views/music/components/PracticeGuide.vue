@@ -1,5 +1,5 @@
 <template>
-  <n-card title="练习建议" class="section-card">
+  <div class="section-card">
     <div class="practice">
       <h3>初学者练习步骤</h3>
       <ol>
@@ -17,7 +17,7 @@
         <li>循序渐进，不要急于求成</li>
       </ul>
     </div>
-  </n-card>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -40,26 +40,21 @@
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
   }
   
-  :deep(.n-card-header) {
-    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 24px 32px;
-    
-    .n-card-header__main {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #1e293b;
-    }
-  }
+  padding: 32px;
   
-  :deep(.n-card__content) {
-    padding: 32px;
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
   }
   
   h3 {
     color: #1e293b;
     margin-bottom: 20px;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 600;
     position: relative;
     padding-left: 16px;

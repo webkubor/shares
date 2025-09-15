@@ -1,5 +1,5 @@
 <template>
-  <n-card title="常见问题" class="section-card">
+  <div class="section-card">
     <div class="faq">
       <div class="faq-item">
         <h4>Q: 为什么吹不出声音？</h4>
@@ -16,7 +16,7 @@
         <p>A: 多做手指灵活性练习，确保指尖垂直按孔，逐渐增强手指力量。</p>
       </div>
     </div>
-  </n-card>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -39,26 +39,12 @@
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
   }
   
-  :deep(.n-card-header) {
-    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 24px 32px;
-    
-    .n-card-header__main {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #1e293b;
-    }
-  }
-  
-  :deep(.n-card__content) {
-    padding: 32px;
-  }
+  padding: 32px;
   
   h3 {
     color: #1e293b;
     margin-bottom: 20px;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 600;
     position: relative;
     padding-left: 16px;

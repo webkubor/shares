@@ -1,26 +1,38 @@
 <template>
-  <div class="flute-guide">
+  <div class="flute-page">
     <div class="header">
       <h1 class="title">竹笛演奏指导</h1>
       <p class="subtitle">学习竹笛演奏的基础知识和技巧</p>
     </div>
     
     <div class="content">
-      <BasicKnowledge />
-      <PostureGuide />
-      <BasicFingering />
-      <PracticeGuide />
-      <FAQ />
-      
-      <!-- 竹笛选购与保养指南 -->
-      <FluteGuide />
+      <n-collapse :default-expanded-names="['basic', 'practice', 'faq']">
+        <n-collapse-item title="基础知识" name="basic">
+          <BasicKnowledge />
+        </n-collapse-item>
+        
+        <n-collapse-item title="练习建议" name="practice">
+          <PracticeGuide />
+        </n-collapse-item>
+        
+        <n-collapse-item title="常见问题" name="faq">
+          <FAQ />
+        </n-collapse-item>
+        
+        <n-collapse-item title="🧐 竹笛选购与保养指南" name="guide">
+          <FluteGuide />
+        </n-collapse-item>
+        
+        <n-collapse-item title="🎵 竹笛转调对应表 (进阶)" name="fingering">
+          <BasicFingering />
+        </n-collapse-item>
+      </n-collapse>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import BasicKnowledge from './components/BasicKnowledge.vue'
-import PostureGuide from './components/PostureGuide.vue'
 import BasicFingering from './components/BasicFingering.vue'
 import PracticeGuide from './components/PracticeGuide.vue'
 import FAQ from './components/FAQ.vue'
@@ -30,7 +42,7 @@ import FluteGuide from './components/FluteGuide.vue'
 </script>
 
 <style lang="scss" scoped>
-.flute-guide {
+.flute-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 0;
@@ -73,8 +85,39 @@ import FluteGuide from './components/FluteGuide.vue'
   }
 }
 
+:deep(.n-collapse) {
+  background: transparent;
+}
+
+:deep(.n-collapse-item) {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+:deep(.n-collapse-item__header) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 16px 20px;
+}
+
+:deep(.n-collapse-item__header:hover) {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+:deep(.n-collapse-item__content-wrapper) {
+  background: white;
+}
+
+:deep(.n-collapse-item__content-inner) {
+  padding: 0;
+}
+
 @media (max-width: 768px) {
-  .flute-guide {
+  .flute-page {
     .header {
       padding: 30px 15px;
       

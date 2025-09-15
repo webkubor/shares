@@ -1,5 +1,5 @@
 <template>
-  <n-card title="基础知识" class="section-card">
+  <div class="section-card">
     <div class="basics">
       <h3>竹笛简介</h3>
       <p>竹笛是中国传统的木管乐器，由竹子制成，音色清脆悠扬，是民族音乐中重要的独奏和合奏乐器。</p>
@@ -15,7 +15,7 @@
         <li><strong>音孔：</strong>控制不同音高的孔洞</li>
       </ul>
     </div>
-  </n-card>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -38,26 +38,21 @@
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
   }
   
-  :deep(.n-card-header) {
-    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 24px 32px;
-    
-    .n-card-header__main {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #1e293b;
-    }
-  }
+  padding: 28px;
   
-  :deep(.n-card__content) {
-    padding: 32px;
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
   }
   
   h3 {
     color: #1e293b;
-    margin-bottom: 20px;
-    font-size: 1.4rem;
+    margin-bottom: 16px;
+    font-size: 1rem;
     font-weight: 600;
     position: relative;
     padding-left: 16px;
@@ -82,10 +77,10 @@
   }
   
   p {
-    line-height: 1.7;
+    line-height: 1.6;
     color: #475569;
-    margin-bottom: 16px;
-    font-size: 1rem;
+    margin-bottom: 14px;
+    font-size: 0.9rem;
   }
   
   ul, ol {

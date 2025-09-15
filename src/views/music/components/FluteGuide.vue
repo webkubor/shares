@@ -1,8 +1,9 @@
 <template>
   <div class="flute-guide">
     <!-- 如何挑选你的第一支竹笛 -->
-    <n-card title="🧐 如何挑选你的第一支竹笛" class="section-card">
+    <div class="section-card">
       <div class="card-content">
+      <h3>🧐 如何挑选你的第一支竹笛</h3>
       <p>对于初学者，选择竹笛时可以考虑以下几点：</p>
       
       <div class="guide-section">
@@ -30,11 +31,12 @@
         <p>如果条件允许，最好能到实体乐器店亲自挑选和试吹。如果线上购买，要选择信誉良好的店家，并了解清楚退换货政策。</p>
       </div>
       </div>
-    </n-card>
+    </div>
     
     <!-- 竹笛的保养 -->
-    <n-card title="💡 竹笛的保养" class="section-card">
+    <div class="section-card">
       <div class="card-content">
+        <h3>💡 竹笛的保养</h3>
         <p>一支好的竹笛如果保养得当，可以陪伴你很久：</p>
       
       <div class="maintenance-list">
@@ -54,7 +56,7 @@
         </div>
       </div>
       </div>
-    </n-card>
+    </div>
   </div>
 </template>
 
@@ -79,20 +81,15 @@
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
     }
     
-    :deep(.n-card-header) {
-      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      padding: 20px 28px;
-      
-      .n-card-header__main {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #1e293b;
-      }
-    }
+    padding: 28px;
     
-    :deep(.n-card__content) {
-      padding: 28px;
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e2e8f0;
     }
   }
 

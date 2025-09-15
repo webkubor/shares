@@ -1,12 +1,12 @@
 <template>
-  <n-card title="🎵 竹笛转调对应表" class="section-card">
+  <div class="section-card">
     <div class="card-content">
       <p>这里适合你需要演奏-有一定的指法基础和两个笛子以上的，有合奏和调门疑惑的同学</p>
       <div class="image-container">
         <img src="../assets/trans.png" alt="竹笛转调对应表" class="trans-chart">
       </div>
     </div>
-  </n-card>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -28,22 +28,8 @@
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   }
   
-  :deep(.n-card-header) {
-    background: #ffffff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    padding: 18px 24px;
-    
-    .n-card-header__main {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #1e293b;
-    }
-  }
-  
-  :deep(.n-card__content) {
-    padding: 20px 24px;
-    background: #ffffff;
-  }
+  padding: 20px 24px;
+  background: #ffffff;
   
   p {
     line-height: 1.6;
