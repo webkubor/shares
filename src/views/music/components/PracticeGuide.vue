@@ -67,7 +67,7 @@
       transform: translateY(-50%);
       width: 4px;
       height: 20px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: linear-gradient(135deg, #4ade80, #22c55e);
       border-radius: 2px;
     }
   }
