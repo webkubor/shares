@@ -1,8 +1,8 @@
 <template>
-  <div class="iframe-container">
+  <div class="iframe-container" :class="local.osTheme === 'dark' ? 'dark_theme' : 'light_theme'">
     <div class="iframe-header">
       <div class="title-section">
-        <h1 class="main-title">打开jazzcash的iframe链接测试</h1>
+        <h1 class="main-title">iframe链接测试</h1>
         <p class="subtitle">External content preview</p>
       </div>
       <div class="controls">
@@ -30,10 +30,37 @@
       ></iframe>
     </div>
     
+    <div class="url-editor">
+      <n-card size="small" class="url-card">
+        <div class="input-container">
+          <n-input
+            v-model:value="inputUrl"
+            type="text"
+            placeholder="Enter URL here"
+            clearable
+            class="url-input"
+            @keydown.enter="updateIframe"
+          >
+            <template #prefix>
+              <n-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+                  <path fill="none" d="M0 0h24v24H0z"/>
+                  <path d="M18.364 15.536L16.95 14.12l1.414-1.414a5 5 0 1 0-7.071-7.071L9.879 7.05 8.464 5.636 9.88 4.222a7 7 0 0 1 9.9 9.9l-1.415 1.414zm-2.828 2.828l-1.415 1.414a7 7 0 0 1-9.9-9.9l1.415-1.414L7.05 9.88l-1.414 1.414a5 5 0 1 0 7.071 7.071l1.414-1.414 1.415 1.414zm-.708-10.607l1.415 1.415-7.071 7.07-1.415-1.414 7.071-7.07z" fill="currentColor"/>
+                </svg>
+              </n-icon>
+            </template>
+          </n-input>
+          <n-button type="primary" @click="updateIframe" :disabled="!inputUrl" class="apply-button">
+            Apply
+          </n-button>
+        </div>
+      </n-card>
+    </div>
+    
     <div class="iframe-footer">
       <div class="url-display">
         <span class="url-label">Source:</span>
-        <span class="url-value">{{ iframeUrl }}</span>
+        <a :href="iframeUrl" target="_blank" class="url-value" title="Open in new tab">{{ iframeUrl }}</a>
       </div>
       <div class="status-indicator" :class="{ 'status-loaded': !loading }">
         {{ loading ? 'Loading...' : 'Loaded' }}
@@ -44,12 +71,18 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useTheme } from "@/hooks/useTheme";
 
-const iframeUrl = ref('http://192.168.124.28:5173/#/connect/jazzcash/P34074863650475521');
+// const iframeUrl = ref('https://pk-test.tpservice.vip/#/connect/jazzcash/P34074863650475521');
+const iframeUrl = ref('https://pk-test.tpservice.vip/#/connect/easypaisa/P34074863650475521');
+const inputUrl = ref(iframeUrl.value);
 const loading = ref(true);
 const isFullscreen = ref(false);
 const iframeElement = ref(null);
 const iframeWrapper = ref(null);
+
+// 获取主题相关信息
+const { local } = useTheme();
 
 const onIframeLoad = () => {
   loading.value = false;
@@ -59,6 +92,13 @@ const refreshIframe = () => {
   loading.value = true;
   if (iframeElement.value) {
     iframeElement.value.src = iframeUrl.value;
+  }
+};
+
+const updateIframe = () => {
+  if (inputUrl.value && inputUrl.value !== iframeUrl.value) {
+    iframeUrl.value = inputUrl.value;
+    refreshIframe();
   }
 };
 
@@ -103,25 +143,148 @@ onMounted(() => {
   };
 });
 </script>
-
-<style scoped>
+<style lang="scss" scoped>
 .iframe-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  background-color: #f5f7fa;
   font-family: 'Arial', sans-serif;
+  transition: all 0.3s ease;
+  
+  // 亮色主题
+  &.light_theme {
+    background-color: #f5f7fa;
+    
+    .iframe-header, .url-editor, .iframe-footer {
+      background-color: #ffffff;
+      border-color: #e8eaed;
+    }
+    
+    .main-title {
+      color: #1a1a1a;
+    }
+    
+    .subtitle {
+      color: #666;
+    }
+    
+    .control-btn {
+      background-color: #f0f2f5;
+      
+      &:hover {
+        background-color: #e4e6eb;
+      }
+      
+      i {
+        color: #444;
+      }
+    }
+    
+    .iframe-wrapper {
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .loading-overlay {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .url-label {
+      color: #555;
+    }
+    
+    .url-value {
+      color: #0066cc;
+    }
+  }
+  
+  // 暗色主题
+  &.dark_theme {
+    background-color: #121212;
+    
+    .iframe-header, .url-editor, .iframe-footer {
+      background-color: #1e1e1e;
+      border-color: #333;
+    }
+    
+    .main-title {
+      color: #ffffff;
+    }
+    
+    .subtitle {
+      color: #aaa;
+    }
+    
+    .control-btn {
+      background-color: #333;
+      
+      &:hover {
+        background-color: #444;
+      }
+      
+      i {
+        color: #ddd;
+      }
+    }
+    
+    .iframe-wrapper {
+      background-color: #1e1e1e;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .loading-overlay {
+      background-color: rgba(30, 30, 30, 0.9);
+      
+      p {
+        color: #ddd;
+      }
+    }
+    
+    .url-label {
+      color: #ddd;
+    }
+    
+    .url-value {
+      color: #5b9dd9;
+    }
+  }
+}
+
+.url-editor {
+  padding: 16px 24px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.url-card {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.input-container {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+}
+
+.url-input {
+  flex: 1;
+  min-width: 0; /* 防止flex子项溢出 */
+}
+
+.apply-button {
+  white-space: nowrap;
 }
 
 .iframe-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 24px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e8eaed;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 8px 16px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 
 .title-section {
@@ -131,15 +294,16 @@ onMounted(() => {
 
 .main-title {
   margin: 0;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
-  color: #1a1a1a;
+  line-height: 1.2;
+  padding: 0;
 }
 
 .subtitle {
-  margin: 4px 0 0;
-  font-size: 14px;
-  color: #666;
+  margin: 2px 0 0;
+  font-size: 12px;
+  opacity: 0.8;
 }
 
 .controls {
@@ -155,41 +319,33 @@ onMounted(() => {
   height: 40px;
   border: none;
   border-radius: 8px;
-  background-color: #f0f2f5;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.control-btn:hover {
-  background-color: #e4e6eb;
-}
-
 .control-btn i {
   font-size: 18px;
-  color: #444;
 }
 
 .iframe-wrapper {
   position: relative;
   flex: 1;
-  background-color: #ffffff;
-  border-radius: 8px;
-  margin: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  margin: 0;
   overflow: hidden;
   transition: all 0.3s ease;
-}
-
-.iframe-wrapper.is-fullscreen {
-  margin: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.iframe-wrapper iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+  
+  &.is-fullscreen {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
 }
 
 .loading-overlay {
@@ -202,7 +358,6 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.9);
   z-index: 10;
 }
 
@@ -227,8 +382,8 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
-  background-color: #ffffff;
-  border-top: 1px solid #e8eaed;
+  border-top-width: 1px;
+  border-top-style: solid;
 }
 
 .url-display {
@@ -239,12 +394,10 @@ onMounted(() => {
 
 .url-label {
   font-weight: 600;
-  color: #555;
   margin-right: 8px;
 }
 
 .url-value {
-  color: #0066cc;
   max-width: 500px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -257,32 +410,38 @@ onMounted(() => {
   color: #f39c12;
   display: flex;
   align-items: center;
-}
-
-.status-indicator.status-loaded {
-  color: #2ecc71;
-}
-
-.status-indicator::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: currentColor;
-  margin-right: 8px;
+  
+  &.status-loaded {
+    color: #2ecc71;
+  }
+  
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: currentColor;
+    margin-right: 8px;
+  }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .iframe-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    padding: 6px 12px;
   }
   
-  .controls {
-    align-self: flex-end;
+  .main-title {
+    font-size: 16px;
+  }
+  
+  .subtitle {
+    font-size: 11px;
+  }
+  
+  .url-editor {
+    padding: 0;
   }
   
   .iframe-footer {
