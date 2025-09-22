@@ -73,8 +73,8 @@
 import { ref, onMounted } from 'vue';
 import { useTheme } from "@/hooks/useTheme";
 
-// const iframeUrl = ref('https://pk-test.tpservice.vip/#/connect/jazzcash/P34074863650475521');
-const iframeUrl = ref('https://pk-test.tpservice.vip/#/connect/easypaisa/P34074863650475521');
+// const iframeUrl = ref('https://pk-test.tpservice.vip/#/app-opener');
+const iframeUrl = ref('https://pk-test.tpservice.vip/#/app-opener');
 const inputUrl = ref(iframeUrl.value);
 const loading = ref(true);
 const isFullscreen = ref(false);
