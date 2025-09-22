@@ -14,14 +14,7 @@ const RouterMap = [
     name:"Kimi",
     component: () => import('@/views/bot/kimi.vue')
   },
-  {
-    path: '/show/earth',
-    name: 'Earth',
-    meta: {
-      title: "earth"
-    },
-    component: () => import("@/views/show/login/login1.vue")
-  },
+
     {
     path: '/show/login/3',
     name: 'Login3',
