@@ -118,14 +118,6 @@ const RouterMap = [
       title: "海报"
     },
     component: () => import("@/views/public/poster/index.vue")
-  },
-  {
-    path: '/music/flute',
-    name: 'Flute-Guide',
-    meta: {
-      title: "竹笛演奏指导"
-    },
-    component: () => import("@/views/music/flute.vue")
   }
 ]
 const routes = [
