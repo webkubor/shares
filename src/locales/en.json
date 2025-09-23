@@ -1,9 +1,0 @@
-{
-  "index": "index",
-  "about": "about",
-  "this": "Hi! this is",
-  "nesting": {
-    "sir": "man",
-    "lady": "lady"
-  }
-}
