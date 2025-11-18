@@ -1,16 +1,33 @@
 <template>
   <div class="home-page">
     <UserInfo />
+    <div class="home-cta">
+      <button class="cta-btn" data-variant="primary" @click="activeTab = 'chap1'">Explore Tools</button>
+      <button class="cta-btn" @click="activeTab = 'chap3'">View Projects</button>
+    </div>
     <div class="show-container">
-      <n-tabs type="segment" animated>
-        <n-tab-pane name="chap1" tab="有趣的尝试">
+      <div role="tablist" class="tabs-nav">
+        <button
+          :class="['tab-btn', activeTab === 'chap1' ? 'is-active' : '']"
+          role="tab"
+          aria-selected="{{ activeTab === 'chap1' }}"
+          @click="activeTab = 'chap1'"
+        >有趣的尝试</button>
+        <button
+          :class="['tab-btn', activeTab === 'chap3' ? 'is-active' : '']"
+          role="tab"
+          aria-selected="{{ activeTab === 'chap3' }}"
+          @click="activeTab = 'chap3'"
+        >项目展示</button>
+      </div>
+      <div class="tabs-content">
+        <div v-show="activeTab === 'chap1'" class="tab-pane">
           <ToolView />
-        </n-tab-pane>
-
-        <n-tab-pane name="chap3" tab="项目展示">
+        </div>
+        <div v-show="activeTab === 'chap3'" class="tab-pane">
           <ProjectList />
-        </n-tab-pane>
-      </n-tabs>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +35,9 @@
 import UserInfo from "./components/UserInfo.vue";
 import ProjectList from "./components/ProjectList.vue";
 import ToolView from './components/Tool.vue'
+import { ref } from 'vue'
+
+const activeTab = ref('chap1')
 
 window.addEventListener('vite:preloadError', (event) => {
   window.$message?.warning('检测到有新版本，5秒后即将自动刷新...');
@@ -36,41 +56,35 @@ window.addEventListener('vite:preloadError', (event) => {
   position: relative;
   
   .light_theme & {
-    background: 
-      radial-gradient(ellipse at 20% 20%, rgba(240, 240, 240, 0.8) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 80%, rgba(230, 230, 230, 0.8) 0%, transparent 60%),
-      linear-gradient(135deg, rgba(245, 245, 245, 0.95) 0%, rgba(225, 225, 225, 0.95) 100%);
-    
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(147, 197, 253, 0.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 80%, rgba(167, 139, 250, 0.25) 0%, transparent 55%),
+      linear-gradient(135deg, rgba(246, 248, 252, 0.95) 0%, rgba(242, 245, 250, 0.95) 100%);
+
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(0, 0, 0, 0.02) 0%, transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(0, 0, 0, 0.02) 0%, transparent 30%);
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 20px),
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 20px);
       pointer-events: none;
     }
   }
   
   .dark_theme & {
-    background: 
-      radial-gradient(ellipse at 20% 20%, rgba(40, 40, 40, 0.8) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 80%, rgba(30, 30, 30, 0.8) 0%, transparent 60%),
-      linear-gradient(135deg, rgba(25, 25, 25, 0.95) 0%, rgba(45, 45, 45, 0.95) 100%);
-    
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(35, 84, 255, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(124, 58, 237, 0.12) 0%, transparent 60%),
+      linear-gradient(135deg, rgba(15, 22, 41, 0.95) 0%, rgba(18, 26, 51, 0.95) 100%);
+
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 30%);
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 20px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 20px);
       pointer-events: none;
     }
   }
@@ -86,55 +100,56 @@ window.addEventListener('vite:preloadError', (event) => {
     .light_theme & {
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid rgba(0, 0, 0, 0.08);
-      
-      :deep(.n-tabs-nav) {
-        background: rgba(255, 255, 255, 0.7);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        
-        .n-tabs-tab {
-          color: rgba(0, 0, 0, 0.7);
-          
-          &:hover {
-            color: #2354FF;
-            background: rgba(0, 0, 0, 0.05);
-          }
-          
-          &.n-tabs-tab--active {
-            color: #2354FF;
-            background: rgba(0, 0, 0, 0.05);
-          }
-        }
-      }
     }
-    
     .dark_theme & {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      
-      :deep(.n-tabs-nav) {
-        background: rgba(255, 255, 255, 0.05);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        
-        .n-tabs-tab {
-          color: rgba(255, 255, 255, 0.7);
-          
-          &:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-          }
-          
-          &.n-tabs-tab--active {
-            color: white;
-            background: rgba(255, 255, 255, 0.15);
-          }
-        }
-      }
     }
     
-    :deep(.n-tab-pane) {
-      padding: 24px;
+    .tabs-nav {
+      display: flex;
+      gap: 12px;
+      padding: 14px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border-color);
     }
+    .tab-btn {
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 10px 18px;
+      color: var(--text-secondary);
+      background: rgba(0,0,0,0.03);
+      font-weight: 600;
+      letter-spacing: .5px;
+      transition: all .2s ease;
+    }
+    .tab-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+    .tab-btn.is-active {
+      background-image: var(--brand-gradient);
+      border: 0;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(35, 84, 255, 0.18);
+    }
+    .tabs-content { padding: 24px; background: var(--bg-elevated); border: 1px solid var(--border-color); border-top: 0; }
   }
+
+  .home-cta {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: -8px;
+    margin-bottom: 16px;
+  }
+  .cta-btn {
+    height: 40px;
+    padding: 0 18px;
+    font-weight: 700;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: rgba(0,0,0,.03);
+    color: var(--text-primary);
+  }
+  .cta-btn[data-variant="primary"] { background-image: var(--brand-gradient); border: 0; color: #fff; box-shadow: 0 8px 24px rgba(35,84,255,.18); }
 }
 
 @media screen and (max-width: 768px) {
@@ -156,6 +171,11 @@ window.addEventListener('vite:preloadError', (event) => {
         padding: 16px;
       }
     }
+  }
+
+  .light_theme &::before,
+  .dark_theme &::before {
+    display: none;
   }
 }
 </style>

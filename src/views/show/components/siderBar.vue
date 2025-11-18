@@ -30,7 +30,7 @@
 
         <div class="bottom-board">
             <div style="display: flex; align-items: center;">
-                <n-avatar round :size="48" src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg" />
+                <img class="mini-avatar" src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg" alt="avatar" />
                 <svg t="1716531337836" class="icon" viewBox="0 0 1024 1024" version="1.1"
                     xmlns="http://www.w3.org/2000/svg" p-id="1451" width="200" height="200">
                     <path
@@ -47,7 +47,7 @@
                 <br>
                 address: 127.0.0.1
             </div>
-            <n-button ghost color="#ffffff" round>Change password</n-button>
+            <button class="webkubor-back-btn" data-variant="ghost">Change password</button>
         </div>
 
     </div>
@@ -63,16 +63,16 @@
     min-height: 100vh;
     width: 14vw;
     border-radius: 0 20px 20px 0px;
-    filter: drop-shadow(0 0 10px #8fb7c0);
-    background: #ffffff;
+    background: linear-gradient(180deg, #ffffff 0%, #f6f8fc 100%);
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 14px;
     position: relative;
+    box-shadow: 0 12px 40px var(--shadow-color);
 
     .logo-box {
         border-radius: 0 20px 20px 0px;
-        filter: drop-shadow(0 0 10px #00000010);
+        box-shadow: 0 6px 20px rgba(0,0,0,.08);
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -82,7 +82,7 @@
         img {
             height: 100px;
             width: 100px;
-            filter: drop-shadow(0 0 3px #5E64DA);
+            box-shadow: 0 4px 12px rgba(94,100,218,.35);
             border-radius: 50%;
         }
 
@@ -101,26 +101,20 @@
       
 
         .item {
-            padding: 10px 20px;
-            font-size: 25px;
-            font-weight: 600;
-            line-height: 60px;
+            padding: 8px 16px;
+            font-size: 16px;
+            font-weight: 700;
             margin-bottom: 10px;
-            border-radius: 10px;
-            font-family: 'Roboto', sans-serif;
-            color: #212121;
-            border-radius: 10px;
+            border-radius: 999px;
+            color: var(--text-primary);
             text-align: center;
             cursor: pointer;
-            &:hover {
-                border: 2px solid  #007BFF;
-            }
+            border: 1px solid var(--border-color);
+            background: rgba(0,0,0,.03);
+            transition: all .2s ease;
         }
-        .active {
-            background: #007BFF;
-            color: #ffffff;
-            filter: drop-shadow(0 0 3px #007BFF);
-        }
+        .item:hover { filter: brightness(1.05); transform: translateY(-1px); }
+        .active { background-image: var(--brand-gradient); color: #ffffff; border: 0; box-shadow: 0 8px 24px rgba(35,84,255,.25); }
     }
 
     .bottom-board {
@@ -128,34 +122,28 @@
         bottom: 35px;
         width: 85%;
         color: #ffffff;
-        background: #fff;
-        border-radius: 10px;
-        background-image: linear-gradient(25deg, #5f6fb9, #8a92c9, #b2b6d8, #d9dce7);
+        border-radius: 12px;
+        background-image: var(--brand-gradient);
         display: flex;
-        padding: 10px 10px;
+        padding: 16px 12px;
         flex-flow: column wrap;
         align-items: center;
+        box-shadow: 0 12px 30px rgba(35,84,255,.25);
 
-        .text {
-            font-weight: 600;
-            margin: 5px 0;
-        }
+        .text { font-weight: 700; margin: 6px 0; }
 
         .icon {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             display: inline-block;
             position: absolute;
             right: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
 
-            &:hover {
-                width: 30px;
-                height: 30px;
-                font-weight: 600;
-            }
+            &:hover { transform: scale(1.2); }
         }
     }
 }
+.mini-avatar { width: 48px; height: 48px; border-radius: 50%; margin-right: 8px; }
 </style>

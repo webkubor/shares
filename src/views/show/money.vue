@@ -1,18 +1,16 @@
 <template>
-  <n-space vertical>
-    <n-card title="贷款计算器">
-      <n-form label-placement="left" label-width="auto">
-        <n-form-item label="贷款金额">
-          <n-input-number v-model:value="model.loanAmount" :parse="parse" :format="format" show-count clearable />
-        </n-form-item>
-        <n-form-item label="年利率">
-          <n-input-number v-model:value="model.annualInterestRate" maxlength="30" show-count clearable />
-        </n-form-item>
-        <n-form-item label="期限(年)">
-          <n-input-number v-model:value="model.years" maxlength="30" show-count clearable />
-        </n-form-item>
-      </n-form>
-    </n-card>
+  <div class="space-v">
+    <div class="card">
+      <div class="card-title">贷款计算器</div>
+      <div class="form-grid">
+        <label>贷款金额</label>
+        <input type="number" v-model.number="model.loanAmount" />
+        <label>年利率</label>
+        <input type="number" step="0.0001" v-model.number="model.annualInterestRate" />
+        <label>期限(年)</label>
+        <input type="number" v-model.number="model.years" />
+      </div>
+    </div>
     <div class="border-box">
       <div class="info-item">
         <h3>等额本息贷款</h3>
@@ -24,7 +22,7 @@
         <div>累计还款总额: {{ equalInstallmentPayments.totalPayment }} 元</div>
         <div>累计支付利息: {{ equalInstallmentPayments.totalInterest }} 元</div>
 
-        <n-card>
+        <div class="card">
           贷款金额（P）：100,000 元
           <br>
           年利率（r）：5%（0.05）
@@ -44,7 +42,7 @@
           Total Interest = Total Payment - P
           = 113,227.40 - 100,000
           ≈ 13,227.40 元
-        </n-card>
+        </div>
       </div>
       <div class="info-item">
         <h3>等额本金贷款</h3>
@@ -58,7 +56,7 @@
         <div>每月偿还: {{ equalPrincipalPayments.monthlyPayment }} 元</div>
         <div>累计还款总额: {{ equalPrincipalPayments.totalPayment }} 元</div>
         <div>累计支付利息: {{ equalPrincipalPayments.totalInterest }} 元</div>
-        <n-card>
+        <div class="card">
           贷款金额（P）：100,000 元
           <br>
           年利率（r）：5%（0.05）
@@ -85,11 +83,10 @@
           totalInterest = 2,081.25 - 100,000 ≈ 981.25 元
 
 
-        </n-card>
+        </div>
       </div>
     </div>
-
-  </n-space>
+  </div>
 </template>
 <script lang="ts" setup>
 import { reactive, computed } from 'vue';
@@ -174,6 +171,10 @@ function calculateLoan(years, annualInterestRate, loanAmount) {
 
 </script>
 <style lang="scss" scoped>
+.space-v { display: flex; flex-direction: column; gap: 16px; }
+.card { border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-elevated); padding: 12px; }
+.card-title { font-weight: 700; margin-bottom: 8px; }
+.form-grid { display: grid; grid-template-columns: 120px 1fr; gap: 10px 12px; align-items: center; }
 .border-box {
   padding: 10px 30px;
   display: flex;

@@ -1,18 +1,20 @@
 <!-- 记住，只有具有滚动条并且内容溢出的元素才能触发 scroll 事件 -->
 <template>
-    <n-card title="indexDB测试">
-        <n-space>
-            <n-space>
-                <n-input v-model:value="userName" type="text" placeholder="请输入用户名称"></n-input>
-                <n-button type="primary" @click="getUserById"> 搜索 </n-button>
-            </n-space>
-            <n-button type="primary" @click="addUser"> 新增数据 </n-button>
-            <n-button type="primary" @click="onReset"> 重置 </n-button>
-        </n-space>
+    <div class="card">
+        <div class="card-title">indexDB测试</div>
+        <div class="space-h">
+            <div class="space-h">
+                <input v-model="userName" type="text" placeholder="请输入用户名称" />
+                <button data-variant="primary" @click="getUserById"> 搜索 </button>
+            </div>
+            <button data-variant="primary" @click="addUser"> 新增数据 </button>
+            <button data-variant="primary" @click="onReset"> 重置 </button>
+        </div>
 
-    </n-card>
-    <n-card title="检索结果" v-if="searchList.length">
-        <n-space align="center" justify="space-between" class="card-row" v-for="(item, index) in searchList"
+    </div>
+    <div class="card" v-if="searchList.length">
+        <div class="card-title">检索结果</div>
+        <div class="space-h card-row" v-for="(item, index) in searchList"
             :key="index">
             <span>
                 {{ item.id }}
@@ -25,18 +27,18 @@
             </span>
             <span>
 
-                <n-button type="error" ghost @click="deleteUser(item.id)">
+                <button data-variant="danger" @click="deleteUser(item.id)">
                     删除
-                </n-button>
+                </button>
             </span>
 
-        </n-space>
-    </n-card>
+        </div>
+    </div>
 
     <div id="card-container">
 
-        <n-card>
-            <n-space align="center" justify="space-between" class="card-row">
+        <div class="card">
+            <div class="space-h card-row">
                 <span>
                     ID
                 </span>
@@ -49,10 +51,10 @@
                 <span>
                     操作
                 </span>
-            </n-space>
-        </n-card>
-        <n-card v-for="(item, index) in list" :key="index">
-            <n-space align="center" justify="space-between" class="card-row">
+            </div>
+        </div>
+        <div class="card" v-for="(item, index) in list" :key="index">
+            <div class="space-h card-row">
                 <span>
                     {{ item.id }}
                 </span>
@@ -64,13 +66,12 @@
                 </span>
                 <span>
 
-                    <n-button type="error" ghost @click="deleteUser(item.id)">
+                    <button data-variant="danger" @click="deleteUser(item.id)">
                         删除
-                    </n-button>
+                    </button>
                 </span>
-
-            </n-space>
-        </n-card>
+            </div>
+        </div>
     </div>
 </template>
 <script lang="ts" setup>
@@ -249,4 +250,7 @@ function initScroll() {
     height: calc(100vh - 100px) ;
     padding-top: 10px;
 }
+.card { border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; margin-bottom: 12px; background: var(--bg-elevated); }
+.card-title { font-weight: 700; margin-bottom: 8px; }
+.space-h { display: flex; gap: 12px; align-items: center; }
 </style>

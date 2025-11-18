@@ -1,8 +1,10 @@
 
 <template>
   <div class="not-found">
-    <n-result status="404" title="Can't find the order page">
-    </n-result>
+    <div class="result">
+      <div class="status">404</div>
+      <div class="title">Can't find the order page</div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -16,6 +18,10 @@
   justify-content: center;
   user-select: none;
 }
+
+.result { text-align: center; }
+.status { font-size: 64px; font-weight: 800; color: #CF1322; }
+.title { margin-top: 8px; font-weight: 600; }
 
 .test-demo {
   border-bottom: 2px solid;

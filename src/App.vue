@@ -1,7 +1,7 @@
 <template>
-  <n-config-provider :theme="local.theme" :theme-overrides="allThemeOverrides">
+  <div>
     <router-view />
-  </n-config-provider>
+  </div>
 </template>
 <script setup>
 import { useTheme } from "@/hooks/useTheme";
@@ -9,7 +9,7 @@ import { onMounted } from "vue";
 import { useGlobal } from "./hooks/useGlobal";
 import { Message } from '@/plugins/Message/message';
 import {klogger} from "kbor-logger";
-let { allThemeOverrides, local, initTheme } = useTheme();
+let { initTheme } = useTheme();
 const { initView } = useGlobal();
 window.$message = Message;
 

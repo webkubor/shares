@@ -31,30 +31,28 @@
     </div>
     
     <div class="url-editor">
-      <n-card size="small" class="url-card">
+      <div class="url-card">
         <div class="input-container">
-          <n-input
-            v-model:value="inputUrl"
-            type="text"
-            placeholder="Enter URL here"
-            clearable
-            class="url-input"
-            @keydown.enter="updateIframe"
-          >
-            <template #prefix>
-              <n-icon>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
-                  <path fill="none" d="M0 0h24v24H0z"/>
-                  <path d="M18.364 15.536L16.95 14.12l1.414-1.414a5 5 0 1 0-7.071-7.071L9.879 7.05 8.464 5.636 9.88 4.222a7 7 0 0 1 9.9 9.9l-1.415 1.414zm-2.828 2.828l-1.415 1.414a7 7 0 0 1-9.9-9.9l1.415-1.414L7.05 9.88l-1.414 1.414a5 5 0 1 0 7.071 7.071l1.414-1.414 1.415 1.414zm-.708-10.607l1.415 1.415-7.071 7.07-1.415-1.414 7.071-7.07z" fill="currentColor"/>
-                </svg>
-              </n-icon>
-            </template>
-          </n-input>
-          <n-button type="primary" @click="updateIframe" :disabled="!inputUrl" class="apply-button">
+          <div class="url-input">
+            <span class="prefix-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path d="M18.364 15.536L16.95 14.12l1.414-1.414a5 5 0 1 0-7.071-7.071L9.879 7.05 8.464 5.636 9.88 4.222a7 7 0 0 1 9.9 9.9l-1.415 1.414zm-2.828 2.828l-1.415 1.414a7 7 0 0 1-9.9-9.9l1.415-1.414L7.05 9.88l-1.414 1.414a5 5 0 1 0 7.071 7.071l1.414-1.414 1.415 1.414zm-.708-10.607l1.415 1.415-7.071 7.07-1.415-1.414 7.071-7.07z" fill="currentColor"/>
+              </svg>
+            </span>
+            <input
+              class="url-input-el"
+              v-model="inputUrl"
+              type="text"
+              placeholder="Enter URL here"
+              @keydown.enter="updateIframe"
+            />
+          </div>
+          <button type="button" @click="updateIframe" :disabled="!inputUrl" class="apply-button common-btn">
             Apply
-          </n-button>
+          </button>
         </div>
-      </n-card>
+      </div>
     </div>
     
     <div class="iframe-footer">
@@ -149,105 +147,90 @@ onMounted(() => {
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  font-family: 'Arial', sans-serif;
-  transition: all 0.3s ease;
-  
+  font-family: var(--font-sans);
+  transition: background-color 300ms ease, color 300ms ease;
+
+  /* 背景网格与光晕：科技氛围 */
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.06), transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(35, 84, 255, 0.06), transparent 35%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+
   // 亮色主题
   &.light_theme {
-    background-color: #f5f7fa;
-    
+    background-color: var(--bg-surface);
+
     .iframe-header, .url-editor, .iframe-footer {
-      background-color: #ffffff;
-      border-color: #e8eaed;
+      background-color: var(--bg-elevated);
+      border-color: var(--border-color);
     }
-    
-    .main-title {
-      color: #1a1a1a;
-    }
-    
-    .subtitle {
-      color: #666;
-    }
-    
+
+    .main-title { color: var(--text-primary); }
+    .subtitle { color: var(--text-secondary); }
+
     .control-btn {
-      background-color: #f0f2f5;
+      background-color: #f3f6ff;
+      border: 1px solid rgba(35, 84, 255, 0.18);
       
-      &:hover {
-        background-color: #e4e6eb;
-      }
-      
-      i {
-        color: #444;
-      }
+      &:hover { filter: brightness(1.03); }
+      i { color: #2354ff; }
     }
-    
+
     .iframe-wrapper {
-      background-color: #ffffff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      background-color: var(--bg-elevated);
+      box-shadow: 0 8px 32px var(--shadow-color);
     }
-    
-    .loading-overlay {
-      background-color: rgba(255, 255, 255, 0.9);
-    }
-    
-    .url-label {
-      color: #555;
-    }
-    
-    .url-value {
-      color: #0066cc;
-    }
+
+    .loading-overlay { background-color: rgba(255, 255, 255, 0.85); }
+    .url-label { color: var(--text-secondary); }
+    .url-value { color: #2354ff; }
   }
-  
+
   // 暗色主题
   &.dark_theme {
-    background-color: #121212;
-    
+    background-color: var(--bg-surface);
+
     .iframe-header, .url-editor, .iframe-footer {
-      background-color: #1e1e1e;
-      border-color: #333;
+      background-color: var(--bg-elevated);
+      border-color: var(--border-color);
     }
-    
-    .main-title {
-      color: #ffffff;
-    }
-    
-    .subtitle {
-      color: #aaa;
-    }
-    
+
+    .main-title { color: var(--text-primary); }
+    .subtitle { color: var(--text-secondary); }
+
     .control-btn {
-      background-color: #333;
+      background-color: #182241;
+      border: 1px solid rgba(124, 58, 237, 0.25);
       
-      &:hover {
-        background-color: #444;
-      }
-      
-      i {
-        color: #ddd;
-      }
+      &:hover { filter: brightness(1.08); }
+      i { color: #9aa8ff; }
     }
-    
+
     .iframe-wrapper {
-      background-color: #1e1e1e;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      background-color: var(--bg-elevated);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
     }
-    
+
     .loading-overlay {
-      background-color: rgba(30, 30, 30, 0.9);
-      
-      p {
-        color: #ddd;
-      }
+      background-color: rgba(18, 26, 51, 0.88);
+      p { color: var(--text-secondary); }
     }
-    
-    .url-label {
-      color: #ddd;
-    }
-    
-    .url-value {
-      color: #5b9dd9;
-    }
+
+    .url-label { color: var(--text-secondary); }
+    .url-value { color: #7c9cff; }
   }
 }
 
@@ -271,7 +254,30 @@ onMounted(() => {
 
 .url-input {
   flex: 1;
-  min-width: 0; /* 防止flex子项溢出 */
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-elevated);
+}
+
+.prefix-icon {
+  display: inline-flex;
+  align-items: center;
+  color: #2354ff;
+}
+
+.url-input-el {
+  flex: 1;
+  height: 36px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 14px;
 }
 
 .apply-button {
@@ -282,9 +288,21 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px;
+  padding: 12px 20px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
+  position: relative;
+  
+  /* 顶部品牌渐变细线 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-image: var(--brand-gradient);
+  }
 }
 
 .title-section {
@@ -318,9 +336,14 @@ onMounted(() => {
   width: 40px;
   height: 40px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 8px 24px rgba(35, 84, 255, 0.15);
+  
+  &:active {
+    transform: translateY(1px);
+  }
 }
 
 .control-btn i {
@@ -362,12 +385,13 @@ onMounted(() => {
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  border-top-color: #3498db;
-  animation: spin 1s ease-in-out infinite;
+  border: 3px solid rgba(124, 58, 237, 0.25);
+  border-top-color: #2354ff;
+  box-shadow: 0 0 12px rgba(35, 84, 255, 0.35);
+  animation: spin 0.9s linear infinite;
   margin-bottom: 16px;
 }
 
@@ -407,12 +431,12 @@ onMounted(() => {
 .status-indicator {
   font-size: 14px;
   font-weight: 500;
-  color: #f39c12;
+  color: #FFB31C;
   display: flex;
   align-items: center;
   
   &.status-loaded {
-    color: #2ecc71;
+    color: #30C0A2;
   }
   
   &::before {

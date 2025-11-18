@@ -5,9 +5,9 @@
                 <div  v-else id="phone-view"  class="bg-view"
                 :style="{ background: paperState.perspective ? `url(${paperState.wallpaper}) no-repeat center/cover` : `${paperState.bgColor}`, width: `${phoneSize?.width}`, height: `${phoneSize?.height}`}"
                 :class="{ perspective: paperState.perspective }">
-                <n-space :size="[60, 30]">
+                <div class="space-vertical">
                     <PhoneView />
-                </n-space>
+                </div>
                 <div class="water-mark" :style="{ fontFamily: paperState.waterFontFiamily, color: paperState.waterColor, opacity: paperState.watermarkOpacity}">
                     <img v-if="paperState.waterMarkImage" :src="paperState.waterMarkImage">
                     {{ paperState.waterMarkName }}
@@ -146,9 +146,11 @@ function onChoose(wallpaper) {
         }
     }
 
-    .right-view {
-        flex: 1;
-    }
+.right-view {
+    flex: 1;
+}
+
+.space-vertical { display: flex; flex-direction: column; gap: 30px; }
 }
 
 

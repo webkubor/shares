@@ -1,41 +1,30 @@
 <template>
-    <n-spin :show="exportLoading">
-        <div class="border">
+    <div class="border">
             <div class="actions-view">
                 <div class="common-title-white">book Share</div>
-                <n-card>
-                    <n-form-item label="文案内容" label-placement="left">
-                        <n-input v-model:value="bookState.content" placeholder="请输入文案内容" type="textarea" autosize
-                            show-count clearable />
-                    </n-form-item>
-                    <n-form-item label="引用来源" label-placement="left">
-                        <n-input type="text" v-model:value="bookState.more" placeholder="引用来源(可不填)" show-count
-                            clearable />
-                    </n-form-item>
-                    <n-space>
-                        <n-form-item label="底部背景" label-placement="left">
-                            <n-color-picker v-model:value="config.bgColor" style="width: 150px;" :show-alpha="true"
-                                :actions="['clear']"
-                                :swatches="['#fddde6', '#f2b5d4', '#faf3e0', '#a3d9a5', '#f5f5dc']" />
-                        </n-form-item>
-                        <n-form-item label="字体选择" label-placement="left">
-                            <n-select v-model:value="config.fontFamily" placeholder="请选择字体" :options="ChineseFont"
-                                style="width: 200px;" />
-                        </n-form-item>
-                        <n-form-item label="字体颜色" label-placement="left">
-                            <n-color-picker v-model:value="config.fontColor" style="width: 150px;" :show-alpha="true"
-                                :actions="['clear']"
-                                :swatches="['#2c2c2c', '#333333', '#4a4a4a', '#101820', '#f5f5dc']" />
-                        </n-form-item>
-                    </n-space>
+                <div class="card">
+                    <div class="form-grid">
+                        <label>文案内容</label>
+                        <textarea v-model="bookState.content" placeholder="请输入文案内容"></textarea>
+                        <label>引用来源</label>
+                        <input type="text" v-model="bookState.more" placeholder="引用来源(可不填)" />
+                        <label>底部背景</label>
+                        <input type="color" v-model="config.bgColor" />
+                        <label>字体选择</label>
+                        <select v-model="config.fontFamily">
+                            <option v-for="opt in ChineseFont" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+                        </select>
+                        <label>字体颜色</label>
+                        <input type="color" v-model="config.fontColor" />
+                    </div>
 
-                    <n-space justify="end" align="center">
+                    <div class="space-h end">
                         <img src="./assets/fly.png" alt="">
                         <button class="webkubor-back-btn common-btn" @click="resetConfig">Reset</button>
                         <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
-                    </n-space>
+                    </div>
 
-                </n-card>
+                </div>
             </div>
             <div id="book-view" class="book-view"
                 :style="{ fontFamily: config.fontFamily, background: config.bgColor, color: config.fontColor }">
@@ -55,11 +44,8 @@
          </SpontlightCard>
         </div>
 
-        <template #description>
-            导出中.......
-        </template>
-    </n-spin>
-</template>
+        <div v-if="exportLoading" class="export-overlay">导出中.......</div>
+    </template>
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
 import { useWallpaper } from "@/hooks/useWallpaper"
@@ -119,6 +105,10 @@ const downloadBgImage = async () => {
 
 </script>
 <style lang="scss" scoped>
+.card { background: var(--bg-elevated); border: 1px solid var(--border-color); border-radius: 12px; padding: 12px; }
+.form-grid { display: grid; grid-template-columns: 120px 1fr; gap: 10px 12px; align-items: center; }
+.space-h.end { display: flex; gap: 12px; justify-content: flex-end; align-items: center; }
+.export-overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.35); color: #fff; font-weight: 700; z-index: 999; }
 .border {
     width: 100%; // 自适应布局
     max-width: 75%; // 限制最大宽度

@@ -1,7 +1,7 @@
 <template>
     <div class="color-palette-container" :class="[theme === '1' ? 'dark-theme' : 'light-theme', isMobile ? 'mobile-view' : 'desktop-view']">
         <!-- 顶部预览区域 -->
-        <n-card class="preview-card" :style="{ 
+        <div class="preview-card" :style="{ 
             background: theme === '1' ? '#1a1a1a' : '#ffffff',
             borderRadius: isMobile ? '12px' : '16px',
             boxShadow: '0 8px 30px ' + (confirmColor || '#18a058') + '40',
@@ -22,76 +22,57 @@
                     </div>
                 </div>
                 
-                <n-switch v-model:value="theme" checked-value="1" unchecked-value="0" :rail-style="railStyle" class="theme-switch">
-                    <template #checked>
-                        <span class="switch-label">{{ isMobile ? '暗' : '暗黑模式' }}</span>
-                    </template>
-                    <template #unchecked>
-                        <span class="switch-label">{{ isMobile ? '亮' : '浅色模式' }}</span>
-                    </template>
-                </n-switch>
+                <label class="theme-switch">
+                  <input type="checkbox" v-model="themeChecked" />
+                  <span class="switch-label">{{ themeChecked ? (isMobile ? '暗' : '暗黑模式') : (isMobile ? '亮' : '浅色模式') }}</span>
+                </label>
             </div>
             
             <div class="preview-section">
                 <div class="color-preview" :style="{ backgroundColor: confirmColor || '#18a058' }"></div>
                 <div class="button-showcase">
                     <div class="button-row">
-                        <n-button :color="confirmColor" class="showcase-button">模板按钮</n-button>
-                        <n-button dashed :color="confirmColor" class="showcase-button">Dashed</n-button>
+                        <button class="showcase-button" :style="{ backgroundColor: confirmColor || '#18a058', color: '#fff' }">模板按钮</button>
+                        <button class="showcase-button" :style="{ border: '2px dashed ' + (confirmColor || '#18a058'), background: 'transparent', color: confirmColor || '#18a058' }">Dashed</button>
                     </div>
                     <div class="button-row">
-                        <n-button ghost :color="confirmColor" class="showcase-button">Ghost</n-button>
-                        <n-button tertiary :color="confirmColor" class="showcase-button">Tertiary</n-button>
+                        <button class="showcase-button" :style="{ background: 'transparent', border: '1px solid ' + (confirmColor || '#18a058'), color: confirmColor || '#18a058' }">Ghost</button>
+                        <button class="showcase-button" :style="{ background: 'rgba(0,0,0,0.06)', color: confirmColor || '#18a058' }">Tertiary</button>
                     </div>
                     <div class="text-showcase" :style="{ color: confirmColor || '#18a058' }">这是一段使用当前颜色的文字</div>
                 </div>
             </div>
-        </n-card>
+        </div>
         <!-- 颜色选择区域 -->
         <div class="color-selection-container">
             <!-- 自定义颜色选择器 -->
-            <n-card class="selection-card" title="自定义颜色" :bordered="false">
-                <template #header-extra>
-                    <n-button tertiary :color="confirmColor" @click="onCollect('0')" class="collapse-button">
-                        {{ closeList.includes('0') ? '展开' : '收起' }}
-                    </n-button>
-                </template>
+            <div class="selection-card">
+                <div class="card-header">
+                  <div class="card-title">自定义颜色</div>
+                  <button class="collapse-button" @click="onCollect('0')" :style="{ color: confirmColor || '#18a058' }">{{ closeList.includes('0') ? '展开' : '收起' }}</button>
+                </div>
                 <div class="custom-color-panel" v-if="!closeList.includes('0')">
                     <div class="color-picker-container">
                         <div class="picker-section">
-                            <n-color-picker 
-                                v-model:value="customColor" 
-                                :show-alpha="false" 
-                                :size="isMobile ? 'medium' : 'large'" 
-                                @update:value="onCustomColorChange"
-                                class="color-picker"
-                            />
+                            <input type="color" v-model="customColor" @input="onCustomColorChange(customColor)" class="color-picker" />
                         </div>
                         <div class="custom-color-preview">
                             <div class="preview-box" :style="{ backgroundColor: customColor }"></div>
                             <div class="color-info">
                                 <div class="color-value">{{ customColor }}</div>
-                                <n-button 
-                                    :size="isMobile ? 'medium' : 'large'" 
-                                    @click="onConfirm(customColor)"
-                                    class="apply-button"
-                                    :style="{
-                                        backgroundColor: confirmColor || '#18a058'
-                                    }"
-                                >应用此颜色</n-button>
+                                <button @click="onConfirm(customColor)" class="apply-button" :style="{ backgroundColor: confirmColor || '#18a058' }">应用此颜色</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </n-card>
+            </div>
             
             <!-- 基础色板 -->
-            <n-card class="selection-card" title="基础色板" :bordered="false">
-                <template #header-extra>
-                    <n-button tertiary :color="confirmColor" @click="onCollect('1')" class="collapse-button">
-                        {{ closeList.includes('1') ? '展开' : '收起' }}
-                    </n-button>
-                </template>
+            <div class="selection-card">
+                <div class="card-header">
+                  <div class="card-title">基础色板</div>
+                  <button class="collapse-button" @click="onCollect('1')" :style="{ color: confirmColor || '#18a058' }">{{ closeList.includes('1') ? '展开' : '收起' }}</button>
+                </div>
                 <div class="color-grid" v-if="!closeList.includes('1')">
                     <div class="color-grid-item" 
                          v-for="item in solidColor" 
@@ -111,15 +92,14 @@
                         </div>
                     </div>
                 </div>
-            </n-card>
+            </div>
             
             <!-- 淡色色板 -->
-            <n-card class="selection-card" title="淡色色板" :bordered="false">
-                <template #header-extra>
-                    <n-button tertiary :color="confirmColor" @click="onCollect('2')" class="collapse-button">
-                        {{ closeList.includes('2') ? '展开' : '收起' }}
-                    </n-button>
-                </template>
+            <div class="selection-card">
+                <div class="card-header">
+                  <div class="card-title">淡色色板</div>
+                  <button class="collapse-button" @click="onCollect('2')" :style="{ color: confirmColor || '#18a058' }">{{ closeList.includes('2') ? '展开' : '收起' }}</button>
+                </div>
                 <div class="color-grid" v-if="!closeList.includes('2')">
                     <div class="color-grid-item" 
                          v-for="item in paleColor" 
@@ -139,7 +119,7 @@
                         </div>
                     </div>
                 </div>
-            </n-card>
+            </div>
         </div>
     </div>
 
@@ -148,13 +128,16 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { writeClipboard } from "@/utils/copy"
-import type { CSSProperties } from 'vue'
 import colorData from './colorData.json'
 
 // 定义响应式变量
 const hoverColor = ref<string>('')
 const confirmColor = ref<string>('')
 const theme = ref<string>('1')
+const themeChecked = computed({
+  get: () => theme.value === '1',
+  set: (val: boolean) => { theme.value = val ? '1' : '0' }
+})
 const customColor = ref<string>('#18a058')
 const isMobile = ref<boolean>(false)
 
@@ -203,30 +186,7 @@ function onCollect(name: string): void {
     }
 }
 
-// 开关样式函数
-const railStyle = ({
-    focused,
-    checked
-}: {
-    focused: boolean
-    checked: boolean
-}): CSSProperties => {
-    const style: CSSProperties = {}
-    if (checked) {
-        // 暗黑模式下使用主题色
-        style.background = confirmColor.value || '#18a058'
-        if (focused) {
-            style.boxShadow = `0 0 0 2px ${confirmColor.value || '#18a058'}`
-        }
-    } else {
-        // 浅色模式下使用主题色
-        style.background = confirmColor.value || '#18a058'
-        if (focused) {
-            style.boxShadow = `0 0 0 2px ${confirmColor.value || '#18a058'}`
-        }
-    }
-    return style
-}
+// 自定义开关使用 checkbox，移除第三方样式依赖
 
 // 自定义颜色变更函数
 function onCustomColorChange(color: string): void {
@@ -251,7 +211,7 @@ defineExpose({
   solidColor,
   paleColor,
   onCollect,
-  railStyle,
+  themeChecked,
   onCustomColorChange,
   onConfirm
 })
@@ -340,24 +300,9 @@ defineExpose({
             }
         }
         
-        .theme-switch {
-            transform: scale(1.2);
-            box-shadow: 0 4px 12px v-bind('(confirmColor || "#18a058") + "30"');
-            transition: all 0.3s ease;
-            
-            .mobile-view & {
-                transform: scale(1);
-            }
-            
-            .switch-label {
-                font-weight: bold;
-                font-size: 12px;
-                
-                .mobile-view & {
-                    font-size: 10px;
-                }
-            }
-        }
+        .theme-switch { display: inline-flex; align-items: center; gap: 8px; }
+        .theme-switch input { width: 40px; height: 20px; accent-color: v-bind('confirmColor || "#18a058"'); }
+        .theme-switch .switch-label { font-weight: bold; font-size: 12px; }
     }
     
     .preview-section {

@@ -1,25 +1,24 @@
 <template>
   <div class="about-me">
-    <n-popover trigger="hover">
-      <template #trigger>
-        <div class="love-headers">
-          <n-avatar round :size="100"
-            src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp"
-            @click="toggleTheme" />
-        </div>
-      </template>
-      <span> this is {{ user.name }}</span>
-    </n-popover>
+    <div class="love-headers">
+      <div class="avatar-wrap" @click="toggleTheme">
+        <img class="avatar" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="avatar" />
+        <div class="tooltip">this is {{ user.name }}</div>
+      </div>
+    </div>
     <span class="sign">
       {{ user.personalSign }}
       <span></span>
     </span>
     <Waiting />
-    <n-space style="margin-top: 20px;">
-      <n-tag v-for="(item, index) in user.tags" :key="item + index" :type="getRandomType()" round>
-        {{ item }}
-      </n-tag>
-    </n-space>
+    <div class="tags" style="margin-top: 20px;">
+      <span
+        v-for="(item, index) in user.tags"
+        :key="item + index"
+        class="tag"
+        :style="getTagStyle(getRandomType())"
+      >{{ item }}</span>
+    </div>
   </div>
 </template>
 <script setup>
@@ -27,6 +26,7 @@ import { useUser } from "@/hooks/useUser";
 import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
 import Waiting from "./Waiting.vue";
+import { computed } from 'vue'
 
 let { user, updateAge } = useUser();
 let { switchTheme, local } = useTheme();
@@ -35,6 +35,17 @@ updateAge("logo.jpeg");
 
 function toggleTheme() {
   switchTheme(local.osTheme === "light");
+}
+
+function getTagStyle(type) {
+  const map = {
+    success: { background: '#30C0A2', color: '#fff' },
+    info: { background: '#5E64DA', color: '#fff' },
+    warning: { background: '#FFB31C', color: '#000' },
+    error: { background: '#CF1322', color: '#fff' },
+    default: { background: '#2354FF', color: '#fff' }
+  }
+  return map[type] || map.default
 }
 
 </script>
@@ -56,58 +67,59 @@ function toggleTheme() {
   .love-headers {
     display: flex;
     align-items: center;
-
-    .n-icon {
-      margin: 0 10px;
-
-      &:active {
-        animation: bounce;
-        /* referring directly to the animation's @keyframe declaration */
-        animation-duration: 2s;
-        /* don't forget to set a duration! */
-      }
-    }
+    gap: 12px;
   }
 
-  .n-avatar {
+  .avatar-wrap {
+    position: relative;
+    display: inline-block;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     cursor: pointer;
     transition: transform 0.5s ease-in-out 0s;
-
-    &:hover {
-      transform: rotate(720deg);
-    }
   }
 
+  .avatar:hover { transform: rotate(720deg); }
+
+  .tooltip {
+    position: absolute;
+    bottom: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    box-shadow: 0 6px 20px var(--shadow-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .avatar-wrap:hover .tooltip { opacity: 1; }
+
   .sign {
-    display: block;
-    font-weight: 500;
-    font-size: 30px;
-    margin: 40px 30px 10px;
-    cursor: pointer;
-    color: var(--webkubor-text-primary);
-
-    span {
-      background: var(--webkubor-text-primary);
-      height: 2px;
-      width: 0px;
-      display: block;
-      transition: all 0.5s ease-in-out;
-    }
-
-    &:hover {
-      background-size: 100% 2px;
-      filter: drop-shadow(0 0 10px var(--webkubor-text-primary));
-
-      span {
-        width: 100%;
-      }
-    }
+    display: inline-block;
+    font-weight: 800;
+    font-size: clamp(24px, 3.2vw, 40px);
+    margin: 24px 30px 12px;
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 8px 24px var(--shadow-color);
   }
 }
 
 
 @media screen and (max-width: 768px) {
-  .about-me {
+.about-me {
     width: 90%;
     margin: 10px auto;
     padding: 5px;
@@ -121,3 +133,5 @@ function toggleTheme() {
 
 }
 </style>
+.tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag { padding: 4px 10px; border-radius: 999px; font-weight: 600; font-size: 12px; }
