@@ -1,0 +1,51 @@
+/* 全局品牌主色（亮橙） */
+$default-primary: #FF7A00;
+
+/* SCSS 主题变量定义 */
+// 亮色主题变量
+$light-bg-base: #fafbfc;
+$light-bg-surface: #ffffff;
+$light-bg-elevated: #ffffff;
+$light-text-primary: #111827;
+$light-text-secondary: #4B5563;
+$light-text-tertiary: #6B7280;
+$light-border-color: rgba(17, 24, 39, 0.08);
+$light-border-hover: rgba(255, 107, 0, 0.3);
+$light-shadow-color: rgba(17, 24, 39, 0.1);
+$light-shadow-hover: rgba(255, 107, 0, 0.15);
+$light-glass-bg: rgba(255, 255, 255, 0.8);
+$light-glass-border: rgba(17, 24, 39, 0.1);
+$light-glass-shadow: 0 8px 32px rgba(17, 24, 39, 0.12);
+$light-brand-gradient: linear-gradient(135deg, #FF6B00 0%, #FF8C42 100%);
+$light-surface-gradient: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+$light-color-primary: #FF6B00;
+$light-color-accent: #FF8C42;
+
+// 暗色主题变量
+$dark-bg-base: #0f172a;
+$dark-bg-surface: #1e293b;
+$dark-bg-elevated: #334155;
+$dark-text-primary: #f8fafc;
+$dark-text-secondary: #cbd5e1;
+$dark-text-tertiary: #94a3b8;
+$dark-border-color: rgba(148, 163, 184, 0.1);
+$dark-border-hover: rgba(255, 107, 0, 0.4);
+$dark-shadow-color: rgba(0, 0, 0, 0.3);
+$dark-shadow-hover: rgba(255, 107, 0, 0.2);
+$dark-glass-bg: rgba(30, 41, 59, 0.8);
+$dark-glass-border: rgba(148, 163, 184, 0.15);
+$dark-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+$dark-brand-gradient: linear-gradient(135deg, #FF8C42 0%, #FF6B00 100%);
+$dark-surface-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+$dark-color-primary: #FF8C42;
+$dark-color-accent: #FFB084;
+
+// 字体变量
+$font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+// 状态颜色
+$color-error: #ef4444;
+$color-success: #10b981;
+$color-warning: #f59e0b;
+$color-info: #3b82f6;

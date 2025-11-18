@@ -11,7 +11,7 @@
       <span></span>
     </span>
     <Waiting />
-    <div class="tags" style="margin-top: 20px;">
+    <div class="tags">
       <span
         v-for="(item, index) in user.tags"
         :key="item + index"
@@ -51,87 +51,4 @@ function getTagStyle(type) {
 </script>
 
 <style lang="scss" scoped>
-.about-me {
-  position: relative;
-  margin: 5vh auto;
-  font-size: 12px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 1920px;
-  width: 80vw;
-  color: var(--webkubor-text-primary);
-  padding: 20px 30px;
-
-  .love-headers {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .avatar-wrap {
-    position: relative;
-    display: inline-block;
-  }
-
-  .avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.5s ease-in-out 0s;
-  }
-
-  .avatar:hover { transform: rotate(720deg); }
-
-  .tooltip {
-    position: absolute;
-    bottom: -32px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg-elevated);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 6px 10px;
-    font-size: 12px;
-    box-shadow: 0 6px 20px var(--shadow-color);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-  }
-  .avatar-wrap:hover .tooltip { opacity: 1; }
-
-  .sign {
-    display: inline-block;
-    font-weight: 800;
-    font-size: clamp(24px, 3.2vw, 40px);
-    margin: 24px 30px 12px;
-    color: var(--text-primary);
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 8px 16px;
-    box-shadow: 0 8px 24px var(--shadow-color);
-  }
-}
-
-
-@media screen and (max-width: 768px) {
-.about-me {
-    width: 90%;
-    margin: 10px auto;
-    padding: 5px;
-    box-sizing: border-box;
-    filter: drop-shadow(0px 0px 1em $default-primary);
-
-    .sign {
-      font-size: 1.25rem;
-    }
-  }
-
-}
 </style>
-.tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.tag { padding: 4px 10px; border-radius: 999px; font-weight: 600; font-size: 12px; }

@@ -1,182 +1,901 @@
 <template>
-  <div class="home-page">
-    <UserInfo />
-    <div class="home-cta">
-      <button class="cta-btn" data-variant="primary" @click="activeTab = 'chap1'">Explore Tools</button>
-      <button class="cta-btn" @click="activeTab = 'chap3'">View Projects</button>
-    </div>
-    <div class="show-container">
-      <div role="tablist" class="tabs-nav">
-        <button
-          :class="['tab-btn', activeTab === 'chap1' ? 'is-active' : '']"
-          role="tab"
-          aria-selected="{{ activeTab === 'chap1' }}"
-          @click="activeTab = 'chap1'"
-        >有趣的尝试</button>
-        <button
-          :class="['tab-btn', activeTab === 'chap3' ? 'is-active' : '']"
-          role="tab"
-          aria-selected="{{ activeTab === 'chap3' }}"
-          @click="activeTab = 'chap3'"
-        >项目展示</button>
-      </div>
-      <div class="tabs-content">
-        <div v-show="activeTab === 'chap1'" class="tab-pane">
-          <ToolView />
+  <div class="home-page page-transition">
+    <!-- Hero Section -->
+    <section class="hero-section animate-fadeInDown">
+      <div class="hero-container">
+        <div class="theme-toggle-container animate-fadeInRight animate-delay-100">
+          <button class="theme-toggle-btn" @click="toggleTheme" :title="themeTitle">
+            <span class="theme-icon">{{ themeIcon }}</span>
+          </button>
         </div>
-        <div v-show="activeTab === 'chap3'" class="tab-pane">
-          <ProjectList />
+        <UserInfo class="animate-fadeInUp animate-delay-200" />
+        <div class="hero-actions animate-fadeInUp animate-delay-400">
+          <button class="hero-btn primary btn-glow-effect" @click="scrollToSection('tools')">
+            <span class="btn-text">Explore Tools</span>
+          </button>
+          <button class="hero-btn secondary btn-hover-lift" @click="scrollToSection('projects')">
+            <span class="btn-text">View Projects</span>
+          </button>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section animate-fadeInUp animate-delay-600">
+      <div class="content-container">
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs animate-scaleIn animate-delay-700">
+          <button
+            v-for="(tab, index) in tabs"
+            :key="tab.id"
+            :class="['nav-tab', { active: activeTab === tab.id }]"
+            @click="activeTab = tab.id"
+            :style="{ animationDelay: `${0.8 + index * 0.1}s` }"
+            class="animate-fadeInUp"
+          >
+            <span class="tab-icon">{{ tab.icon }}</span>
+            <span class="tab-text">{{ tab.label }}</span>
+            <div class="tab-indicator"></div>
+          </button>
+        </nav>
+
+        <!-- Content Panels -->
+        <div class="panels-container">
+          <transition name="panel-fade" mode="out-in">
+            <div v-if="activeTab === 'tools'" key="tools" class="panel animate-scaleIn">
+              <div class="panel-header">
+                <h2 class="panel-title text-gradient-animate">Creative Tools</h2>
+                <p class="panel-subtitle">探索有趣的工具和实验</p>
+              </div>
+              <ToolView />
+            </div>
+            <div v-else-if="activeTab === 'projects'" key="projects" class="panel animate-scaleIn">
+              <div class="panel-header">
+                <h2 class="panel-title text-gradient-animate">Project Showcase</h2>
+                <p class="panel-subtitle">精选项目展示</p>
+              </div>
+              <ProjectList />
+            </div>
+          </transition>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
+
 <script setup>
 import UserInfo from "./components/UserInfo.vue";
 import ProjectList from "./components/ProjectList.vue";
 import ToolView from './components/Tool.vue'
-import { ref } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { useTheme } from '@/hooks/useTheme'
 
-const activeTab = ref('chap1')
+const activeTab = ref('tools')
+const { toggleTheme, local } = useTheme()
 
-window.addEventListener('vite:preloadError', (event) => {
-  window.$message?.warning('检测到有新版本，5秒后即将自动刷新...');
-  setTimeout(() => {
-    window.location.reload() // 例如，刷新页面
-    console.log('页面已更新为最新版本...');
-  }, 5000)
+// 计算主题图标
+const themeIcon = computed(() => local.osTheme === 'dark' ? '☀️' : '🌙')
+const themeTitle = computed(() => `切换到${local.osTheme === 'dark' ? '亮色' : '暗黑'}主题`)
+
+const tabs = [
+  { id: 'tools', label: '创意工具', icon: '🛠️' },
+  { id: 'projects', label: '项目展示', icon: '🚀' }
+]
+
+const scrollToSection = (section) => {
+  if (section === 'tools') activeTab.value = 'tools'
+  else if (section === 'projects') activeTab.value = 'projects'
+}
+
+onMounted(() => {
+  window.addEventListener('vite:preloadError', (event) => {
+    window.$message?.warning('检测到有新版本，5秒后即将自动刷新...')
+    setTimeout(() => {
+      window.location.reload()
+      console.log('页面已更新为最新版本...')
+    }, 5000)
+  })
 })
-
-
 </script>
+
 <style lang="scss" scoped>
+// 引入变量文件
+@import "@/styles/variables.scss";
+
+// 默认使用亮色主题变量
+$bg-base: $light-bg-base;
+$bg-surface: $light-bg-surface;
+$bg-elevated: $light-bg-elevated;
+$text-primary: $light-text-primary;
+$text-secondary: $light-text-secondary;
+$text-tertiary: $light-text-tertiary;
+$border-color: $light-border-color;
+$border-hover: $light-border-hover;
+$shadow-color: $light-shadow-color;
+$shadow-hover: $light-shadow-hover;
+$glass-bg: $light-glass-bg;
+$glass-border: $light-glass-border;
+$glass-shadow: $light-glass-shadow;
+$brand-gradient: $light-brand-gradient;
+$surface-gradient: $light-surface-gradient;
+$color-primary: $light-color-primary;
+$color-accent: $light-color-accent;
+
 .home-page {
-  padding: 20px 0 80px;
   min-height: 100vh;
+  background: var(--bg-base);
+  color: var(--text-primary);
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 80px 24px 60px;
+  background: var(--bg-base);
   position: relative;
-  
-  .light_theme & {
-    background:
-      radial-gradient(ellipse at 20% 20%, rgba(147, 197, 253, 0.25) 0%, transparent 55%),
-      radial-gradient(ellipse at 80% 80%, rgba(167, 139, 250, 0.25) 0%, transparent 55%),
-      linear-gradient(135deg, rgba(246, 248, 252, 0.95) 0%, rgba(242, 245, 250, 0.95) 100%);
+  overflow: hidden;
 
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 20px),
-        repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 20px);
-      pointer-events: none;
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(255, 107, 0, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 140, 66, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 70%, var(--bg-base) 100%);
+    pointer-events: none;
+  }
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* 主题切换按钮 */
+.theme-toggle-container {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  z-index: 100;
+}
+
+.theme-toggle-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: var(--glass-shadow);
+  
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 12px 32px var(--shadow-hover);
+    border-color: var(--color-primary);
   }
   
-  .dark_theme & {
-    background:
-      radial-gradient(ellipse at 20% 20%, rgba(35, 84, 255, 0.12) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 80%, rgba(124, 58, 237, 0.12) 0%, transparent 60%),
-      linear-gradient(135deg, rgba(15, 22, 41, 0.95) 0%, rgba(18, 26, 51, 0.95) 100%);
+  &:active {
+    transform: translateY(0) scale(0.95);
+  }
+}
 
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 20px),
-        repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 20px);
-      pointer-events: none;
+.theme-icon {
+  transition: transform 0.3s ease;
+  
+  .theme-toggle-btn:hover & {
+    transform: rotate(180deg);
+  }
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  position: relative;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  min-width: 160px;
+  backdrop-filter: blur(10px);
+
+  &.primary {
+    background: $brand-gradient;
+    color: white;
+    box-shadow: 0 8px 32px rgba(255, 107, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    &:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(255, 107, 0, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.98);
     }
   }
-  
-  .show-container {
-    margin: 0 auto;
-    width: 90%;
-    max-width: 1200px;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    
-    .light_theme & {
+
+  &.secondary {
+    background: $glass-bg;
+    color: $text-primary;
+    border: 1px solid $glass-border;
+    box-shadow: $glass-shadow;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: $color-primary;
+      box-shadow: 0 8px 24px $shadow-hover;
       background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(0, 0, 0, 0.08);
     }
-    .dark_theme & {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    
-    .tabs-nav {
-      display: flex;
-      gap: 12px;
-      padding: 14px;
-      background: var(--bg-elevated);
-      border-bottom: 1px solid var(--border-color);
-    }
-    .tab-btn {
-      border: 1px solid var(--border-color);
-      border-radius: 999px;
-      padding: 10px 18px;
-      color: var(--text-secondary);
-      background: rgba(0,0,0,0.03);
-      font-weight: 600;
-      letter-spacing: .5px;
-      transition: all .2s ease;
-    }
-    .tab-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
-    .tab-btn.is-active {
-      background-image: var(--brand-gradient);
-      border: 0;
-      color: #fff;
-      box-shadow: 0 8px 24px rgba(35, 84, 255, 0.18);
-    }
-    .tabs-content { padding: 24px; background: var(--bg-elevated); border: 1px solid var(--border-color); border-top: 0; }
   }
 
-  .home-cta {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-top: -8px;
-    margin-bottom: 16px;
+  .btn-text {
+    position: relative;
+    z-index: 2;
   }
-  .cta-btn {
-    height: 40px;
-    padding: 0 18px;
-    font-weight: 700;
-    border-radius: 999px;
-    border: 1px solid var(--border-color);
-    background: rgba(0,0,0,.03);
-    color: var(--text-primary);
-  }
-  .cta-btn[data-variant="primary"] { background-image: var(--brand-gradient); border: 0; color: #fff; box-shadow: 0 8px 24px rgba(35,84,255,.18); }
 }
 
-@media screen and (max-width: 768px) {
-  .home-page {
-    padding: 16px 0 60px;
+/* Content Section */
+.content-section {
+  padding: 0 24px 80px;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+  background: $glass-bg;
+  padding: 8px;
+  border-radius: 20px;
+  box-shadow: $glass-shadow;
+  border: 1px solid $glass-border;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  backdrop-filter: blur(10px);
+}
+
+.nav-tab {
+  flex: 1;
+  position: relative;
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  color: $text-secondary;
+  font-weight: 500;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+
+  .tab-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .tab-text {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .tab-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: $color-primary;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+    border-radius: 1px;
+  }
+
+  &:hover {
+    color: $text-primary;
+    background: rgba(255, 107, 0, 0.1);
     
-    .show-container {
-      width: calc(100% - 32px);
-      border-radius: 12px;
-      
-      :deep(.n-tabs-nav) {
-        .n-tabs-tab {
-          padding: 12px 16px;
-          font-size: 14px;
-        }
-      }
-      
-      :deep(.n-tab-pane) {
-        padding: 16px;
-      }
+    .tab-icon {
+      transform: translateY(-2px);
     }
   }
 
+  &.active {
+    color: $text-primary;
+    background: $bg-surface;
+    box-shadow: 0 4px 16px $shadow-color;
+
+    .tab-indicator {
+      width: 60%;
+    }
+
+    .tab-icon {
+      transform: translateY(-2px);
+    }
+  }
 }
 
-.light_theme .home-page::before,
-.dark_theme .home-page::before {
-  display: none;
+/* Panels Container */
+.panels-container {
+  position: relative;
+}
+
+.panel {
+  background: $glass-bg;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: $glass-shadow;
+  border: 1px solid $glass-border;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: $brand-gradient;
+    opacity: 0.8;
+  }
+}
+
+.panel-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.panel-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: 8px;
+  background: $brand-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.panel-subtitle {
+  font-size: 16px;
+  color: $text-secondary;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+/* Panel Transitions */
+.panel-fade-enter-active,
+.panel-fade-leave-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel-fade-enter-from {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+.panel-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+}
+
+/* Component Overrides */
+:deep(.about-me) {
+  text-align: center;
+  color: $text-primary;
+  padding: 20px 0;
+}
+
+:deep(.avatar) {
+  border-radius: 50%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 3px solid rgba(255, 107, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+
+  &:hover {
+    transform: scale(1.05) rotate(2deg);
+    border-color: $color-primary;
+    box-shadow: 0 12px 40px rgba(255, 107, 0, 0.3);
+  }
+}
+
+:deep(.sign) {
+  display: inline-block;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 48px);
+  color: $text-primary;
+  margin: 20px 0;
+  padding: 16px 32px;
+  background: $glass-bg;
+  border-radius: 20px;
+  box-shadow: $glass-shadow;
+  border: 1px solid $glass-border;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+}
+
+:deep(.tags) {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+:deep(.tag) {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 13px;
+  color: white;
+  background: $brand-gradient;
+  box-shadow: 0 2px 12px rgba(255, 107, 0, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(255, 107, 0, 0.3);
+  }
+}
+
+/* Tool Cards */
+:deep(.tool-space) {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+:deep(.tool-card) {
+  background: $bg-surface;
+  border: 1px solid $border-color;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 8px 32px $shadow-color;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: $brand-gradient;
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 48px $shadow-hover;
+    border-color: $border-hover;
+
+    &::before {
+      transform: translateX(0);
+    }
+  }
+}
+
+:deep(.tool-title) {
+  font-size: 20px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: 12px;
+  position: relative;
+  line-height: 1.3;
+}
+
+:deep(.tool-card button) {
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: $brand-gradient;
+  color: white;
+  font-weight: 500;
+  padding: 0 16px;
+  margin: 6px 8px 0 0;
+  box-shadow: 0 4px 16px rgba(255, 107, 0, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+
+  &:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+/* Project Cards */
+:deep(.grid) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+:deep(.card) {
+  background: $bg-surface;
+  border: 1px solid $border-color;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px $shadow-color;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  backdrop-filter: blur(10px);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: $brand-gradient;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 48px $shadow-hover;
+
+    &::before {
+      opacity: 0.6;
+    }
+  }
+}
+
+:deep(.card-title) {
+  font-weight: 600;
+  padding: 16px 20px 8px;
+  color: $text-primary;
+  font-size: 16px;
+  position: relative;
+  z-index: 2;
+  line-height: 1.4;
+}
+
+:deep(.content) {
+  font-size: 13px;
+  padding: 0 20px 16px;
+  color: $text-secondary;
+  line-height: 1.5;
+  position: relative;
+  z-index: 2;
+}
+
+:deep(.link) {
+  color: $color-primary;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+
+  &:hover {
+    color: $color-accent;
+    text-decoration: underline;
+  }
+}
+
+:deep(img) {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
+}
+
+:deep(.card:hover img) {
+  transform: scale(1.05);
+}
+
+/* Dark Theme Specific Adjustments */
+:global(.dark_theme) {
+  // 在深色主题下重新定义变量
+  $bg-base: $dark-bg-base;
+  $bg-surface: $dark-bg-surface;
+  $bg-elevated: $dark-bg-elevated;
+  $text-primary: $dark-text-primary;
+  $text-secondary: $dark-text-secondary;
+  $text-tertiary: $dark-text-tertiary;
+  $border-color: $dark-border-color;
+  $border-hover: $dark-border-hover;
+  $shadow-color: $dark-shadow-color;
+  $shadow-hover: $dark-shadow-hover;
+  $glass-bg: $dark-glass-bg;
+  $glass-border: $dark-glass-border;
+  $glass-shadow: $dark-glass-shadow;
+  $brand-gradient: $dark-brand-gradient;
+  $surface-gradient: $dark-surface-gradient;
+  $color-primary: $dark-color-primary;
+  $color-accent: $dark-color-accent;
+
+  .hero-section {
+    background: $bg-base;
+    
+    &::before {
+      background: radial-gradient(circle at 20% 30%, rgba(255, 140, 66, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(255, 107, 0, 0.04) 0%, transparent 50%);
+    }
+  }
+
+  :global(.dark_theme) .hero-btn.secondary {
+    background: rgba(30, 41, 59, 0.6);
+    color: $text-secondary;
+    border-color: rgba(148, 163, 184, 0.2);
+    
+    &:hover {
+      background: rgba(51, 65, 85, 0.8);
+      color: $text-primary;
+      border-color: rgba(255, 107, 0, 0.3);
+    }
+  }
+
+  :global(.dark_theme) .nav-tabs {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(148, 163, 184, 0.1);
+  }
+
+  :global(.dark_theme) .nav-tab {
+    color: $text-tertiary;
+    
+    &:hover {
+      background: rgba(255, 107, 0, 0.1);
+      color: $text-secondary;
+    }
+  }
+
+  :global(.dark_theme) .nav-tab.active {
+    background: $bg-surface;
+    color: $text-primary;
+  }
+
+  :global(.dark_theme) .panel {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(148, 163, 184, 0.1);
+  }
+
+  :global(.dark_theme) .panel-title {
+    color: $text-primary;
+  }
+
+  :global(.dark_theme) .panel-subtitle {
+    color: $text-secondary;
+  }
+
+  :global(.dark_theme) :deep(.sign) {
+    background: rgba(30, 41, 59, 0.6);
+  }
+
+  :global(.dark_theme) :deep(.tool-card) {
+    background: rgba(30, 41, 59, 0.4);
+    border-color: rgba(148, 163, 184, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  :global(.dark_theme) :deep(.card) {
+    background: rgba(30, 41, 59, 0.4);
+    border-color: rgba(148, 163, 184, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  :global(.dark_theme) :deep(.tag) {
+    background: $brand-gradient;
+    box-shadow: 0 4px 16px rgba(255, 107, 0, 0.2);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 60px 16px 40px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-btn {
+    min-width: 200px;
+  }
+
+  .content-section {
+    padding: 0 16px 60px;
+  }
+
+  .nav-tabs {
+    max-width: 100%;
+    padding: 6px;
+  }
+
+  .nav-tab {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .panel {
+    padding: 24px 16px;
+  }
+
+  .panel-title {
+    font-size: 24px;
+  }
+
+  :deep(.grid) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  :deep(.tool-card) {
+    padding: 20px 16px;
+  }
+
+  :deep(.card) {
+    margin: 0 -8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 40px 12px 30px;
+  }
+
+  .nav-tab {
+    padding: 8px 12px;
+    font-size: 12px;
+    
+    .tab-icon {
+      font-size: 16px;
+    }
+  }
+
+  .panel {
+    padding: 20px 12px;
+  }
+
+  .panel-title {
+    font-size: 20px;
+  }
+
+  :deep(.avatar) {
+    width: 100px;
+    height: 100px;
+  }
+
+  :deep(.sign) {
+    font-size: 24px;
+    padding: 12px 24px;
+  }
+
+  :deep(.tag) {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: rgba(0, 0, 0, 0.3);
+    --text-primary: #000000;
+    --text-secondary: #333333;
+  }
+
+  .dark_theme {
+    --border-color: rgba(255, 255, 255, 0.3);
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hero-btn,
+  .nav-tab,
+  .panel,
+  :deep(.tool-card),
+  :deep(.card),
+  :deep(.avatar),
+  :deep(.sign),
+  :deep(.tag),
+  :deep(.tool-card button) {
+    transition: none !important;
+    
+    &:hover {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 </style>
