@@ -15,27 +15,65 @@ const user = reactive({
     {
       year: 2014,
       month: 9,
-      title: "大学入学",
-      description: "开始计算机科学学习之旅",
+      title: "天津读大学入学",
+      description: "开始在天津读计算机科学专业，加入大学艺术团",
       type: "education",
       icon: "🎓",
       details: [
-        { month: 9, title: "入学报到", desc: "踏入大学校园" },
+        { month: 9, title: "入学报到", desc: "踏入天津大学校园" },
+        { month: 9, title: "加入艺术团", desc: "成为大学艺术团成员" },
         { month: 10, title: "军训开始", desc: "为期一个月的军训" },
-        { month: 12, title: "第一次编程", desc: "学习C语言基础" }
+        { month: 12, title: "第一次参加乐器比赛", desc: "校级个人二等奖" }
+      ]
+    },
+    {
+      year: 2015,
+      month: 1,
+      title: "成为副班长兼文艺委员",
+      description: "在大学担任副班长兼文艺委员职务",
+      type: "education",
+      icon: "👨‍💼",
+      details: [
+        { month: 1, title: "当选班长", desc: "成为班级班长兼文艺委员" },
+        { month: 6, title: "参加校级迎新晚会", desc: "参加民乐排练" }
       ]
     },
     {
       year: 2015,
       month: 3,
+      title: "创立笛灵音乐社",
+      description: "和大学同学共同创立笛灵音乐社",
+      type: "creative",
+      icon: "🎵",
+      details: [
+        { month: 3, title: "音乐社成立", desc: "与同学共同创立笛灵音乐社" },
+        { month: 12, title: "社团活动", desc: "开始组织音乐社团活动" }
+      ]
+    },
+    {
+      year: 2015,
+      month: 6,
       title: "编程启蒙",
       description: "首次接触前端开发",
       type: "milestone",
       icon: "💻",
       details: [
-        { month: 3, title: "HTML/CSS基础", desc: "开始学习网页制作" },
-        { month: 6, title: "第一个网页", desc: "完成个人主页项目" },
-        { month: 9, title: "JavaScript入门", desc: "学习动态交互开发" }
+        { month: 6, title: "HTML/CSS基础", desc: "开始学习网页制作" },
+        { month: 8, title: "第一个网页", desc: "完成个人主页项目" },
+        { month: 10, title: "JavaScript入门", desc: "学习动态交互开发" }
+      ]
+    },
+    {
+      year: 2016,
+      month: 4,
+      title: "天津市文艺展演获奖",
+      description: "多次参加天津市文艺展演，获得天津市团队三等奖",
+      type: "creative",
+      icon: "🏆",
+      details: [
+        { month: 3, title: "文艺展演", desc: "参加天津市文艺展演活动" },
+        { month: 4, title: "团队获奖", desc: "获得天津市团队三等奖" },
+        { month: 4, title: "个人荣誉", desc: "获得个人二等奖荣誉" }
       ]
     },
     {
@@ -46,7 +84,7 @@ const user = reactive({
       type: "project",
       icon: "🚀",
       details: [
-        { month: 2, title: "Vue.js学习", desc: "接触现代前端框架" },
+        { month: 2, title: "jquery学习", desc: "接触现代前端框架" },
         { month: 5, title: "商业项目", desc: "为本地企业开发官网" },
         { month: 8, title: "开源贡献", desc: "第一次向开源项目提交PR" }
       ]
@@ -65,16 +103,42 @@ const user = reactive({
       ]
     },
     {
+      year: 2017,
+      month: 9,
+      title: "天津higo出租实习",
+      description: "在天津higo出租开始实习，接触微信小程序开发",
+      type: "work",
+      icon: "🚗",
+      details: [
+        { month: 9, title: "实习开始", desc: "加入天津higo出租实习" },
+        { month: 10, title: "小程序开发", desc: "开始接触微信小程序开发" },
+        { month: 12, title: "技术积累", desc: "积累实际项目开发经验" }
+      ]
+    },
+    {
       year: 2018,
       month: 6,
-      title: "毕业就职",
-      description: "获得计算机学士学位，加入互联网公司",
+      title: "大学毕业",
+      description: "获得计算机学士学位，结束天津higo出租实习",
       type: "career",
-      icon: "🏢",
+      icon: "🎓",
       details: [
         { month: 3, title: "毕业论文", desc: "完成毕业设计和论文答辩" },
         { month: 6, title: "毕业典礼", desc: "正式获得学士学位" },
-        { month: 7, title: "入职第一天", desc: "加入互联网公司成为前端工程师" }
+        { month: 7, title: "入职新公司", desc: "毕业后加入杭州源圈科技有限公司" }
+      ]
+    },
+    {
+      year: 2018,
+      month: 7,
+      title: "杭州源圈科技有限公司",
+      description: "前端开发工程师/node微服务 | O2O电商 | 美妆医疗电商平台，与国内外多品牌美妆合作，打造国内美妆电商平台的科技公司",
+      type: "work",
+      icon: "💄",
+      details: [
+        { month: 7, title: "入职源圈科技", desc: "毕业后加入美妆医疗电商平台开发团队" },
+        { month: 9, title: "前端开发", desc: "负责电商平台前端开发工作" },
+        { month: 12, title: "Node微服务", desc: "参与后端微服务架构开发" }
       ]
     },
     {
@@ -92,6 +156,19 @@ const user = reactive({
     },
     {
       year: 2020,
+      month: 5,
+      title: "杭州优海信息有限公司",
+      description: "优麦项目组前端负责人 | SaaS工业 | 优海信息致力于成为智能制造系统解决方案供应商，现有ERP、MES、APS、W-VR（工厂虚拟现实3D交互系统）四大核心产品",
+      type: "work",
+      icon: "🏭",
+      details: [
+        { month: 5, title: "加入优海信息", desc: "担任优麦项目组前端负责人" },
+        { month: 7, title: "智能制造系统", desc: "负责工业SaaS平台前端架构" },
+        { month: 10, title: "VR工厂系统", desc: "参与W-VR虚拟现实3D交互系统开发" }
+      ]
+    },
+    {
+      year: 2020,
       month: 8,
       title: "音乐创作",
       description: "成为网易云音乐人",
@@ -101,6 +178,19 @@ const user = reactive({
         { month: 1, title: "音乐制作学习", desc: "开始数字音乐创作" },
         { month: 5, title: "第一首单曲", desc: "发布原创音乐作品" },
         { month: 8, title: "网易云签约", desc: "正式成为网易云音乐人" }
+      ]
+    },
+    {
+      year: 2021,
+      month: 4,
+      title: "北京银承库有限公司(杭州分公司)",
+      description: "海外事业创新部/前端负责人/区块链开发员/Dapp开发负责人 | 金融/区块链 | 一家从事互联网综合票据金融服务的公司，公司以银行承兑汇票为切入点，为企业提供支付、理财、融资于一体的企业票据综合金融服务",
+      type: "work",
+      icon: "💰",
+      details: [
+        { month: 4, title: "加入银承库", desc: "担任海外事业创新部前端负责人" },
+        { month: 6, title: "区块链开发", desc: "负责区块链合约和Dapp开发" },
+        { month: 9, title: "金融服务", desc: "开发票据金融服务产品" }
       ]
     },
     {
@@ -118,41 +208,163 @@ const user = reactive({
     },
     {
       year: 2022,
-      month: 9,
-      title: "技术专家",
-      description: "成为前端技术专家",
-      type: "career",
-      icon: "🎯",
+      month: 3,
+      title: "杭州超对称有限公司",
+      description: "前端负责人 | 海外,区块链,金融 | 主要做海外支付类业务(稳定币和法币)自研收银台, 目前已支持越南,孟加拉,印度,印尼,泰国,菲律宾等海外市场, 支持十余个国家",
+      type: "work",
+      icon: "🌍",
       details: [
-        { month: 4, title: "技术分享", desc: "在公司内部进行技术培训" },
-        { month: 7, title: "架构设计", desc: "主导大型项目架构设计" },
-        { month: 9, title: "专家认证", desc: "获得前端技术专家称号" }
+        { month: 3, title: "加入超对称", desc: "担任前端负责人职位" },
+        { month: 5, title: "海外支付", desc: "开发稳定币和法币支付系统" },
+        { month: 8, title: "多国支持", desc: "支持十余个国家支付业务" }
+      ]
+    },
+    {
+      year: 2022,
+      month: 1,
+      title: "薪资增长30%",
+      description: "获得薪资提升30%",
+      type: "milestone",
+      icon: "💰",
+      details: [
+        { month: 1, title: "薪资提升", desc: "获得30%的薪资增长" }
+      ]
+    },
+    {
+      year: 2022,
+      month: 3,
+      title: "杭州超对称有限公司",
+      description: "前端负责人 | 海外,区块链,金融 | 主要做海外支付类业务(稳定币和法币)自研收银台, 目前已支持越南,孟加拉,印度,印尼,泰国,菲律宾等海外市场, 支持十余个国家",
+      type: "work",
+      icon: "🌍",
+      details: [
+        { month: 3, title: "加入超对称", desc: "担任前端负责人职位" },
+        { month: 5, title: "海外支付", desc: "开发稳定币和法币支付系统" },
+        { month: 8, title: "多国支持", desc: "支持十余个国家支付业务" }
+      ]
+    },
+    {
+      year: 2022,
+      month: 6,
+      title: "技术社区分享",
+      description: "分别在区块链技术社区和前端社群发表TS + JS 十余篇",
+      type: "milestone",
+      icon: "📝",
+      details: [
+        { month: 6, title: "技术文章", desc: "在区块链技术社区发表文章" },
+        { month: 8, title: "前端分享", desc: "在前端社群发表TS + JS文章" },
+        { month: 10, title: "十余篇发表", desc: "累计发表十余篇技术文章" }
+      ]
+    },
+    {
+      year: 2022,
+      month: 7,
+      title: "音乐创作",
+      description: "音乐方面，新上单曲两个",
+      type: "creative",
+      icon: "🎵",
+      details: [
+        { month: 7, title: "第一首单曲", desc: "发布新的原创音乐作品" },
+        { month: 9, title: "第二首单曲", desc: "发布第二首原创音乐" }
+      ]
+    },
+    {
+      year: 2022,
+      month: 9,
+      title: "公司效率提升",
+      description: "在公司内推广钉钉webhooks推送 + 语雀文档管理",
+      type: "milestone",
+      icon: "⚡",
+      details: [
+        { month: 9, title: "钉钉webhooks", desc: "推广钉钉webhooks推送" },
+        { month: 10, title: "语雀文档", desc: "推广语雀文档管理系统" }
+      ]
+    },
+    {
+      year: 2022,
+      month: 11,
+      title: "文学创作",
+      description: "开始写自己武侠小说：我是百晓生，在番茄小说上线",
+      type: "creative",
+      icon: "📚",
+      details: [
+        { month: 11, title: "小说创作", desc: "开始创作武侠小说《我是百晓生》" },
+        { month: 12, title: "番茄小说上线", desc: "小说在番茄小说平台上线发布" }
       ]
     },
     {
       year: 2023,
-      month: 12,
-      title: "创新突破",
-      description: "开发多个创新项目",
-      type: "project",
-      icon: "💡",
+      month: 1,
+      title: "AIGC专栏",
+      description: "开个专栏在AIGC方面（涉及AI视频，绘画等相关功能）",
+      type: "creative",
+      icon: "🤖",
       details: [
-        { month: 6, title: "AI工具开发", desc: "集成AI功能的开发工具" },
-        { month: 9, title: "开源框架", desc: "发布个人开源项目" },
-        { month: 12, title: "年度总结", desc: "回顾一年的技术成长" }
+        { month: 1, title: "AIGC专栏", desc: "开设AIGC相关技术专栏" },
+        { month: 3, title: "AI视频功能", desc: "探索AI视频处理技术" },
+        { month: 6, title: "AI绘画功能", desc: "研究AI绘画相关功能" }
+      ]
+    },
+    {
+      year: 2023,
+      month: 8,
+      title: "音乐设备购置",
+      description: "购置录音设备，做乐器录制",
+      type: "creative",
+      icon: "🎙️",
+      details: [
+        { month: 8, title: "录音设备", desc: "购置专业录音设备" },
+        { month: 10, title: "乐器录制", desc: "开始进行乐器录制工作" },
+        { month: 12, title: "音频制作", desc: "制作高质量音频内容" }
+      ]
+    },
+    {
+      year: 2024,
+      month: 1,
+      title: "AIGC技术深化",
+      description: "持续探索AIGC技术，深化AI视频和绘画功能开发",
+      type: "creative",
+      icon: "🤖",
+      details: [
+        { month: 1, title: "AI技术深化", desc: "继续深化AIGC专栏内容" },
+        { month: 4, title: "AI音乐创作", desc: "结合AI技术进行音乐创作" }
+      ]
+    },
+    {
+      year: 2024,
+      month: 5,
+      title: "结婚大喜",
+      description: "步入婚姻殿堂，开启人生新篇章",
+      type: "life",
+      icon: "💒",
+      details: [
+        { month: 5, title: "婚礼筹备", desc: "精心准备婚礼事宜" },
+        { month: 6, title: "喜结连理", desc: "与爱人步入婚姻殿堂" }
       ]
     },
     {
       year: 2024,
       month: 8,
-      title: "持续成长",
-      description: "探索AI与前端结合",
-      type: "milestone",
-      icon: "🤖",
+      title: "小说创作新篇",
+      description: "开始在起点小说写第二部小说《魔刀青衣》（现改名为《雪夜无名》）",
+      type: "creative",
+      icon: "📚",
       details: [
-        { month: 2, title: "AI绘画集成", desc: "在前端项目中集成AI绘画" },
-        { month: 5, title: "智能代码助手", desc: "开发AI辅助编程工具" },
-        { month: 8, title: "技术博客", desc: "开始分享AI开发经验" }
+        { month: 8, title: "新作启动", desc: "开始在起点小说平台创作" },
+        { month: 8, title: "《魔刀青衣》", desc: "第二部小说《魔刀青衣》动笔" },
+        { month: 9, title: "改名《雪夜无名》", desc: "小说改名为《雪夜无名》继续创作" }
+      ]
+    },
+    {
+      year: 2024,
+      month: 10,
+      title: "喜得千金",
+      description: "当爸爸了，生了个小闺女，小名越越",
+      type: "life",
+      icon: "👶",
+      details: [
+        { month: 10, title: "宝贝诞生", desc: "可爱的小女儿越越出生" },
+        { month: 11, title: "初为人父", desc: "开始体验当爸爸的幸福" }
       ]
     },
     {
