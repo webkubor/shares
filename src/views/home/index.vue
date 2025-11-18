@@ -358,39 +358,84 @@ $color-accent: $light-color-accent;
 :deep(.about-me) {
   text-align: center;
   color: $text-primary;
-  padding: 20px 0;
+  padding: 40px 0;
+  position: relative;
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+  border-radius: 24px;
+  margin: 20px 0;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 0, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
 }
 
 :deep(.avatar) {
   border-radius: 50%;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  border: 3px solid rgba(255, 107, 0, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 120px;
-  height: 120px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 140px;
+  height: 140px;
   object-fit: cover;
+  margin: 0 auto 24px;
+  display: block;
+  position: relative;
+  z-index: 2;
 
   &:hover {
-    transform: scale(1.05) rotate(2deg);
-    border-color: $color-primary;
-    box-shadow: 0 12px 40px rgba(255, 107, 0, 0.3);
+    transform: scale(1.08) rotate(3deg);
+    border-color: rgba(255, 107, 0, 0.4);
+    box-shadow: 0 16px 48px rgba(255, 107, 0, 0.2);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    background: $brand-gradient;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    opacity: 0.3;
   }
 }
 
 :deep(.sign) {
   display: inline-block;
-  font-weight: 700;
-  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 56px);
   color: $text-primary;
-  margin: 20px 0;
-  padding: 16px 32px;
-  background: $glass-bg;
-  border-radius: 20px;
-  box-shadow: $glass-shadow;
+  margin: 24px 0 16px;
+  padding: 20px 40px;
+  background: linear-gradient(135deg, $glass-bg 0%, rgba(255, 255, 255, 0.1) 100%);
+  border-radius: 24px;
+  box-shadow: $glass-shadow, inset 0 1px 0 rgba(255, 255, 255, 0.1);
   border: 1px solid $glass-border;
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
+  letter-spacing: -0.02em;
+  background-clip: text;
+  -webkit-background-clip: text;
 
   &::before {
     content: '';
@@ -399,12 +444,30 @@ $color-accent: $light-color-accent;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: left 0.6s ease;
   }
 
   &:hover::before {
     left: 100%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: $brand-gradient;
+    border-radius: 26px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover::after {
+    opacity: 0.3;
   }
 }
 
@@ -603,6 +666,7 @@ $color-accent: $light-color-accent;
   flex: 1; /* 占据剩余空间 */
   display: flex;
   flex-direction: column;
+  min-height: 0; /* 防止内容撑开 */
 }
 
 :deep(.link) {
