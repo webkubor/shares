@@ -38,6 +38,8 @@ function onsubmit() {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins.scss";
+
 $bg-color: #2c3e50;
 $theme-color: #E74C3C;
 
