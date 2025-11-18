@@ -1,0 +1,158 @@
+/* 基础主题样式 - 分离基础样式 */
+@import "./reset.scss";
+@import "./variables.scss";
+
+/* 设计令牌：统一的语义 CSS 变量 */
+:root {
+  --plyr-color-main: #{$default-primary};
+  
+  /* 原有变量 - 保持兼容 */
+  --webkubor-bg: #ffffff;
+  --webkubor-second: #d1d1d1;
+  --webkubor-text-primary: #000000;
+
+  /* 新语义令牌 - 亮色主题 */
+  --color-primary: #{$light-color-primary};
+  --color-accent: #{$light-color-accent};
+  --color-error: #{$color-error};
+  --color-success: #{$color-success};
+  --color-warning: #{$color-warning};
+  --color-info: #{$color-info};
+  --bg-base: #{$light-bg-base};
+  --bg-surface: #{$light-bg-surface};
+  --bg-elevated: #{$light-bg-elevated};
+  --text-primary: #{$light-text-primary};
+  --text-secondary: #{$light-text-secondary};
+  --text-tertiary: #{$light-text-tertiary};
+  --border-color: #{$light-border-color};
+  --border-hover: #{$light-border-hover};
+  --shadow-color: #{$light-shadow-color};
+  --shadow-hover: #{$light-shadow-hover};
+  --glass-bg: #{$light-glass-bg};
+  --glass-border: #{$light-glass-border};
+  --glass-shadow: #{$light-glass-shadow};
+  --brand-gradient: #{$light-brand-gradient};
+  --surface-gradient: #{$light-surface-gradient};
+
+  /* 字体 */
+  --font-sans: #{$font-sans};
+  --font-mono: #{$font-mono};
+}
+
+/* 亮色主题 */
+.light_theme {
+  /* 兼容旧令牌 */
+  --webkubor-bg: #ffffff;
+  --webkubor-second: #d1d1d1;
+  --webkubor-text-primary: #000000;
+
+  /* 新令牌 */
+  --bg-base: #{$light-bg-base};
+  --bg-surface: #{$light-bg-surface};
+  --bg-elevated: #{$light-bg-elevated};
+  --text-primary: #{$light-text-primary};
+  --text-secondary: #{$light-text-secondary};
+  --text-tertiary: #{$light-text-tertiary};
+  --border-color: #{$light-border-color};
+  --border-hover: #{$light-border-hover};
+  --shadow-color: #{$light-shadow-color};
+  --shadow-hover: #{$light-shadow-hover};
+  --glass-bg: #{$light-glass-bg};
+  --glass-border: #{$light-glass-border};
+  --glass-shadow: #{$light-glass-shadow};
+  --brand-gradient: #{$light-brand-gradient};
+  --surface-gradient: #{$light-surface-gradient};
+  --color-primary: #{$light-color-primary};
+  --color-accent: #{$light-color-accent};
+  --color-error: #{$color-error};
+  --color-success: #{$color-success};
+  --color-warning: #{$color-warning};
+  --color-info: #{$color-info};
+}
+
+/* 暗色主题 - 水泥灰风格 */
+.dark_theme {
+  /* 兼容旧令牌 */
+  --webkubor-bg: #1a1a1a;
+  --webkubor-second: #404040;
+  --webkubor-text-primary: #f5f5f5;
+
+  /* 新令牌 */
+  --bg-base: #{$dark-bg-base};
+  --bg-surface: #{$dark-bg-surface};
+  --bg-elevated: #{$dark-bg-elevated};
+  --text-primary: #{$dark-text-primary};
+  --text-secondary: #{$dark-text-secondary};
+  --text-tertiary: #{$dark-text-tertiary};
+  --border-color: #{$dark-border-color};
+  --border-hover: #{$dark-border-hover};
+  --shadow-color: #{$dark-shadow-color};
+  --shadow-hover: #{$dark-shadow-hover};
+  --glass-bg: #{$dark-glass-bg};
+  --glass-border: #{$dark-glass-border};
+  --glass-shadow: #{$dark-glass-shadow};
+  --brand-gradient: #{$dark-brand-gradient};
+  --surface-gradient: #{$dark-surface-gradient};
+  --color-primary: #{$dark-color-primary};
+  --color-accent: #{$dark-color-accent};
+  --color-error: #{$color-error};
+  --color-success: #{$color-success};
+  --color-warning: #{$color-warning};
+  --color-info: #{$color-info};
+}
+
+/* 基础排版 */
+body {
+  position: relative;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 300ms ease, color 300ms ease;
+
+  /* 现代科技感背景 - 亮色主题 */
+  background-image:
+    radial-gradient(circle at 25% 15%, rgba(255, 107, 0, 0.03) 0%, transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(255, 140, 66, 0.02) 0%, transparent 40%),
+    linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
+  background-blend-mode: screen, screen, normal, normal;
+  background-attachment: fixed;
+}
+
+/* 暗色主题背景 - 水泥灰风格 */
+.dark_theme body {
+  background-image:
+    radial-gradient(circle at 25% 15%, rgba(255, 122, 0, 0.02) 0%, transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(255, 122, 0, 0.01) 0%, transparent 40%),
+    linear-gradient(180deg, #{$dark-bg-base} 0%, #{lighten($dark-bg-base, 3%)} 100%);
+}
+
+/* 基础标题样式 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* 链接基础样式 */
+a {
+  color: var(--color-primary);
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+/* 基础文本样式 */
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* 隐藏谷歌验证码 */
+.grecaptcha-badge {
+  display: none !important;
+}

@@ -6,11 +6,14 @@
         <img :src="item.pic" />
         <div class="card-title">{{ item.title }}</div>
         <div class="content">
-          <span
-            v-for="(tag, i) in item.tags"
-            :key="tag + i"
-            class="tag"
-          >{{ tag }}</span>
+          <div class="tags-container">
+            <span
+              v-for="(tag, i) in item.tags.slice(0, 4)"
+              :key="tag + i"
+              class="tag"
+            >{{ tag }}</span>
+            <span v-if="item.tags.length > 4" class="tag more-tag">+{{ item.tags.length - 4 }}</span>
+          </div>
           <div class="item ellipsis-2">
             {{ item.descrition }}
           </div>

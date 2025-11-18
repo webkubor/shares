@@ -24,9 +24,17 @@ export function useTheme() {
       console.log('[Theme] 当前背景色:', getComputedStyle(document.body).backgroundColor)
       console.log('[Theme] 当前文字色:', getComputedStyle(document.body).color)
       
-      // 直接更新body的CSS变量作为后备方案
-      document.body.style.setProperty('--bg-base', '#0f172a');
+      // 直接更新body的CSS变量作为后备方案 - 使用水泥灰色调
+      document.body.style.setProperty('--bg-base', '#1a1a1a');
       document.body.style.setProperty('--text-primary', '#f8fafc');
+      document.body.style.setProperty('--border-color', 'rgba(148, 163, 184, 0.1)');
+      
+      // 检查body是否有边框
+      const bodyStyles = getComputedStyle(document.body);
+      console.log('[Theme] body边框:', bodyStyles.border);
+      console.log('[Theme] body边框颜色:', bodyStyles.borderColor);
+      console.log('[Theme] body外边距:', bodyStyles.margin);
+      
       console.log('[Theme] 直接设置body CSS变量为暗黑主题')
     } else {
       local.osTheme = "light";
@@ -41,6 +49,14 @@ export function useTheme() {
       // 直接更新body的CSS变量作为后备方案
       document.body.style.setProperty('--bg-base', '#fafbfc');
       document.body.style.setProperty('--text-primary', '#111827');
+      document.body.style.setProperty('--border-color', 'rgba(17, 24, 39, 0.08)');
+      
+      // 检查body是否有边框
+      const bodyStyles = getComputedStyle(document.body);
+      console.log('[Theme] body边框:', bodyStyles.border);
+      console.log('[Theme] body边框颜色:', bodyStyles.borderColor);
+      console.log('[Theme] body外边距:', bodyStyles.margin);
+      
       console.log('[Theme] 直接设置body CSS变量为亮色主题')
     }
   };

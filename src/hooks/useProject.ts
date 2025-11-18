@@ -13,6 +13,7 @@ const projects = reactive({
       title: "XBox CsGo 皮肤",
       descrition: "高爆率 Csgo 开箱网站(开箱玩法,无限欧皇,开箱神器)",
       tags: ["开箱盲盒", "游戏", "开箱", "盲盒", "Csgo", "Vue3", "vant", "element-plus"],
+      source: "https://csgo-api.tpservice.ai/#/p/home",
     },
     {
       title: "midjourney 教程",

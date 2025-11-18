@@ -9,14 +9,7 @@
           </button>
         </div>
         <UserInfo class="animate-fadeInUp animate-delay-200" />
-        <div class="hero-actions animate-fadeInUp animate-delay-400">
-          <button class="hero-btn primary btn-glow-effect" @click="scrollToSection('tools')">
-            <span class="btn-text">Explore Tools</span>
-          </button>
-          <button class="hero-btn secondary btn-hover-lift" @click="scrollToSection('projects')">
-            <span class="btn-text">View Projects</span>
-          </button>
-        </div>
+
       </div>
     </section>
 
@@ -82,10 +75,7 @@ const tabs = [
   { id: 'projects', label: '项目展示', icon: '🚀' }
 ]
 
-const scrollToSection = (section) => {
-  if (section === 'tools') activeTab.value = 'tools'
-  else if (section === 'projects') activeTab.value = 'projects'
-}
+
 
 onMounted(() => {
   window.addEventListener('vite:preloadError', (event) => {
@@ -177,7 +167,7 @@ $color-accent: $light-color-accent;
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid var(--border-color);
+  border: none;
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
   color: var(--text-primary);
@@ -192,7 +182,7 @@ $color-accent: $light-color-accent;
   &:hover {
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 12px 32px var(--shadow-hover);
-    border-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
   }
   
   &:active {
@@ -208,62 +198,6 @@ $color-accent: $light-color-accent;
   }
 }
 
-.hero-actions {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 40px;
-  flex-wrap: wrap;
-}
-
-.hero-btn {
-  position: relative;
-  padding: 16px 32px;
-  border: none;
-  border-radius: 16px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  min-width: 160px;
-  backdrop-filter: blur(10px);
-
-  &.primary {
-    background: $brand-gradient;
-    color: white;
-    box-shadow: 0 8px 32px rgba(255, 107, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-
-    &:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 12px 40px rgba(255, 107, 0, 0.4);
-    }
-
-    &:active {
-      transform: translateY(0) scale(0.98);
-    }
-  }
-
-  &.secondary {
-    background: $glass-bg;
-    color: $text-primary;
-    border: 1px solid $glass-border;
-    box-shadow: $glass-shadow;
-
-    &:hover {
-      transform: translateY(-2px);
-      border-color: $color-primary;
-      box-shadow: 0 8px 24px $shadow-hover;
-      background: rgba(255, 255, 255, 0.9);
-    }
-  }
-
-  .btn-text {
-    position: relative;
-    z-index: 2;
-  }
-}
 
 /* Content Section */
 .content-section {
@@ -482,22 +416,44 @@ $color-accent: $light-color-accent;
   margin-top: 24px;
 }
 
+:deep(.tags-container) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 12px;
+  max-height: 40px;
+  overflow: hidden;
+  align-items: flex-start;
+}
+
+:deep(.more-tag) {
+  background: var(--bg-surface) !important;
+  border-style: dashed !important;
+  opacity: 0.7;
+}
+
 :deep(.tag) {
-  padding: 6px 14px;
-  border-radius: 999px;
+  padding: 2px 6px;
+  border-radius: 3px;
   font-weight: 500;
-  font-size: 13px;
-  color: white;
-  background: $brand-gradient;
-  box-shadow: 0 2px 12px rgba(255, 107, 0, 0.2);
+  font-size: 10px;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
   letter-spacing: 0.01em;
   white-space: nowrap;
+  display: inline-block;
+  margin: 1px;
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
 
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(255, 107, 0, 0.3);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
   }
 }
 
@@ -582,17 +538,21 @@ $color-accent: $light-color-accent;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 24px;
+  align-items: stretch; /* 确保卡片高度一致 */
 }
 
 :deep(.card) {
   background: $bg-surface;
   border: 1px solid $border-color;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 32px $shadow-color;
+  box-shadow: 0 4px 16px $shadow-color;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   backdrop-filter: blur(10px);
+  height: 100%; /* 确保卡片填满网格高度 */
+  display: flex;
+  flex-direction: column;
 
   &::before {
     content: '';
@@ -630,6 +590,7 @@ $color-accent: $light-color-accent;
   position: relative;
   z-index: 2;
   line-height: 1.4;
+  flex-shrink: 0; /* 防止标题被压缩 */
 }
 
 :deep(.content) {
@@ -639,6 +600,9 @@ $color-accent: $light-color-accent;
   line-height: 1.5;
   position: relative;
   z-index: 2;
+  flex: 1; /* 占据剩余空间 */
+  display: flex;
+  flex-direction: column;
 }
 
 :deep(.link) {
@@ -647,6 +611,8 @@ $color-accent: $light-color-accent;
   font-weight: 600;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  margin-top: auto; /* 将链接推到底部 */
+  padding-top: 8px;
 
   &:hover {
     color: $color-accent;
@@ -656,11 +622,12 @@ $color-accent: $light-color-accent;
 
 :deep(img) {
   width: 100%;
-  height: 200px;
+  height: 180px; /* 稍微减小高度 */
   object-fit: cover;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 2;
+  flex-shrink: 0; /* 防止图片被压缩 */
 }
 
 :deep(.card:hover img) {
@@ -669,14 +636,14 @@ $color-accent: $light-color-accent;
 
 /* Dark Theme Specific Adjustments */
 :global(.dark_theme) {
-  // 在深色主题下重新定义变量
-  $bg-base: $dark-bg-base;
-  $bg-surface: $dark-bg-surface;
-  $bg-elevated: $dark-bg-elevated;
-  $text-primary: $dark-text-primary;
-  $text-secondary: $dark-text-secondary;
-  $text-tertiary: $dark-text-tertiary;
-  $border-color: $dark-border-color;
+  // 在深色主题下重新定义变量 - 使用水泥灰配色
+  $bg-base: #1a1a1a;
+  $bg-surface: #2d2d2d;
+  $bg-elevated: #404040;
+  $text-primary: #f5f5f5;
+  $text-secondary: #d1d1d1;
+  $text-tertiary: #a8a8a8;
+  $border-color: rgba(255, 255, 255, 0.08);
   $border-hover: $dark-border-hover;
   $shadow-color: $dark-shadow-color;
   $shadow-hover: $dark-shadow-hover;
@@ -689,23 +656,11 @@ $color-accent: $light-color-accent;
   $color-accent: $dark-color-accent;
 
   .hero-section {
-    background: $bg-base;
+    background: #1a1a1a;
     
     &::before {
-      background: radial-gradient(circle at 20% 30%, rgba(255, 140, 66, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 70%, rgba(255, 107, 0, 0.04) 0%, transparent 50%);
-    }
-  }
-
-  :global(.dark_theme) .hero-btn.secondary {
-    background: rgba(30, 41, 59, 0.6);
-    color: $text-secondary;
-    border-color: rgba(148, 163, 184, 0.2);
-    
-    &:hover {
-      background: rgba(51, 65, 85, 0.8);
-      color: $text-primary;
-      border-color: rgba(255, 107, 0, 0.3);
+      background: radial-gradient(circle at 20% 30%, rgba(255, 122, 0, 0.05) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(255, 122, 0, 0.02) 0%, transparent 50%);
     }
   }
 
@@ -758,8 +713,14 @@ $color-accent: $light-color-accent;
   }
 
   :global(.dark_theme) :deep(.tag) {
-    background: $brand-gradient;
-    box-shadow: 0 4px 16px rgba(255, 107, 0, 0.2);
+    background: var(--bg-elevated);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+    
+    &:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
   }
 }
 
@@ -767,16 +728,6 @@ $color-accent: $light-color-accent;
 @media (max-width: 768px) {
   .hero-section {
     padding: 60px 16px 40px;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .hero-btn {
-    min-width: 200px;
   }
 
   .content-section {
@@ -848,8 +799,10 @@ $color-accent: $light-color-accent;
   }
 
   :deep(.tag) {
-    font-size: 12px;
-    padding: 6px 12px;
+    font-size: 11px;
+    padding: 3px 8px;
+    margin: 1px;
+    max-width: 100px;
   }
 }
 
@@ -876,7 +829,6 @@ $color-accent: $light-color-accent;
     transition-duration: 0.01ms !important;
   }
   
-  .hero-btn,
   .nav-tab,
   .panel,
   :deep(.tool-card),

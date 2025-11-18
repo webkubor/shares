@@ -7,6 +7,7 @@ import InputHistory from "@/directives/inputHistory";
 import globalComponents from "@/components";
 import "@/utils/rem"
 import 'core-js/stable';
+import "@/styles/index.scss";
 
 createApp(App)
 
