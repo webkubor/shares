@@ -5,7 +5,7 @@
       <div class="hero-container">
         <div class="about-me animate-fadeInUp animate-delay-200">
           <div class="love-headers">
-            <div class="avatar-wrap" @click="toggleTheme">
+            <div class="avatar-wrap">
               <img class="avatar" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="avatar" />
               <div class="tooltip">Designed by {{ user.name }}</div>
             </div>
@@ -58,18 +58,12 @@
 
 <script setup>
 import { useUser } from "@/hooks/useUser";
-import { useTheme } from "@/hooks/useTheme";
 import { getRandomType } from "@/utils/random";
 import { computed, onMounted } from 'vue'
 
 let { user, updateAge } = useUser();
-let { switchTheme, local } = useTheme();
 
 updateAge("logo.jpeg");
-
-function toggleTheme() {
-  switchTheme(local.osTheme === "light");
-}
 
 function getTagStyle(type) {
   const map = {
@@ -588,69 +582,7 @@ $color-accent: $light-color-accent;
   opacity: 0.7;
 }
 
-/* Dark Theme Specific Adjustments */
-:global(.dark_theme) {
-  // 在深色主题下重新定义变量 - 使用现代深色配色
-  $bg-base: $dark-bg-base;
-  $bg-surface: $dark-bg-surface;
-  $bg-elevated: $dark-bg-elevated;
-  $text-primary: $dark-text-primary;
-  $text-secondary: $dark-text-secondary;
-  $text-tertiary: $dark-text-tertiary;
-  $border-color: $dark-border-color;
-  $border-hover: $dark-border-hover;
-  $shadow-color: $dark-shadow-color;
-  $shadow-hover: $dark-shadow-hover;
-  $glass-bg: $dark-glass-bg;
-  $glass-border: $dark-glass-border;
-  $glass-shadow: $dark-glass-shadow;
-  $brand-gradient: $dark-brand-gradient;
-  $surface-gradient: $dark-surface-gradient;
-  $color-primary: $dark-color-primary;
-  $color-accent: $dark-color-accent;
 
-  .hero-section {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #3a3a3a 100%);
-
-    &::before {
-      background:
-        radial-gradient(circle at 20% 30%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255, 182, 39, 0.05) 0%, transparent 50%);
-    }
-  }
-
-  .about-me {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%);
-    color: #f1f5f9;
-    border-color: rgba(148, 163, 184, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-
-  .sign {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.7) 100%);
-    color: #f1f5f9;
-    border-color: rgba(148, 163, 184, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-
-  .nav-card {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
-    border-color: rgba(148, 163, 184, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
-
-  .section-title {
-    color: #f1f5f9;
-  }
-
-  .card-title {
-    color: #f1f5f9;
-  }
-
-  .card-description {
-    color: #cbd5e1;
-  }
-}
 
 /* 移动端优化（<800px） */
 @media (max-width: 799px) {
@@ -710,12 +642,6 @@ $color-accent: $light-color-accent;
     --border-color: rgba(0, 0, 0, 0.3);
     --text-primary: #000000;
     --text-secondary: #333333;
-  }
-
-  .dark_theme {
-    --border-color: rgba(255, 255, 255, 0.3);
-    --text-primary: #ffffff;
-    --text-secondary: #cccccc;
   }
 }
 

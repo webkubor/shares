@@ -84,10 +84,5 @@ import ProjectList from './components/ProjectList.vue'
   margin: 0 auto;
 }
 
-// 深色主题适配
-:global(.dark_theme) {
-  .projects-page {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  }
-}
+
 </style>

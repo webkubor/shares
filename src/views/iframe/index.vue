@@ -1,5 +1,5 @@
 <template>
-  <div class="iframe-container" :class="local.osTheme === 'dark' ? 'dark_theme' : 'light_theme'">
+  <div class="iframe-container light_theme">
     <div class="iframe-header">
       <div class="title-section">
         <h1 class="main-title">iframe链接测试</h1>
@@ -69,7 +69,6 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useTheme } from "@/hooks/useTheme";
 
 // const iframeUrl = ref('https://pk-test.tpservice.vip/#/app-opener');
 const iframeUrl = ref('https://pk-test.tpservice.vip/#/app-opener');
@@ -78,9 +77,6 @@ const loading = ref(true);
 const isFullscreen = ref(false);
 const iframeElement = ref(null);
 const iframeWrapper = ref(null);
-
-// 获取主题相关信息
-const { local } = useTheme();
 
 const onIframeLoad = () => {
   loading.value = false;
@@ -169,69 +165,32 @@ onMounted(() => {
       transparent 20px
     );
 
-  // 亮色主题
-  &.light_theme {
-    background-color: var(--bg-surface);
+  background-color: var(--bg-surface);
 
-    .iframe-header, .url-editor, .iframe-footer {
-      background-color: var(--bg-elevated);
-      border-color: var(--border-color);
-    }
-
-    .main-title { color: var(--text-primary); }
-    .subtitle { color: var(--text-secondary); }
-
-    .control-btn {
-      background-color: #f3f6ff;
-      border: 1px solid rgba(35, 84, 255, 0.18);
-      
-      &:hover { filter: brightness(1.03); }
-      i { color: #2354ff; }
-    }
-
-    .iframe-wrapper {
-      background-color: var(--bg-elevated);
-      box-shadow: 0 8px 32px var(--shadow-color);
-    }
-
-    .loading-overlay { background-color: rgba(255, 255, 255, 0.85); }
-    .url-label { color: var(--text-secondary); }
-    .url-value { color: #2354ff; }
+  .iframe-header, .url-editor, .iframe-footer {
+    background-color: var(--bg-elevated);
+    border-color: var(--border-color);
   }
 
-  // 暗色主题
-  &.dark_theme {
-    background-color: var(--bg-surface);
+  .main-title { color: var(--text-primary); }
+  .subtitle { color: var(--text-secondary); }
 
-    .iframe-header, .url-editor, .iframe-footer {
-      background-color: var(--bg-elevated);
-      border-color: var(--border-color);
-    }
-
-    .main-title { color: var(--text-primary); }
-    .subtitle { color: var(--text-secondary); }
-
-    .control-btn {
-      background-color: #182241;
-      border: 1px solid rgba(124, 58, 237, 0.25);
-      
-      &:hover { filter: brightness(1.08); }
-      i { color: #9aa8ff; }
-    }
-
-    .iframe-wrapper {
-      background-color: var(--bg-elevated);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-    }
-
-    .loading-overlay {
-      background-color: rgba(18, 26, 51, 0.88);
-      p { color: var(--text-secondary); }
-    }
-
-    .url-label { color: var(--text-secondary); }
-    .url-value { color: #7c9cff; }
+  .control-btn {
+    background-color: #f3f6ff;
+    border: 1px solid rgba(35, 84, 255, 0.18);
+    
+    &:hover { filter: brightness(1.03); }
+    i { color: #2354ff; }
   }
+
+  .iframe-wrapper {
+    background-color: var(--bg-elevated);
+    box-shadow: 0 8px 32px var(--shadow-color);
+  }
+
+  .loading-overlay { background-color: rgba(255, 255, 255, 0.85); }
+  .url-label { color: var(--text-secondary); }
+  .url-value { color: #2354ff; }
 }
 
 .url-editor {

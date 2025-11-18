@@ -39,67 +39,7 @@
   --font-mono: #{$font-mono};
 }
 
-/* 亮色主题 */
-.light_theme {
-  /* 兼容旧令牌 */
-  --webkubor-bg: #ffffff;
-  --webkubor-second: #d1d1d1;
-  --webkubor-text-primary: #000000;
-
-  /* 新令牌 */
-  --bg-base: #{$light-bg-base};
-  --bg-surface: #{$light-bg-surface};
-  --bg-elevated: #{$light-bg-elevated};
-  --text-primary: #{$light-text-primary};
-  --text-secondary: #{$light-text-secondary};
-  --text-tertiary: #{$light-text-tertiary};
-  --border-color: #{$light-border-color};
-  --border-hover: #{$light-border-hover};
-  --shadow-color: #{$light-shadow-color};
-  --shadow-hover: #{$light-shadow-hover};
-  --glass-bg: #{$light-glass-bg};
-  --glass-border: #{$light-glass-border};
-  --glass-shadow: #{$light-glass-shadow};
-  --brand-gradient: #{$light-brand-gradient};
-  --surface-gradient: #{$light-surface-gradient};
-  --color-primary: #{$light-color-primary};
-  --color-accent: #{$light-color-accent};
-  --color-error: #{$color-error};
-  --color-success: #{$color-success};
-  --color-warning: #{$color-warning};
-  --color-info: #{$color-info};
-}
-
-/* 暗色主题 - 水泥灰风格 */
-.dark_theme {
-  /* 兼容旧令牌 */
-  --webkubor-bg: #1a1a1a;
-  --webkubor-second: #404040;
-  --webkubor-text-primary: #f5f5f5;
-
-  /* 新令牌 */
-  --bg-base: #{$dark-bg-base};
-  --bg-surface: #{$dark-bg-surface};
-  --bg-elevated: #{$dark-bg-elevated};
-  --text-primary: #{$dark-text-primary};
-  --text-secondary: #{$dark-text-secondary};
-  --text-tertiary: #{$dark-text-tertiary};
-  --border-color: #{$dark-border-color};
-  --border-hover: #{$dark-border-hover};
-  --shadow-color: #{$dark-shadow-color};
-  --shadow-hover: #{$dark-shadow-hover};
-  --glass-bg: #{$dark-glass-bg};
-  --glass-border: #{$dark-glass-border};
-  --glass-shadow: #{$dark-glass-shadow};
-  --brand-gradient: #{$dark-brand-gradient};
-  --surface-gradient: #{$dark-surface-gradient};
-  --color-primary: #{$dark-color-primary};
-  --color-accent: #{$dark-color-accent};
-  --color-error: #{$color-error};
-  --color-success: #{$color-success};
-  --color-warning: #{$color-warning};
-  --color-info: #{$color-info};
-}
+/* 基础主题样式 - 只保留亮色主题 */
 
 /* 基础排版 */
 body {
@@ -120,13 +60,7 @@ body {
   background-attachment: fixed;
 }
 
-/* 暗色主题背景 - 水泥灰风格 */
-.dark_theme body {
-  background-image:
-    radial-gradient(circle at 25% 15%, rgba(255, 122, 0, 0.02) 0%, transparent 35%),
-    radial-gradient(circle at 80% 70%, rgba(255, 122, 0, 0.01) 0%, transparent 40%),
-    linear-gradient(180deg, #{$dark-bg-base} 0%, #{lighten($dark-bg-base, 3%)} 100%);
-}
+
 
 /* 基础标题样式 */
 h1, h2, h3, h4, h5, h6 {

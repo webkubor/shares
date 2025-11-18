@@ -198,42 +198,7 @@ img {
   text-overflow: ellipsis;
 }
 
-// 深色主题适配
-:global(.dark_theme) {
-  .card {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
-    border-color: rgba(148, 163, 184, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
 
-  .card-title {
-    color: #f1f5f9;
-  }
-
-  .content {
-    color: #cbd5e1;
-  }
-
-  .tag {
-    background: rgba(30, 41, 59, 0.7);
-    border-color: rgba(148, 163, 184, 0.3);
-    color: #cbd5e1;
-    
-    &:hover {
-      border-color: #ff6b35;
-      color: #ff6b35;
-      background: rgba(255, 107, 53, 0.1);
-    }
-  }
-
-  .link {
-    color: #ff6b35;
-    
-    &:hover {
-      color: #ff8c42;
-    }
-  }
-}
 
 // 移动端适配
 @media (max-width: 799px) {
