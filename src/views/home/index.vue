@@ -173,9 +173,10 @@ window.addEventListener('vite:preloadError', (event) => {
     }
   }
 
-  .light_theme &::before,
-  .dark_theme &::before {
-    display: none;
-  }
+}
+
+.light_theme .home-page::before,
+.dark_theme .home-page::before {
+  display: none;
 }
 </style>

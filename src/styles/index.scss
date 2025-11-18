@@ -1,5 +1,5 @@
 /* 全局品牌主色（科技蓝） */
-$default-primary: #2354FF;
+$default-primary: #FF7A00;
 
 /* 设计令牌：统一的语义 CSS 变量（不改动原有变量，向后兼容） */
 :root {
@@ -10,8 +10,8 @@ $default-primary: #2354FF;
   --webkubor-text-primary: #000000;
 
   /* 新增语义令牌 */
-  --color-primary: #2354FF; /* 品牌主色 */
-  --color-accent: #7C3AED;  /* 霓虹紫点缀 */
+  --color-primary: #FF7A00;
+  --color-accent: #FFB020;
   --color-success: #30C0A2;
   --color-warning: #FFB31C;
   --color-error: #CF1322;
@@ -20,7 +20,7 @@ $default-primary: #2354FF;
   --bg-surface: #f7f8fb;
   --bg-elevated: #ffffff;
   --text-primary: #0f172a;
-  --text-secondary: #475569;
+  --text-secondary: #3f4a5e;
   --border-color: rgba(15, 23, 42, 0.08);
   --shadow-color: rgba(15, 23, 42, 0.12);
 
@@ -43,12 +43,13 @@ $default-primary: #2354FF;
   --bg-surface: #ffffff;
   --bg-elevated: #ffffff;
   --text-primary: #0f172a;
-  --text-secondary: #475569;
+  --text-secondary: #3f4a5e;
   --border-color: rgba(15, 23, 42, 0.08);
   --shadow-color: rgba(15, 23, 42, 0.12);
   --glass-bg: rgba(255, 255, 255, 0.6);
   --glass-border: rgba(15, 23, 42, 0.08);
-  --brand-gradient: linear-gradient(135deg, #2354FF 0%, #7C3AED 100%);
+  --brand-gradient: linear-gradient(135deg, #FF7A00 0%, #FF4D00 100%);
+  --color-primary: #FF7A00;
 }
 
 .dark_theme {
@@ -62,12 +63,13 @@ $default-primary: #2354FF;
   --bg-surface: #0f1629;
   --bg-elevated: #121a33;
   --text-primary: #e5e7eb;
-  --text-secondary: #a1a7b3;
+  --text-secondary: #c4c9d4;
   --border-color: rgba(229, 231, 235, 0.08);
   --shadow-color: rgba(0, 0, 0, 0.3);
   --glass-bg: rgba(18, 26, 51, 0.6);
   --glass-border: rgba(229, 231, 235, 0.08);
-  --brand-gradient: linear-gradient(135deg, #3B5BFF 0%, #8F54F7 100%);
+  --brand-gradient: linear-gradient(135deg, #FFA033 0%, #FF5A1F 100%);
+  --color-primary: #FF8800;
 }
 @import "./mixins.scss";
 @import "./font.scss";
@@ -276,10 +278,10 @@ h1 {
   color: #fff;
   border-radius: 5px;
   padding: 10px 25px;
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
   border: 0;
-  background-image: var(--brand-gradient);
+  background-color: var(--color-primary);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
