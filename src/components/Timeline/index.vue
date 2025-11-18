@@ -1127,12 +1127,64 @@ $shadow-hover: rgba(255, 107, 53, 0.2);
 
 /* 移动端优化 */
 @media (max-width: 799px) {
-  .timeline-vertical {
-    padding: 20px 0;
+  .timeline-container {
+    padding: 40px 0;
+    margin: 0 16px; /* 减少边距，增加内容空间 */
   }
   
+  .timeline-header {
+    padding: 0 20px;
+    margin-bottom: 40px;
+  }
+  
+  .timeline-title {
+    font-size: clamp(24px, 6vw, 32px); /* 更大的标题字体 */
+    margin-bottom: 8px;
+  }
+  
+  .timeline-subtitle {
+    font-size: 16px;
+  }
+  
+  /* 分界标记优化 */
+  .timeline-boundary {
+    margin: 0 16px;
+    padding: 10px 0;
+    gap: 12px; /* 减少间距 */
+  }
+  
+  .boundary-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
+  }
+  
+  .boundary-icon {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  
+  .timeline-wrapper {
+    height: 65vh; /* 优化高度 */
+    max-height: 520px;
+    margin: 0 4px; /* 减少边距，增加内容空间 */
+    padding: 12px 0;
+    border-radius: 12px; /* 更小的圆角 */
+    background: rgba(255, 255, 255, 0.4); /* 更淡的背景 */
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05); /* 内阴影增加深度 */
+  }
+  
+  .timeline-vertical {
+    padding: 16px 0;
+  }
+  
+  .timeline-years {
+    gap: 40px; /* 减少年份间距 */
+  }
+  
+  /* 时间线项目布局优化 */
   .timeline-year-item {
-    margin: 40px 0;
+    margin: 0;
+    padding: 0 20px; /* 增加水平内边距 */
     
     &:nth-child(odd),
     &:nth-child(even) {
@@ -1140,13 +1192,14 @@ $shadow-hover: rgba(255, 107, 53, 0.2);
       text-align: center;
       
       .year-marker {
-        margin: 0 0 20px 0;
+        margin: 0 0 16px 0;
       }
       
       .year-content {
         text-align: center;
         max-width: 100%;
-        margin-bottom: 20px;
+        padding: 20px; /* 增加内边距 */
+        margin: 0;
       }
       
       .event-bubbles {
@@ -1154,39 +1207,250 @@ $shadow-hover: rgba(255, 107, 53, 0.2);
         transform: none;
         margin: 0;
         max-width: 100%;
+        padding: 0 10px; /* 增加事件气泡的内边距 */
       }
     }
   }
   
+  /* 年份标记优化 */
   .year-dot {
-    width: 60px;
-    height: 60px;
+    width: 52px; /* 更精致的尺寸 */
+    height: 52px;
+    margin: 0 auto 10px;
+    border-width: 3px; /* 更细的边框 */
     
     .dot-core {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
+    }
+    
+    .dot-glow {
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+    }
+    
+    .dot-pulse {
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-width: 1px; /* 更细的脉冲边框 */
     }
   }
   
   .year-label {
-    font-size: 20px;
+    font-size: 18px; /* 稍微减小字体 */
+    margin-bottom: 2px;
   }
   
+  /* 内容卡片优化 */
   .year-content {
-    padding: 16px;
+    padding: 20px;
+    border-radius: 16px;
+    margin: 0 10px 0 60px; /* 增加左侧边距，避免与时间线重叠 */
+    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.06); /* 更柔和的阴影 */
+    border: 1px solid rgba(255, 107, 53, 0.06); /* 更细的边框 */
+    backdrop-filter: blur(8px); /* 毛玻璃效果 */
+    transition: all 0.3s ease; /* 平滑过渡 */
+  }
+  
+  /* 悬停效果优化 */
+  .timeline-year-item.hovered .year-content {
+    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.12);
+    transform: translateY(-2px); /* 轻微上浮 */
+  }
+  
+  /* 年份标记悬停效果 */
+  .timeline-year-item.hovered .year-dot {
+    transform: scale(1.05); /* 轻微放大 */
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.2);
+  }
+  
+  /* 事件气泡悬停效果 */
+  .event-bubble:hover {
+    transform: translateX(4px); /* 轻微右移 */
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
+  }
+  
+  /* 移动端进入动画 */
+  .timeline-year-item {
+    animation: mobileFadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+    
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1s};
+      }
+    }
+  }
+  
+  @keyframes mobileFadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   .year-title {
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 8px;
+    line-height: 1.5; /* 增加行高 */
+    font-weight: 600; /* 加粗标题 */
+    color: #2d3748; /* 更深的颜色提升可读性 */
   }
   
   .year-desc {
     font-size: 14px;
+    line-height: 1.6; /* 增加可读性 */
+    margin-bottom: 8px;
+    color: #4a5568; /* 优化颜色对比度 */
+    font-weight: 400;
+  }
+  
+  .year-month {
+    font-size: 12px;
+  }
+  
+  /* 事件气泡优化 */
+  .event-bubble {
+    padding: 12px 16px; /* 增加内边距 */
+    border-radius: 14px;
+    gap: 12px;
+    margin-bottom: 8px; /* 增加气泡间距 */
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    .event-dot {
+      width: 8px;
+      height: 8px;
+      margin-top: 4px;
+    }
+    
+    .event-month {
+      font-size: 12px;
+      margin-bottom: 3px;
+      font-weight: 600; /* 加粗月份 */
+    }
+    
+    .event-title {
+      font-size: 14px;
+      margin-bottom: 4px;
+      font-weight: 600; /* 加粗标题 */
+    }
+    
+    .event-desc {
+      font-size: 12px;
+      line-height: 1.4;
+      opacity: 0.9; /* 增加透明度对比 */
+    }
+  }
+  
+  /* 时间线位置和样式优化 */
+  .timeline-line {
+    left: 32px; /* 优化位置，给内容更多空间 */
+    width: 2px; /* 更细的线条 */
+    transform: none;
+  }
+  
+  .timeline-progress {
+    border-radius: 1px;
+  }
+  
+  /* 滚动提示优化 */
+  .scroll-indicator {
+    bottom: 16px;
+    gap: 6px;
+  }
+  
+  .scroll-text {
+    font-size: 12px;
+  }
+  
+  .scroll-arrow {
+    font-size: 16px;
+  }
+  
+  /* 当前年份显示优化 */
+  .current-year-display {
+    .year-badge {
+      padding: 10px 18px;
+      font-size: 18px;
+      border-radius: 36px;
+      box-shadow: 0 12px 30px rgba(255, 107, 53, 0.25); /* 更柔和的阴影 */
+    }
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+  .timeline-container {
+    margin: 0 8px;
+    padding: 30px 0;
+  }
+  
+  .timeline-title {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+  
+  .timeline-wrapper {
+    height: 70vh;
+    max-height: 450px;
+    margin: 0 2px;
+  }
+  
+  .timeline-year-item {
+    padding: 0 12px;
+  }
+  
+  .year-content {
+    margin: 0 5px 0 50px; /* 进一步减少边距 */
+    padding: 16px;
   }
   
   .timeline-line {
-    left: 30px;
-    transform: none;
+    left: 28px;
+  }
+  
+  .year-dot {
+    width: 48px;
+    height: 48px;
+    
+    .dot-core {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  
+  .year-label {
+    font-size: 16px;
+  }
+  
+  .year-title {
+    font-size: 15px;
+  }
+  
+  .year-desc {
+    font-size: 13px;
+  }
+  
+  .event-bubble {
+    padding: 10px 12px;
+    
+    .event-title {
+      font-size: 13px;
+    }
+    
+    .event-desc {
+      font-size: 11px;
+    }
   }
 }
 
