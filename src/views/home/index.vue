@@ -3,53 +3,53 @@
     <!-- Hero Section -->
     <section class="hero-section animate-fadeInDown">
       <div class="hero-container">
-        <div class="theme-toggle-container animate-fadeInRight animate-delay-100">
-          <button class="theme-toggle-btn" @click="toggleTheme" :title="themeTitle">
-            <span class="theme-icon">{{ themeIcon }}</span>
-          </button>
+        <div class="about-me animate-fadeInUp animate-delay-200">
+          <div class="love-headers">
+            <div class="avatar-wrap" @click="toggleTheme">
+              <img class="avatar" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="avatar" />
+              <div class="tooltip">Designed by {{ user.name }}</div>
+            </div>
+          </div>
+          <span class="sign">
+            {{ signText }}
+            <span></span>
+          </span>
+          <div class="tags">
+            <div class="tags-container">
+              <span
+                v-for="(item, index) in user.tags.slice(0, 6)"
+                :key="item + index"
+                class="tag"
+                :style="getTagStyle(getRandomType())"
+              >{{ item }}</span>
+              <span
+                v-if="user.tags && user.tags.length > 6"
+                class="tag more-tag"
+              >+{{ user.tags.length - 6 }}</span>
+            </div>
+          </div>
         </div>
-        <UserInfo class="animate-fadeInUp animate-delay-200" />
-
       </div>
     </section>
 
-    <!-- Main Content -->
-    <section class="content-section animate-fadeInUp animate-delay-600">
-      <div class="content-container">
-        <!-- Navigation Tabs -->
-        <nav class="nav-tabs animate-scaleIn animate-delay-700">
-          <button
-            v-for="(tab, index) in tabs"
-            :key="tab.id"
-            :class="['nav-tab', { active: activeTab === tab.id }]"
-            @click="activeTab = tab.id"
-            :style="{ animationDelay: `${0.8 + index * 0.1}s` }"
-            class="animate-fadeInUp"
-          >
-            <span class="tab-icon">{{ tab.icon }}</span>
-            <span class="tab-text">{{ tab.label }}</span>
-            <div class="tab-indicator"></div>
-          </button>
-        </nav>
-
-        <!-- Content Panels -->
-        <div class="panels-container">
-          <transition name="panel-fade" mode="out-in">
-            <div v-if="activeTab === 'tools'" key="tools" class="panel animate-scaleIn">
-              <div class="panel-header">
-                <h2 class="panel-title text-gradient-animate">Creative Tools</h2>
-                <p class="panel-subtitle">探索有趣的工具和实验</p>
-              </div>
-              <ToolView />
-            </div>
-            <div v-else-if="activeTab === 'projects'" key="projects" class="panel animate-scaleIn">
-              <div class="panel-header">
-                <h2 class="panel-title text-gradient-animate">Project Showcase</h2>
-                <p class="panel-subtitle">精选项目展示</p>
-              </div>
-              <ProjectList />
-            </div>
-          </transition>
+    <!-- Navigation Section -->
+    <section class="nav-section animate-fadeInUp animate-delay-600">
+      <div class="nav-container">
+        <h2 class="section-title">探索更多</h2>
+        <div class="nav-cards">
+          <router-link to="/tools" class="nav-card tools-card">
+            <div class="card-icon">🛠️</div>
+            <h3 class="card-title">创意工具</h3>
+            <p class="card-description">探索有趣的工具和实验</p>
+            <span class="card-arrow">→</span>
+          </router-link>
+          
+          <router-link to="/projects" class="nav-card projects-card">
+            <div class="card-icon">🚀</div>
+            <h3 class="card-title">项目展示</h3>
+            <p class="card-description">精选项目展示</p>
+            <span class="card-arrow">→</span>
+          </router-link>
         </div>
       </div>
     </section>
@@ -57,25 +57,37 @@
 </template>
 
 <script setup>
-import UserInfo from "./components/UserInfo.vue";
-import ProjectList from "./components/ProjectList.vue";
-import ToolView from './components/Tool.vue'
-import { ref, onMounted, computed } from 'vue'
-import { useTheme } from '@/hooks/useTheme'
+import { useUser } from "@/hooks/useUser";
+import { useTheme } from "@/hooks/useTheme";
+import { getRandomType } from "@/utils/random";
+import { computed, onMounted } from 'vue'
 
-const activeTab = ref('tools')
-const { toggleTheme, local } = useTheme()
+let { user, updateAge } = useUser();
+let { switchTheme, local } = useTheme();
 
-// 计算主题图标
-const themeIcon = computed(() => local.osTheme === 'dark' ? '☀️' : '🌙')
-const themeTitle = computed(() => `切换到${local.osTheme === 'dark' ? '亮色' : '暗黑'}主题`)
+updateAge("logo.jpeg");
 
-const tabs = [
-  { id: 'tools', label: '创意工具', icon: '🛠️' },
-  { id: 'projects', label: '项目展示', icon: '🚀' }
-]
+function toggleTheme() {
+  switchTheme(local.osTheme === "light");
+}
 
+function getTagStyle(type) {
+  const map = {
+    success: { background: '#30C0A2', color: '#fff' },
+    info: { background: '#5E64DA', color: '#fff' },
+    warning: { background: '#FFB31C', color: '#000' },
+    error: { background: '#CF1322', color: '#fff' },
+    default: { background: '#2354FF', color: '#fff' }
+  }
+  return map[type] || map.default
+}
 
+const signText = computed(() => {
+  const base = user.personalSign && String(user.personalSign).trim()
+  return base && base.length > 0
+    ? base
+    : '用代码编织数字世界的艺术家'
+})
 
 onMounted(() => {
   window.addEventListener('vite:preloadError', (event) => {
@@ -115,14 +127,23 @@ $color-accent: $light-color-accent;
   min-height: 100vh;
   background: var(--bg-base);
   color: var(--text-primary);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 /* Hero Section */
 .hero-section {
-  padding: 80px 24px 60px;
+  width: 100%;
+  padding: 100px 32px 80px;
   background: var(--bg-base);
   position: relative;
   overflow: hidden;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &::before {
     content: '';
@@ -131,8 +152,9 @@ $color-accent: $light-color-accent;
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 30%, rgba(255, 107, 0, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 140, 66, 0.03) 0%, transparent 50%);
+    background:
+      radial-gradient(circle at 20% 30%, rgba(255, 107, 0, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 140, 66, 0.03) 0%, transparent 50%);
     pointer-events: none;
   }
 
@@ -149,156 +171,55 @@ $color-accent: $light-color-accent;
 }
 
 .hero-container {
+  width: min(100%, 960px);
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
 }
 
-/* 主题切换按钮 */
-.theme-toggle-container {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  z-index: 100;
+/* Navigation Section */
+.nav-section {
+  padding: 0 32px 100px;
+  margin-top: -60px;
+  position: relative;
+  z-index: 10;
+  width: 100%;
 }
 
-.theme-toggle-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: none;
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  box-shadow: var(--glass-shadow);
-  
-  &:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 12px 32px var(--shadow-hover);
-    border: 1px solid var(--color-primary);
-  }
-  
-  &:active {
-    transform: translateY(0) scale(0.95);
-  }
-}
-
-.theme-icon {
-  transition: transform 0.3s ease;
-  
-  .theme-toggle-btn:hover & {
-    transform: rotate(180deg);
-  }
-}
-
-
-/* Content Section */
-.content-section {
-  padding: 0 24px 80px;
-}
-
-.content-container {
+.nav-container {
   max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 48px;
+  letter-spacing: -0.02em;
+}
+
+.nav-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
-/* Navigation Tabs */
-.nav-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 40px;
-  background: $glass-bg;
-  padding: 8px;
-  border-radius: 20px;
-  box-shadow: $glass-shadow;
-  border: 1px solid $glass-border;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  backdrop-filter: blur(10px);
-}
-
-.nav-tab {
-  flex: 1;
-  position: relative;
-  padding: 12px 24px;
-  border: none;
-  background: transparent;
-  color: $text-secondary;
-  font-weight: 500;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow: hidden;
-
-  .tab-icon {
-    font-size: 18px;
-    transition: transform 0.3s ease;
-  }
-
-  .tab-text {
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .tab-indicator {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: $color-primary;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateX(-50%);
-    border-radius: 1px;
-  }
-
-  &:hover {
-    color: $text-primary;
-    background: rgba(255, 107, 0, 0.1);
-    
-    .tab-icon {
-      transform: translateY(-2px);
-    }
-  }
-
-  &.active {
-    color: $text-primary;
-    background: $bg-surface;
-    box-shadow: 0 4px 16px $shadow-color;
-
-    .tab-indicator {
-      width: 60%;
-    }
-
-    .tab-icon {
-      transform: translateY(-2px);
-    }
-  }
-}
-
-/* Panels Container */
-.panels-container {
-  position: relative;
-}
-
-.panel {
-  background: $glass-bg;
+.nav-card {
+  display: block;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 24px;
-  padding: 40px;
-  box-shadow: $glass-shadow;
-  border: 1px solid $glass-border;
-  backdrop-filter: blur(10px);
+  padding: 40px 32px;
+  text-decoration: none;
+  color: var(--text-primary);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(16px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 
@@ -308,64 +229,66 @@ $color-accent: $light-color-accent;
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: $brand-gradient;
-    opacity: 0.8;
+    height: 4px;
+    background: var(--brand-gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--color-primary);
+
+    &::before {
+      opacity: 0.9;
+    }
+
+    .card-arrow {
+      transform: translateX(4px);
+    }
   }
 }
 
-.panel-header {
-  text-align: center;
-  margin-bottom: 40px;
+.card-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
 }
 
-.panel-title {
-  font-size: 32px;
+.card-title {
+  font-size: 24px;
   font-weight: 700;
-  color: $text-primary;
-  margin-bottom: 8px;
-  background: $brand-gradient;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  position: relative;
+  margin-bottom: 12px;
+  color: var(--text-primary);
 }
 
-.panel-subtitle {
+.card-description {
   font-size: 16px;
-  color: $text-secondary;
-  font-weight: 400;
-  opacity: 0.8;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
-/* Panel Transitions */
-.panel-fade-enter-active,
-.panel-fade-leave-active {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.panel-fade-enter-from {
-  opacity: 0;
-  transform: translateY(20px) scale(0.95);
-}
-
-.panel-fade-leave-to {
-  opacity: 0;
-  transform: translateY(-20px) scale(0.95);
+.card-arrow {
+  font-size: 24px;
+  color: var(--color-primary);
+  transition: transform 0.3s ease;
+  display: inline-block;
 }
 
 /* Component Overrides */
 :deep(.about-me) {
   text-align: center;
-  color: $text-primary;
-  padding: 40px 0;
+  color: var(--text-primary);
+  padding: 48px 0;
   position: relative;
-  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
-  border-radius: 24px;
-  margin: 20px 0;
+  background: var(--bg-surface);
+  border-radius: 32px;
+  margin: 24px auto;
   border: 1px solid var(--border-color);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-color);
+  backdrop-filter: blur(16px);
   overflow: hidden;
 
   &::before {
@@ -375,40 +298,41 @@ $color-accent: $light-color-accent;
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 107, 0, 0.05) 0%, transparent 50%);
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(255, 182, 39, 0.03) 0%, transparent 50%);
     pointer-events: none;
   }
 }
 
 :deep(.avatar) {
   border-radius: 50%;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  border: 4px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-color);
+  border: 3px solid rgba(255, 255, 255, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 140px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
   object-fit: cover;
-  margin: 0 auto 24px;
+  margin: 0 auto 32px;
   display: block;
   position: relative;
   z-index: 2;
 
   &:hover {
-    transform: scale(1.08) rotate(3deg);
-    border-color: rgba(255, 107, 0, 0.4);
-    box-shadow: 0 16px 48px rgba(255, 107, 0, 0.2);
+    transform: scale(1.08) rotate(2deg);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-hover);
   }
 
   &::before {
     content: '';
     position: absolute;
-    top: -8px;
-    left: -8px;
-    right: -8px;
-    bottom: -8px;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
     border-radius: 50%;
-    background: $brand-gradient;
+    background: var(--brand-gradient);
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
@@ -421,19 +345,20 @@ $color-accent: $light-color-accent;
 
 :deep(.sign) {
   display: inline-block;
-  font-weight: 800;
-  font-size: clamp(32px, 5vw, 56px);
-  color: $text-primary;
-  margin: 24px 0 16px;
-  padding: 20px 40px;
-  background: linear-gradient(135deg, $glass-bg 0%, rgba(255, 255, 255, 0.1) 100%);
-  border-radius: 24px;
-  box-shadow: $glass-shadow, inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border: 1px solid $glass-border;
-  backdrop-filter: blur(10px);
+  font-weight: 700;
+  font-size: clamp(36px, 6vw, 64px);
+  color: var(--text-primary);
+  margin: 32px 0 20px;
+  padding: 24px 48px;
+  background: var(--glass-bg);
+  border-radius: 28px;
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
   position: relative;
   overflow: hidden;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   background-clip: text;
   -webkit-background-clip: text;
 
@@ -445,7 +370,7 @@ $color-accent: $light-color-accent;
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.6s ease;
+    transition: left 0.8s ease;
   }
 
   &:hover::before {
@@ -459,10 +384,10 @@ $color-accent: $light-color-accent;
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: $brand-gradient;
-    border-radius: 26px;
+    background: var(--brand-gradient);
+    border-radius: 30px;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
     z-index: -1;
   }
 
@@ -471,151 +396,19 @@ $color-accent: $light-color-accent;
   }
 }
 
-:deep(.tags) {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 24px;
-}
-
-:deep(.tags-container) {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 12px;
-  max-height: 40px;
-  overflow: hidden;
-  align-items: flex-start;
-}
-
-:deep(.more-tag) {
-  background: var(--bg-surface) !important;
-  border-style: dashed !important;
-  opacity: 0.7;
-}
-
-:deep(.tag) {
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-weight: 500;
-  font-size: 10px;
-  color: var(--text-secondary);
-  background: var(--bg-elevated);
+/* UserInfo Styles */
+.about-me {
+  text-align: center;
+  color: var(--text-primary);
+  padding: 48px 0;
+  position: relative;
+  background: var(--bg-surface);
+  border-radius: 32px;
+  margin: 24px auto;
   border: 1px solid var(--border-color);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: default;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  display: inline-block;
-  margin: 1px;
-  max-width: 60px;
+  box-shadow: var(--shadow-color);
+  backdrop-filter: blur(16px);
   overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.2;
-
-  &:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-  }
-}
-
-/* Tool Cards */
-:deep(.tool-space) {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-:deep(.tool-card) {
-  background: $bg-surface;
-  border: 1px solid $border-color;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 8px 32px $shadow-color;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: $brand-gradient;
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-  }
-
-  &:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 12px 48px $shadow-hover;
-    border-color: $border-hover;
-
-    &::before {
-      transform: translateX(0);
-    }
-  }
-}
-
-:deep(.tool-title) {
-  font-size: 20px;
-  font-weight: 600;
-  color: $text-primary;
-  margin-bottom: 12px;
-  position: relative;
-  line-height: 1.3;
-}
-
-:deep(.tool-card button) {
-  height: 36px;
-  border-radius: 10px;
-  border: none;
-  background: $brand-gradient;
-  color: white;
-  font-weight: 500;
-  padding: 0 16px;
-  margin: 6px 8px 0 0;
-  box-shadow: 0 4px 16px rgba(255, 107, 0, 0.2);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  font-size: 14px;
-
-  &:hover {
-    transform: translateY(-1px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3);
-  }
-
-  &:active {
-    transform: translateY(0) scale(0.98);
-  }
-}
-
-/* Project Cards */
-:deep(.grid) {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-  align-items: stretch; /* 确保卡片高度一致 */
-}
-
-:deep(.card) {
-  background: $bg-surface;
-  border: 1px solid $border-color;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px $shadow-color;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  backdrop-filter: blur(10px);
-  height: 100%; /* 确保卡片填满网格高度 */
-  display: flex;
-  flex-direction: column;
 
   &::before {
     content: '';
@@ -624,90 +417,187 @@ $color-accent: $light-color-accent;
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 20px;
-    padding: 1px;
-    background: $brand-gradient;
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(255, 182, 39, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+.avatar-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  border-radius: 50%;
+  box-shadow: var(--shadow-color);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  margin: 0 auto 32px;
+  display: block;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.08) rotate(2deg);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-hover);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    background: var(--brand-gradient);
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 1;
+    z-index: -1;
   }
 
-  &:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 12px 48px $shadow-hover;
-
-    &::before {
-      opacity: 0.6;
-    }
+  &:hover::before {
+    opacity: 0.3;
   }
 }
 
-:deep(.card-title) {
-  font-weight: 600;
-  padding: 16px 20px 8px;
-  color: $text-primary;
-  font-size: 16px;
-  position: relative;
-  z-index: 2;
-  line-height: 1.4;
-  flex-shrink: 0; /* 防止标题被压缩 */
+.tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: -28px;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-:deep(.content) {
-  font-size: 13px;
-  padding: 0 20px 16px;
-  color: $text-secondary;
-  line-height: 1.5;
+.avatar-wrap:hover .tooltip {
+  opacity: 1;
+}
+
+.sign {
+  display: inline-block;
+  font-weight: 700;
+  font-size: clamp(36px, 6vw, 64px);
+  color: var(--text-primary);
+  margin: 32px 0 20px;
+  padding: 24px 48px;
+  background: var(--glass-bg);
+  border-radius: 28px;
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
   position: relative;
-  z-index: 2;
-  flex: 1; /* 占据剩余空间 */
+  overflow: hidden;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.8s ease;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--brand-gradient);
+    border-radius: 30px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+
+  &:hover::after {
+    opacity: 0.3;
+  }
+}
+
+.tags {
   display: flex;
-  flex-direction: column;
-  min-height: 0; /* 防止内容撑开 */
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 32px;
 }
 
-:deep(.link) {
-  color: $color-primary;
-  text-decoration: none;
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-height: 48px;
+  overflow: hidden;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.tag {
+  padding: 6px 16px;
+  border-radius: 20px;
   font-weight: 600;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  margin-top: auto; /* 将链接推到底部 */
-  padding-top: 8px;
+  font-size: 13px;
+  color: white;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  display: inline-block;
+  margin: 2px;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-color);
 
   &:hover {
-    color: $color-accent;
-    text-decoration: underline;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
   }
 }
 
-:deep(img) {
-  width: 100%;
-  height: 180px; /* 稍微减小高度 */
-  object-fit: cover;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  z-index: 2;
-  flex-shrink: 0; /* 防止图片被压缩 */
-}
-
-:deep(.card:hover img) {
-  transform: scale(1.05);
+.more-tag {
+  background: var(--bg-surface) !important;
+  border-style: dashed !important;
+  opacity: 0.7;
 }
 
 /* Dark Theme Specific Adjustments */
 :global(.dark_theme) {
-  // 在深色主题下重新定义变量 - 使用水泥灰配色
-  $bg-base: #1a1a1a;
-  $bg-surface: #2d2d2d;
-  $bg-elevated: #404040;
-  $text-primary: #f5f5f5;
-  $text-secondary: #d1d1d1;
-  $text-tertiary: #a8a8a8;
-  $border-color: rgba(255, 255, 255, 0.08);
+  // 在深色主题下重新定义变量 - 使用现代深色配色
+  $bg-base: $dark-bg-base;
+  $bg-surface: $dark-bg-surface;
+  $bg-elevated: $dark-bg-elevated;
+  $text-primary: $dark-text-primary;
+  $text-secondary: $dark-text-secondary;
+  $text-tertiary: $dark-text-tertiary;
+  $border-color: $dark-border-color;
   $border-hover: $dark-border-hover;
   $shadow-color: $dark-shadow-color;
   $shadow-hover: $dark-shadow-hover;
@@ -720,153 +610,97 @@ $color-accent: $light-color-accent;
   $color-accent: $dark-color-accent;
 
   .hero-section {
-    background: #1a1a1a;
-    
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #3a3a3a 100%);
+
     &::before {
-      background: radial-gradient(circle at 20% 30%, rgba(255, 122, 0, 0.05) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 70%, rgba(255, 122, 0, 0.02) 0%, transparent 50%);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 182, 39, 0.05) 0%, transparent 50%);
     }
   }
 
-  :global(.dark_theme) .nav-tabs {
-    background: rgba(30, 41, 59, 0.6);
-    border-color: rgba(148, 163, 184, 0.1);
+  .about-me {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%);
+    color: #f1f5f9;
+    border-color: rgba(148, 163, 184, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
-  :global(.dark_theme) .nav-tab {
-    color: $text-tertiary;
-    
-    &:hover {
-      background: rgba(255, 107, 0, 0.1);
-      color: $text-secondary;
-    }
+  .sign {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.7) 100%);
+    color: #f1f5f9;
+    border-color: rgba(148, 163, 184, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
-  :global(.dark_theme) .nav-tab.active {
-    background: $bg-surface;
-    color: $text-primary;
+  .nav-card {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+    border-color: rgba(148, 163, 184, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
 
-  :global(.dark_theme) .panel {
-    background: rgba(30, 41, 59, 0.6);
-    border-color: rgba(148, 163, 184, 0.1);
+  .section-title {
+    color: #f1f5f9;
   }
 
-  :global(.dark_theme) .panel-title {
-    color: $text-primary;
+  .card-title {
+    color: #f1f5f9;
   }
 
-  :global(.dark_theme) .panel-subtitle {
-    color: $text-secondary;
-  }
-
-  :global(.dark_theme) :deep(.sign) {
-    background: rgba(30, 41, 59, 0.6);
-  }
-
-  :global(.dark_theme) :deep(.tool-card) {
-    background: rgba(30, 41, 59, 0.4);
-    border-color: rgba(148, 163, 184, 0.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  :global(.dark_theme) :deep(.card) {
-    background: rgba(30, 41, 59, 0.4);
-    border-color: rgba(148, 163, 184, 0.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  :global(.dark_theme) :deep(.tag) {
-    background: var(--bg-elevated);
-    border-color: var(--border-color);
-    color: var(--text-secondary);
-    
-    &:hover {
-      border-color: var(--color-primary);
-      color: var(--color-primary);
-    }
+  .card-description {
+    color: #cbd5e1;
   }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* 移动端优化（<800px） */
+@media (max-width: 799px) {
   .hero-section {
-    padding: 60px 16px 40px;
+    padding: 80px 20px 60px;
+    min-height: 65svh;
   }
 
-  .content-section {
-    padding: 0 16px 60px;
+  .about-me {
+    padding: 32px 0;
+    margin: 16px 0 32px;
   }
 
-  .nav-tabs {
-    max-width: 100%;
-    padding: 6px;
+  .avatar {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 20px;
   }
 
-  .nav-tab {
-    padding: 10px 16px;
-    font-size: 13px;
+  .sign {
+    font-size: clamp(24px, 9vw, 40px);
+    padding: 16px 28px;
   }
 
-  .panel {
-    padding: 24px 16px;
+  .tags {
+    gap: 12px;
+    margin-top: 20px;
   }
 
-  .panel-title {
-    font-size: 24px;
+  .tag {
+    font-size: 12px;
+    padding: 4px 12px;
+    max-width: 120px;
   }
 
   :deep(.grid) {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
   }
 
   :deep(.tool-card) {
-    padding: 20px 16px;
+    padding: 24px 20px;
   }
 
   :deep(.card) {
-    margin: 0 -8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-section {
-    padding: 40px 12px 30px;
+    margin: 0 -4px;
   }
 
-  .nav-tab {
-    padding: 8px 12px;
-    font-size: 12px;
-    
-    .tab-icon {
-      font-size: 16px;
-    }
-  }
-
-  .panel {
-    padding: 20px 12px;
-  }
-
-  .panel-title {
-    font-size: 20px;
-  }
-
-  :deep(.avatar) {
-    width: 100px;
-    height: 100px;
-  }
-
-  :deep(.sign) {
-    font-size: 24px;
-    padding: 12px 24px;
-  }
-
-  :deep(.tag) {
-    font-size: 11px;
-    padding: 3px 8px;
-    margin: 1px;
-    max-width: 100px;
+  :deep(.tool-card button) {
+    width: 100%;
   }
 }
 
@@ -893,8 +727,6 @@ $color-accent: $light-color-accent;
     transition-duration: 0.01ms !important;
   }
   
-  .nav-tab,
-  .panel,
   :deep(.tool-card),
   :deep(.card),
   :deep(.avatar),

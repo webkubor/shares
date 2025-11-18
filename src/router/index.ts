@@ -118,7 +118,23 @@ const RouterMap = [
     meta: {
       title: "Iframe"
     },
-    component: () => import("@/views/iframe/index.vue")
+    component: () => import('@/views/iframe/index.vue')
+  },
+  {
+    path: '/tools',
+    name: 'Tools',
+    meta: {
+      title: "创意工具"
+    },
+    component: () => import('@/views/tools/index.vue')
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    meta: {
+      title: "项目展示"
+    },
+    component: () => import('@/views/projects/index.vue')
   },
 ]
 const routes = [
