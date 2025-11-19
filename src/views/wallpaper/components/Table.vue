@@ -67,12 +67,14 @@ function onChoose(wallpaper) {
     padding-top: 20px;
     justify-content: center;
     align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 24px;
+    flex-wrap: nowrap;
 
     .left-view {
         display: flex;
         justify-content: center;
+        flex: 1 1 auto;
+        min-width: 0;
 
         .perspective {
             &::after {
@@ -93,6 +95,9 @@ function onChoose(wallpaper) {
             align-items: center;
             margin: 0 auto;
             border-radius: 20px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 24px var(--shadow-light);
 
             .water-mark {
                 position: absolute;
@@ -117,7 +122,10 @@ function onChoose(wallpaper) {
             margin-top: 10px;
             overflow-x: auto;
             overflow-y: hidden;
-            padding-bottom: 5px;
+            padding-bottom: 6px;
+            gap: 12px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
 
             .preview-item {
                 display: flex;
@@ -128,30 +136,33 @@ function onChoose(wallpaper) {
                 
                 img {
                     height: 100px;
-                    border-radius: 5px;
+                    border-radius: 8px;
                     transition: all 0.3s;
+                    box-shadow: 0 4px 12px var(--shadow-color);
 
                     &.active {
-                        border: 2px solid #3366cc;
+                        outline: 2px solid var(--color-primary);
+                        box-shadow: 0 6px 16px var(--shadow-hover);
                     }
                 }
                 
                 .preview-name {
                     font-size: 12px;
-                    margin-top: 5px;
-                    width: 100px;
+                    margin-top: 6px;
+                    width: 110px;
                     text-align: center;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
+                    color: var(--text-secondary);
                 }
             }
         }
     }
 
 .right-view {
-    flex: 1;
-    min-width: 320px;
+    flex: 0 0 380px;
+    width: 380px;
 }
 
 .space-vertical { display: flex; flex-direction: column; gap: 30px; }

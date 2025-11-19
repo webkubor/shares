@@ -330,4 +330,9 @@ const confirmCrop = () => {
 .modal-card { width: 800px; background: var(--bg-elevated); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 12px 40px var(--shadow-color); overflow: hidden; }
 .modal-footer { display: flex; justify-content: flex-end; gap: 12px; padding: 12px; border-top: 1px solid var(--border-color); }
 .export-overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.35); color: #fff; font-weight: 700; z-index: 999; }
+
+details { background: var(--bg-elevated); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 4px 16px var(--shadow-color); margin-bottom: 16px; }
+summary { cursor: pointer; padding: 12px 16px; font-weight: 600; color: var(--text-primary); border-bottom: 1px solid var(--border-color); }
+details[open] summary { color: var(--color-primary); }
+details > div { padding: 12px 16px; }
 </style>
