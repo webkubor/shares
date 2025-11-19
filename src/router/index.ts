@@ -6,16 +6,16 @@ const RouterMap = [
   },
   {
     path: '/home',
-    name:"Home",
+    name: "Home",
     component: () => import('@/views/home/index.vue')
   },
   {
     path: '/bot/kimi',
-    name:"Kimi",
+    name: "Kimi",
     component: () => import('@/views/bot/kimi.vue')
   },
 
-    {
+  {
     path: '/show/login/3',
     name: 'Login3',
     meta: {
@@ -23,7 +23,7 @@ const RouterMap = [
     },
     component: () => import("@/views/show/login/login3.vue")
   },
-     {
+  {
     path: '/show/login/5',
     name: 'Login5',
     meta: {
@@ -142,11 +142,14 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  scrollBehavior() {
+    return { top: 0 }
+  }
 });
 
 
 router.beforeEach(async (to, from, next) => {
-  document.title = to.meta.title ?  to.meta.title + ' | webkubor': 'webkubor | 在线工作台'
+  document.title = to.meta.title ? to.meta.title + ' | webkubor' : 'webkubor | 在线工作台'
   next()
 })
 

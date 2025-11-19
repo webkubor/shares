@@ -1,49 +1,54 @@
 <template>
   <div class="tool-grid animate-fadeInUp">
-    <SpotlightCard class="tool-card">
+    <k-card>
       <div class="tool-title">应用层实践</div>
       <div class="tool-actions">
-        <a v-ripple href="httpa://wallpaperbuild.netlify.app/#/" target="_blank">壁纸样机生成器</a>
-        <button v-ripple @click="$router.push('/show/money')">利息计算</button>
-        <button v-ripple @click="$router.push('/show/list')">indexDB</button>
-        <button v-ripple @click="$router.push('/book/share')">摘录分享</button>
+        <k-button href="https://wallpaperbuild.netlify.app/#/">壁纸样机生成器</k-button>
+        <k-button @click="$router.push('/show/money')">利息计算</k-button>
+        <k-button @click="$router.push('/show/list')">indexDB</k-button>
+        <k-button @click="$router.push('/book/share')">摘录分享</k-button>
+        <k-button @click="$router.push('/bot/kimi')">Kimi 机器人</k-button>
+        <k-button @click="$router.push('/iframe')">Iframe</k-button>
       </div>
-    </SpotlightCard>
+    </k-card>
 
-    <SpotlightCard class="tool-card">
+    <k-card>
       <div class="tool-title">UI视觉</div>
       <div class="tool-actions">
-        <button v-ripple @click="$router.push('/show/colors')">主题色选择器</button>
-        <button v-ripple @click="$router.push('/show/login/3')">Login登录页</button>
+        <k-button @click="$router.push('/show/colors')">主题色选择器</k-button>
+        <k-button @click="$router.push('/show/login/3')">Login登录页</k-button>
+        <k-button @click="$router.push('/show/login/5')">Login5登录页</k-button>
       </div>
-    </SpotlightCard>
+    </k-card>
 
-    <SpotlightCard class="tool-card">
+    <k-card>
       <div class="tool-title">官网预览</div>
       <div class="tool-actions">
-        <button v-ripple @click="$router.push('/public/apple')">苹果官网流动参考</button>
-        <button v-ripple @click="$router.push('/public/poster')">海报滚动</button>
+        <k-button @click="$router.push('/public/apple')">苹果官网流动参考</k-button>
+        <k-button @click="$router.push('/public/poster')">海报滚动</k-button>
       </div>
-    </SpotlightCard>
+    </k-card>
 
-    <SpotlightCard class="tool-card">
+    <k-card>
       <div class="tool-title">待开发</div>
       <div class="tool-actions">
-        <button v-ripple @click="$router.push('/barrage')">弹幕</button>
+        <k-button @click="$router.push('/barrage')">弹幕</k-button>
       </div>
-    </SpotlightCard>
+    </k-card>
 
-    <SpotlightCard class="tool-card">
+    <k-card>
       <div class="tool-title">人机验证</div>
       <div class="tool-actions">
-        <button v-ripple @click="$router.push('/vertify/google')">Google 无感知登录</button>
-        <button v-ripple @click="$router.push('/vertify/cloudflare')">Cloudflare 无感知登录</button>
+        <k-button @click="$router.push('/vertify/google')">Google 无感知登录</k-button>
+        <k-button @click="$router.push('/vertify/cloudflare')">Cloudflare 无感知登录</k-button>
       </div>
-    </SpotlightCard>
+    </k-card>
   </div>
 </template>
+
 <script setup lang="ts">
-import SpotlightCard from "@/components/SpotlightCard/index.vue"
+import KCard from "@/components/KCard.vue"
+import KButton from "@/components/KButton.vue"
 </script>
 <style scoped lang="scss">
 @import '@/styles/variables.scss';
@@ -52,14 +57,6 @@ import SpotlightCard from "@/components/SpotlightCard/index.vue"
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
-}
-
-.tool-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 8px 24px var(--shadow-light);
 }
 
 .tool-title {
@@ -75,22 +72,5 @@ import SpotlightCard from "@/components/SpotlightCard/index.vue"
   gap: 10px;
 }
 
-.tool-actions button {
-  padding: 10px 14px;
-  border-radius: 10px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  transition: all .2s ease;
-}
 
-.tool-actions button:hover {
-  transform: translateY(-2px);
-  border-color: var(--color-primary);
-  box-shadow: 0 8px 24px var(--shadow-hover);
-}
-
-@media (max-width: 640px) {
-  .tool-actions button { width: 100%; }
-}
 </style>
