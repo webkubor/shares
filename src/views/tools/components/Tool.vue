@@ -7,14 +7,14 @@
         <button v-ripple @click="$router.push('/show/money')">利息计算</button>
         <button v-ripple @click="$router.push('/show/list')">indexDB</button>
         <button v-ripple @click="$router.push('/book/share')">摘录分享</button>
-        <button v-ripple @click="$router.push('/show/colors')">主题色选择器</button>
       </div>
     </SpotlightCard>
 
     <SpotlightCard class="tool-card">
       <div class="tool-title">UI视觉</div>
       <div class="tool-actions">
-        <button v-ripple @click="$router.push('/show/login')">Login登录页</button>
+        <button v-ripple @click="$router.push('/show/colors')">主题色选择器</button>
+        <button v-ripple @click="$router.push('/show/login/3')">Login登录页</button>
       </div>
     </SpotlightCard>
 

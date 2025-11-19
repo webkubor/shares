@@ -37,7 +37,8 @@ const gradient = computed(() => {
 .color-card .window {
     box-sizing: border-box;
     position: relative;
-    background: #000;
+    background: var(--bg-elevated);
+    color: var(--text-primary);
     border-radius: 17px;
     margin: 3px;
     padding: 16px;
@@ -80,9 +81,9 @@ const gradient = computed(() => {
 .color-card .window {
     position: relative;
     z-index: 1;
-    background: #000;
+    background: var(--bg-elevated);
+    color: var(--text-primary);
     border-radius: 17px;
-    /* 比外层小3px，边框更细腻 */
     margin: 3px;
     padding: 18px;
     box-sizing: border-box;

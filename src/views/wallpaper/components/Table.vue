@@ -62,10 +62,13 @@ function onChoose(wallpaper) {
 .layout-paper {
     position: relative;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
-        padding-top: 20px;
+    padding-top: 20px;
     justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
 
     .left-view {
         display: flex;
@@ -148,6 +151,7 @@ function onChoose(wallpaper) {
 
 .right-view {
     flex: 1;
+    min-width: 320px;
 }
 
 .space-vertical { display: flex; flex-direction: column; gap: 30px; }

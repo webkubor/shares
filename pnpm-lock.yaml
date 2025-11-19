@@ -38,8 +38,8 @@ devDependencies:
     specifier: ^1.10.7
     version: 1.11.10
   kbor-logger:
-    specifier: ^1.0.9
-    version: 1.0.9
+    specifier: ^1.2.0
+    version: 1.2.0
   mathjs:
     specifier: ^12.4.1
     version: 12.4.1
@@ -984,8 +984,8 @@ packages:
     resolution: {integrity: sha512-nO6jcEfZWQXDhOiBtG2KvKyEptz7RVbpGP4vTD2hLBdmNQSsCiicO2Ioinv6UI4y9ukqnBpy+XZ9H6uLNgJTlw==}
     dev: true
 
-  /kbor-logger@1.0.9:
-    resolution: {integrity: sha512-LAmqsRM6e7sUu1o2UB/W9WFuglLZ9llV2XUT5g7es27JmG19j9roafIdv+RTR2ljdWaVVTWOUTXh/383qj/pfA==}
+  /kbor-logger@1.2.0:
+    resolution: {integrity: sha512-VNo13Wk+U2dTWn7rCBvLVbbrWslCRUWokaP+nY7C5krmZctDVl8ty2+BS75O2knmxP+R2QtbmaUt5Vnyi/5niA==}
     dependencies:
       tslib: 2.8.1
     dev: true
