@@ -267,6 +267,19 @@ const user = reactive({
     },
     {
       year: 2025,
+      month: 6,
+      title: "开源项目发布",
+      description: "开发并发布npm包kbor-logger，一个美观的浏览器控制台日志工具",
+      type: "creative",
+      icon: "📦",
+      details: [
+        { month: 6, title: "项目开发", desc: "开发支持多种日志类型、对象数组直出、图片日志等功能的控制台工具" },
+        { month: 6, title: "npm发布", desc: "在npm官网发布kbor-logger包，支持info、error、warning、success等多种日志类型" },
+        { month: 6, title: "开源社区", desc: "项目开源在GitHub，提供完整的TypeScript支持和增强的日志功能" }
+      ]
+    },
+    {
+      year: 2025,
       month: 11,
       title: "30而立",
       description: "未来的路还在脚下",
