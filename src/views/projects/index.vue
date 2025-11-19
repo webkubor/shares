@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import ProjectList from './components/ProjectList.vue'
+import ProjectList from './components/list.vue'
 </script>
 
 <style lang="scss" scoped>

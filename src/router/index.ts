@@ -16,20 +16,20 @@ const RouterMap = [
   },
 
   {
-    path: '/show/login/3',
+    path: '/login/3',
     name: 'Login3',
     meta: {
       title: "Login3"
     },
-    component: () => import("@/views/show/login/login3.vue")
+    component: () => import("@/views/login/login3.vue")
   },
   {
-    path: '/show/login/5',
+    path: '/login/5',
     name: 'Login5',
     meta: {
       title: "Login5"
     },
-    component: () => import("@/views/show/login/login5.vue")
+    component: () => import("@/views/login/login5.vue")
   },
 
   {
@@ -66,7 +66,7 @@ const RouterMap = [
     component: () => import("@/views/book/index.vue")
   },
   {
-    path: '/show/colors',
+    path: '/colors',
     name: 'Colors',
     meta: {
       title: "Colors"
@@ -74,20 +74,20 @@ const RouterMap = [
     component: () => import("@/views/colors/index.vue")
   },
   {
-    path: '/show/list',
+    path: '/list',
     name: 'List',
     meta: {
       title: "列表滚动测试"
     },
-    component: () => import("@/views/show/scroll.vue")
+    component: () => import("@/views/list/scroll.vue")
   },
   {
-    path: '/show/money',
+    path: '/money',
     name: 'Money',
     meta: {
       title: "利息计算"
     },
-    component: () => import("@/views/show/money.vue")
+    component: () => import("@/views/money.vue")
   },
   {
     path: '/public/apple',
