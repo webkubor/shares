@@ -3,7 +3,7 @@
     <SpotlightCard class="tool-card">
       <div class="tool-title">应用层实践</div>
       <div class="tool-actions">
-        <button v-ripple @click="$router.push('/wallpaper')">壁纸样机生成器</button>
+        <a v-ripple href="httpa://wallpaperbuild.netlify.app/#/" target="_blank">壁纸样机生成器</a>
         <button v-ripple @click="$router.push('/show/money')">利息计算</button>
         <button v-ripple @click="$router.push('/show/list')">indexDB</button>
         <button v-ripple @click="$router.push('/book/share')">摘录分享</button>

@@ -31,14 +31,7 @@ const RouterMap = [
     },
     component: () => import("@/views/show/login/login5.vue")
   },
-  {
-    path: '/wallpaper',
-    name: 'Wallpaper',
-    meta: {
-      title: "壁纸样机生成器"
-    },
-    component: () => import("@/views/wallpaper/index.vue")
-  },
+
   {
     path: '/vertify/google',
     name: 'google',
