@@ -3,8 +3,8 @@
     <k-card title="应用层实践" gradient="aurora" shadow="medium">
       <div class="tool-actions">
         <k-button href="https://wallpaperbuild.netlify.app/#/">壁纸样机生成器</k-button>
-        <k-button @click="$router.push('/show/money')">利息计算</k-button>
-        <k-button @click="$router.push('/show/list')">indexDB</k-button>
+        <k-button @click="$router.push('/money')">利息计算</k-button>
+        <k-button @click="$router.push('/list')">indexDB</k-button>
         <k-button @click="$router.push('/book/share')">摘录分享</k-button>
         <k-button @click="$router.push('/bot/kimi')">Kimi 机器人</k-button>
         <k-button @click="$router.push('/iframe')">Iframe</k-button>
@@ -13,7 +13,7 @@
 
     <k-card title="UI视觉" gradient="soft" shadow="light">
       <div class="tool-actions">
-        <k-button @click="$router.push('/show/colors')">主题色选择器</k-button>
+        <k-button @click="$router.push('/colors')">主题色选择器</k-button>
         <k-button @click="$router.push('/login/3')">Login登录页</k-button>
         <k-button @click="$router.push('/login/5')">Login5登录页</k-button>
       </div>

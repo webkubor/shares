@@ -6,6 +6,7 @@
   >
     <div v-if="title" class="k-card-header">
       <div class="k-card-title">{{ title }}</div>
+      <slot name="header-extra" />
       <div class="k-card-title-decoration"></div>
     </div>
     <div class="k-card-content">
@@ -91,6 +92,12 @@ const props = withDefaults(defineProps<{
   background: var(--brand-gradient);
   border-radius: 2px;
   opacity: 0.8;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 鼠标悬停时装饰线展开效果 */
+.k-card-header:hover .k-card-title-decoration {
+  width: 100%;
 }
 
 /* 内容区域 */
