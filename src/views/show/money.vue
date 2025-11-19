@@ -1,7 +1,6 @@
 <template>
   <div class="space-v">
-    <div class="card">
-      <div class="card-title">贷款计算器</div>
+    <k-card title="贷款计算器">
       <div class="form-grid">
         <label>贷款金额</label>
         <input type="number" v-model.number="model.loanAmount" />
@@ -10,7 +9,7 @@
         <label>期限(年)</label>
         <input type="number" v-model.number="model.years" />
       </div>
-    </div>
+    </k-card>
     <div class="border-box">
       <div class="info-item">
         <h3>等额本息贷款</h3>
@@ -22,7 +21,7 @@
         <div>累计还款总额: {{ equalInstallmentPayments.totalPayment }} 元</div>
         <div>累计支付利息: {{ equalInstallmentPayments.totalInterest }} 元</div>
 
-        <div class="card">
+        <k-card title="等额本息计算示例">
           贷款金额（P）：100,000 元
           <br>
           年利率（r）：5%（0.05）
@@ -42,7 +41,7 @@
           Total Interest = Total Payment - P
           = 113,227.40 - 100,000
           ≈ 13,227.40 元
-        </div>
+        </k-card>
       </div>
       <div class="info-item">
         <h3>等额本金贷款</h3>
@@ -56,7 +55,7 @@
         <div>每月偿还: {{ equalPrincipalPayments.monthlyPayment }} 元</div>
         <div>累计还款总额: {{ equalPrincipalPayments.totalPayment }} 元</div>
         <div>累计支付利息: {{ equalPrincipalPayments.totalInterest }} 元</div>
-        <div class="card">
+        <k-card title="等额本金计算示例">
           贷款金额（P）：100,000 元
           <br>
           年利率（r）：5%（0.05）
@@ -83,7 +82,7 @@
           totalInterest = 2,081.25 - 100,000 ≈ 981.25 元
 
 
-        </div>
+        </k-card>
       </div>
     </div>
   </div>
@@ -172,8 +171,6 @@ function calculateLoan(years, annualInterestRate, loanAmount) {
 </script>
 <style lang="scss" scoped>
 .space-v { display: flex; flex-direction: column; gap: 16px; }
-.card { border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-elevated); padding: 12px; }
-.card-title { font-weight: 700; margin-bottom: 8px; }
 .form-grid { display: grid; grid-template-columns: 120px 1fr; gap: 10px 12px; align-items: center; }
 .border-box {
   padding: 10px 30px;

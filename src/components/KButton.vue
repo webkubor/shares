@@ -86,6 +86,10 @@ button {
   transition: all .2s ease;
   text-decoration: none;
   cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 a:hover,

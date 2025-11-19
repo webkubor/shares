@@ -3,6 +3,7 @@
     :class="['k-card', { 'is-hover': hover }]"
     :data-shadow="shadow"
   >
+    <div v-if="title" class="k-card-title">{{ title }}</div>
     <slot />
   </div>
 </template>
@@ -11,9 +12,11 @@
 const props = withDefaults(defineProps<{
   hover?: boolean
   shadow?: 'none' | 'light' | 'medium' | 'strong'
+  title?: string
 }>(), {
   hover: true,
-  shadow: 'light'
+  shadow: 'light',
+  title: ''
 })
 </script>
 
@@ -24,6 +27,12 @@ const props = withDefaults(defineProps<{
   border-radius: 16px;
   padding: 20px;
   transition: all 0.2s ease;
+}
+
+.k-card-title {
+  font-weight: 700;
+  margin-bottom: 16px;
+  font-size: 16px;
 }
 
 /* 阴影等级 */
