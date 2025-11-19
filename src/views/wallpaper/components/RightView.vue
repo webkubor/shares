@@ -6,9 +6,9 @@
           <div class="space-v">
             <div class="space-h">
               <input type="file" multiple @change="handleUploadChangeNative" />
-              <button class="webkubor-back-btn common-btn" @click="downloadBgImage">导出</button>
-              <button class="webkubor-back-btn common-btn" @click="getConfigHistory">读取配置</button>
-              <button class="webkubor-back-btn common-btn" @click="setConfigHistory">保存配置</button>
+              <k-button variant="primary" @click="downloadBgImage">导出</k-button>
+              <k-button @click="getConfigHistory">读取配置</k-button>
+              <k-button @click="setConfigHistory">保存配置</k-button>
             </div>
           </div>
         </details>
@@ -24,12 +24,8 @@
                   <button v-if="paperState.enableCrop" @click="openCropModal" data-size="sm">裁剪图片</button>
                 </div>
                 <div v-else class="space-h">
-                  <select v-model="paperState.backgroundPositon.x" style="width: 120px">
-                    <option v-for="opt in backgroundPositonXOptions" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
-                  </select>
-                  <select v-model="paperState.backgroundPositon.y" style="width: 120px">
-                    <option v-for="opt in backgroundPositonYOptions" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
-                  </select>
+                  <k-select v-model="paperState.backgroundPositon.x" :options="backgroundPositonXOptions" />
+                  <k-select v-model="paperState.backgroundPositon.y" :options="backgroundPositonYOptions" />
                 </div>
               </div>
             </div>
@@ -50,7 +46,7 @@
             <div class="form-item">
               <label>切换模式</label>
               <div class="space-h">
-                <button class="webkubor-back-btn" v-for="(item, index) in config.interfaces" :key="item.name + index" @click="onSetFace(item)">{{ item.name }}</button>
+                <k-button v-for="(item, index) in config.interfaces" :key="item.name + index" @click="onSetFace(item)">{{ item.name }}</k-button>
               </div>
             </div>
           </div>
@@ -61,7 +57,7 @@
           <div class="space-v">
             <div class="form-item">
               <label>水印文字</label>
-              <input type="text" v-model="paperState.waterMarkName" placeholder="输入水印(Design by 司南烛)" />
+              <k-input v-model="paperState.waterMarkName" placeholder="输入水印(Design by 司南烛)" />
             </div>
             <div class="form-item">
               <label>水印颜色</label>
@@ -74,8 +70,8 @@
             <div class="form-item" v-if="paperState.wallpaperView">
               <label>标题设置</label>
               <div class="space-h">
-                <input type="text" v-model="paperState.customTitle" placeholder="输入标题文字" />
-                <input type="number" v-model="paperState.titleFontSize" min="12" max="100" placeholder="字体大小" />
+                <k-input v-model="paperState.customTitle" placeholder="输入标题文字" />
+                <k-input type="number" v-model="paperState.titleFontSize" placeholder="字体大小" />
               </div>
               <div class="space-h">
                 <label><input type="radio" value="horizontal" v-model="paperState.titleVertical" /> 横排</label>
@@ -88,9 +84,7 @@
             </div>
             <div class="form-item">
               <label>字体选择</label>
-              <select v-model="paperState.waterFontFiamily">
-                <option v-for="opt in fontOptions" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
-              </select>
+              <k-select v-model="paperState.waterFontFiamily" :options="fontOptions" />
             </div>
             <div class="form-item">
               <label>图片水印</label>
@@ -103,7 +97,7 @@
           <summary>导出设置</summary>
           <div class="form-item">
             <label>导出名称</label>
-            <input type="text" v-model="exportName" placeholder="默认日期" />
+            <k-input v-model="exportName" placeholder="默认日期" />
           </div>
           <div class="form-item">
             <label>导出比例</label>
@@ -140,8 +134,8 @@
             />
         </div>
         <div class="modal-footer">
-          <button @click="showCropModal = false">取消</button>
-          <button data-variant="primary" @click="confirmCrop">确认</button>
+          <k-button @click="showCropModal = false">取消</k-button>
+          <k-button variant="primary" @click="confirmCrop">确认</k-button>
         </div>
       </div>
     </div>
