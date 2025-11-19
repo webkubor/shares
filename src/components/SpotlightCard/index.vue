@@ -1,9 +1,15 @@
+<!-- 聚光灯卡片组件 - 鼠标悬停聚光灯效果 -->
 <template>
     <div ref="divRef" @mousemove="handleMouseMove" class="card-spotlight">
         <slot></slot>
     </div>
 </template>
 <script setup>
+/**
+ * 聚光灯卡片组件
+ * 鼠标悬停时显示跟随鼠标的聚光灯效果
+ * 用于增强卡片交互体验
+ */
 import { ref } from 'vue'
 
 const divRef = ref(null);

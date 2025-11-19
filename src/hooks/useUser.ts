@@ -267,7 +267,7 @@ const user = reactive({
     },
     {
       year: 2025,
-      month: 1,
+      month: 11,
       title: "30而立",
       description: "未来的路还在脚下",
       type: "current",

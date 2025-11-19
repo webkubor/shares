@@ -1,13 +1,15 @@
 <template>
   <div class="tools-page page-transition">
     <div class="page-header animate-fadeInDown">
+      <router-link to="/" class="back-icon" aria-label="Back" v-ripple>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </router-link>
       <div class="header-content">
         <h1 class="page-title text-gradient-animate">Creative Tools</h1>
         <p class="page-subtitle">探索有趣的工具和实验</p>
       </div>
-      <router-link to="/" class="back-btn">
-        <span>←</span> 返回主页
-      </router-link>
     </div>
     
     <div class="tools-container">
@@ -58,25 +60,24 @@ import ToolView from './components/Tool.vue'
   opacity: 0.8;
 }
 
-.back-btn {
+.back-icon {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   color: var(--text-primary);
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  transition: all .2s ease;
+}
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px var(--shadow-hover);
-    border-color: var(--color-primary);
-  }
+.back-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--shadow-hover);
+  border-color: var(--color-primary);
 }
 
 .tools-container {

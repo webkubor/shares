@@ -1,3 +1,4 @@
+<!-- 时间线组件 - 垂直人生时间线 -->
 <template>
   <div class="timeline-container">
     <div class="timeline-header">
@@ -90,6 +91,11 @@
 </template>
 
 <script setup>
+/**
+ * 时间线组件
+ * 垂直时间线展示个人成长历程
+ * 支持悬停效果和进度显示
+ */
 import { ref, computed, onMounted, nextTick } from 'vue'
 
 const props = defineProps({

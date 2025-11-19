@@ -1,5 +1,6 @@
 
 
+<!-- 工具提示组件 - 信息提示框 -->
 <template>
   <div class="tooltip-container">
     <div class="tooltip-trigger">
@@ -15,6 +16,11 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * 工具提示组件
+ * 用于显示额外的信息提示
+ * 支持多个方向定位和图标显示
+ */
 import { ref } from 'vue';
 
 interface Props {

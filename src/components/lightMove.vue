@@ -1,3 +1,4 @@
+<!-- 光效移动组件 - 卡片3D倾斜和光线效果 -->
 <template>
 
 
@@ -10,6 +11,11 @@
 
 </template>
 <script setup lang="ts">
+/**
+ * 光效移动组件
+ * 卡片3D倾斜效果和光线跟随效果
+ * 鼠标移动时卡片会倾斜并显示光线效果
+ */
 
 function handleMouseMove(event, card) {
   const gradientX = event.clientX / card.offsetWidth * 100; // X 轴位置
