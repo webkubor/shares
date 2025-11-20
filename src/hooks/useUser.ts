@@ -7,9 +7,9 @@ const user = reactive({
   age: "18",
   birthday: "1995-11-13",
   Guideline: 1,
-  isfirstLogin:true,
+  isfirstLogin: true,
   personalSign: "Unkillable makes you stronger",
-  tags: [ "前端开发工程师", "网易云音乐人", "签约小说作家", "新民乐爱好者"],
+  tags: ["前端开发工程师", "网易云音乐人", "签约小说作家", "新民乐爱好者"],
   // 人生时间线数据 - 包含月份刻度和小时间节点
   timeline: [
     {
@@ -115,7 +115,7 @@ const user = reactive({
         { month: 12, title: "Node微服务", desc: "基于阿里 egg 框架开发微服务+ mongoose 操作数据库" }
       ]
     },
-     {
+    {
       year: 2019,
       month: 7,
       title: " 技术突破",
@@ -266,8 +266,8 @@ const user = reactive({
       ]
     },
     {
-      year: 2025,
-      month: 6,
+      year: 2024,
+      month: 12,
       title: "开源项目发布",
       description: "开发并发布npm包kbor-logger，一个美观的浏览器控制台日志工具",
       type: "creative",
@@ -276,6 +276,18 @@ const user = reactive({
         { month: 6, title: "项目开发", desc: "开发支持多种日志类型、对象数组直出、图片日志等功能的控制台工具" },
         { month: 6, title: "npm发布", desc: "在npm官网发布kbor-logger包，支持info、error、warning、success等多种日志类型" },
         { month: 6, title: "开源社区", desc: "项目开源在GitHub，提供完整的TypeScript支持和增强的日志功能" }
+      ]
+    },
+    {
+      year: 2025, 
+      month: 10, 
+      title: "开源项目发布", 
+      description: "开发并发布 npm 包 nex-lib，一款聚焦前端刚需的高效工具库，自带高颜值控制台彩色日志，兼顾多场景实用功能", 
+      type: "creative", 
+      icon: "📦", 
+      details: [
+        { month: 6, title: "项目开发", desc: "零冗余运行时依赖，Tree-shaking 按需引入更省体积，TypeScript 类型定义完整。涵盖时间处理、URL 解析、数据校验、对象 / 字符串工具及彩色日志，API 遵循稳定约定不折腾" },
+        { month: 6, title: "开源社区", desc: "GitHub 开源共享，TypeScript 原生适配提升开发效率，官网（webkubor.github.io/nex-lib）同步呈现功能详情与使用指南，方便用户查阅" }
       ]
     },
     {
@@ -304,7 +316,7 @@ export function useUser() {
     let time = dayjs(user.birthday).fromNow(true);
     user.age = time.split(" ")[0];
   }
-  
+
   return {
     updateAge,
     user,
