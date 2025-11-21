@@ -1,7 +1,7 @@
 <template>
   <label
     :class="['k-checkbox', size, labelPosition, { 'is-checked': modelValue, 'is-disabled': disabled }]"
-    :style="{ '--checkbox-color': color || 'var(--color-primary)' }"
+    :style="{ '--checkbox-color': color || 'var(--color-primary)', '--checkbox-ring': ringColor }"
     :aria-checked="modelValue"
     role="checkbox"
   >
@@ -58,6 +58,28 @@ const currentLabel = computed(() => {
   }
   return props.label || ''
 })
+
+function hexAlpha(a: number) {
+  return Math.round(a * 255).toString(16).padStart(2, '0')
+}
+
+function toAlpha(c: string, a: number) {
+  const s = (c || '').trim()
+  const mRgb = s.match(/^rgba?\s*\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})(?:\s*,\s*([0-9.]+)\s*)?\)/i)
+  if (mRgb) {
+    const r = mRgb[1], g = mRgb[2], b = mRgb[3]
+    return `rgba(${r}, ${g}, ${b}, ${a})`
+  }
+  if (s.startsWith('#')) {
+    if (s.length === 7) return `${s}${hexAlpha(a)}`
+    if (s.length === 9) return s
+  }
+  return s || `rgba(255, 107, 53, ${a})`
+}
+
+const ringColor = computed(() => {
+  return props.color ? toAlpha(props.color, 0.15) : 'rgba(255, 107, 53, 0.15)'
+})
 </script>
 
 <style scoped>
@@ -103,7 +125,7 @@ const currentLabel = computed(() => {
 .k-checkbox.is-checked .k-checkbox-box {
   background: var(--checkbox-color);
   border-color: var(--checkbox-color);
-  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.15), 0 8px 16px var(--shadow-hover);
+  box-shadow: 0 0 0 3px var(--checkbox-ring), 0 8px 16px var(--shadow-hover);
 }
 
 .k-checkbox-tick {
