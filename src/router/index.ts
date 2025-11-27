@@ -141,6 +141,15 @@ const RouterMap = [
     },
     component: () => import('@/views/projects/index.vue')
   },
+  {
+    path: '/siri',
+    name: 'Siri',
+    meta: {
+      title: "Siri 光带效果",
+      description: 'Apple Intelligence Siri 风格的彩虹光带动画效果'
+    },
+    component: () => import('@/views/siri/index.vue')
+  },
 ]
 const routes = [
   {

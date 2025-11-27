@@ -15,6 +15,7 @@
       <div class="tool-actions">
         <k-button @click="$router.push('/colors')">主题色选择器</k-button>
         <k-button @click="$router.push('/login/3')">Login登录页</k-button>
+        <k-button @click="$router.push('/siri')">Siri 语音助手</k-button>
         <k-button @click="$router.push('/login/5')">Login5登录页</k-button>
       </div>
     </k-card>
