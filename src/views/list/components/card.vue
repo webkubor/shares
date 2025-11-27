@@ -17,7 +17,7 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/mixins.scss';
+@use '@/styles/mixins.scss' as *;
 
 .card {
     @include glass-effect(rgba(255, 255, 255), 10, 0.2);

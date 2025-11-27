@@ -1,4 +1,6 @@
 /* 组件样式 - 统一定义所有组件样式 */
+@use "./mixins.scss" as *;
+@use "./variables.scss" as *;
 
 /* ===== 通用标题样式 ===== */
 .common-title-white {

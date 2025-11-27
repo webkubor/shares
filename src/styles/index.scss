@@ -1,8 +1,8 @@
 /* 样式主入口文件 - 统一导入所有样式模块 */
-@import "./variables.scss";
-@import "./mixins.scss";
-@import "./reset.scss";
-@import "./base.scss";
-@import "./components.scss";
-@import "./animations.scss";
-@import "./font.scss";
+@use "./variables.scss" as *;
+@use "./mixins.scss" as *;
+@use "./reset.scss";
+@use "./base.scss";
+@use "./components.scss";
+@use "./animations.scss";
+@use "./font.scss";

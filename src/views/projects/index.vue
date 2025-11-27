@@ -21,7 +21,7 @@ import ProjectList from './components/list.vue'
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/variables.scss";
+@use "@/styles/variables.scss" as *;
 
 .projects-page {
   min-height: 100vh;

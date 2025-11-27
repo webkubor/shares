@@ -1,6 +1,6 @@
 /* 基础主题样式 - 分离基础样式 */
-@import "./reset.scss";
-@import "./variables.scss";
+@use "./reset.scss";
+@use "./variables.scss" as *;
 
 /* 设计令牌：统一的语义 CSS 变量 */
 :root {

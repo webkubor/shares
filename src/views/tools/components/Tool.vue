@@ -46,7 +46,7 @@ import KCard from "@/components/KCard.vue"
 import KButton from "@/components/KButton.vue"
 </script>
 <style scoped lang="scss">
-@import '@/styles/variables.scss';
+@use '@/styles/variables.scss' as *;
 
 .tool-grid {
   display: grid;

@@ -23,7 +23,7 @@ import ToolView from './components/Tool.vue'
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/variables.scss";
+@use "@/styles/variables.scss" as *;
 
 .tools-page {
   min-height: 100vh;
