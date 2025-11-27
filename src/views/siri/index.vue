@@ -108,7 +108,7 @@ onUnmounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop') center/cover no-repeat;
+  background: url('https://img.webkubor.online/bg/photo-1618005182384-a83a8bd57fbe.avif') center/cover no-repeat;
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-radius 0.4s ease;
 }
 

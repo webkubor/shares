@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* 毛玻璃效果 (Glass Effect)
    参数:
    - $bg-color: 背景颜色
@@ -87,7 +89,7 @@
 
 // // 定义 input 的标准样式 mixin
 @mixin input-standard($input-border,$input-background) {
-  $text-color: lighten($input-border, 30%);
+  $text-color: color.adjust($input-border, $lightness: 30%);
   width: 100%;
   margin-bottom: 10px;
   background: $input-background;
@@ -125,13 +127,13 @@
 }
 
 @mixin button-standard($color) {
-  $text-color: lighten($color, 30%);
-  $bg-color: lighten($color, 50%);
-  $hover-bg-color: darken($bg-color, 10%);
+  $text-color: color.adjust($color, $lightness: 30%);
+  $bg-color: color.adjust($color, $lightness: 50%);
+  $hover-bg-color: color.adjust($bg-color, $lightness: -10%);
   $focus-shadow-color: rgba($color, 0.4);
-  $active-bg-color: lighten($bg-color, 8%);
-  $disabled-text-color: lighten($color, 60%);
-  $disabled-bg-color: darken($bg-color, 15%);
+  $active-bg-color: color.adjust($bg-color, $lightness: 8%);
+  $disabled-text-color: color.adjust($color, $lightness: 60%);
+  $disabled-bg-color: color.adjust($bg-color, $lightness: -15%);
   $border-color: $color;
   $transition-duration: 0.2s;
 
@@ -177,7 +179,7 @@
     cursor: not-allowed;
     color: $disabled-text-color;
     background-color: $disabled-bg-color;
-    border-color: darken($border-color, 15%);
+    border-color: color.adjust($border-color, $lightness: -15%);
     box-shadow: none;
     opacity: 0.8;
   }

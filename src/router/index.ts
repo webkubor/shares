@@ -32,15 +32,6 @@ const RouterMap = [
     component: () => import("@/views/login/login3.vue")
   },
   {
-    path: '/login/5',
-    name: 'Login5',
-    meta: {
-      title: "Login5"
-    },
-    component: () => import("@/views/login/login5.vue")
-  },
-
-  {
     path: '/vertify/google',
     name: 'google',
     meta: {
