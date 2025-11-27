@@ -33,7 +33,8 @@
       <!-- 使用 mask-composite 技巧实现精确的边缘发光 -->
       <div class="edge-mask">
         <div class="glow-container">
-          <div class="rotating-light"></div>
+          <div class="rotating-light rotating-light-1"></div>
+          <div class="rotating-light rotating-light-2"></div>
         </div>
       </div>
 
@@ -113,8 +114,8 @@ onUnmounted(() => {
 
 /* 当Siri激活时，内容稍微缩小，模拟iOS按压效果 */
 .content.siri-active {
-  transform: scale(0.96);
-  border-radius: 40px; /* 模拟屏幕圆角 */
+  transform: scale(0.98); /* 减小缩放幅度，避免空隙过大 */
+  border-radius: 12px; /* 减小圆角，适应网页直角窗口 */
   overflow: hidden;
 }
 
@@ -204,86 +205,115 @@ h1 {
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* 使用 mask 裁剪中间部分，只保留边缘 */
+/* 使用 mask 裁剪中间部分，让光从边缘向内柔和衰减 */
 .edge-mask {
   position: absolute;
   inset: 0;
   z-index: 10;
   /* 
-     这里使用了 mask-composite 的技巧 (Webkit)。
-     原理：画一个填充整个区域的层，再画一个稍微小一点的层，
-     利用 exclude 排除中间，只留下边框区域。
+    改用 ellipse at center，并大幅放宽过渡区 (40% -> 100%)
+    这会让光效从屏幕很靠里的地方就开始渐变，消除硬边框感
   */
-  -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor; /* 标准属性是 exclude，但在Chrome/Safari中 xor 效果更稳 */
-  mask-composite: exclude;
-  
-  /* 控制光带的宽度，padding 越大，光带越粗 */
-  padding: 15px; 
+  -webkit-mask-image: radial-gradient(
+    ellipse at center, 
+    transparent 40%, 
+    black 100%
+  );
+  mask-image: radial-gradient(
+    ellipse at center, 
+    transparent 40%, 
+    black 100%
+  );
 }
 
 /* --- 核心：流动的彩虹光带 --- */
 .glow-container {
   position: absolute;
-  inset: 0;
+  inset: -50px; /* 更大的外扩，防止模糊边缘被切断 */
   overflow: hidden;
 }
 
-/* 旋转的光源 */
+/* 通用光效层 */
 .rotating-light {
   position: absolute;
-  /* 让光源比屏幕大很多，确保旋转时覆盖四角 */
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  
-  /* Apple Intelligence 典型配色：青、蓝、紫、粉、橙 */
+  filter: blur(100px); /* 极高的模糊度 */
+  mix-blend-mode: screen;
+  opacity: 0; /* 默认隐藏 */
+  transition: opacity 0.5s ease;
+}
+
+.siri-overlay.active .rotating-light {
+  opacity: 1;
+}
+
+/* 第一层：主色调 - 顺时针流动 */
+.rotating-light-1 {
   background: conic-gradient(
       from 0deg,
       transparent 0%,
-      #00C6FF 10%, /* Cyan */
-      #0072FF 20%, /* Blue */
-      #A044FF 40%, /* Purple */
-      #FF006E 60%, /* Pink */
-      #FF9F0E 80%, /* Orange */
+      #00C6FF 15%, 
+      #0072FF 30%, 
+      #A044FF 50%, 
+      #FF006E 70%, 
+      #FF9F0E 85%, 
       transparent 100%
   );
-  
-  /* 极强的模糊，制造"光晕"而非"线条" */
-  filter: blur(60px);
   opacity: 0.8;
-  
-  /* 默认隐藏动画，激活时添加 */
-  animation: none;
 }
 
-/* 激活时的旋转动画 */
-.siri-overlay.active .rotating-light {
-  animation: rotate-glow 3s linear infinite;
+.siri-overlay.active .rotating-light-1 {
+  animation: rotate-glow-1 4s linear infinite;
 }
 
-/* 内部发光增强 (Inner Glow) - 让光看起来是从屏幕外溢进来的 */
+/* 第二层：干扰层 - 逆时针流动，打破规则感 */
+.rotating-light-2 {
+  background: conic-gradient(
+      from 180deg,
+      transparent 10%,
+      #00FFFF 25%, 
+      #FF00FF 50%, 
+      #FFFF00 75%, 
+      transparent 90%
+  );
+  opacity: 0.5;
+  mix-blend-mode: plus-lighter; /* 使用更亮的混合模式 */
+}
+
+.siri-overlay.active .rotating-light-2 {
+  animation: rotate-glow-2 6s linear infinite;
+}
+
+/* 内部发光增强 (Inner Glow) */
 .inner-highlight {
   position: absolute;
   inset: 0;
-  box-shadow: inset 0 0 40px 10px rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 100px 30px rgba(255, 255, 255, 0.15);
   mix-blend-mode: overlay;
   z-index: 5;
+  pointer-events: none;
 }
 
-/* 动画定义 */
-@keyframes rotate-glow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* 动画定义 - 双向旋转 + 呼吸 */
+@keyframes rotate-glow-1 {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.15); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes rotate-glow-2 {
+  0% { transform: rotate(360deg) scale(1.1); }
+  50% { transform: rotate(180deg) scale(1); }
+  100% { transform: rotate(0deg) scale(1.1); }
 }
 
 /* 底部文字 */
 .status-text {
   position: absolute;
-  bottom: 100px;
+  bottom: 140px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.2rem;
