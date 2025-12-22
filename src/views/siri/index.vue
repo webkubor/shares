@@ -114,7 +114,6 @@ onUnmounted(() => {
 
 /* 当Siri激活时，内容稍微缩小，模拟iOS按压效果 */
 .content.siri-active {
-  transform: scale(0.98); /* 减小缩放幅度，避免空隙过大 */
   border-radius: 12px; /* 减小圆角，适应网页直角窗口 */
   overflow: hidden;
 }
@@ -205,23 +204,27 @@ h1 {
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* 使用 mask 裁剪中间部分，让光从边缘向内柔和衰减 */
+/* 使用 mask 裁剪中间部分，只保留边缘光带，但保持柔和渐变 */
 .edge-mask {
   position: absolute;
   inset: 0;
   z-index: 10;
   /* 
-    改用 ellipse at center，并大幅放宽过渡区 (40% -> 100%)
-    这会让光效从屏幕很靠里的地方就开始渐变，消除硬边框感
+    使用径向渐变，从中心透明到边缘不透明
+    调整百分比控制光带宽度和柔和度
   */
   -webkit-mask-image: radial-gradient(
-    ellipse at center, 
-    transparent 40%, 
+    ellipse 85% 88% at center,
+    transparent 0%,
+    transparent 70%,
+    rgba(0,0,0,0.3) 85%,
     black 100%
   );
   mask-image: radial-gradient(
-    ellipse at center, 
-    transparent 40%, 
+    ellipse 85% 88% at center,
+    transparent 0%,
+    transparent 70%,
+    rgba(0,0,0,0.3) 85%,
     black 100%
   );
 }
@@ -229,7 +232,7 @@ h1 {
 /* --- 核心：流动的彩虹光带 --- */
 .glow-container {
   position: absolute;
-  inset: -50px; /* 更大的外扩，防止模糊边缘被切断 */
+  inset: 0;
   overflow: hidden;
 }
 
@@ -240,7 +243,7 @@ h1 {
   left: -50%;
   width: 200%;
   height: 200%;
-  filter: blur(100px); /* 极高的模糊度 */
+  filter: blur(60px); /* 增加模糊度，让光带更柔和 */
   mix-blend-mode: screen;
   opacity: 0; /* 默认隐藏 */
   transition: opacity 0.5s ease;
