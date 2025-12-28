@@ -1,5 +1,7 @@
 <template>
-    <div class="color-page" :class="[theme === '1' ? 'dark-theme' : 'light-theme', isMobile ? 'mobile-view' : 'desktop-view']">
+    <div class="color-page"
+        :class="[theme === '1' ? 'dark-theme' : 'light-theme', isMobile ? 'mobile-view' : 'desktop-view']"
+        :style="themeTokens">
         <section class="picker-section">
             <div class="picker-header">
                 <div>
@@ -24,6 +26,11 @@
                             <div class="current-value">{{ activeColor }}</div>
                         </div>
                     </div>
+                    <div class="alpha-row">
+                        <div class="alpha-label">透明度</div>
+                        <input class="alpha-slider" type="range" min="0" max="100" step="1" v-model.number="alphaPercent" />
+                        <div class="alpha-value">{{ alphaPercent }}%</div>
+                    </div>
                 </div>
 
                 <div class="hex-panel">
@@ -35,12 +42,45 @@
                             :style="{ backgroundColor: activeColor }">应用</button>
                     </div>
                     <div v-if="hexError" class="input-hint">{{ hexError }}</div>
-
-                    <div class="action-row">
+                    <div class="hex-actions">
                         <button class="ghost-button" @click="copyColor(activeColor)"
                             :style="{ color: activeColor, borderColor: activeColor }">复制 Hex</button>
                         <button class="ghost-button" @click="onConfirm(customColor)"
                             :style="{ color: activeColor, borderColor: activeColor }">设为主题色</button>
+                    </div>
+
+                    <div class="format-panel">
+                        <div class="format-title">颜色格式（多维度）</div>
+                        <div class="format-list">
+                            <div class="format-item">
+                                <div class="format-label">十六进制 HEX（网页）</div>
+                                <div class="format-value">{{ colorFormats.hex }}</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">RGB（屏幕）</div>
+                                <div class="format-value">{{ colorFormats.rgb }}</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">RGBA（含透明度）</div>
+                                <div class="format-value">{{ colorFormats.rgba }}</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">HSL（色相/饱和/明度）</div>
+                                <div class="format-value">{{ colorFormats.hsl }}</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">HSV（色相/饱和/明度）</div>
+                                <div class="format-value">{{ colorFormats.hsv }}</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">CMYK（印刷）</div>
+                                <div class="format-value">{{ colorFormats.cmyk }}</div>
+                            </div>
+                            <div class="format-item">
+                                <div class="format-label">Pantone（印刷色）</div>
+                                <input class="pantone-input" v-model="pantoneCode" placeholder="PANTONE 7544 C" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,6 +90,14 @@
             <div class="theme-preview">
                 <div class="preview-block" :style="{ backgroundColor: activeColor }"></div>
                 <div class="preview-components">
+                    <div class="preview-header">
+                        <div class="header-title">产品标题</div>
+                        <div class="header-subtitle">使用主题色作为强调与焦点</div>
+                        <div class="header-actions">
+                            <button class="header-btn" :style="{ color: activeColor, borderColor: activeColor }">次要操作</button>
+                            <button class="header-btn solid" :style="{ backgroundColor: activeColor }">主要操作</button>
+                        </div>
+                    </div>
                     <div class="button-row">
                         <button class="primary-btn" :style="{ backgroundColor: activeColor }">主按钮</button>
                         <button class="outline-btn" :style="{ color: activeColor, borderColor: activeColor }">描边按钮</button>
@@ -57,6 +105,22 @@
                     <div class="tag-row">
                         <span class="tag" :style="{ backgroundColor: activeColor }">主题标签</span>
                         <span class="tag ghost" :style="{ color: activeColor, borderColor: activeColor }">次级标签</span>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label">交互输入框</label>
+                        <div class="form-field" :style="{ borderColor: activeColor + '55' }">
+                            <span class="form-icon" :style="{ color: activeColor }">🔍</span>
+                            <input class="form-input" placeholder="搜索关键词或输入内容" />
+                            <span class="form-chip" :style="{ backgroundColor: activeColor }">提示</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label">下拉选择</label>
+                        <div class="select-field" :style="{ borderColor: activeColor + '55' }">
+                            <span class="select-label">选择主题策略</span>
+                            <span class="select-value" :style="{ color: activeColor }">平衡模式</span>
+                            <span class="select-arrow" :style="{ color: activeColor }">▾</span>
+                        </div>
                     </div>
                     <div class="card-row">
                         <div class="mini-card">
@@ -107,6 +171,8 @@ const customColor = ref<string>('#8FA7A0')
 const hexInput = ref<string>('#8FA7A0')
 const hexError = ref<string>('')
 const confirmColor = ref<string>('')
+const alphaPercent = ref<number>(90)
+const pantoneCode = ref<string>('PANTONE 7544 C')
 const isMobile = ref<boolean>(false)
 
 const themeChecked = computed({
@@ -180,11 +246,11 @@ function applyHexInput(): void {
 function onConfirm(color: string): void {
     const normalized = normalizeHex(color) || color
     confirmColor.value = normalized
-    writeClipboard(normalized, 'color is copied to clipboard')
+    writeClipboard(normalized, 'color is copied to clipboard', activeColor.value)
 }
 
 function copyColor(color: string): void {
-    writeClipboard(color, 'color is copied to clipboard')
+    writeClipboard(color, 'color is copied to clipboard', activeColor.value)
 }
 
 watch(confirmColor, (value) => {
@@ -314,6 +380,164 @@ const paletteGroups = [
         ]
     }
 ]
+
+function clamp(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max)
+}
+
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
+    const normalized = normalizeHex(hex) || '#000000'
+    const raw = normalized.replace('#', '')
+    const r = parseInt(raw.slice(0, 2), 16)
+    const g = parseInt(raw.slice(2, 4), 16)
+    const b = parseInt(raw.slice(4, 6), 16)
+    return { r, g, b }
+}
+
+function rgbToHex(r: number, g: number, b: number): string {
+    const toHex = (value: number) => value.toString(16).padStart(2, '0')
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase()
+}
+
+function rgbToHsl(r: number, g: number, b: number): { h: number; s: number; l: number } {
+    const rNorm = r / 255
+    const gNorm = g / 255
+    const bNorm = b / 255
+    const max = Math.max(rNorm, gNorm, bNorm)
+    const min = Math.min(rNorm, gNorm, bNorm)
+    const delta = max - min
+    let h = 0
+    if (delta !== 0) {
+        if (max === rNorm) h = ((gNorm - bNorm) / delta) % 6
+        else if (max === gNorm) h = (bNorm - rNorm) / delta + 2
+        else h = (rNorm - gNorm) / delta + 4
+        h = Math.round(h * 60)
+        if (h < 0) h += 360
+    }
+    const l = (max + min) / 2
+    const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1))
+    return { h, s, l }
+}
+
+function hslToRgb(h: number, s: number, l: number): { r: number; g: number; b: number } {
+    const c = (1 - Math.abs(2 * l - 1)) * s
+    const x = c * (1 - Math.abs(((h / 60) % 2) - 1))
+    const m = l - c / 2
+    let rPrime = 0
+    let gPrime = 0
+    let bPrime = 0
+    if (h >= 0 && h < 60) {
+        rPrime = c
+        gPrime = x
+    } else if (h >= 60 && h < 120) {
+        rPrime = x
+        gPrime = c
+    } else if (h >= 120 && h < 180) {
+        gPrime = c
+        bPrime = x
+    } else if (h >= 180 && h < 240) {
+        gPrime = x
+        bPrime = c
+    } else if (h >= 240 && h < 300) {
+        rPrime = x
+        bPrime = c
+    } else {
+        rPrime = c
+        bPrime = x
+    }
+    return {
+        r: Math.round((rPrime + m) * 255),
+        g: Math.round((gPrime + m) * 255),
+        b: Math.round((bPrime + m) * 255)
+    }
+}
+
+function tone(hex: string, lightness: number, saturationScale: number): string {
+    const { r, g, b } = hexToRgb(hex)
+    const { h, s } = rgbToHsl(r, g, b)
+    const nextS = clamp(s * saturationScale, 0, 1)
+    const nextL = clamp(lightness, 0, 1)
+    const { r: nr, g: ng, b: nb } = hslToRgb(h, nextS, nextL)
+    return rgbToHex(nr, ng, nb)
+}
+
+function rgbToHsv(r: number, g: number, b: number): { h: number; s: number; v: number } {
+    const rNorm = r / 255
+    const gNorm = g / 255
+    const bNorm = b / 255
+    const max = Math.max(rNorm, gNorm, bNorm)
+    const min = Math.min(rNorm, gNorm, bNorm)
+    const delta = max - min
+    let h = 0
+    if (delta !== 0) {
+        if (max === rNorm) h = ((gNorm - bNorm) / delta) % 6
+        else if (max === gNorm) h = (bNorm - rNorm) / delta + 2
+        else h = (rNorm - gNorm) / delta + 4
+        h = Math.round(h * 60)
+        if (h < 0) h += 360
+    }
+    const s = max === 0 ? 0 : delta / max
+    return { h, s, v: max }
+}
+
+function rgbToCmyk(r: number, g: number, b: number): { c: number; m: number; y: number; k: number } {
+    const rNorm = r / 255
+    const gNorm = g / 255
+    const bNorm = b / 255
+    const k = 1 - Math.max(rNorm, gNorm, bNorm)
+    if (k === 1) return { c: 0, m: 0, y: 0, k: 1 }
+    const c = (1 - rNorm - k) / (1 - k)
+    const m = (1 - gNorm - k) / (1 - k)
+    const y = (1 - bNorm - k) / (1 - k)
+    return { c, m, y, k }
+}
+
+const colorFormats = computed(() => {
+    const base = normalizeHex(activeColor.value) || '#8FA7A0'
+    const { r, g, b } = hexToRgb(base)
+    const { h, s, l } = rgbToHsl(r, g, b)
+    const { h: hh, s: hs, v } = rgbToHsv(r, g, b)
+    const { c, m, y, k } = rgbToCmyk(r, g, b)
+    const alpha = clamp(alphaPercent.value / 100, 0, 1)
+    const round = (value: number) => Math.round(value)
+    const percent = (value: number) => Math.round(value * 100)
+    return {
+        hex: base,
+        rgb: `rgb(${r}, ${g}, ${b})`,
+        rgba: `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(2)})`,
+        hsl: `hsl(${round(h)}, ${percent(s)}%, ${percent(l)}%)`,
+        hsv: `hsv(${round(hh)}, ${percent(hs)}%, ${percent(v)}%)`,
+        cmyk: `cmyk(${percent(c)}%, ${percent(m)}%, ${percent(y)}%, ${percent(k)}%)`
+    }
+})
+
+const themeTokens = computed(() => {
+    const base = normalizeHex(activeColor.value) || '#8FA7A0'
+    const isDark = theme.value === '1'
+    const accentLight = tone(base, 0.72, 0.7)
+    const accentDark = tone(base, 0.38, 0.9)
+    const pageBg = isDark
+        ? `linear-gradient(150deg, ${tone(base, 0.14, 0.25)}, ${tone(base, 0.18, 0.3)} 45%, ${tone(base, 0.12, 0.2)} 100%)`
+        : `linear-gradient(160deg, ${tone(base, 0.96, 0.12)} 0%, ${tone(base, 0.93, 0.15)} 55%, ${tone(base, 0.9, 0.12)} 100%)`
+    return {
+        '--accent': base,
+        '--accent-10': `${base}1A`,
+        '--accent-20': `${base}33`,
+        '--accent-35': `${base}59`,
+        '--accent-60': `${base}99`,
+        '--accent-light': accentLight,
+        '--accent-dark': accentDark,
+        '--page-bg': pageBg,
+        '--card-bg': isDark ? tone(base, 0.18, 0.2) : tone(base, 0.98, 0.08),
+        '--soft-bg': isDark ? tone(base, 0.22, 0.2) : tone(base, 0.94, 0.1),
+        '--border-color': isDark ? tone(base, 0.28, 0.18) : tone(base, 0.86, 0.12),
+        '--text-color': isDark ? '#F6F4F1' : '#2E2A25',
+        '--muted-color': isDark ? 'rgba(246, 244, 241, 0.6)' : 'rgba(46, 42, 37, 0.6)',
+        '--field-bg': isDark ? tone(base, 0.2, 0.15) : '#FFFFFF',
+        '--field-text': isDark ? '#F6F4F1' : '#2E2A25',
+        '--field-placeholder': isDark ? 'rgba(246, 244, 241, 0.6)' : 'rgba(46, 42, 37, 0.5)'
+    } as Record<string, string>
+})
 </script>
 
 <style lang="scss" scoped>
@@ -322,21 +546,24 @@ const paletteGroups = [
     display: flex;
     flex-direction: column;
     gap: 24px;
-    max-width: 1180px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
     padding: 24px;
-    border-radius: 26px;
+    border-radius: 0;
     font-family: "IBM Plex Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
     overflow: hidden;
+    background: var(--page-bg);
+    min-height: 100vh;
 
     &::before {
         content: "";
         position: absolute;
         inset: 0;
         background:
-            radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.22), transparent 50%),
-            radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.18), transparent 45%),
-            linear-gradient(160deg, rgba(255, 255, 255, 0.08), transparent 40%);
+            radial-gradient(circle at 15% 20%, var(--accent-10), transparent 55%),
+            radial-gradient(circle at 80% 10%, var(--accent-10), transparent 50%),
+            linear-gradient(160deg, var(--accent-20), transparent 45%);
         pointer-events: none;
     }
 
@@ -352,6 +579,9 @@ const paletteGroups = [
         --card-bg: rgba(30, 30, 30, 0.9);
         --border-color: rgba(255, 255, 255, 0.08);
         --soft-bg: rgba(255, 255, 255, 0.04);
+        --field-bg: #2b2b2b;
+        --field-text: #f5f5f5;
+        --field-placeholder: rgba(255, 255, 255, 0.65);
     }
 
     &.light-theme {
@@ -361,6 +591,9 @@ const paletteGroups = [
         --card-bg: rgba(255, 255, 255, 0.92);
         --border-color: rgba(0, 0, 0, 0.08);
         --soft-bg: rgba(0, 0, 0, 0.04);
+        --field-bg: #ffffff;
+        --field-text: #2e2a25;
+        --field-placeholder: rgba(46, 42, 37, 0.5);
     }
 
     &.mobile-view {
@@ -369,11 +602,25 @@ const paletteGroups = [
     }
 }
 
-.picker-section {
-    padding: 20px;
-    border-radius: 20px;
-    background: var(--page-bg);
+.color-page :deep(.k-card) {
+    background: var(--card-bg);
     border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.color-page :deep(.k-card-title) {
+    color: var(--text-color);
+}
+
+.color-page :deep(.k-card-body) {
+    color: var(--text-color);
+}
+
+.picker-section {
+    padding: 0;
+    background: transparent;
+    border: none;
 }
 
 .picker-header {
@@ -419,20 +666,92 @@ const paletteGroups = [
     }
 }
 
+.format-panel {
+    margin-top: 10px;
+}
+
+.format-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.format-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px 14px;
+}
+
+.format-item {
+    display: grid;
+    gap: 4px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    background: var(--soft-bg);
+    border: 1px solid var(--accent-20, var(--border-color));
+}
+
+.format-label {
+    font-size: 11px;
+    color: var(--muted-color);
+}
+
+.format-value {
+    font-size: 12px;
+    font-family: "IBM Plex Mono", "Courier New", monospace;
+    color: var(--text-color);
+}
+
+.pantone-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 12px;
+    font-family: "IBM Plex Mono", "Courier New", monospace;
+    color: var(--text-color);
+}
+
 .picker-panel {
     display: grid;
     gap: 16px;
     padding: 16px;
     border-radius: 18px;
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--accent-20, var(--border-color));
+}
+
+.alpha-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--accent-20, var(--border-color));
+    background: var(--field-bg);
+}
+
+.alpha-label {
+    font-size: 12px;
+    color: var(--muted-color);
+}
+
+.alpha-value {
+    font-size: 12px;
+    color: var(--text-color);
+}
+
+.alpha-slider {
+    width: 100%;
+    accent-color: var(--accent);
 }
 
 .color-picker {
     width: 100%;
     min-height: 180px;
     border-radius: 18px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--accent-20, var(--border-color));
     background: transparent;
     cursor: pointer;
 }
@@ -473,38 +792,44 @@ const paletteGroups = [
     padding: 16px;
     border-radius: 18px;
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--accent-20, var(--border-color));
     display: grid;
-    gap: 12px;
+    gap: 10px;
+    align-content: start;
 }
 
 .input-label {
     font-size: 12px;
     color: var(--muted-color);
+    margin-bottom: -2px;
 }
 
 .input-row {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 12px;
+    gap: 10px;
+    align-items: center;
 }
 
 .hex-input {
     border-radius: 12px;
-    border: 1px solid var(--border-color);
-    padding: 10px 12px;
+    border: 1px solid var(--accent-20, var(--border-color));
+    padding: 8px 12px;
     font-family: "IBM Plex Mono", "Courier New", monospace;
     background: transparent;
     color: var(--text-color);
+    height: 38px;
 }
 
 .apply-hex {
     border: none;
     border-radius: 12px;
-    padding: 10px 18px;
+    padding: 8px 16px;
     color: #fff;
     font-weight: 600;
     cursor: pointer;
+    background: var(--accent);
+    height: 38px;
 }
 
 .input-hint {
@@ -512,19 +837,20 @@ const paletteGroups = [
     color: #d95c5c;
 }
 
-.action-row {
+.hex-actions {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
 .ghost-button {
     background: transparent;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--accent);
     border-radius: 999px;
-    padding: 6px 14px;
-    font-size: 12px;
+    padding: 6px 12px;
+    font-size: 11px;
     cursor: pointer;
+    color: var(--accent);
 }
 
 .theme-preview {
@@ -540,12 +866,55 @@ const paletteGroups = [
 .preview-block {
     min-height: 200px;
     border-radius: 20px;
-    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 14px 24px var(--accent-35, rgba(0, 0, 0, 0.2));
 }
 
 .preview-components {
     display: grid;
     gap: 16px;
+}
+
+.preview-header {
+    display: grid;
+    gap: 8px;
+    padding: 14px;
+    border-radius: 16px;
+    background: var(--soft-bg);
+    border: 1px solid var(--border-color);
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.header-subtitle {
+    font-size: 12px;
+    color: var(--muted-color);
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.header-btn {
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 12px;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.header-btn.solid {
+    border: none;
+    color: #fff;
+    background: var(--accent);
 }
 
 .button-row {
@@ -565,11 +934,14 @@ const paletteGroups = [
 .primary-btn {
     border: none;
     color: #fff;
+    background: var(--accent);
 }
 
 .outline-btn {
     border: 1px solid;
     background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
 .tag-row {
@@ -583,11 +955,13 @@ const paletteGroups = [
     font-size: 12px;
     font-weight: 600;
     color: #fff;
+    background: var(--accent);
 }
 
 .tag.ghost {
     background: transparent;
-    border: 1px solid;
+    border: 1px solid var(--accent);
+    color: var(--accent);
 }
 
 .card-row {
@@ -598,6 +972,80 @@ const paletteGroups = [
     .mobile-view & {
         grid-template-columns: 1fr;
     }
+}
+
+.form-row {
+    display: grid;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 12px;
+    color: var(--muted-color);
+}
+
+.form-field {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--accent-20, var(--border-color));
+    background: var(--field-bg);
+    color: var(--field-text);
+}
+
+.form-icon {
+    font-size: 14px;
+}
+
+.form-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--field-text);
+    font-size: 13px;
+}
+
+.form-input::placeholder {
+    color: var(--field-placeholder);
+}
+
+.form-chip {
+    font-size: 11px;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--accent);
+}
+
+.select-field {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--accent-20, var(--border-color));
+    background: var(--field-bg);
+    color: var(--field-text);
+}
+
+.select-label {
+    font-size: 13px;
+    color: var(--field-text);
+}
+
+.select-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.select-arrow {
+    font-size: 12px;
+    color: var(--accent);
 }
 
 .mini-card {
@@ -629,6 +1077,7 @@ const paletteGroups = [
     font-size: 12px;
     cursor: pointer;
     padding: 0;
+    color: var(--accent);
 }
 
 .mini-pill {
@@ -638,6 +1087,7 @@ const paletteGroups = [
     color: #fff;
     font-size: 11px;
     font-weight: 600;
+    background: var(--accent);
 }
 
 .palette-grid {
@@ -649,7 +1099,7 @@ const paletteGroups = [
     padding: 16px;
     border-radius: 18px;
     background: var(--page-bg);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--accent-20, var(--border-color));
 }
 
 .palette-header {
@@ -682,6 +1132,7 @@ const paletteGroups = [
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
+    color: var(--accent);
 }
 
 .palette-colors {

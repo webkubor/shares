@@ -44,6 +44,9 @@ const MessagePlugin = {
       if (option.type) {
         vm.$el.setAttribute("data-type", option.type);
       }
+      if (option.color) {
+        applyAccentColor(vm.$el, option.color);
+      }
       
       // 初始化时设置为不可见，等待位置计算完成后再显示
       vm.$el.style.opacity = "0";
@@ -94,10 +97,22 @@ const MessagePlugin = {
     }
 
     // 添加消息类型方法
-    Message.success = (content) => Message({ type: "success", content });
-    Message.warning = (content) => Message({ type: "warning", content });
-    Message.error = (content) => Message({ type: "error", content });
-    Message.info = (content) => Message({ type: "info", content });
+    Message.success = (content) => {
+      if (typeof content === "object") return Message({ type: "success", ...content });
+      return Message({ type: "success", content });
+    };
+    Message.warning = (content) => {
+      if (typeof content === "object") return Message({ type: "warning", ...content });
+      return Message({ type: "warning", content });
+    };
+    Message.error = (content) => {
+      if (typeof content === "object") return Message({ type: "error", ...content });
+      return Message({ type: "error", content });
+    };
+    Message.info = (content) => {
+      if (typeof content === "object") return Message({ type: "info", ...content });
+      return Message({ type: "info", content });
+    };
 
     // 挂载到全局
     app.config.globalProperties.$message = Message;
@@ -110,6 +125,42 @@ const MessagePlugin = {
 }
 
 export default MessagePlugin;
+
+function applyAccentColor(target: HTMLElement, color: string) {
+  const normalized = normalizeHex(color);
+  if (!normalized) return;
+  const { r, g, b } = hexToRgb(normalized);
+  const textColor = getTextColor(r, g, b);
+  target.setAttribute("data-accent", "custom");
+  target.style.setProperty("--toast-accent", `${r}, ${g}, ${b}`);
+  target.style.setProperty("--toast-text-color", textColor);
+  target.style.setProperty("--toast-progress-color", textColor);
+}
+
+function normalizeHex(input: string): string | null {
+  const trimmed = input.trim();
+  const raw = trimmed.startsWith("#") ? trimmed.slice(1) : trimmed;
+  if (!/^[0-9a-fA-F]{3}$|^[0-9a-fA-F]{6}$/.test(raw)) {
+    return null;
+  }
+  const full = raw.length === 3
+    ? raw.split("").map(ch => ch + ch).join("")
+    : raw;
+  return `#${full.toUpperCase()}`;
+}
+
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  const raw = hex.replace("#", "");
+  const r = parseInt(raw.slice(0, 2), 16);
+  const g = parseInt(raw.slice(2, 4), 16);
+  const b = parseInt(raw.slice(4, 6), 16);
+  return { r, g, b };
+}
+
+function getTextColor(r: number, g: number, b: number): string {
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.62 ? "#1a1a1a" : "#ffffff";
+}
 
 // 创建独立的Message实例
 let messageInstance: any = null;

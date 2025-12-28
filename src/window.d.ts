@@ -14,9 +14,10 @@
         picture: (url: string, scale?: number) => void;
       };
       $message?: {
-        success: (message: string) => void;
-        warning: (message: string) => void;
-        error: (message: string) => void;
+        success: (message: string | { content: string; color?: string }) => void;
+        warning: (message: string | { content: string; color?: string }) => void;
+        error: (message: string | { content: string; color?: string }) => void;
+        info?: (message: string | { content: string; color?: string }) => void;
       };
     }
   }

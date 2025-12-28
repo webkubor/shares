@@ -111,7 +111,7 @@ onUnmounted(() => {
   }
 
   .toast-message-content {
-    color: white;
+    color: var(--toast-text-color, white);
     line-height: 1.5;
     font-weight: 500;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -136,6 +136,11 @@ onUnmounted(() => {
     background: rgba(23, 162, 184, 0.15);
     border-color: rgba(23, 162, 184, 0.2);
   }
+
+  &[data-accent="custom"] {
+    background: rgba(var(--toast-accent), 0.16);
+    border-color: rgba(var(--toast-accent), 0.28);
+  }
 }
 
 .progress-bar-container {
@@ -149,7 +154,7 @@ onUnmounted(() => {
   .progress-bar {
     height: 100%;
     transition: width 1s linear;
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--toast-progress-color, rgba(255, 255, 255, 0.8));
   }
 }
 

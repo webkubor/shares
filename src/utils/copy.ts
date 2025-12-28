@@ -8,7 +8,8 @@ import { useClipboard } from '@vueuse/core'
  */
 export async function writeClipboard(
   text: string,
-  successContent: string = "copy successfully"
+  successContent: string = "copy successfully",
+  accentColor?: string
 ) {
     if (!text) {
     console.log('Copy content is empty')
@@ -18,7 +19,11 @@ export async function writeClipboard(
     const { copy } = useClipboard()
     await copy(text)
     console.log('Copied to clipboard')
-    window.$message?.success(successContent);
+    if (accentColor) {
+      window.$message?.success({ content: successContent, color: accentColor });
+    } else {
+      window.$message?.success(successContent);
+    }
   } catch (error) {
     console.log(error);
   }
