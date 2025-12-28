@@ -597,8 +597,9 @@ const themeTokens = computed(() => {
     }
 
     &.mobile-view {
-        padding: 16px;
-        border-radius: 20px;
+        padding: 16px 14px 24px;
+        border-radius: 0;
+        gap: 18px;
     }
 }
 
@@ -630,6 +631,7 @@ const themeTokens = computed(() => {
 
     .mobile-view & {
         flex-direction: column;
+        gap: 12px;
     }
 }
 
@@ -663,11 +665,17 @@ const themeTokens = computed(() => {
 
     .mobile-view & {
         grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 12px;
     }
 }
 
 .format-panel {
     margin-top: 10px;
+ 
+    .mobile-view & {
+        margin-top: 8px;
+    }
 }
 
 .format-title {
@@ -675,12 +683,22 @@ const themeTokens = computed(() => {
     font-weight: 600;
     color: var(--text-color);
     margin-bottom: 10px;
+
+    .mobile-view & {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
 }
 
 .format-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 10px 14px;
+
+    .mobile-view & {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
 }
 
 .format-item {
@@ -690,6 +708,10 @@ const themeTokens = computed(() => {
     border-radius: 10px;
     background: var(--soft-bg);
     border: 1px solid var(--accent-20, var(--border-color));
+
+    .mobile-view & {
+        padding: 6px 8px;
+    }
 }
 
 .format-label {
@@ -719,6 +741,11 @@ const themeTokens = computed(() => {
     border-radius: 18px;
     background: var(--card-bg);
     border: 1px solid var(--accent-20, var(--border-color));
+
+    .mobile-view & {
+        padding: 14px;
+        border-radius: 14px;
+    }
 }
 
 .alpha-row {
@@ -754,6 +781,11 @@ const themeTokens = computed(() => {
     border: 1px solid var(--accent-20, var(--border-color));
     background: transparent;
     cursor: pointer;
+
+    .mobile-view & {
+        min-height: 140px;
+        border-radius: 14px;
+    }
 }
 
 .picker-meta {
@@ -761,6 +793,10 @@ const themeTokens = computed(() => {
     grid-template-columns: 64px 1fr;
     gap: 12px;
     align-items: center;
+
+    .mobile-view & {
+        grid-template-columns: 56px 1fr;
+    }
 }
 
 .current-color {
@@ -768,6 +804,12 @@ const themeTokens = computed(() => {
     height: 64px;
     border-radius: 16px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+
+    .mobile-view & {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+    }
 }
 
 .current-info {
@@ -796,6 +838,11 @@ const themeTokens = computed(() => {
     display: grid;
     gap: 10px;
     align-content: start;
+
+    .mobile-view & {
+        padding: 14px;
+        border-radius: 14px;
+    }
 }
 
 .input-label {
@@ -809,6 +856,10 @@ const themeTokens = computed(() => {
     grid-template-columns: 1fr auto;
     gap: 10px;
     align-items: center;
+
+    .mobile-view & {
+        grid-template-columns: 1fr;
+    }
 }
 
 .hex-input {
@@ -819,6 +870,10 @@ const themeTokens = computed(() => {
     background: transparent;
     color: var(--text-color);
     height: 38px;
+
+    .mobile-view & {
+        height: 36px;
+    }
 }
 
 .apply-hex {
@@ -830,6 +885,11 @@ const themeTokens = computed(() => {
     cursor: pointer;
     background: var(--accent);
     height: 38px;
+
+    .mobile-view & {
+        height: 36px;
+        width: 100%;
+    }
 }
 
 .input-hint {
@@ -841,6 +901,10 @@ const themeTokens = computed(() => {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+
+    .mobile-view & {
+        gap: 8px;
+    }
 }
 
 .ghost-button {
@@ -860,6 +924,7 @@ const themeTokens = computed(() => {
 
     .mobile-view & {
         grid-template-columns: 1fr;
+        gap: 16px;
     }
 }
 
@@ -867,6 +932,11 @@ const themeTokens = computed(() => {
     min-height: 200px;
     border-radius: 20px;
     box-shadow: 0 14px 24px var(--accent-35, rgba(0, 0, 0, 0.2));
+
+    .mobile-view & {
+        min-height: 160px;
+        border-radius: 16px;
+    }
 }
 
 .preview-components {
@@ -920,6 +990,10 @@ const themeTokens = computed(() => {
 .button-row {
     display: flex;
     gap: 12px;
+
+    .mobile-view & {
+        flex-direction: column;
+    }
 }
 
 .primary-btn,
@@ -947,6 +1021,11 @@ const themeTokens = computed(() => {
 .tag-row {
     display: flex;
     gap: 10px;
+
+    .mobile-view & {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
 }
 
 .tag {
@@ -1100,6 +1179,11 @@ const themeTokens = computed(() => {
     border-radius: 18px;
     background: var(--page-bg);
     border: 1px solid var(--accent-20, var(--border-color));
+
+    .mobile-view & {
+        padding: 14px;
+        border-radius: 14px;
+    }
 }
 
 .palette-header {
@@ -1112,6 +1196,7 @@ const themeTokens = computed(() => {
     .mobile-view & {
         flex-direction: column;
         align-items: flex-start;
+        gap: 8px;
     }
 }
 
@@ -1139,6 +1224,11 @@ const themeTokens = computed(() => {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 12px;
+
+    .mobile-view & {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
 }
 
 .palette-chip {
