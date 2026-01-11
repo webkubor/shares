@@ -33,3 +33,9 @@
 - 2026-01-11
   - 替换 logo 为符合 Ion Teal + Graphite 主题的新 SVG。
   - 优化 `index.html` 的标题与 SEO 文案，强调 AI 工具链定位。
+
+- 2026-01-11
+  - 路由守卫默认标题与描述更新为 AI Toolchain Studio 主题。
+
+- 2026-01-11
+  - 页面标题规则改为 baseTitle（webkubor — AI Toolchain Studio）+ 可选页面标题。

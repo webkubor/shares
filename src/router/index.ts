@@ -123,10 +123,11 @@ const router = createRouter({
 const SITE_URL = 'https://webkubor.online'
 
 router.beforeEach(async (to, from, next) => {
-  const defaultTitle = 'webkubor | 在线工作台'
-  const defaultDesc = 'Webkubor 的个人站，项目展示、创意工具与技术分享'
+  const baseTitle = 'webkubor — AI Toolchain Studio'
+  const defaultTitle = baseTitle
+  const defaultDesc = 'Webkubor 的 AI 工具链与实验室，聚焦工具集合、工作流与项目案例'
 
-  document.title = to.meta.title ? to.meta.title + ' | webkubor' : defaultTitle
+  document.title = to.meta.title ? `${to.meta.title} | ${baseTitle}` : defaultTitle
 
   const canonicalHref = SITE_URL + to.fullPath
   let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
