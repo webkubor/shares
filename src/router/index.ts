@@ -24,14 +24,6 @@ const RouterMap = [
   },
 
   {
-    path: '/login/3',
-    name: 'Login3',
-    meta: {
-      title: "Login3"
-    },
-    component: () => import("@/views/login/login3.vue")
-  },
-  {
     path: '/vertify/google',
     name: 'google',
     meta: {

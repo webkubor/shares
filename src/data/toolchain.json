@@ -17,7 +17,7 @@
       "id": "generate",
       "title": "生成",
       "summary": "模板与视觉快速产出",
-      "toolIds": ["wallpaper", "login", "siri", "barrage"]
+      "toolIds": ["wallpaper", "siri", "barrage"]
     },
     {
       "id": "apply",
@@ -98,17 +98,6 @@
       "tags": ["色彩", "品牌"],
       "url": "",
       "route": "/colors"
-    },
-    {
-      "id": "login",
-      "name": "Login 登录页",
-      "description": "登录场景与动效探索",
-      "category": "ui-visual",
-      "stage": "generate",
-      "flags": ["featured", "released"],
-      "tags": ["动效", "表单"],
-      "url": "",
-      "route": "/login/3"
     },
     {
       "id": "siri",
