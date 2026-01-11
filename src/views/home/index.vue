@@ -1,6 +1,6 @@
 <template>
   <div class="home-page page-transition">
-    <!-- Hero Section - 重新设计为现代橙色主题 -->
+    <!-- Hero Section - Ion Teal 工具链视觉 -->
     <section class="hero-section animate-fadeInDown">
       <!-- 扫描线效果 -->
       <div class="scan-line"></div>
@@ -20,39 +20,71 @@
       
       <div class="hero-container">
         <div class="hero-content animate-fadeInUp animate-delay-200">
-          <div class="profile-section" @mouseenter="onProfileHover" @mouseleave="onProfileLeave">
-            <div class="avatar-container">
-              <img class="avatar" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="avatar" />
-              <div class="avatar-glow"></div>
-              <div class="avatar-scan"></div>
-              <div class="avatar-particles"></div>
+          <div class="hero-grid">
+            <div class="hero-left">
+              <div class="hero-badge">AI Toolchain Studio</div>
+              <h1 class="hero-title">
+                用工具链构建智能
+                <span class="hero-title-accent">创作流程</span>
+              </h1>
+              <p class="hero-subtitle">{{ signText }}</p>
+              <div class="hero-actions">
+                <router-link to="/tools" class="hero-btn primary">进入工具链</router-link>
+                <router-link to="/projects" class="hero-btn ghost">查看案例</router-link>
+              </div>
+              <div class="hero-stats">
+                <div class="stat-item">
+                  <span class="stat-value">{{ user.tags.length }}</span>
+                  <span class="stat-label">工具标签</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">4</span>
+                  <span class="stat-label">流程阶段</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">持续更新</span>
+                  <span class="stat-label">AI 实验室</span>
+                </div>
+              </div>
             </div>
-            <h1 class="profile-name">{{ user.name }}</h1>
-          </div>
-          
-          <div class="signature-section" @mouseenter="onSignatureHover" @mouseleave="onSignatureLeave">
-            <div class="signature-card">
-              <span class="signature-text">{{ signText }}</span>
-              <div class="signature-underline" :class="{ 'active': signatureHovered }"></div>
-              <div class="signature-glow"></div>
-              <div class="text-shimmer"></div>
-            </div>
-          </div>
-          
-          <div class="skills-showcase">
-            <div class="skills-grid">
-              <div 
-                v-for="(item, index) in user.tags.slice(0, 8)" 
-                :key="item + index"
-                class="skill-item"
-                :style="{ animationDelay: `${index * 0.1}s` }"
-                @mouseenter="onSkillHover"
-                @mouseleave="onSkillLeave"
-              >
-                <span class="skill-text">{{ item }}</span>
-                <div class="skill-glow"></div>
-                <div class="skill-pulse"></div>
-                <div class="skill-border"></div>
+
+            <div class="hero-right">
+              <div class="glass-panel">
+                <div class="panel-header">
+                  <div class="panel-title">Toolchain Map</div>
+                  <div class="panel-chip">Ion Teal</div>
+                </div>
+                <div class="node-grid">
+                  <div
+                    v-for="(item, index) in user.tags.slice(0, 6)"
+                    :key="item + index"
+                    class="node-item"
+                    :style="{ animationDelay: `${index * 0.12}s` }"
+                    @mouseenter="onSkillHover"
+                    @mouseleave="onSkillLeave"
+                  >
+                    <span>{{ item }}</span>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <div class="avatar-stack">
+                    <img class="avatar-mini" src="https://github.com/webkubor/picx-images-hosting/raw/master/webkubor/me.1zi6wrx8na.webp" alt="avatar" />
+                    <span class="avatar-name">{{ user.name }}</span>
+                  </div>
+                  <span class="panel-note">JSON 可拓展结构 · 属性筛选</span>
+                </div>
+              </div>
+              <div class="glass-panel ghost">
+                <div class="panel-header">
+                  <div class="panel-title">Pipeline Preview</div>
+                  <div class="panel-chip">Live</div>
+                </div>
+                <div class="pipeline-mini">
+                  <span>采集</span>
+                  <span>生成</span>
+                  <span>应用</span>
+                  <span>AI</span>
+                </div>
               </div>
             </div>
           </div>
@@ -81,33 +113,12 @@ let { user, updateAge } = useUser();
 
 updateAge("logo.jpeg");
 
-// 交互状态
-const signatureHovered = ref(false)
-const profileHovered = ref(false)
-
 const signText = computed(() => {
   const base = user.personalSign && String(user.personalSign).trim()
   return base && base.length > 0
     ? base
     : '用代码编织数字世界的艺术家'
 })
-
-// 交互函数
-function onSignatureHover() {
-  signatureHovered.value = true
-}
-
-function onSignatureLeave() {
-  signatureHovered.value = false
-}
-
-function onProfileHover() {
-  profileHovered.value = true
-}
-
-function onProfileLeave() {
-  profileHovered.value = false
-}
 
 function onSkillHover(event) {
   const skillItem = event.currentTarget
@@ -229,163 +240,184 @@ $shadow-hover: rgba(32, 196, 182, 0.24);
   margin: 0 auto;
 }
 
-/* Profile Section */
-.profile-section {
-  margin-bottom: 60px;
+/* Hero Layout */
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 48px;
+  align-items: center;
+  text-align: left;
 }
 
-.avatar-container {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 32px;
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.avatar {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid $primary-orange;
-  box-shadow: 0 20px 40px rgba(32, 196, 182, 0.2);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  z-index: 2;
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(32, 196, 182, 0.12);
+  color: $dark-orange;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
-.avatar-glow {
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  border-radius: 50%;
-  background: radial-gradient(circle, $primary-orange 0%, transparent 70%);
-  filter: blur(20px);
-  opacity: 0.6;
-  z-index: 1;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
-}
-
-.profile-name {
-  font-size: clamp(32px, 6vw, 56px);
+.hero-title {
+  font-size: clamp(34px, 6vw, 64px);
   font-weight: 800;
   color: $text-dark;
-  margin-bottom: 12px;
+  line-height: 1.05;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, $primary-orange 0%, $accent-orange 50%, $light-orange 100%);
+}
+
+.hero-title-accent {
+  display: block;
+  background: linear-gradient(135deg, $primary-orange 0%, $accent-orange 50%, #ff8a3d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.profile-title {
-  font-size: clamp(18px, 3vw, 24px);
+.hero-subtitle {
+  font-size: 18px;
   color: $text-medium;
-  font-weight: 500;
-  margin-bottom: 40px;
-  letter-spacing: 0.01em;
+  line-height: 1.7;
+  max-width: 520px;
 }
 
-/* Signature Section */
-.signature-section {
-  margin-bottom: 60px;
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
 }
 
-.signature-card {
-  position: relative;
-  display: inline-block;
-  padding: 32px 48px;
-  background: $bg-card;
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(32, 196, 182, 0.12);
-  border: 1px solid $border-light;
+.hero-btn {
+  padding: 12px 22px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.hero-btn.primary {
+  background: linear-gradient(135deg, $primary-orange, $accent-orange);
+  color: #0f1418;
+  box-shadow: 0 12px 24px rgba(32, 196, 182, 0.35);
+}
+
+.hero-btn.ghost {
+  border: 1px solid rgba(32, 196, 182, 0.4);
+  color: $text-dark;
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
 }
 
-.signature-text {
-  font-size: clamp(20px, 4vw, 32px);
-  font-weight: 600;
-  color: $text-dark;
-  line-height: 1.4;
-  position: relative;
-  z-index: 2;
+.hero-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(32, 196, 182, 0.25);
 }
 
-.signature-underline {
-  position: absolute;
-  bottom: 24px;
-  left: 48px;
-  right: 48px;
-  height: 3px;
-  background: linear-gradient(90deg, $primary-orange 0%, $accent-orange 100%);
-  border-radius: 2px;
-  animation: underlineGrow 1s ease-out;
-}
-
-@keyframes underlineGrow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-/* Skills Showcase */
-.skills-showcase {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.skills-grid {
+.hero-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 16px;
-  padding: 20px;
+  margin-top: 8px;
 }
 
-.skill-item {
-  position: relative;
-  padding: 16px 20px;
-  background: $bg-card;
+.stat-item {
+  padding: 14px 16px;
   border-radius: 16px;
-  box-shadow: 0 8px 16px $shadow-light;
-  border: 1px solid $border-light;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(32, 196, 182, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.stat-value {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: $primary-orange;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: $text-light;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.glass-panel {
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.3));
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 48px rgba(32, 196, 182, 0.18);
+}
+
+.glass-panel.ghost {
+  background: linear-gradient(135deg, rgba(32, 196, 182, 0.1), rgba(255, 255, 255, 0.3));
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.panel-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: $text-dark;
+}
+
+.panel-chip {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(32, 196, 182, 0.18);
+  color: $dark-orange;
+  font-weight: 600;
+}
+
+.node-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.node-item {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(32, 196, 182, 0.25);
+  background: rgba(255, 255, 255, 0.6);
+  color: $text-dark;
+  font-size: 13px;
+  font-weight: 600;
   animation: skillAppear 0.6s ease-out forwards;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(12px);
+  transition: all 0.3s ease;
 }
 
-.skill-text {
-  font-size: 14px;
-  font-weight: 600;
-  color: $primary-orange;
-  text-align: center;
-  display: block;
-}
-
-.skill-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 16px;
-  background: radial-gradient(circle at center, $primary-orange 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.skill-item:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 12px 24px $shadow-hover;
-  
-  .skill-glow {
-    opacity: 0.1;
-  }
+.node-item.hovered,
+.node-item:hover {
+  border-color: rgba(32, 196, 182, 0.5);
+  box-shadow: 0 12px 24px rgba(32, 196, 182, 0.2);
 }
 
 @keyframes skillAppear {
@@ -393,6 +425,53 @@ $shadow-hover: rgba(32, 196, 182, 0.24);
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.avatar-stack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar-mini {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(32, 196, 182, 0.4);
+}
+
+.avatar-name {
+  font-size: 12px;
+  color: $text-medium;
+  font-weight: 600;
+}
+
+.panel-note {
+  font-size: 12px;
+  color: $text-light;
+}
+
+.pipeline-mini {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.pipeline-mini span {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(32, 196, 182, 0.2);
+  font-size: 12px;
+  text-align: center;
+  color: $text-medium;
 }
 
 /* 移动端优化 */
