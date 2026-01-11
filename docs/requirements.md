@@ -39,3 +39,6 @@
 
 - 2026-01-11
   - 页面标题规则改为 baseTitle（webkubor — AI Toolchain Studio）+ 可选页面标题。
+
+- 2026-01-11
+  - 首页第一屏重做，突出 Ion Teal 风格与工具链视觉。

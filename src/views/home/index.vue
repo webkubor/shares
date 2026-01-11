@@ -235,8 +235,8 @@ $shadow-hover: rgba(32, 196, 182, 0.24);
 }
 
 .hero-content {
-  text-align: center;
-  max-width: 800px;
+  text-align: left;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -480,24 +480,24 @@ $shadow-hover: rgba(32, 196, 182, 0.24);
     padding: 100px 20px 80px;
     min-height: 60vh;
   }
-  
-  .avatar {
-    width: 140px;
-    height: 140px;
+
+  .hero-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .profile-name {
-    font-size: clamp(28px, 8vw, 40px);
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
-  
-  .signature-card {
-    padding: 24px 32px;
+
+  .hero-btn {
+    text-align: center;
   }
-  
-  .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 12px;
-    padding: 16px;
+
+  .panel-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
   
   .nav-section {
@@ -525,8 +525,7 @@ $shadow-hover: rgba(32, 196, 182, 0.24);
 /* 减少动画支持 */
 @media (prefers-reduced-motion: reduce) {
   .gradient-orb,
-  .avatar-glow,
-  .skill-item {
+  .node-item {
     animation: none !important;
   }
   
@@ -619,155 +618,6 @@ $shadow-hover: rgba(32, 196, 182, 0.24);
 @keyframes shimmerMove {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
-}
-
-/* 头像扫描效果 */
-.avatar-scan {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  background: linear-gradient(45deg, $primary-orange, $accent-orange, $light-orange, $primary-orange) border-box;
-  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  animation: avatarScan 3s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 3;
-}
-
-.profile-section:hover .avatar-scan {
-  opacity: 1;
-}
-
-@keyframes avatarScan {
-  0%, 100% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* 头像粒子效果 */
-.avatar-particles {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200px;
-  height: 200px;
-  transform: translate(-50%, -50%);
-  z-index: 4;
-  pointer-events: none;
-}
-
-.avatar-particles::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  background: $primary-orange;
-  border-radius: 50%;
-  box-shadow: 
-    0 -80px 0 $light-orange, 0 80px 0 $accent-orange,
-    -80px 0 0 $primary-orange, 80px 0 0 $dark-orange,
-    -56px -56px 0 $light-orange, 56px -56px 0 $accent-orange,
-    -56px 56px 0 $primary-orange, 56px 56px 0 $dark-orange;
-  animation: particleRotate 6s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.profile-section:hover .avatar-particles::before {
-  opacity: 0.8;
-}
-
-@keyframes particleRotate {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* 签名流光效果 */
-.signature-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24px;
-  background: linear-gradient(135deg, $primary-orange 0%, $accent-orange 100%);
-  opacity: 0;
-  filter: blur(20px);
-  z-index: 1;
-  transition: opacity 0.3s ease;
-}
-
-.signature-section:hover .signature-glow {
-  opacity: 0.1;
-}
-
-.text-shimmer {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-  z-index: 3;
-  transition: left 0.6s ease;
-}
-
-.signature-section:hover .text-shimmer {
-  left: 100%;
-}
-
-/* 技能项动画效果 */
-.skill-pulse {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  border: 2px solid $primary-orange;
-  border-radius: 16px;
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 0;
-  transition: all 0.3s ease;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.skill-border {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 16px;
-  background: linear-gradient(45deg, $primary-orange, $accent-orange, $light-orange, $primary-orange);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-  animation: borderFlow 2s linear infinite;
-}
-
-.skill-item.hovered .skill-pulse {
-  animation: skillPulse 1s ease-out;
-}
-
-.skill-item.hovered .skill-border {
-  opacity: 0.3;
-}
-
-@keyframes skillPulse {
-  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-  100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0; }
-}
-
-@keyframes borderFlow {
-  0%, 100% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(180deg); }
 }
 
 /* 卡片图标动画 */
