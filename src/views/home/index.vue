@@ -60,14 +60,11 @@
       </div>
     </section>
 
-    <NavigationSection />
+    <ToolchainSection />
 
-    <!-- Timeline Section - 人生时间线 -->
-    <section class="timeline-section animate-fadeInUp animate-delay-600">
-      <div class="timeline-container">
-        <Timeline :timeline="timelineData" @itemClick="onTimelineItemClick" @yearChange="onTimelineYearChange" />
-      </div>
-    </section>
+    <FeaturedToolsSection />
+
+    <NavigationSection />
 
 
   </div>
@@ -76,30 +73,17 @@
 <script setup>
 import { useUser } from "@/hooks/useUser";
 import { computed, onMounted, ref } from 'vue'
-import Timeline from './components/Timeline/index.vue'
+import ToolchainSection from './components/ToolchainSection.vue'
+import FeaturedToolsSection from './components/FeaturedToolsSection.vue'
 import NavigationSection from './components/NavigationSection.vue'
 
 let { user, updateAge } = useUser();
-
-// 时间线数据
-const timelineData = computed(() => user.timeline || [])
 
 updateAge("logo.jpeg");
 
 // 交互状态
 const signatureHovered = ref(false)
 const profileHovered = ref(false)
-
-function getTagStyle(type) {
-  const map = {
-    success: { background: '#30C0A2', color: '#fff' },
-    info: { background: '#5E64DA', color: '#fff' },
-    warning: { background: '#FFB31C', color: '#000' },
-    error: { background: '#CF1322', color: '#fff' },
-    default: { background: '#2354FF', color: '#fff' }
-  }
-  return map[type] || map.default
-}
 
 const signText = computed(() => {
   const base = user.personalSign && String(user.personalSign).trim()
@@ -133,15 +117,6 @@ function onSkillHover(event) {
 function onSkillLeave(event) {
   const skillItem = event.currentTarget
   skillItem.classList.remove('hovered')
-}
-
-// 时间线交互
-function onTimelineItemClick(item, index) {
-  console.log('时间线项目点击:', item, index)
-}
-
-function onTimelineYearChange(year) {
-  console.log('时间线年份变化:', year)
 }
 
 onMounted(() => {
@@ -795,19 +770,6 @@ $shadow-hover: rgba(255, 107, 53, 0.2);
 .nav-card:hover .link-trail {
   opacity: 1;
   right: -30px;
-}
-
-/* 时间线部分样式 */
-.timeline-section {
-  padding: 80px 32px 120px;
-  background: linear-gradient(180deg, #ffffff 0%, #fff8f5 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.timeline-container {
-  max-width: 1400px;
-  margin: 0 auto;
 }
 
 /* 标题流光效果 */

@@ -1,0 +1,218 @@
+{
+  "filters": [
+    { "id": "all", "label": "全部" },
+    { "id": "featured", "label": "核心" },
+    { "id": "released", "label": "已发布" },
+    { "id": "experimental", "label": "实验" },
+    { "id": "planned", "label": "规划" }
+  ],
+  "stages": [
+    {
+      "id": "collect",
+      "title": "采集",
+      "summary": "参考与素材收集",
+      "toolIds": ["colors", "apple-flow", "poster-scroll"]
+    },
+    {
+      "id": "generate",
+      "title": "生成",
+      "summary": "模板与视觉快速产出",
+      "toolIds": ["wallpaper", "login", "siri", "barrage"]
+    },
+    {
+      "id": "apply",
+      "title": "应用",
+      "summary": "业务验证与效率小工具",
+      "toolIds": ["interest", "indexdb", "share", "kimi", "iframe"]
+    },
+    {
+      "id": "verify",
+      "title": "验证",
+      "summary": "可信与风控",
+      "toolIds": ["verify-google", "verify-cloudflare"]
+    }
+  ],
+  "categories": [
+    {
+      "id": "application",
+      "label": "应用层实践",
+      "summary": "验证流程与效率实践"
+    },
+    {
+      "id": "ui-visual",
+      "label": "UI 视觉",
+      "summary": "设计与动效探索"
+    },
+    {
+      "id": "preview",
+      "label": "官网预览",
+      "summary": "灵感与交互参考"
+    },
+    {
+      "id": "planned",
+      "label": "待开发",
+      "summary": "未来可扩展模块"
+    },
+    {
+      "id": "verify",
+      "label": "人机验证",
+      "summary": "登录与安全验证"
+    }
+  ],
+  "tools": [
+    {
+      "id": "wallpaper",
+      "name": "壁纸样机生成器",
+      "description": "快速生成营销与展示样机",
+      "category": "application",
+      "stage": "generate",
+      "flags": ["featured", "released"],
+      "tags": ["模板", "生成", "视觉"],
+      "url": "https://wallpaperbuild.netlify.app/#/",
+      "route": ""
+    },
+    {
+      "id": "interest",
+      "name": "利息计算",
+      "description": "利率与成本快速测算",
+      "category": "application",
+      "stage": "apply",
+      "flags": ["released"],
+      "tags": ["金融", "效率"],
+      "url": "",
+      "route": "/money"
+    },
+    {
+      "id": "indexdb",
+      "name": "indexDB",
+      "description": "本地数据存储与同步实验",
+      "category": "application",
+      "stage": "apply",
+      "flags": ["released"],
+      "tags": ["数据", "存储"],
+      "url": "",
+      "route": "/list"
+    },
+    {
+      "id": "share",
+      "name": "摘录分享",
+      "description": "内容采集与分享的轻量工作流",
+      "category": "application",
+      "stage": "apply",
+      "flags": ["released"],
+      "tags": ["内容", "发布"],
+      "url": "",
+      "route": "/book/share"
+    },
+    {
+      "id": "kimi",
+      "name": "Kimi 机器人",
+      "description": "AI 对话与内容协作",
+      "category": "application",
+      "stage": "apply",
+      "flags": ["released", "featured"],
+      "tags": ["AI", "协作"],
+      "url": "",
+      "route": "/bot/kimi"
+    },
+    {
+      "id": "iframe",
+      "name": "Iframe",
+      "description": "多场景嵌入与展示容器",
+      "category": "application",
+      "stage": "apply",
+      "flags": ["released"],
+      "tags": ["容器", "集成"],
+      "url": "",
+      "route": "/iframe"
+    },
+    {
+      "id": "colors",
+      "name": "主题色选择器",
+      "description": "品牌色与渐变试验",
+      "category": "ui-visual",
+      "stage": "collect",
+      "flags": ["featured", "released"],
+      "tags": ["色彩", "品牌"],
+      "url": "",
+      "route": "/colors"
+    },
+    {
+      "id": "login",
+      "name": "Login 登录页",
+      "description": "登录场景与动效探索",
+      "category": "ui-visual",
+      "stage": "generate",
+      "flags": ["featured", "released"],
+      "tags": ["动效", "表单"],
+      "url": "",
+      "route": "/login/3"
+    },
+    {
+      "id": "siri",
+      "name": "Siri 语音助手",
+      "description": "语音与交互视觉实验",
+      "category": "ui-visual",
+      "stage": "generate",
+      "flags": ["experimental"],
+      "tags": ["语音", "交互"],
+      "url": "",
+      "route": "/siri"
+    },
+    {
+      "id": "apple-flow",
+      "name": "苹果官网流动参考",
+      "description": "动线与滚动体验参考",
+      "category": "preview",
+      "stage": "collect",
+      "flags": ["released"],
+      "tags": ["灵感", "滚动"],
+      "url": "",
+      "route": "/public/apple"
+    },
+    {
+      "id": "poster-scroll",
+      "name": "海报滚动",
+      "description": "长图与视觉叙事演示",
+      "category": "preview",
+      "stage": "collect",
+      "flags": ["released"],
+      "tags": ["叙事", "视觉"],
+      "url": "",
+      "route": "/public/poster"
+    },
+    {
+      "id": "barrage",
+      "name": "弹幕",
+      "description": "互动密度与情绪实验",
+      "category": "planned",
+      "stage": "generate",
+      "flags": ["planned"],
+      "tags": ["互动", "实验"],
+      "url": "",
+      "route": "/barrage"
+    },
+    {
+      "id": "verify-google",
+      "name": "Google 无感知登录",
+      "description": "无感人机验证体验",
+      "category": "verify",
+      "stage": "verify",
+      "flags": ["released"],
+      "tags": ["安全", "登录"],
+      "url": "",
+      "route": "/vertify/google"
+    },
+    {
+      "id": "verify-cloudflare",
+      "name": "Cloudflare 无感知登录",
+      "description": "可信人机验证策略",
+      "category": "verify",
+      "stage": "verify",
+      "flags": ["released"],
+      "tags": ["安全", "验证"],
+      "url": "",
+      "route": "/vertify/cloudflare"
+    }
+  ]
+}

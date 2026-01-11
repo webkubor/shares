@@ -6,8 +6,8 @@
     
     <div class="nav-container">
       <div class="section-header">
-        <h2 class="section-title">Explore My Work</h2>
-        <p class="section-subtitle">Discover tools and projects crafted with passion</p>
+        <h2 class="section-title">Toolchain Entry</h2>
+        <p class="section-subtitle">工具链与项目入口，所有模块统一归档</p>
         <div class="title-shimmer"></div>
       </div>
       
@@ -19,10 +19,10 @@
               <div class="icon-glow"></div>
               <div class="icon-shimmer"></div>
             </div>
-            <h3 class="card-title">Creative Tools</h3>
-            <p class="card-description">Interactive utilities and experimental features</p>
+            <h3 class="card-title">Toolchain Library</h3>
+            <p class="card-description">按属性筛选、可扩展的工具目录</p>
             <div class="card-link">
-              <span>Explore Tools</span>
+              <span>进入工具链</span>
               <div class="link-arrow">→</div>
               <div class="link-trail"></div>
             </div>
@@ -41,10 +41,10 @@
               <div class="icon-glow"></div>
               <div class="icon-shimmer"></div>
             </div>
-            <h3 class="card-title">Project Showcase</h3>
-            <p class="card-description">Featured projects and achievements</p>
+            <h3 class="card-title">Workflow Cases</h3>
+            <p class="card-description">工具链落地项目与案例</p>
             <div class="card-link">
-              <span>View Projects</span>
+              <span>查看案例</span>
               <div class="link-arrow">→</div>
               <div class="link-trail"></div>
             </div>

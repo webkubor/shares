@@ -7,8 +7,8 @@
         </svg>
       </router-link>
       <div class="header-content">
-        <h1 class="page-title text-gradient-animate">Creative Tools</h1>
-        <p class="page-subtitle">探索有趣的工具和实验</p>
+        <h1 class="page-title text-gradient-animate">Toolchain Library</h1>
+        <p class="page-subtitle">用可拓展 JSON 组织工具链，按属性快速筛选</p>
       </div>
     </div>
     

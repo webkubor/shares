@@ -8,8 +8,8 @@ const user = reactive({
   birthday: "1995-11-13",
   Guideline: 1,
   isfirstLogin: true,
-  personalSign: "Unkillable makes you stronger",
-  tags: ["前端开发工程师", "网易云音乐人", "签约小说作家", "新民乐爱好者"],
+  personalSign: "构建可拓展的工具链，让创作流程更有秩序",
+  tags: ["JSON 工具链", "可拓展结构", "属性筛选", "流程化构建"],
   // 人生时间线数据 - 包含月份刻度和小时间节点
   timeline: [
     {

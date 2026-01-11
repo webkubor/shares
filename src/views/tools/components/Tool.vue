@@ -1,65 +1,236 @@
 <template>
-  <div class="tool-grid animate-fadeInUp">
-    <k-card title="应用层实践" gradient="aurora" shadow="medium">
-      <div class="tool-actions">
-        <k-button href="https://wallpaperbuild.netlify.app/#/">壁纸样机生成器</k-button>
-        <k-button @click="$router.push('/money')">利息计算</k-button>
-        <k-button @click="$router.push('/list')">indexDB</k-button>
-        <k-button @click="$router.push('/book/share')">摘录分享</k-button>
-        <k-button @click="$router.push('/bot/kimi')">Kimi 机器人</k-button>
-        <k-button @click="$router.push('/iframe')">Iframe</k-button>
-      </div>
-    </k-card>
+  <div class="tool-stack">
+    <div class="tool-filters">
+      <button
+        v-for="filter in toolchain.filters"
+        :key="filter.id"
+        class="filter-chip"
+        :class="{ active: activeFilter === filter.id }"
+        @click="activeFilter = filter.id"
+      >
+        {{ filter.label }}
+      </button>
+    </div>
 
-    <k-card title="UI视觉" gradient="soft" shadow="light">
-      <div class="tool-actions">
-        <k-button @click="$router.push('/colors')">主题色选择器</k-button>
-        <k-button @click="$router.push('/login/3')">Login登录页</k-button>
-        <k-button @click="$router.push('/siri')">Siri 语音助手</k-button>
-      </div>
-    </k-card>
-
-    <k-card title="官网预览" gradient="glass" shadow="strong">
-      <div class="tool-actions">
-        <k-button @click="$router.push('/public/apple')">苹果官网流动参考</k-button>
-        <k-button @click="$router.push('/public/poster')">海报滚动</k-button>
-      </div>
-    </k-card>
-
-    <k-card title="待开发" gradient="aurora" shadow="light">
-      <div class="tool-actions">
-        <k-button @click="$router.push('/barrage')">弹幕</k-button>
-      </div>
-    </k-card>
-
-    <k-card title="人机验证" gradient="soft" shadow="medium">
-      <div class="tool-actions">
-        <k-button @click="$router.push('/vertify/google')">Google 无感知登录</k-button>
-        <k-button @click="$router.push('/vertify/cloudflare')">Cloudflare 无感知登录</k-button>
-      </div>
-    </k-card>
+    <div class="tool-grid animate-fadeInUp">
+      <k-card
+        v-for="group in toolsByCategory"
+        :key="group.id"
+        :title="group.label"
+        gradient="aurora"
+        shadow="medium"
+      >
+        <p class="category-summary">{{ group.summary }}</p>
+        <div class="tool-list">
+          <div v-for="tool in group.tools" :key="tool.id" class="tool-item">
+            <div class="tool-info">
+              <div class="tool-title">
+                <span class="tool-name">{{ tool.name }}</span>
+                <span class="tool-stage">{{ stageMap[tool.stage] || tool.stage }}</span>
+              </div>
+              <p class="tool-desc">{{ tool.description }}</p>
+              <div class="tool-tags">
+                <span v-for="tag in tool.tags" :key="tag" class="tool-tag">
+                  {{ tag }}
+                </span>
+                <span v-for="flag in tool.flags" :key="flag" class="tool-tag is-flag">
+                  {{ flagLabel[flag] || flag }}
+                </span>
+              </div>
+            </div>
+            <div class="tool-action">
+              <k-button
+                v-if="tool.url"
+                :href="tool.url"
+                variant="primary"
+              >
+                打开外链
+              </k-button>
+              <k-button
+                v-else-if="tool.route"
+                variant="default"
+                @click="router.push(tool.route)"
+              >
+                进入工具
+              </k-button>
+              <span v-else class="tool-empty">待补充链接</span>
+            </div>
+          </div>
+        </div>
+      </k-card>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import KCard from "@/components/KCard.vue"
-import KButton from "@/components/KButton.vue"
+import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import KCard from '@/components/KCard.vue'
+import KButton from '@/components/KButton.vue'
+import toolchain from '@/data/toolchain.json'
+
+const router = useRouter()
+const activeFilter = ref('all')
+
+const stageMap: Record<string, string> = {
+  collect: '采集',
+  generate: '生成',
+  apply: '应用',
+  verify: '验证'
+}
+
+const flagLabel: Record<string, string> = {
+  featured: '核心',
+  released: '已发布',
+  experimental: '实验',
+  planned: '规划'
+}
+
+const filteredTools = computed(() => {
+  if (activeFilter.value === 'all') return toolchain.tools
+  return toolchain.tools.filter((tool) => tool.flags?.includes(activeFilter.value))
+})
+
+const toolsByCategory = computed(() => {
+  return toolchain.categories
+    .map((category) => ({
+      ...category,
+      tools: filteredTools.value.filter((tool) => tool.category === category.id)
+    }))
+    .filter((group) => group.tools.length > 0)
+})
 </script>
+
 <style scoped lang="scss">
 @use '@/styles/variables.scss' as *;
 
-.tool-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+.tool-stack {
+  display: flex;
+  flex-direction: column;
   gap: 24px;
 }
 
-.tool-actions {
+.tool-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 16px;
+  justify-content: center;
 }
 
+.filter-chip {
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
+.filter-chip.active,
+.filter-chip:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 12px 24px var(--shadow-hover);
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.category-summary {
+  color: var(--text-secondary);
+  margin: 0 0 18px;
+  font-size: 14px;
+}
+
+.tool-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+}
+
+.tool-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tool-name {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.tool-stage {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 122, 0, 0.15);
+  color: var(--color-primary);
+}
+
+.tool-desc {
+  margin: 6px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tool-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tool-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  color: var(--text-tertiary);
+}
+
+.tool-tag.is-flag {
+  color: var(--color-primary);
+  border-color: rgba(255, 122, 0, 0.4);
+}
+
+.tool-action {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.tool-empty {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+@media (min-width: 900px) {
+  .tool-item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .tool-action {
+    flex-shrink: 0;
+  }
+}
 </style>
