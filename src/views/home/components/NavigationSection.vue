@@ -73,19 +73,19 @@ function onCardLeave(event) {
 </script>
 
 <style lang="scss" scoped>
-// 现代橙色主题设计
-$primary-orange: #ff6b35;
-$accent-orange: #f7931e;
-$dark-orange: #e55a2b;
+// Ion Teal 主题
+$primary-orange: #20c4b6;
+$accent-orange: #4fe0d2;
+$dark-orange: #0f8f83;
 $bg-card: #ffffff;
 $text-dark: #1a1a1a;
 $text-medium: #4a4a4a;
-$border-light: rgba(255, 107, 53, 0.1);
+$border-light: rgba(32, 196, 182, 0.12);
 
 /* Navigation Section */
 .nav-section {
   padding: 80px 32px 120px;
-  background: linear-gradient(180deg, #fff0eb 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #eef9f8 0%, #ffffff 100%);
   position: relative;
 }
 
@@ -136,7 +136,7 @@ $border-light: rgba(255, 107, 53, 0.1);
   padding: 48px 40px;
   text-decoration: none;
   color: $text-dark;
-  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.1);
+  box-shadow: 0 20px 40px rgba(32, 196, 182, 0.12);
   border: 1px solid $border-light;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
@@ -156,7 +156,7 @@ $border-light: rgba(255, 107, 53, 0.1);
 .card-icon {
   font-size: 56px;
   display: block;
-  filter: drop-shadow(0 4px 8px rgba(255, 107, 53, 0.2));
+  filter: drop-shadow(0 4px 8px rgba(32, 196, 182, 0.2));
 }
 
 .icon-glow {
@@ -217,14 +217,14 @@ $border-light: rgba(255, 107, 53, 0.1);
 .bg-pattern {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(255, 107, 53, 0.03) 0%, rgba(247, 147, 30, 0.02) 100%);
+  background: linear-gradient(135deg, rgba(32, 196, 182, 0.06) 0%, rgba(79, 224, 210, 0.04) 100%);
   mask-image: radial-gradient(circle at 70% 30%, black 0%, transparent 70%);
 }
 
 .nav-card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 30px 60px rgba(255, 107, 53, 0.15);
-  border-color: rgba(255, 107, 53, 0.3);
+  box-shadow: 0 30px 60px rgba(32, 196, 182, 0.18);
+  border-color: rgba(32, 196, 182, 0.4);
   
   .icon-glow {
     opacity: 0.4;

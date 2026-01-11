@@ -23,3 +23,13 @@
 
 - 2026-01-11
   - 删除 Login 登录页（路由与页面）。
+
+- 2026-01-11
+  - 主题色切换为 Ion Teal + Graphite（更前沿的 AI 生态视觉）。
+
+- 2026-01-11
+  - 首页 hero 与入口导航去除旧橙色样式，统一 Ion Teal 主题。
+
+- 2026-01-11
+  - 替换 logo 为符合 Ion Teal + Graphite 主题的新 SVG。
+  - 优化 `index.html` 的标题与 SEO 文案，强调 AI 工具链定位。

@@ -53,7 +53,7 @@ function stageTools(ids: string[]) {
 <style scoped lang="scss">
 .toolchain-section {
   padding: 80px 24px 100px;
-  background: linear-gradient(180deg, #fff8f3 0%, #ffffff 100%);
+  background: linear-gradient(180deg, rgba(32, 196, 182, 0.08) 0%, #ffffff 100%);
 }
 
 .toolchain-container {
@@ -74,7 +74,7 @@ function stageTools(ids: string[]) {
 }
 
 .section-subtitle {
-  color: #555;
+  color: rgba(16, 20, 24, 0.7);
   font-size: 16px;
   max-width: 520px;
   line-height: 1.6;
@@ -90,8 +90,8 @@ function stageTools(ids: string[]) {
   background: #ffffff;
   border-radius: 20px;
   padding: 24px;
-  border: 1px solid rgba(255, 122, 0, 0.15);
-  box-shadow: 0 18px 36px rgba(255, 122, 0, 0.08);
+  border: 1px solid rgba(32, 196, 182, 0.16);
+  box-shadow: 0 18px 36px rgba(32, 196, 182, 0.1);
 }
 
 .pipeline-title {
@@ -102,7 +102,7 @@ function stageTools(ids: string[]) {
 
 .pipeline-index {
   font-weight: 700;
-  color: #ff7a00;
+  color: #20c4b6;
   font-size: 14px;
 }
 
@@ -114,7 +114,7 @@ function stageTools(ids: string[]) {
 
 .pipeline-summary {
   margin: 12px 0 16px;
-  color: #666;
+  color: rgba(16, 20, 24, 0.65);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -129,14 +129,14 @@ function stageTools(ids: string[]) {
   font-size: 12px;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(255, 122, 0, 0.12);
-  color: #b04a00;
+  background: rgba(32, 196, 182, 0.16);
+  color: #11746a;
 }
 
 .pipeline-cta {
   display: inline-flex;
   margin-top: 32px;
-  color: #ff7a00;
+  color: #20c4b6;
   font-weight: 700;
   text-decoration: none;
 }

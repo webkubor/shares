@@ -51,7 +51,7 @@ const openUrl = (url: string, id: string) => {
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 20px 45px rgba(255, 122, 0, 0.12);
+  box-shadow: 0 20px 45px rgba(32, 196, 182, 0.14);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   backdrop-filter: blur(12px);
@@ -69,7 +69,7 @@ const openUrl = (url: string, id: string) => {
     bottom: 0;
     border-radius: 24px;
     padding: 1px;
-    background: linear-gradient(120deg, rgba(255, 122, 0, 0.6), rgba(255, 200, 150, 0.4), rgba(255, 255, 255, 0.2));
+    background: linear-gradient(120deg, rgba(32, 196, 182, 0.6), rgba(79, 224, 210, 0.4), rgba(255, 138, 61, 0.25));
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -90,7 +90,7 @@ const openUrl = (url: string, id: string) => {
 
   &:hover {
     transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 26px 60px rgba(255, 122, 0, 0.2);
+    box-shadow: 0 26px 60px rgba(32, 196, 182, 0.24);
 
     &::before {
       opacity: 0.6;
@@ -150,7 +150,7 @@ img {
   border-radius: 6px;
   font-weight: 500;
   font-size: 12px;
-  color: rgba(43, 31, 22, 0.75);
+  color: rgba(16, 20, 24, 0.75);
   background: rgba(255, 255, 255, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.7);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -164,13 +164,13 @@ img {
   text-overflow: ellipsis;
   line-height: 1.4;
   backdrop-filter: blur(8px);
-  box-shadow: 0 8px 16px rgba(255, 122, 0, 0.08);
+  box-shadow: 0 8px 16px rgba(32, 196, 182, 0.1);
 
   &:hover {
     transform: translateY(-2px);
-    border-color: rgba(255, 122, 0, 0.5);
-    color: #ff7a00;
-    box-shadow: 0 12px 24px rgba(255, 122, 0, 0.15);
+    border-color: rgba(32, 196, 182, 0.5);
+    color: #20c4b6;
+    box-shadow: 0 12px 24px rgba(32, 196, 182, 0.2);
   }
 }
 
@@ -185,7 +185,7 @@ img {
 }
 
 .link {
-  color: #ff7a00;
+  color: #20c4b6;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -195,7 +195,7 @@ img {
   cursor: pointer;
 
   &:hover {
-    color: #ffb37a;
+    color: #ff8a3d;
     text-decoration: underline;
   }
 }

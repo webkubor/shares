@@ -131,19 +131,19 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-// 现代橙色主题设计
-$primary-orange: #ff6b35;
-$accent-orange: #f7931e;
-$light-orange: #ffb627;
-$dark-orange: #e55a2b;
-$bg-light: #fafbfc;
+// Ion Teal 主题
+$primary-orange: #20c4b6;
+$accent-orange: #4fe0d2;
+$light-orange: #8cf1e7;
+$dark-orange: #0f8f83;
+$bg-light: #f6f9f9;
 $bg-card: #ffffff;
 $text-dark: #1a1a1a;
 $text-medium: #4a4a4a;
 $text-light: #6b7280;
-$border-light: rgba(255, 107, 53, 0.1);
-$shadow-light: rgba(255, 107, 53, 0.1);
-$shadow-hover: rgba(255, 107, 53, 0.2);
+$border-light: rgba(32, 196, 182, 0.12);
+$shadow-light: rgba(32, 196, 182, 0.12);
+$shadow-hover: rgba(32, 196, 182, 0.24);
 
 .home-page {
   min-height: 100vh;
@@ -157,7 +157,7 @@ $shadow-hover: rgba(255, 107, 53, 0.2);
 .hero-section {
   width: 100%;
   padding: 120px 32px 100px;
-  background: linear-gradient(135deg, #ffffff 0%, #fff8f5 50%, #fff0eb 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f2fbfb 50%, #eef9f8 100%);
   position: relative;
   overflow: hidden;
   min-height: 70vh;
@@ -246,7 +246,7 @@ $shadow-hover: rgba(255, 107, 53, 0.2);
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid $primary-orange;
-  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+  box-shadow: 0 20px 40px rgba(32, 196, 182, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 2;
@@ -302,7 +302,7 @@ $shadow-hover: rgba(255, 107, 53, 0.2);
   padding: 32px 48px;
   background: $bg-card;
   border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.1);
+  box-shadow: 0 20px 40px rgba(32, 196, 182, 0.12);
   border: 1px solid $border-light;
   backdrop-filter: blur(10px);
 }
@@ -489,8 +489,8 @@ $shadow-hover: rgba(255, 107, 53, 0.2);
   right: 0;
   bottom: 0;
   background-image: 
-    linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(32, 196, 182, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 196, 182, 0.12) 1px, transparent 1px);
   background-size: 50px 50px;
   animation: scanGrid 8s linear infinite;
   pointer-events: none;
@@ -518,7 +518,7 @@ $shadow-hover: rgba(255, 107, 53, 0.2);
   position: absolute;
   width: 200%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.6), transparent);
+  background: linear-gradient(90deg, transparent, rgba(32, 196, 182, 0.6), transparent);
   animation: shimmerMove 4s linear infinite;
 }
 
@@ -718,7 +718,7 @@ $shadow-hover: rgba(255, 107, 53, 0.2);
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(32, 196, 182, 0.12), transparent);
   transform: translateX(-100%);
   animation: bgShimmer 3s ease-in-out infinite;
   z-index: 2;

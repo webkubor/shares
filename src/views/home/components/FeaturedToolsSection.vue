@@ -67,7 +67,7 @@ const featuredTools = computed(() => {
 }
 
 .section-subtitle {
-  color: #555;
+  color: rgba(16, 20, 24, 0.7);
   font-size: 16px;
   max-width: 520px;
   line-height: 1.6;
@@ -82,9 +82,9 @@ const featuredTools = computed(() => {
 .featured-card {
   padding: 24px;
   border-radius: 24px;
-  background: linear-gradient(135deg, #fff4ea 0%, #fff 100%);
-  border: 1px solid rgba(255, 122, 0, 0.15);
-  box-shadow: 0 16px 32px rgba(255, 122, 0, 0.08);
+  background: linear-gradient(135deg, rgba(32, 196, 182, 0.08) 0%, #fff 100%);
+  border: 1px solid rgba(32, 196, 182, 0.18);
+  box-shadow: 0 16px 32px rgba(32, 196, 182, 0.1);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -106,14 +106,14 @@ const featuredTools = computed(() => {
   font-size: 12px;
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(255, 122, 0, 0.2);
-  color: #b04a00;
+  background: rgba(32, 196, 182, 0.2);
+  color: #11746a;
   font-weight: 600;
 }
 
 .card-desc {
   margin: 0;
-  color: #666;
+  color: rgba(16, 20, 24, 0.65);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -128,13 +128,13 @@ const featuredTools = computed(() => {
   font-size: 12px;
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.04);
-  color: #555;
+  background: rgba(16, 20, 24, 0.04);
+  color: rgba(16, 20, 24, 0.6);
 }
 
 .card-actions a,
 .card-actions a:visited {
-  color: #ff7a00;
+  color: #20c4b6;
   font-weight: 700;
   text-decoration: none;
 }

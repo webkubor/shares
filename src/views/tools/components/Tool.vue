@@ -183,7 +183,7 @@ const toolsByCategory = computed(() => {
   font-weight: 600;
   padding: 3px 10px;
   border-radius: 999px;
-  background: rgba(255, 122, 0, 0.15);
+  background: rgba(32, 196, 182, 0.18);
   color: var(--color-primary);
 }
 
@@ -212,7 +212,7 @@ const toolsByCategory = computed(() => {
 
 .tool-tag.is-flag {
   color: var(--color-primary);
-  border-color: rgba(255, 122, 0, 0.4);
+  border-color: rgba(32, 196, 182, 0.4);
 }
 
 .tool-action {

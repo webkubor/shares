@@ -35,10 +35,10 @@ import ToolView from './components/Tool.vue'
 .tools-page {
   min-height: 100vh;
   padding: 56px 24px 120px;
-  background: radial-gradient(circle at top left, rgba(255, 157, 80, 0.18), transparent 45%),
-    radial-gradient(circle at 70% 20%, rgba(255, 199, 138, 0.2), transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(255, 122, 0, 0.12), transparent 45%),
-    #faf7f4;
+  background: radial-gradient(circle at top left, rgba(32, 196, 182, 0.22), transparent 45%),
+    radial-gradient(circle at 70% 20%, rgba(255, 138, 61, 0.18), transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(79, 224, 210, 0.2), transparent 45%),
+    #f4f8f8;
   color: var(--text-primary);
   position: relative;
   overflow: hidden;
@@ -63,19 +63,19 @@ import ToolView from './components/Tool.vue'
 .orb-a {
   top: -80px;
   left: -60px;
-  background: radial-gradient(circle, rgba(255, 122, 0, 0.45), transparent 70%);
+  background: radial-gradient(circle, rgba(32, 196, 182, 0.5), transparent 70%);
 }
 
 .orb-b {
   top: 120px;
   right: -80px;
-  background: radial-gradient(circle, rgba(255, 201, 142, 0.45), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 138, 61, 0.35), transparent 70%);
 }
 
 .orb-c {
   bottom: -120px;
   left: 20%;
-  background: radial-gradient(circle, rgba(255, 140, 84, 0.35), transparent 70%);
+  background: radial-gradient(circle, rgba(79, 224, 210, 0.38), transparent 70%);
 }
 
 .page-header {
@@ -98,7 +98,7 @@ import ToolView from './components/Tool.vue'
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.28em;
-  color: rgba(255, 122, 0, 0.8);
+  color: rgba(32, 196, 182, 0.8);
   display: inline-block;
   margin-bottom: 12px;
 }
@@ -112,7 +112,7 @@ import ToolView from './components/Tool.vue'
 
 .page-subtitle {
   font-size: 16px;
-  color: rgba(34, 34, 34, 0.7);
+  color: rgba(16, 20, 24, 0.72);
   font-weight: 400;
   opacity: 0.8;
   max-width: 480px;
@@ -125,9 +125,9 @@ import ToolView from './components/Tool.vue'
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: #2b1f16;
+  color: #0f1418;
   text-decoration: none;
-  border: 1px solid rgba(255, 122, 0, 0.35);
+  border: 1px solid rgba(32, 196, 182, 0.4);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   transition: all .2s ease;
@@ -152,7 +152,7 @@ import ToolView from './components/Tool.vue'
   border: 1px solid rgba(255, 255, 255, 0.6);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.35));
   backdrop-filter: blur(20px);
-  box-shadow: 0 25px 60px rgba(255, 122, 0, 0.15);
+  box-shadow: 0 25px 60px rgba(32, 196, 182, 0.18);
 }
 
 @media (max-width: 720px) {
