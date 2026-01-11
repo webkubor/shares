@@ -161,8 +161,10 @@ const toolsByCategory = computed(() => {
   gap: 12px;
   padding: 14px;
   border-radius: 14px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4));
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 24px rgba(255, 122, 0, 0.1);
 }
 
 .tool-title {
@@ -203,8 +205,9 @@ const toolsByCategory = computed(() => {
   font-size: 12px;
   padding: 4px 10px;
   border-radius: 999px;
-  border: 1px solid var(--border-color);
-  color: var(--text-tertiary);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: rgba(43, 31, 22, 0.7);
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .tool-tag.is-flag {

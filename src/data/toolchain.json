@@ -11,7 +11,7 @@
       "id": "collect",
       "title": "采集",
       "summary": "参考与素材收集",
-      "toolIds": ["colors", "apple-flow", "poster-scroll"]
+      "toolIds": ["colors"]
     },
     {
       "id": "generate",
@@ -23,13 +23,7 @@
       "id": "apply",
       "title": "应用",
       "summary": "业务验证与效率小工具",
-      "toolIds": ["interest", "indexdb", "share", "kimi", "iframe"]
-    },
-    {
-      "id": "verify",
-      "title": "验证",
-      "summary": "可信与风控",
-      "toolIds": ["verify-google", "verify-cloudflare"]
+      "toolIds": ["interest", "share", "kimi"]
     }
   ],
   "categories": [
@@ -44,19 +38,9 @@
       "summary": "设计与动效探索"
     },
     {
-      "id": "preview",
-      "label": "官网预览",
-      "summary": "灵感与交互参考"
-    },
-    {
-      "id": "planned",
-      "label": "待开发",
-      "summary": "未来可扩展模块"
-    },
-    {
-      "id": "verify",
-      "label": "人机验证",
-      "summary": "登录与安全验证"
+      "id": "ai",
+      "label": "AI 工具",
+      "summary": "智能协作与生成能力"
     }
   ],
   "tools": [
@@ -83,17 +67,6 @@
       "route": "/money"
     },
     {
-      "id": "indexdb",
-      "name": "indexDB",
-      "description": "本地数据存储与同步实验",
-      "category": "application",
-      "stage": "apply",
-      "flags": ["released"],
-      "tags": ["数据", "存储"],
-      "url": "",
-      "route": "/list"
-    },
-    {
       "id": "share",
       "name": "摘录分享",
       "description": "内容采集与分享的轻量工作流",
@@ -108,23 +81,12 @@
       "id": "kimi",
       "name": "Kimi 机器人",
       "description": "AI 对话与内容协作",
-      "category": "application",
+      "category": "ai",
       "stage": "apply",
       "flags": ["released", "featured"],
       "tags": ["AI", "协作"],
       "url": "",
       "route": "/bot/kimi"
-    },
-    {
-      "id": "iframe",
-      "name": "Iframe",
-      "description": "多场景嵌入与展示容器",
-      "category": "application",
-      "stage": "apply",
-      "flags": ["released"],
-      "tags": ["容器", "集成"],
-      "url": "",
-      "route": "/iframe"
     },
     {
       "id": "colors",
@@ -152,7 +114,7 @@
       "id": "siri",
       "name": "Siri 语音助手",
       "description": "语音与交互视觉实验",
-      "category": "ui-visual",
+      "category": "ai",
       "stage": "generate",
       "flags": ["experimental"],
       "tags": ["语音", "交互"],
@@ -160,59 +122,15 @@
       "route": "/siri"
     },
     {
-      "id": "apple-flow",
-      "name": "苹果官网流动参考",
-      "description": "动线与滚动体验参考",
-      "category": "preview",
-      "stage": "collect",
-      "flags": ["released"],
-      "tags": ["灵感", "滚动"],
-      "url": "",
-      "route": "/public/apple"
-    },
-    {
-      "id": "poster-scroll",
-      "name": "海报滚动",
-      "description": "长图与视觉叙事演示",
-      "category": "preview",
-      "stage": "collect",
-      "flags": ["released"],
-      "tags": ["叙事", "视觉"],
-      "url": "",
-      "route": "/public/poster"
-    },
-    {
       "id": "barrage",
       "name": "弹幕",
       "description": "互动密度与情绪实验",
-      "category": "planned",
+      "category": "ui-visual",
       "stage": "generate",
       "flags": ["planned"],
       "tags": ["互动", "实验"],
       "url": "",
       "route": "/barrage"
-    },
-    {
-      "id": "verify-google",
-      "name": "Google 无感知登录",
-      "description": "无感人机验证体验",
-      "category": "verify",
-      "stage": "verify",
-      "flags": ["released"],
-      "tags": ["安全", "登录"],
-      "url": "",
-      "route": "/vertify/google"
-    },
-    {
-      "id": "verify-cloudflare",
-      "name": "Cloudflare 无感知登录",
-      "description": "可信人机验证策略",
-      "category": "verify",
-      "stage": "verify",
-      "flags": ["released"],
-      "tags": ["安全", "验证"],
-      "url": "",
-      "route": "/vertify/cloudflare"
     }
   ]
 }

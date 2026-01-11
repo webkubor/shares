@@ -1,16 +1,23 @@
 <template>
   <div class="projects-page page-transition">
+    <div class="diffuse-backdrop">
+      <span class="halo halo-a"></span>
+      <span class="halo halo-b"></span>
+      <span class="halo halo-c"></span>
+    </div>
+
     <div class="page-header animate-fadeInDown">
       <div class="header-content">
-        <h1 class="page-title text-gradient-animate">Project Showcase</h1>
-        <p class="page-subtitle">精选项目展示</p>
+        <span class="header-kicker">Workflow Cases</span>
+        <h1 class="page-title en-title">Prismatic Portfolio</h1>
+        <p class="page-subtitle">用弥散渐变与液态玻璃展示工具链落地项目。</p>
       </div>
       <router-link to="/" class="back-btn">
         <span>←</span> 返回主页
       </router-link>
     </div>
     
-    <div class="projects-container">
+    <div class="projects-container glass-shell">
       <ProjectList />
     </div>
   </div>
@@ -25,9 +32,48 @@ import ProjectList from './components/list.vue'
 
 .projects-page {
   min-height: 100vh;
-  padding: 40px 24px;
-  background: var(--bg-base);
+  padding: 56px 24px 120px;
+  background: radial-gradient(circle at 10% 10%, rgba(255, 205, 170, 0.28), transparent 50%),
+    radial-gradient(circle at 90% 20%, rgba(255, 150, 110, 0.25), transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(255, 120, 80, 0.18), transparent 45%),
+    #fbf6f2;
   color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.diffuse-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.halo {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.6;
+}
+
+.halo-a {
+  top: -100px;
+  left: 10%;
+  background: radial-gradient(circle, rgba(255, 150, 110, 0.5), transparent 70%);
+}
+
+.halo-b {
+  top: 140px;
+  right: -120px;
+  background: radial-gradient(circle, rgba(255, 210, 160, 0.55), transparent 70%);
+}
+
+.halo-c {
+  bottom: -140px;
+  left: 20%;
+  background: radial-gradient(circle, rgba(255, 122, 0, 0.4), transparent 70%);
 }
 
 .page-header {
@@ -38,24 +84,36 @@ import ProjectList from './components/list.vue'
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .header-content {
   text-align: left;
 }
 
+.header-kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: rgba(255, 122, 0, 0.8);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
 .page-title {
-  font-size: clamp(32px, 5vw, 48px);
+  font-size: clamp(36px, 5vw, 52px);
   font-weight: 800;
   margin-bottom: 8px;
   letter-spacing: -0.02em;
 }
 
 .page-subtitle {
-  font-size: 18px;
-  color: var(--text-secondary);
+  font-size: 16px;
+  color: rgba(34, 34, 34, 0.7);
   font-weight: 400;
   opacity: 0.8;
+  max-width: 480px;
 }
 
 .back-btn {
@@ -63,10 +121,10 @@ import ProjectList from './components/list.vue'
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 122, 0, 0.3);
   border-radius: 12px;
-  color: var(--text-primary);
+  color: #2b1f16;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -82,7 +140,29 @@ import ProjectList from './components/list.vue'
 .projects-container {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
+.glass-shell {
+  padding: 28px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.35));
+  backdrop-filter: blur(22px);
+  box-shadow: 0 25px 60px rgba(255, 122, 0, 0.15);
+}
+
+@media (max-width: 720px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .glass-shell {
+    padding: 20px;
+  }
+}
 
 </style>

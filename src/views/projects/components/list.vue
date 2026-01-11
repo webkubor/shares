@@ -47,11 +47,11 @@ const openUrl = (url: string, id: string) => {
 }
 
 .card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.45));
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: var(--shadow-color);
+  box-shadow: 0 20px 45px rgba(255, 122, 0, 0.12);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   backdrop-filter: blur(12px);
@@ -67,9 +67,9 @@ const openUrl = (url: string, id: string) => {
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 20px;
+    border-radius: 24px;
     padding: 1px;
-    background: var(--brand-gradient);
+    background: linear-gradient(120deg, rgba(255, 122, 0, 0.6), rgba(255, 200, 150, 0.4), rgba(255, 255, 255, 0.2));
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -78,9 +78,19 @@ const openUrl = (url: string, id: string) => {
     z-index: 1;
   }
 
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), transparent 60%);
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
   &:hover {
     transform: translateY(-6px) scale(1.02);
-    box-shadow: var(--shadow-hover);
+    box-shadow: 0 26px 60px rgba(255, 122, 0, 0.2);
 
     &::before {
       opacity: 0.6;
@@ -128,7 +138,7 @@ img {
 .tags-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 6px;
   margin-bottom: 12px;
   max-height: 40px;
   overflow: hidden;
@@ -140,9 +150,9 @@ img {
   border-radius: 6px;
   font-weight: 500;
   font-size: 12px;
-  color: var(--text-secondary);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-color);
+  color: rgba(43, 31, 22, 0.75);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
   letter-spacing: -0.01em;
@@ -154,18 +164,18 @@ img {
   text-overflow: ellipsis;
   line-height: 1.4;
   backdrop-filter: blur(8px);
-  box-shadow: var(--shadow-color);
+  box-shadow: 0 8px 16px rgba(255, 122, 0, 0.08);
 
   &:hover {
     transform: translateY(-2px);
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-    box-shadow: var(--shadow-hover);
+    border-color: rgba(255, 122, 0, 0.5);
+    color: #ff7a00;
+    box-shadow: 0 12px 24px rgba(255, 122, 0, 0.15);
   }
 }
 
 .more-tag {
-  background: var(--bg-surface) !important;
+  background: rgba(255, 255, 255, 0.7) !important;
   border-style: dashed !important;
   opacity: 0.7;
 }
@@ -175,17 +185,17 @@ img {
 }
 
 .link {
-  color: var(--color-primary);
+  color: #ff7a00;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   margin-top: auto;
   padding-top: 12px;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
   cursor: pointer;
 
   &:hover {
-    color: var(--color-accent);
+    color: #ffb37a;
     text-decoration: underline;
   }
 }

@@ -74,14 +74,6 @@ const RouterMap = [
     component: () => import("@/views/colors/index.vue")
   },
   {
-    path: '/list',
-    name: 'List',
-    meta: {
-      title: "列表滚动测试"
-    },
-    component: () => import("@/views/list/scroll.vue")
-  },
-  {
     path: '/money',
     name: 'Money',
     meta: {
@@ -89,30 +81,6 @@ const RouterMap = [
       description: '本息利息计算工具，支持多种利率与周期'
     },
     component: () => import("@/views/money.vue")
-  },
-  {
-    path: '/public/apple',
-    name: 'Apple-Page',
-    meta: {
-      title: "苹果官网流动"
-    },
-    component: () => import("@/views/public/apple.vue")
-  },
-  {
-    path: '/public/poster',
-    name: 'Poster-Scroll',
-    meta: {
-      title: "海报"
-    },
-    component: () => import("@/views/public/poster/index.vue")
-  },
-  {
-    path: '/iframe',
-    name: 'Iframe',
-    meta: {
-      title: "Iframe"
-    },
-    component: () => import('@/views/iframe/index.vue')
   },
   {
     path: '/tools',
