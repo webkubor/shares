@@ -14,16 +14,6 @@ const RouterMap = [
     component: () => import('@/views/home/index.vue')
   },
   {
-    path: '/bot/kimi',
-    name: "Kimi",
-    meta: {
-      title: 'Kimi',
-      description: 'Kimi Bot 功能与交互演示'
-    },
-    component: () => import('@/views/bot/kimi.vue')
-  },
-
-  {
     path: '/vertify/google',
     name: 'google',
     meta: {

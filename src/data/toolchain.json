@@ -23,7 +23,7 @@
       "id": "apply",
       "title": "应用",
       "summary": "业务验证与效率小工具",
-      "toolIds": ["interest", "share", "kimi"]
+      "toolIds": ["interest", "share"]
     }
   ],
   "categories": [
@@ -52,7 +52,7 @@
       "stage": "generate",
       "flags": ["featured", "released"],
       "tags": ["模板", "生成", "视觉"],
-      "url": "https://wallpaperbuild.netlify.app/#/",
+      "url": "https://wallpaper.webkubor.online",
       "route": ""
     },
     {
@@ -76,17 +76,6 @@
       "tags": ["内容", "发布"],
       "url": "",
       "route": "/book/share"
-    },
-    {
-      "id": "kimi",
-      "name": "Kimi 机器人",
-      "description": "AI 对话与内容协作",
-      "category": "ai",
-      "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["AI", "协作"],
-      "url": "",
-      "route": "/bot/kimi"
     },
     {
       "id": "colors",
@@ -120,6 +109,50 @@
       "tags": ["互动", "实验"],
       "url": "",
       "route": "/barrage"
+    },
+    {
+      "id": "wechat",
+      "name": "微信社群截图工具",
+      "description": "快速生成社群信息截图",
+      "category": "application",
+      "stage": "apply",
+      "flags": ["released", "featured"],
+      "tags": ["社群", "截图", "效率"],
+      "url": "https://wechat.webkubor.online/",
+      "route": ""
+    },
+    {
+      "id": "dreamfit",
+      "name": "DreamFit AI 出图",
+      "description": "人物换装、装修、商业摄影生成",
+      "category": "ai",
+      "stage": "generate",
+      "flags": ["released", "featured"],
+      "tags": ["AI", "出图", "商业摄影"],
+      "url": "https://dreamfit-seven.vercel.app/",
+      "route": ""
+    },
+    {
+      "id": "pippo",
+      "name": "IP 表情包打造",
+      "description": "快速生成 IP 表情包素材",
+      "category": "ui-visual",
+      "stage": "generate",
+      "flags": ["released", "featured"],
+      "tags": ["表情包", "IP", "视觉"],
+      "url": "https://pippo.webkubor.online/",
+      "route": ""
+    },
+    {
+      "id": "typora-theme",
+      "name": "Typora Bloom 主题色",
+      "description": "专为 Typora 打造的主题色方案",
+      "category": "ui-visual",
+      "stage": "collect",
+      "flags": ["released"],
+      "tags": ["主题", "色彩", "Typora"],
+      "url": "https://typora-bloom-theme.vercel.app/",
+      "route": ""
     }
   ]
 }
