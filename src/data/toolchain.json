@@ -1,43 +1,23 @@
 {
   "filters": [
-    {
-      "id": "all",
-      "label": "全部"
-    },
-    {
-      "id": "featured",
-      "label": "核心"
-    },
-    {
-      "id": "released",
-      "label": "已发布"
-    },
-    {
-      "id": "experimental",
-      "label": "实验"
-    },
-    {
-      "id": "planned",
-      "label": "规划"
-    }
+    { "id": "all", "label": "全部" },
+    { "id": "featured", "label": "核心" },
+    { "id": "released", "label": "已发布" },
+    { "id": "experimental", "label": "实验" },
+    { "id": "planned", "label": "规划" }
   ],
   "stages": [
     {
       "id": "collect",
       "title": "采集",
       "summary": "参考与素材收集",
-      "toolIds": [
-        "colors"
-      ]
+      "toolIds": ["colors", "typora-theme", "waytoagi"]
     },
     {
       "id": "generate",
       "title": "生成",
       "summary": "模板与视觉快速产出",
-      "toolIds": [
-        "wallpaper",
-        "siri"
-      ]
+      "toolIds": ["wallpaper", "dreamfit", "pippo", "lovart", "midjourney"]
     },
     {
       "id": "apply",
@@ -45,15 +25,24 @@
       "summary": "业务验证与效率小工具",
       "toolIds": [
         "interest",
-        "share"
+        "share",
+        "wechat",
+        "notebooklm",
+        "ima",
+        "iframe-tester"
       ]
     }
   ],
   "categories": [
     {
+      "id": "curated",
+      "label": "精选收藏",
+      "summary": "优选第三方提效工具与资源"
+    },
+    {
       "id": "application",
       "label": "应用层实践",
-      "summary": "验证流程与效率实践"
+      "summary": "免下载、免登录、隐私安全的 AI 提效闭环"
     },
     {
       "id": "ui-visual",
@@ -63,162 +52,167 @@
     {
       "id": "ai",
       "label": "AI 工具",
-      "summary": "智能协作与生成能力"
+      "summary": "深耕垂类场景，追求精准产出的 AI 实践"
+    },
+    {
+      "id": "dev-tools",
+      "label": "研发工具",
+      "summary": "精简、纯粹、无广告的研发效能工具"
     }
   ],
   "tools": [
     {
       "id": "wallpaper",
       "name": "壁纸样机生成器",
-      "description": "快速生成营销与展示样机",
+      "description": "专为营销展示设计的快速样机渲染工具。无需注册登录，无需下载大模型，一键将图片贴入真实样机逻辑中。在保护用户隐私的同时，为您提供比 AI 抽卡更直接的社交物料产出流程。",
       "category": "application",
       "stage": "generate",
-      "flags": [
-        "featured",
-        "released"
-      ],
-      "tags": [
-        "模板",
-        "生成",
-        "视觉"
-      ],
+      "flags": ["featured", "released"],
+      "tags": ["样机生成", "免 Prompt", "产品海报"],
       "url": "https://wallpaper.webkubor.online",
       "route": ""
     },
     {
       "id": "interest",
       "name": "利息计算",
-      "description": "利率与成本快速测算",
+      "description": "专为金融理财设计的隐私测算工具。所有计算在本地完成，不收取用户信息，无需注册登录。通过直观交互完成年化与阶梯利率测算，配合动态图表，让复杂的资产期望一目了然。",
       "category": "application",
       "stage": "apply",
-      "flags": [
-        "released"
-      ],
-      "tags": [
-        "金融",
-        "效率"
-      ],
+      "flags": ["featured", "released"],
+      "tags": ["利息计算", "金融提效", "无需调教"],
       "url": "",
       "route": "/money"
     },
     {
       "id": "share",
       "name": "摘录分享",
-      "description": "内容采集与分享的轻量工作流",
+      "description": "阅读者的全自动知识导出工作流。无需下载模型或跳转外部平台，本地直接生成极简卡片。系统自动完成从片段采集到设计的全过程，且绝不上传您的阅读私货，保障知识主权。",
       "category": "application",
       "stage": "apply",
-      "flags": [
-        "released"
-      ],
-      "tags": [
-        "内容",
-        "发布"
-      ],
+      "flags": ["featured", "released"],
+      "tags": ["摘录分享", "自动流程", "免配环境"],
       "url": "",
       "route": "/book/share"
     },
     {
       "id": "colors",
       "name": "主题色选择器",
-      "description": "品牌色与渐变试验",
+      "description": "面向开发者的闭环色彩系统。无需调优 AI 模型或处理复杂算法，实时预览 brand色适配效果并一键导出设计 Token。将晦涩的色彩逻辑封装为简单直接的交互实践。",
       "category": "ui-visual",
       "stage": "collect",
-      "flags": [
-        "featured",
-        "released"
-      ],
-      "tags": [
-        "色彩",
-        "品牌"
-      ],
+      "flags": ["featured", "released"],
+      "tags": ["配色工具", "闭环系统", "一键导出"],
       "url": "",
       "route": "/colors"
     },
     {
-      "id": "siri",
-      "name": "Siri 语音助手",
-      "description": "语音与交互视觉实验",
-      "category": "ai",
-      "stage": "generate",
-      "flags": [
-        "experimental"
-      ],
-      "tags": [
-        "语音",
-        "交互"
-      ],
-      "url": "",
-      "route": "/siri"
-    },
-    {
       "id": "wechat",
       "name": "微信社群截图工具",
-      "description": "快速生成社群信息截图",
+      "description": "极简社群营销利器。无需繁琐登录，不处理任何用户敏感数据，秒级生成真实感十足的社群对话截图。是验证营销文案、烘托社群氛围最高效、最直接、最安全的工具方案。",
       "category": "application",
       "stage": "apply",
-      "flags": [
-        "released",
-        "featured"
-      ],
-      "tags": [
-        "社群",
-        "截图",
-        "效率"
-      ],
+      "flags": ["released", "featured"],
+      "tags": ["截图工具", "极简交互", "秒级出图"],
       "url": "https://wechat.webkubor.online/",
       "route": ""
     },
     {
       "id": "dreamfit",
       "name": "DreamFit AI 出图",
-      "description": "人物换装、装修、商业摄影生成",
+      "description": "深耕商业场景的精准 AI 出图工具。专注于人物换装、空间装修与商业摄影生成，通过定向模型优化实现比通用生成器更高的画面还原度与逻辑精准度。无需下载注册，本地化流程保障商业素材隐私。",
       "category": "ai",
       "stage": "generate",
-      "flags": [
-        "released",
-        "featured"
-      ],
-      "tags": [
-        "AI",
-        "出图",
-        "商业摄影"
-      ],
+      "flags": ["released", "featured"],
+      "tags": ["精准出图", "商业摄影", "垂类 AI", "免登录"],
       "url": "https://dreamfit-seven.vercel.app/",
       "route": ""
     },
     {
       "id": "pippo",
       "name": "IP 表情包打造",
-      "description": "快速生成 IP 表情包素材",
-      "category": "ui-visual",
+      "description": "追求像素级一致性的 AI IP 创作工具。核心优势在于极高的角色还原度与动作精准度，即便不具备专业的 AI 调教知识，也能通过简单的引导产出高度可控的 IP 表情素材。免注册登录，全流程数据加密隐私保护。",
+      "category": "ai",
       "stage": "generate",
-      "flags": [
-        "released",
-        "featured"
-      ],
-      "tags": [
-        "表情包",
-        "IP",
-        "视觉"
-      ],
+      "flags": ["released", "featured"],
+      "tags": ["精准还原", "IP 表情", "免下载", "隐私安全"],
       "url": "https://pippo.webkubor.online/",
       "route": ""
     },
     {
       "id": "typora-theme",
-      "name": "Typora Bloom 主题色",
-      "description": "专为 Typora 打造的主题色方案",
+      "name": "Typora Bloom 主题",
+      "description": "为长期写作而生的 Typora 极致主题。内置 16 款精心调配的莫兰迪配色（8 浅 8 深），灵感源自一日之光。提供沉浸式的阅读体验与精细的排版优化，让每一次记录都成为享受。",
       "category": "ui-visual",
       "stage": "collect",
-      "flags": [
-        "released"
-      ],
-      "tags": [
-        "主题",
-        "色彩",
-        "Typora"
-      ],
-      "url": "https://typora-bloom-theme.vercel.app/",
+      "flags": ["released", "featured"],
+      "tags": ["Typora 主题", "笔记美化", "色彩方案"],
+      "url": "https://typora-bloom-theme.webkubor.online/",
+      "route": ""
+    },
+    {
+      "id": "notebooklm",
+      "name": "NotebookLM",
+      "description": "NotebookLM 是 Google 推出的基于 Gemini 模型 + RAG 技术的 “来源导向型 AI 研究/笔记工具”，核心是 “只基于你上传的资料生成内容 + 自带精准引用溯源”，大幅减少 AI 幻觉，适合处理技术文档、设计规范、会议纪要等场景。",
+      "category": "curated",
+      "stage": "apply",
+      "flags": ["released"],
+      "tags": ["笔记工具", "研究助手", "引用溯源", "Gemini", "RAG"],
+      "url": "https://notebooklm.google.com/",
+      "route": ""
+    },
+    {
+      "id": "ima",
+      "name": "ima 知识库",
+      "description": "ima 知识库是腾讯推出的 AI 智能工作台，NotebookLM 的国内最佳平替。深度整合微信公众号文章、本地文档与网页内容，构建专属“第二大脑”。支持深度解读、智能问答与创作辅助，即便无法访问国际服务也能享受顶尖的来源导向型 AI 体验。",
+      "category": "curated",
+      "stage": "apply",
+      "flags": ["released"],
+      "tags": ["知识库工具", "智能工作台", "微信生态", "混元/DeepSeek"],
+      "url": "https://ima.qq.com/",
+      "route": ""
+    },
+    {
+      "id": "lovart",
+      "name": "Lovart",
+      "description": "Lovart 是一个强大的 AI 设计智能体。它最显著的优势是降低了专业设计门槛——即便不会 Figma 或 Photoshop 的同学，也能通过自然语言指令对设计稿进行精准的二次编辑与精修。它通过智能调度多模型，打通从创意概念到最终交付的全链路环节，是产出高还原度设计稿的利器。",
+      "category": "curated",
+      "stage": "generate",
+      "flags": ["released"],
+      "tags": ["设计工具", "二次编辑", "AI Agent", "设计出图"],
+      "url": "https://www.lovart.ai/",
+      "route": ""
+    },
+    {
+      "id": "midjourney",
+      "name": "Midjourney",
+      "description": "全球顶尖的 AI 图像生成工具，UI 创意与视觉探索的首选。虽然随机性较强且对精准的二次编辑支持有限，但其产出的视觉冲击力和审美高度无可替代。非常适合用于激发灵感和产出风格化的概念草案，后续可配合 Lovart 等工具完成更细致的落地调整。",
+      "category": "curated",
+      "stage": "generate",
+      "flags": ["released", "featured"],
+      "tags": ["UI 设计", "创意生成", "视觉探索", "图像艺术"],
+      "url": "https://www.midjourney.com/home",
+      "route": ""
+    },
+    {
+      "id": "waytoagi",
+      "name": "WaytoAGI",
+      "description": "WaytoAGI 是目前国内覆盖范围最广、收录最全的 AGI 工具导航网站。它汇集了从基础大模型、内容创作到业务集成的海量 AI 工具，为您提供一站式的 AGI 探索与提效入口。",
+      "category": "curated",
+      "stage": "collect",
+      "flags": ["released", "featured"],
+      "tags": ["工具导航", "AGI 探索", "百科全书"],
+      "url": "https://www.waytoagi.com/",
+      "route": ""
+    },
+    {
+      "id": "iframe-tester",
+      "name": "Iframe 调试工具",
+      "description": "纯粹、实用的 Iframe 预览与测试工具。专为研发同学设计，支持快速验证页面嵌入效果与适配问题。坚持“三免”原则：免下载模型、免注册登录、不采集用户数据，回归工具最本质的提效体验。",
+      "category": "dev-tools",
+      "stage": "apply",
+      "flags": ["released", "featured"],
+      "tags": ["研发工具", "Iframe 调试", "纯净无广", "即开即用"],
+      "url": "https://iframe.webkubor.online/",
       "route": ""
     }
   ]
