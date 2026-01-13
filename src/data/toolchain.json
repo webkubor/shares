@@ -17,7 +17,15 @@
       "id": "generate",
       "title": "生成",
       "summary": "模板与视觉快速产出",
-      "toolIds": ["wallpaper", "dreamfit", "pippo", "lovart", "midjourney", "stitch"]
+      "toolIds": [
+        "wallpaper",
+        "dreamfit",
+        "pippo",
+        "lovart",
+        "midjourney",
+        "stitch",
+        "banner-forge"
+      ]
     },
     {
       "id": "apply",
@@ -236,6 +244,17 @@
       "flags": ["experimental"],
       "tags": ["AI 伴侣", "情感交互", "数字生命", "开发中"],
       "url": "https://lumiverse-ruby.vercel.app/",
+      "route": ""
+    },
+    {
+      "id": "banner-forge",
+      "name": "BannerForge 游戏条幅",
+      "description": "专为独立游戏开发者打造的一键 Banner 生成器。内置多款经过市场验证的高点击率模板，支持快速替换素材与文案。无需设计基础，秒级产出 Steam、AppStore 等全平台适配的宣传物料，让宣发物料不再成为开发路上的绊脚石。",
+      "category": "application",
+      "stage": "generate",
+      "flags": ["released", "featured"],
+      "tags": ["游戏 Banner", "一键生成", "宣发物料", "独立开发"],
+      "url": "https://bannerforge.vercel.app/",
       "route": ""
     }
   ]
