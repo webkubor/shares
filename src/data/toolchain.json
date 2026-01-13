@@ -17,7 +17,7 @@
       "id": "generate",
       "title": "生成",
       "summary": "模板与视觉快速产出",
-      "toolIds": ["wallpaper", "dreamfit", "pippo", "lovart", "midjourney"]
+      "toolIds": ["wallpaper", "dreamfit", "pippo", "lovart", "midjourney", "stitch"]
     },
     {
       "id": "apply",
@@ -29,7 +29,8 @@
         "wechat",
         "notebooklm",
         "ima",
-        "iframe-tester"
+        "iframe-tester",
+        "lumiverse"
       ]
     }
   ],
@@ -213,6 +214,28 @@
       "flags": ["released", "featured"],
       "tags": ["研发工具", "Iframe 调试", "纯净无广", "即开即用"],
       "url": "https://iframe.webkubor.online/",
+      "route": ""
+    },
+    {
+      "id": "stitch",
+      "name": "Stitch",
+      "description": "Google 推出的 UI 界面优化精选工具，团队开发首选。致力于通过极简的工作流解决 UI 还原度与设计一致性问题，是团队协作中打通设计到实现链路的提效利器。",
+      "category": "curated",
+      "stage": "generate",
+      "flags": ["released", "featured"],
+      "tags": ["UI 优化", "团队协作", "Google", "界面精修"],
+      "url": "https://stitch.withgoogle.com",
+      "route": ""
+    },
+    {
+      "id": "lumiverse",
+      "name": "Lumiverse 数字伴侣",
+      "description": "正在孵化中的情感化 AI 伴侣。致力于探索人机交互的温情一面，通过独特的视觉语言与智能反馈，构建属于你的数字精神角落。",
+      "category": "ai",
+      "stage": "apply",
+      "flags": ["experimental"],
+      "tags": ["AI 伴侣", "情感交互", "数字生命", "开发中"],
+      "url": "https://lumiverse-ruby.vercel.app/",
       "route": ""
     }
   ]
