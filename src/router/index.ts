@@ -31,14 +31,6 @@ const RouterMap = [
   },
 
   {
-    path: '/barrage',
-    name: 'Barrage',
-    meta: {
-      title: "弹幕测试"
-    },
-    component: () => import("@/views/barrage/index.vue")
-  },
-  {
     path: '/book/share',
     name: 'BookShare',
     meta: {

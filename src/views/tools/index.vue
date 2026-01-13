@@ -16,17 +16,45 @@
         <span class="header-kicker">Toolchain Index</span>
         <h1 class="page-title text-gradient-animate en-title">Liquid Toolkit</h1>
         <p class="page-subtitle">以 JSON 驱动结构、以属性筛选能力，保持工具链可拓展。</p>
+        <p class="curation-note">
+          所有工具都是我使用过很多工具后选择出来的最佳工具，能降低很多心智成本。有些虽然是付费的，但其商业价值一定高于订阅价格，市面上同类工具往往更贵且难以超越。
+        </p>
       </div>
     </div>
     
     <div class="tools-container glass-shell">
       <ToolView />
     </div>
+
+    <div class="donate-section animate-fadeInUp">
+      <div class="donate-card glass-shell">
+        <p class="donate-text">
+          如果大家觉得我推荐的工具好用的话，也可以请我喝杯咖啡 ☕️
+        </p>
+        <div class="qr-wrapper">
+          <img 
+            src="@/assets/wechat.jpg" 
+            alt="微信二维码" 
+            class="qr-img" 
+            @click="showLargeQr = true"
+          />
+          <span class="qr-label">微信扫码支持 (点击放大)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fullscreen QR Overlay -->
+    <div v-if="showLargeQr" class="qr-overlay" @click="showLargeQr = false">
+      <img src="@/assets/wechat.jpg" alt="微信二维码大图" class="large-qr" />
+    </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import ToolView from './components/Tool.vue'
+
+const showLargeQr = ref(false)
 </script>
 
 <style lang="scss" scoped>
@@ -42,6 +70,8 @@ import ToolView from './components/Tool.vue'
   color: var(--text-primary);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .liquid-backdrop {
@@ -86,6 +116,7 @@ import ToolView from './components/Tool.vue'
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
   position: relative;
   z-index: 1;
 }
@@ -116,6 +147,17 @@ import ToolView from './components/Tool.vue'
   font-weight: 400;
   opacity: 0.8;
   max-width: 480px;
+  margin-bottom: 16px;
+}
+
+.curation-note {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(16, 20, 24, 0.6);
+  max-width: 600px;
+  padding-left: 12px;
+  border-left: 2px solid rgba(32, 196, 182, 0.3);
+  background: linear-gradient(to right, rgba(32, 196, 182, 0.05), transparent);
 }
 
 .back-icon {
@@ -131,6 +173,7 @@ import ToolView from './components/Tool.vue'
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   transition: all .2s ease;
+  flex-shrink: 0;
 }
 
 .back-icon:hover {
@@ -141,9 +184,62 @@ import ToolView from './components/Tool.vue'
 
 .tools-container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 1;
+}
+
+.donate-section {
+  max-width: 1200px;
+  width: 100%;
+  margin: 48px auto 0;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.donate-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px 48px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.donate-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.qr-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.qr-img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain; /* changed from cover to contain for placeholder safety */
+  border-radius: 12px;
+  background: #fff;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(32, 196, 182, 0.2);
+}
+
+.qr-label {
+  font-size: 12px;
+  color: rgba(16, 20, 24, 0.5);
+  letter-spacing: 0.05em;
 }
 
 .glass-shell {
@@ -160,10 +256,119 @@ import ToolView from './components/Tool.vue'
     flex-direction: column;
     align-items: flex-start;
   }
-
+  
   .glass-shell {
     padding: 20px;
   }
-}
-
-</style>
+  
+    .donate-card {
+  
+      padding: 24px;
+  
+    }
+  
+  }
+  
+  
+  
+  .qr-img {
+  
+    cursor: zoom-in;
+  
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+    
+  
+    &:hover {
+  
+      transform: scale(1.05);
+  
+      box-shadow: 0 8px 20px rgba(32, 196, 182, 0.25);
+  
+      border-color: var(--color-primary);
+  
+    }
+  
+  }
+  
+  
+  
+  .qr-overlay {
+  
+    position: fixed;
+  
+    inset: 0;
+  
+    z-index: 9999;
+  
+    background: rgba(244, 248, 248, 0.85);
+  
+    backdrop-filter: blur(12px);
+  
+    display: flex;
+  
+    align-items: center;
+  
+    justify-content: center;
+  
+    cursor: zoom-out;
+  
+    animation: fadeIn 0.3s ease-out;
+  
+  }
+  
+  
+  
+  .large-qr {
+  
+    max-width: 90vw;
+  
+    max-height: 90vh;
+  
+    width: 400px;
+  
+    height: auto;
+  
+    border-radius: 16px;
+  
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8);
+  
+    animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  }
+  
+  
+  
+  @keyframes fadeIn {
+  
+    from { opacity: 0; }
+  
+    to { opacity: 1; }
+  
+  }
+  
+  
+  
+  @keyframes popIn {
+  
+    from { 
+  
+      opacity: 0;
+  
+      transform: scale(0.9) translateY(20px);
+  
+    }
+  
+    to { 
+  
+      opacity: 1;
+  
+      transform: scale(1) translateY(0);
+  
+    }
+  
+  }
+  
+  </style>
+  
+  

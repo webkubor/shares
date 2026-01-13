@@ -1,29 +1,52 @@
 {
   "filters": [
-    { "id": "all", "label": "全部" },
-    { "id": "featured", "label": "核心" },
-    { "id": "released", "label": "已发布" },
-    { "id": "experimental", "label": "实验" },
-    { "id": "planned", "label": "规划" }
+    {
+      "id": "all",
+      "label": "全部"
+    },
+    {
+      "id": "featured",
+      "label": "核心"
+    },
+    {
+      "id": "released",
+      "label": "已发布"
+    },
+    {
+      "id": "experimental",
+      "label": "实验"
+    },
+    {
+      "id": "planned",
+      "label": "规划"
+    }
   ],
   "stages": [
     {
       "id": "collect",
       "title": "采集",
       "summary": "参考与素材收集",
-      "toolIds": ["colors"]
+      "toolIds": [
+        "colors"
+      ]
     },
     {
       "id": "generate",
       "title": "生成",
       "summary": "模板与视觉快速产出",
-      "toolIds": ["wallpaper", "siri", "barrage"]
+      "toolIds": [
+        "wallpaper",
+        "siri"
+      ]
     },
     {
       "id": "apply",
       "title": "应用",
       "summary": "业务验证与效率小工具",
-      "toolIds": ["interest", "share"]
+      "toolIds": [
+        "interest",
+        "share"
+      ]
     }
   ],
   "categories": [
@@ -50,8 +73,15 @@
       "description": "快速生成营销与展示样机",
       "category": "application",
       "stage": "generate",
-      "flags": ["featured", "released"],
-      "tags": ["模板", "生成", "视觉"],
+      "flags": [
+        "featured",
+        "released"
+      ],
+      "tags": [
+        "模板",
+        "生成",
+        "视觉"
+      ],
       "url": "https://wallpaper.webkubor.online",
       "route": ""
     },
@@ -61,8 +91,13 @@
       "description": "利率与成本快速测算",
       "category": "application",
       "stage": "apply",
-      "flags": ["released"],
-      "tags": ["金融", "效率"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "金融",
+        "效率"
+      ],
       "url": "",
       "route": "/money"
     },
@@ -72,8 +107,13 @@
       "description": "内容采集与分享的轻量工作流",
       "category": "application",
       "stage": "apply",
-      "flags": ["released"],
-      "tags": ["内容", "发布"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "内容",
+        "发布"
+      ],
       "url": "",
       "route": "/book/share"
     },
@@ -83,8 +123,14 @@
       "description": "品牌色与渐变试验",
       "category": "ui-visual",
       "stage": "collect",
-      "flags": ["featured", "released"],
-      "tags": ["色彩", "品牌"],
+      "flags": [
+        "featured",
+        "released"
+      ],
+      "tags": [
+        "色彩",
+        "品牌"
+      ],
       "url": "",
       "route": "/colors"
     },
@@ -94,21 +140,15 @@
       "description": "语音与交互视觉实验",
       "category": "ai",
       "stage": "generate",
-      "flags": ["experimental"],
-      "tags": ["语音", "交互"],
+      "flags": [
+        "experimental"
+      ],
+      "tags": [
+        "语音",
+        "交互"
+      ],
       "url": "",
       "route": "/siri"
-    },
-    {
-      "id": "barrage",
-      "name": "弹幕",
-      "description": "互动密度与情绪实验",
-      "category": "ui-visual",
-      "stage": "generate",
-      "flags": ["planned"],
-      "tags": ["互动", "实验"],
-      "url": "",
-      "route": "/barrage"
     },
     {
       "id": "wechat",
@@ -116,8 +156,15 @@
       "description": "快速生成社群信息截图",
       "category": "application",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["社群", "截图", "效率"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "社群",
+        "截图",
+        "效率"
+      ],
       "url": "https://wechat.webkubor.online/",
       "route": ""
     },
@@ -127,8 +174,15 @@
       "description": "人物换装、装修、商业摄影生成",
       "category": "ai",
       "stage": "generate",
-      "flags": ["released", "featured"],
-      "tags": ["AI", "出图", "商业摄影"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "AI",
+        "出图",
+        "商业摄影"
+      ],
       "url": "https://dreamfit-seven.vercel.app/",
       "route": ""
     },
@@ -138,8 +192,15 @@
       "description": "快速生成 IP 表情包素材",
       "category": "ui-visual",
       "stage": "generate",
-      "flags": ["released", "featured"],
-      "tags": ["表情包", "IP", "视觉"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "表情包",
+        "IP",
+        "视觉"
+      ],
       "url": "https://pippo.webkubor.online/",
       "route": ""
     },
@@ -149,8 +210,14 @@
       "description": "专为 Typora 打造的主题色方案",
       "category": "ui-visual",
       "stage": "collect",
-      "flags": ["released"],
-      "tags": ["主题", "色彩", "Typora"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "主题",
+        "色彩",
+        "Typora"
+      ],
       "url": "https://typora-bloom-theme.vercel.app/",
       "route": ""
     }
