@@ -4,8 +4,6 @@
 
 /* 设计令牌：统一的语义 CSS 变量 */
 :root {
-  --plyr-color-main: #{$default-primary};
-  
   /* 原有变量 - 保持兼容 */
   --webkubor-bg: #ffffff;
   --webkubor-second: #d1d1d1;
