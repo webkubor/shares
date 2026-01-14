@@ -23,6 +23,7 @@
         "pippo",
         "lovart",
         "midjourney",
+        "suno",
         "stitch",
         "banner-forge"
       ]
@@ -38,7 +39,14 @@
         "notebooklm",
         "ima",
         "iframe-tester",
-        "lumiverse"
+        "lumiverse",
+        "squoosh",
+        "watermark-remover",
+        "pixian",
+        "mac-mouse-fix",
+        "pinme",
+        "picx",
+        "tunnelto"
       ]
     }
   ],
@@ -255,6 +263,94 @@
       "flags": ["released", "featured"],
       "tags": ["游戏 Banner", "一键生成", "宣发物料", "独立开发"],
       "url": "https://bannerforge.vercel.app/",
+      "route": ""
+    },
+    {
+      "id": "squoosh",
+      "name": "图片压缩 (Squoosh)",
+      "description": "Google 实验室推出的极致图片压缩工具。支持 WebP、AVIF 等现代格式，在浏览器端离线运行，提供所见即所得的压缩预览。无需上传服务器，保护隐私的同时将图片体积压缩到极致，是前端性能优化的必备神器。",
+      "category": "dev-tools",
+      "stage": "apply",
+      "flags": ["featured", "released"],
+      "tags": ["图片压缩", "前端优化", "隐私安全", "WebP"],
+      "url": "https://squoosh.app/?utm_medium=PWA&utm_source=launcher",
+      "route": ""
+    },
+    {
+      "id": "watermark-remover",
+      "name": "AI 智能去水印",
+      "description": "AI 智能去水印工具。自动检测并移除图像中的水印，支持批量处理。无需复杂的 PS 技巧，一键还原清晰图片，是处理素材、电商主图的必备神器。",
+      "category": "curated",
+      "stage": "apply",
+      "flags": ["featured", "released"],
+      "tags": ["AI 去水印", "图像处理", "免费工具"],
+      "url": "https://www.watermarkremover.io/",
+      "route": ""
+    },
+    {
+      "id": "pixian",
+      "name": "Pixian 去背景",
+      "description": "高质量 AI 自动抠图工具。无需手动描边，智能识别主体并移除背景。支持高清图片处理，边缘处理细腻，是设计作图、电商上新的效率救星。",
+      "category": "curated",
+      "stage": "apply",
+      "flags": ["featured", "released"],
+      "tags": ["AI 去背景", "抠图神器", "图像处理"],
+      "url": "https://pixian.ai/",
+      "route": ""
+    },
+    {
+      "id": "mac-mouse-fix",
+      "name": "Mac Mouse Fix",
+      "description": "让普通鼠标在 macOS 上拥有丝滑触控体验的神奇小工具。开源免费，极致轻量，完美复刻妙控鼠标的平滑滚动与手势操作。彻底解决 Mac 外接鼠标滚轮生硬、按键功能单一的痛点，大幅提升桌面操作效率。",
+      "category": "curated",
+      "stage": "apply",
+      "flags": ["featured", "released"],
+      "tags": ["鼠标增强", "Mac神器", "开源免费", "效率工具"],
+      "url": "https://macmousefix.com/zh-Hans/",
+      "route": ""
+    },
+    {
+      "id": "pinme",
+      "name": "PinMe 部署",
+      "description": "去中心化的前端代码包部署服务。基于 IPFS/Filecoin 网络，提供永久存储与全球加速访问。零配置、零成本，只需拖拽构建好的 dist 目录即可生成全球可访问的链接，是 Web3 时代的前端托管新选择。",
+      "category": "dev-tools",
+      "stage": "apply",
+      "flags": ["featured", "released"],
+      "tags": ["去中心化部署", "IPFS", "前端托管", "Web3"],
+      "url": "https://pinme.eth.limo/",
+      "route": ""
+    },
+    {
+      "id": "picx",
+      "name": "PicX 图床",
+      "description": "基于 GitHub 的免费、稳定、高效的个人图床管理工具。支持一键上传、自动生成 CDN 链接、图片压缩与水印添加。完美解决了 Markdown 写作与个人博客的图片托管难题，数据完全掌控在自己手中。",
+      "category": "dev-tools",
+      "stage": "apply",
+      "flags": ["featured", "released"],
+      "tags": ["免费图床", "GitHub集成", "CDN加速", "Markdown伴侣"],
+      "url": "https://picx.xpoet.cn/#/upload",
+      "route": ""
+    },
+    {
+      "id": "tunnelto",
+      "name": "TunnelTo 内网穿透",
+      "description": "极简的本地端口内网穿透工具。一条命令即可将 localhost 服务暴露给公网访问，支持自定义子域名。相比 Ngrok 更轻量、更快速，非常适合微信回调调试、远程演示与临时分享开发环境。",
+      "category": "dev-tools",
+      "stage": "apply",
+      "flags": ["featured", "released"],
+      "tags": ["内网穿透", "端口转发", "远程调试", "开发工具"],
+      "url": "https://tunnelto.dev/#download",
+      "route": ""
+    },
+    {
+      "id": "suno",
+      "name": "Suno 音乐创作",
+      "description": "现象级 AI 音乐创作平台。只需简单的文字描述，即可生成广播级音质的完整歌曲（含人声与伴奏）。支持多种流派与风格，让每个人都能成为音乐制作人。",
+      "category": "curated",
+      "stage": "generate",
+      "flags": ["featured", "released"],
+      "tags": ["AI 音乐", "歌曲创作", "生成式音频"],
+      "url": "https://suno.com/",
       "route": ""
     }
   ]
