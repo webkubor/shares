@@ -1,0 +1,29 @@
+changelog:
+  exclude:
+    labels:
+      - ignore
+    authors:
+      - renovate
+  categories:
+    - title: '🚀 Features | 新功能'
+      labels:
+        - feature
+        - feat
+        - enhancement
+    - title: '🐛 Fixes | 修复'
+      labels:
+        - fix
+        - bug
+    - title: '⚡ Performance | 性能优化'
+      labels:
+        - perf
+        - performance
+    - title: '🛠 Refactor | 重构'
+      labels:
+        - refactor
+        - chore
+    - title: '📖 Documentation | 文档'
+      labels:
+        - docs
+        - doc
+        - documentation
