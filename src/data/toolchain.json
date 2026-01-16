@@ -25,6 +25,7 @@
         "midjourney",
         "suno",
         "stitch",
+        "figma-make",
         "banner-forge"
       ]
     },
@@ -241,6 +242,17 @@
       "flags": ["released", "featured"],
       "tags": ["UI 优化", "团队协作", "Google", "界面精修"],
       "url": "https://stitch.withgoogle.com",
+      "route": ""
+    },
+    {
+      "id": "figma-make",
+      "name": "Figma Make + Figma",
+      "description": "**Figma Make + Figma 可以直接实现完整的 AI+UI 工作流**——从自然语言 / 草图 / 现有设计稿，到可交互原型、Figma 可编辑资产，再到前端代码，全程在 Figma 生态内闭环，无需频繁切换工具。Figma Make + Figma 是目前**最流畅的 AI+UI 设计方案之一**。",
+      "category": "ui-visual",
+      "stage": "generate",
+      "flags": ["released", "featured"],
+      "tags": ["AI+UI", "Figma", "原型", "前端代码"],
+      "url": "https://www.figma.com/",
       "route": ""
     },
     {

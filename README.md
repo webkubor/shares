@@ -2,7 +2,7 @@
 
 <div align="center">
   <!-- 建议在此处放置项目 Logo -->
-  <!-- <img src="./public/logo.svg" width="120" /> -->
+  <img src="./public/logo.svg" width="120" />
 
   <p>一个基于 <strong>Vue 3</strong> + <strong>TypeScript</strong> + <strong>Vite</strong> 的多功能前端工具箱与 UI 组件集。</p>
   <p>集成了 WebRTC 视频通话、无感知验证、Canvas 炫酷动画及实用业务 Hooks。</p>
