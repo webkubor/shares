@@ -23,7 +23,7 @@
   </p>
 
   <p>
-    <a href="https://www.webkubor.online/">🌐 在线预览 (自托管)</a> &nbsp;|&nbsp; 
+    <a href="https://www.webkubor.online/">🌐 我的博客 (webkubor.online)</a> &nbsp;|&nbsp; 
     <a href="../../releases">📅 更新日志 (Releases)</a> &nbsp;|&nbsp;
     <a href="https://juejin.cn/user/2119514149631870">📖 掘金</a> &nbsp;|&nbsp;
     <a href="https://www.reddit.com/user/webkubor/">💬 Reddit</a>
