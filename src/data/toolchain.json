@@ -67,7 +67,8 @@
         "pinme",
         "picx",
         "tunnelto",
-        "opencode"
+        "opencode",
+        "clash-verge"
       ]
     }
   ],
@@ -597,6 +598,24 @@
         "LSP 集成"
       ],
       "url": "https://opencode.ai/",
+      "route": ""
+    },
+    {
+      "id": "clash-verge",
+      "name": "Clash Verge",
+      "description": "基于 Clash 内核的桌面代理管理器（Windows/macOS/Linux）。提供订阅管理、规则切换、流量统计与系统代理一键切换，让多节点与多场景切换更轻松，适合需要稳定网络代理环境的开发者与跨境协作人群。",
+      "category": "dev-tools",
+      "stage": "apply",
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "代理管理",
+        "订阅更新",
+        "规则切换",
+        "跨平台"
+      ],
+      "url": "https://www.clashverge.dev/",
       "route": ""
     }
   ]
