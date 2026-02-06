@@ -102,10 +102,10 @@
 
     <SentimentCard />
 
-    <!-- 底部视觉彩蛋 -->
-    <div class="footer-decoration">
-      <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/assets/decorations/footer-astro.webp" alt="Explorer" />
-      <div class="glow-field"></div>
+    <!-- 底部全屏视觉收尾 -->
+    <div class="footer-wide-decoration">
+      <div class="gradient-overlay"></div>
+      <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/assets/decorations/footer-astro.webp" alt="Immersive Ending" />
     </div>
 
 
@@ -731,43 +731,42 @@ $shadow-hover: rgba(32, 196, 182, 0.24);
   50% { opacity: 1; transform: translateX(-50%) scaleX(1); }
 }
 
-/* 底部视觉彩蛋 */
-.footer-decoration {
+/* 底部全屏视觉收尾 */
+.footer-wide-decoration {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 0 100px;
+  margin-top: -60px; /* 向上微移，与上方模块产生重叠感 */
   position: relative;
-  z-index: 1;
-  pointer-events: none;
+  z-index: 0;
+  line-height: 0;
+  overflow: hidden;
+
+  .gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: linear-gradient(to bottom, #ffffff 0%, transparent 100%);
+    z-index: 1;
+  }
 
   img {
-    width: 240px;
+    width: 100%;
     height: auto;
-    filter: drop-shadow(0 20px 40px rgba(32, 196, 182, 0.2));
-    animation: float-astro 6s ease-in-out infinite;
-  }
-
-  .glow-field {
-    position: absolute;
-    bottom: 80px;
-    width: 160px;
-    height: 40px;
-    background: radial-gradient(ellipse at center, rgba(32, 196, 182, 0.3) 0%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(10px);
-    animation: glow-pulse 6s ease-in-out infinite;
+    object-fit: cover;
+    opacity: 0.9;
+    filter: brightness(1.05) contrast(1.02);
   }
 }
 
-@keyframes float-astro {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-}
-
-@keyframes glow-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.3); opacity: 0.8; }
+@media (max-width: 800px) {
+  .footer-wide-decoration {
+    margin-top: 0;
+    img {
+      min-height: 200px;
+      width: auto;
+      transform: translateX(-20%); /* 移动端截取核心部分 */
+    }
+  }
 }
 </style>
