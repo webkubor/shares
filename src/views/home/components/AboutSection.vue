@@ -92,6 +92,27 @@
           </div>
         </div>
 
+        <!-- 音乐创作 -->
+        <a href="https://music.163.com/#/artist?id=32462959" target="_blank" class="social-card ncm">
+          <div class="social-brand ncm-brand">
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/neteasemusic.svg" alt="网易云音乐" />
+          </div>
+          <div class="social-info">
+            <span class="social-name">网易云音乐</span>
+            <span class="social-desc">Artist Profile</span>
+          </div>
+        </a>
+
+        <a href="https://y.qq.com/n/ryqq_v2/singer/002Rcy0a0YpQ7L" target="_blank" class="social-card qqmusic">
+          <div class="social-brand">
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/qqmusic.ico" alt="QQ音乐" />
+          </div>
+          <div class="social-info">
+            <span class="social-name">QQ 音乐</span>
+            <span class="social-desc">Official Artist</span>
+          </div>
+        </a>
+
         <!-- 视觉审美 -->
         <a href="https://www.xiaohongshu.com/user/profile/5c3c1581000000000501835d" target="_blank" class="social-card xhs">
           <div class="social-brand xhs-brand">
@@ -341,6 +362,18 @@ import MusicPlayer from './MusicPlayer.vue'
   img {
     width: 70%;
     height: 70%;
+    filter: brightness(0) invert(1); /* 强制变白 */
+    object-fit: contain;
+  }
+}
+
+/* 网易云专项优化：红底白字 */
+.ncm-brand {
+  background-color: #C20C0C;
+  border: none;
+  img {
+    width: 60%;
+    height: 60%;
     filter: brightness(0) invert(1); /* 强制变白 */
     object-fit: contain;
   }
