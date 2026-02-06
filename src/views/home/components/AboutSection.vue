@@ -127,14 +127,6 @@
       <!-- 核心作品播放器 -->
       <div class="featured-player">
         <MusicPlayer />
-        <div class="player-external-links">
-          <a href="https://music.163.com/#/artist?id=32462959" target="_blank" title="网易云音乐">
-            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/neteasemusic.svg" alt="NCM" />
-          </a>
-          <a href="#" title="QQ 音乐">
-            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/qqmusic.svg" alt="QQ" />
-          </a>
-        </div>
       </div>
     </div>
   </section>
@@ -402,27 +394,6 @@ import MusicPlayer from './MusicPlayer.vue'
   gap: 24px;
 }
 
-.player-external-links {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding-left: 24px;
-  border-left: 1px solid rgba(0,0,0,0.05);
-  a {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    filter: grayscale(0.2) opacity(0.7);
-    img { width: 100%; height: 100%; }
-    &:hover {
-      filter: grayscale(0) opacity(1);
-      transform: scale(1.1) rotate(5deg);
-    }
-  }
-}
-
 @media (max-width: 800px) {
   .about-container {
     grid-template-columns: 1fr;
@@ -439,15 +410,6 @@ import MusicPlayer from './MusicPlayer.vue'
     flex-direction: column;
     gap: 20px;
     margin-top: 32px;
-    .player-external-links {
-      flex-direction: row;
-      border-left: none;
-      border-top: 1px solid rgba(0,0,0,0.05);
-      padding-left: 0;
-      padding-top: 20px;
-      justify-content: center;
-      width: 100%;
-    }
   }
 }
 </style>
