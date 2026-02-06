@@ -98,6 +98,8 @@
 
     <FeaturedToolsSection />
 
+    <SentimentCard />
+
 
   </div>
 </template>
@@ -108,6 +110,7 @@ import { computed, onMounted, ref } from 'vue'
 import AboutSection from './components/AboutSection.vue'
 import ToolchainSection from './components/ToolchainSection.vue'
 import FeaturedToolsSection from './components/FeaturedToolsSection.vue'
+import SentimentCard from './components/SentimentCard.vue'
 
 let { user, updateAge } = useUser();
 

@@ -16,8 +16,13 @@
           <div class="item ellipsis-2">
             {{ item.descrition }}
           </div>
-          <div class="item link" @click.stop="openUrl(item.source, item.title + index)">
-            {{ item.source }}
+          <div class="item-links">
+            <div class="item link" @click.stop="openUrl(item.source, item.title + index)">
+              🌐 Official Site
+            </div>
+            <div v-if="item.github" class="item link github-link" @click.stop="openUrl(item.github, item.title + index)">
+              🐙 GitHub Repo
+            </div>
           </div>
         </div>
       </div>
@@ -184,19 +189,32 @@ img {
   margin-bottom: 8px;
 }
 
+.item-links {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+}
+
 .link {
   color: #20c4b6;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: auto;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.6);
   cursor: pointer;
+  font-size: 13px;
 
   &:hover {
     color: #ff8a3d;
     text-decoration: underline;
+  }
+}
+
+.github-link {
+  color: #1a1a1a;
+  &:hover {
+    color: #20c4b6;
   }
 }
 
