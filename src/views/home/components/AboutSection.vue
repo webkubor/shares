@@ -390,14 +390,14 @@ import MusicPlayer from './MusicPlayer.vue'
   }
 }
 
-/* 语雀专项优化：绿底白字 */
+/* 语雀专项优化：释放原生渐变色 */
 .yuque-brand {
-  background-color: #25B864;
+  background-color: transparent;
   border: none;
   img {
-    width: 60%;
-    height: 60%;
-    filter: brightness(0) invert(1); /* 强制变白 */
+    width: 90%;
+    height: 90%;
+    filter: none; /* 移除变白滤镜 */
     object-fit: contain;
   }
 }
