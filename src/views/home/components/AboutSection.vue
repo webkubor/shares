@@ -81,6 +81,17 @@
           </div>
         </a>
 
+        <!-- 知识沉淀 -->
+        <a href="https://www.yuque.com/webkubor" target="_blank" class="social-card yuque">
+          <div class="social-brand yuque-brand">
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/yuque.svg" alt="语雀" @error="(e) => e.target.src = 'https://www.yuque.com/favicon.ico'" />
+          </div>
+          <div class="social-info">
+            <span class="social-name">语雀</span>
+            <span class="social-desc">Knowledge Base</span>
+          </div>
+        </a>
+
         <!-- 深度内容 -->
         <div class="social-card wechat">
           <div class="social-brand">
@@ -370,6 +381,18 @@ import MusicPlayer from './MusicPlayer.vue'
 /* 网易云专项优化：红底白字 */
 .ncm-brand {
   background-color: #C20C0C;
+  border: none;
+  img {
+    width: 60%;
+    height: 60%;
+    filter: brightness(0) invert(1); /* 强制变白 */
+    object-fit: contain;
+  }
+}
+
+/* 语雀专项优化：绿底白字 */
+.yuque-brand {
+  background-color: #25B864;
   border: none;
   img {
     width: 60%;
