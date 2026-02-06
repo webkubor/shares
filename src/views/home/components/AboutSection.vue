@@ -4,14 +4,14 @@
       <div class="bio-content">
         <h2 class="section-title">Beyond Code.</h2>
         <p class="bio-text">
-          我是 <strong>webkubor</strong>，一名在 <strong>AI 工程化</strong> 与 <strong>数字艺术</strong> 边缘徘徊的开发者。
-          我致力于构建标准化的 AI 工具链，同时也热爱用旋律与视觉去诠释技术背后的感性。
+          我是 <strong>webkubor (月栖洲)</strong>，一名在 <strong>AI 工程化</strong>、<strong>数字艺术</strong> 与 <strong>文学叙事</strong> 边缘徘徊的创作者。
+          我致力于构建标准化的 AI 工具链，同时也热爱用文字与旋律去诠释技术背后的感性。
         </p>
         <div class="personality-tags">
           <span># AI Builder</span>
           <span># Fullstack Expert</span>
+          <span># Qidian Author</span>
           <span># Music Producer</span>
-          <span># Aesthetic Seeker</span>
         </div>
       </div>
 
@@ -25,6 +25,16 @@
           </div>
         </a>
 
+        <!-- 文学创作 -->
+        <a href="https://my.qidian.com/author/433262531/" target="_blank" class="social-card qidian">
+          <div class="social-icon">📖</div>
+          <div class="social-info">
+            <span class="social-name">月栖洲</span>
+            <span class="social-desc">Qidian Author</span>
+          </div>
+        </a>
+
+        <!-- 知识分享 -->
         <a href="https://juejin.cn/user/2119514149631870" target="_blank" class="social-card juejin">
           <div class="social-icon">💎</div>
           <div class="social-info">
@@ -41,12 +51,12 @@
             <span class="social-desc">Official Account</span>
           </div>
           <div class="qr-popover">
-            <img src="/assets/wechat.jpg" alt="WeChat QR" />
+            <img src="@/assets/wechat.jpg" alt="WeChat QR" />
           </div>
         </div>
 
         <!-- 视觉审美 -->
-        <a href="https://www.xiaohongshu.com/user/profile/5f8d1c0000000000010068fd" target="_blank" class="social-card xhs">
+        <a href="https://www.xiaohongshu.com/user/profile/5c3c1581000000000501835d" target="_blank" class="social-card xhs">
           <div class="social-icon">📕</div>
           <div class="social-info">
             <span class="social-name">司南烛</span>
@@ -54,14 +64,30 @@
           </div>
         </a>
 
+        <a href="https://huaban.com/user/webkubor" target="_blank" class="social-card huaban">
+          <div class="social-icon">🎨</div>
+          <div class="social-info">
+            <span class="social-name">司南烛</span>
+            <span class="social-desc">Huaban / Design</span>
+          </div>
+        </a>
+
+        <a href="https://www.pinterest.com/webkubor" target="_blank" class="social-card pinterest">
+          <div class="social-icon">📌</div>
+          <div class="social-info">
+            <span class="social-name">苏梦城</span>
+            <span class="social-desc">Pinterest / Mood</span>
+          </div>
+        </a>
+
         <!-- 音乐创作 -->
         <div class="social-card music-group">
           <div class="music-tabs">
-            <div class="music-card ncm">
+            <a href="https://music.163.com/#/artist?id=32462959" target="_blank" class="music-sub-card ncm">
               <span class="icon">🎵</span>
               <span class="name">网易云音乐</span>
-            </div>
-            <div class="music-card qq">
+            </a>
+            <div class="music-sub-card qq">
               <span class="icon">🎼</span>
               <span class="name">QQ 音乐</span>
             </div>
@@ -142,7 +168,7 @@
   transition: all 0.3s ease;
   position: relative;
 
-  &:hover {
+  &:not(.music-group):hover {
     transform: translateY(-4px);
     background: #ffffff;
     box-shadow: 0 12px 24px rgba(32, 196, 182, 0.12);
@@ -205,16 +231,26 @@
   gap: 12px;
 }
 
-.music-card {
+.music-sub-card {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
-  background: rgba(255,255,255,0.6);
-  border-radius: 10px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 12px;
   font-size: 13px;
   font-weight: 600;
   border: 1px solid rgba(0,0,0,0.05);
+  text-decoration: none;
+  color: #333;
+  transition: all 0.2s ease;
+
+  &.ncm:hover {
+    background: #fff;
+    border-color: #ff4d4f;
+    color: #ff4d4f;
+    transform: scale(1.05);
+  }
 }
 
 @media (max-width: 800px) {

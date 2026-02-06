@@ -74,6 +74,14 @@ const projects = reactive({
       time: '2026-01'
     },
     {
+      pic:"https://bookcover.yuewen.com/qdbimg/349573/1040818015/600.webp",
+      title: "《雪夜无名》",
+      descrition: "起点中文网签约作品。雪夜无声，名动四方。跨越现实与虚幻的文学叙事，探索生命在极致环境下的张力与温情。",
+      tags: ["Literature", "Storytelling", "Qidian"],
+      source: "https://www.qidian.com/book/1040818015/",
+      time: '2025-12'
+    },
+    {
       pic:"https://github.com/webkubor/picx-images-hosting/raw/master/blog/FigmaCover040bef78cc67e2feef02a5fee6a9ea4c.6m3ulu5n58.webp",
       title: "XBox CsGo Simulation",
       descrition: "高交互前端游戏化实践。基于 Vue3 状态机实现的 CsGo 盲盒系统，探索 CSS 动画性能与实时抽奖算法的完美结合。",
