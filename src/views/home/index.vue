@@ -102,6 +102,12 @@
 
     <SentimentCard />
 
+    <!-- 底部视觉彩蛋 -->
+    <div class="footer-decoration">
+      <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/assets/decorations/footer-astro.webp" alt="Explorer" />
+      <div class="glow-field"></div>
+    </div>
+
 
   </div>
 </template>
@@ -723,5 +729,45 @@ $shadow-hover: rgba(32, 196, 182, 0.24);
 @keyframes titleShimmer {
   0%, 100% { opacity: 0.3; transform: translateX(-50%) scaleX(0.5); }
   50% { opacity: 1; transform: translateX(-50%) scaleX(1); }
+}
+
+/* 底部视觉彩蛋 */
+.footer-decoration {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0 100px;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+
+  img {
+    width: 240px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(32, 196, 182, 0.2));
+    animation: float-astro 6s ease-in-out infinite;
+  }
+
+  .glow-field {
+    position: absolute;
+    bottom: 80px;
+    width: 160px;
+    height: 40px;
+    background: radial-gradient(ellipse at center, rgba(32, 196, 182, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(10px);
+    animation: glow-pulse 6s ease-in-out infinite;
+  }
+}
+
+@keyframes float-astro {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.3); opacity: 0.8; }
 }
 </style>
