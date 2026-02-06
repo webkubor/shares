@@ -296,8 +296,21 @@ const formatTime = (s: number) => `${Math.floor(s / 60)}:${Math.floor(s % 60).to
 @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 @media (max-width: 800px) {
-  .aura-player-v3 { height: auto; flex-direction: column; padding: 40px; text-align: center; }
+  .aura-player-v3 { 
+    height: auto; 
+    flex-direction: column; 
+    padding: 32px 24px; 
+    text-align: center;
+    gap: 24px;
+  }
+  .vinyl-wrapper {
+    width: 120px;
+    height: 120px;
+  }
   .stylus { display: none; }
-  .mega-visualizer { justify-content: center; }
+  .main-info .title { font-size: 24px; }
+  .mega-visualizer { justify-content: center; margin: 15px 0; height: 30px; }
+  .time-display { flex-direction: column; gap: 10px; }
+  .progress-track { height: 10px; }
 }
 </style>

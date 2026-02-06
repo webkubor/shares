@@ -13,6 +13,38 @@
           <span># Qidian Author</span>
           <span># Music Producer</span>
         </div>
+
+        <div class="badges-wall">
+          <div class="badge-item typora" title="Typora Official Theme Featured">
+            <span class="badge-icon">🎨</span>
+            <span class="badge-text">Typora Official Featured</span>
+          </div>
+          <div class="badge-item qidian" title="Qidian Signed Author">
+            <span class="badge-icon">✒️</span>
+            <span class="badge-text">Qidian Signed Author</span>
+          </div>
+        </div>
+
+        <div class="recent-activity">
+          <h3 class="activity-title">Recently Maintained</h3>
+          <ul class="activity-list">
+            <li>
+              <span class="dot active"></span>
+              <span class="project-name">Gemini XHS Vision</span>
+              <span class="status">v1.2 · 视觉增强</span>
+            </li>
+            <li>
+              <span class="dot active"></span>
+              <span class="project-name">Omni Chatbot SDK</span>
+              <span class="status">Core Refactor · 字节跳动对接</span>
+            </li>
+            <li>
+              <span class="dot active"></span>
+              <span class="project-name">envAI RAG System</span>
+              <span class="status">Memory Sync · 向量库优化</span>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="social-matrix">
@@ -150,6 +182,7 @@ import MusicPlayer from './MusicPlayer.vue'
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  margin-bottom: 24px;
   span {
     padding: 6px 14px;
     background: rgba(32, 196, 182, 0.08);
@@ -158,6 +191,108 @@ import MusicPlayer from './MusicPlayer.vue'
     font-size: 14px;
     font-weight: 600;
   }
+}
+
+.badges-wall {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: #fff;
+  cursor: help;
+  transition: all 0.2s ease;
+
+  &.typora {
+    color: #4a4a4a;
+    border-color: #899;
+    background: linear-gradient(to right, #fdfdfd, #eee);
+  }
+
+  &.qidian {
+    color: #bf2c24;
+    border-color: rgba(191, 44, 36, 0.2);
+    background: linear-gradient(to right, #fff5f5, #ffebe9);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+}
+
+.recent-activity {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.activity-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  position: relative;
+  &.active {
+    background: #20c4b6;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid #20c4b6;
+      animation: pulse 2s infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.project-name {
+  font-weight: 700;
+  color: #1a1a1a;
+  font-size: 15px;
+}
+
+.status {
+  font-size: 12px;
+  color: #999;
+  font-family: monospace;
 }
 
 .social-matrix {
@@ -291,21 +426,27 @@ import MusicPlayer from './MusicPlayer.vue'
 @media (max-width: 800px) {
   .about-container {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
+    padding: 0 10px;
   }
   .social-matrix {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
+  .social-card { padding: 16px; }
   .featured-player {
     grid-column: span 1;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
+    margin-top: 32px;
     .player-external-links {
       flex-direction: row;
       border-left: none;
       border-top: 1px solid rgba(0,0,0,0.05);
       padding-left: 0;
-      padding-top: 16px;
+      padding-top: 20px;
+      justify-content: center;
+      width: 100%;
     }
   }
 }

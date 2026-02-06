@@ -31,25 +31,32 @@
 import { ref, onMounted } from 'vue'
 
 const quotes = [
-  { text: "在这个快节奏的世界里，我想和你慢条斯理地虚度光阴。", tag: "陪伴", cover: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=1000" },
-  { text: "总有一首歌，让你想起那个没能说出口的告别。", tag: "遗憾", cover: "https://images.unsplash.com/photo-1494905998402-395d579af36f?q=80&w=1000" },
+  // --- 技术与创作精华 (Restored) ---
+  { text: "代码是理性的诗，旋律是感性的逻辑。", tag: "Dualism", cover: "https://images.unsplash.com/photo-1516280440614-37939bbdd4f1?q=80&w=1000" },
+  { text: "在雪夜里无声行走，名动四方前先听见自己的心跳。", tag: "雪夜无名", cover: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1000" },
+  { text: "所有的工具，最终都是为了抵达那个不可言说的灵魂。", tag: "Toolchain", cover: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000" },
+  { text: "我们用 0 和 1 模拟世界，却在文字里寻找真实。", tag: "Literature", cover: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1000" },
+  { text: "One Context to Rule Them All, 一颗心容纳整个宇宙。", tag: "AI Common", cover: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1000" },
+  { text: "所谓创作，不过是在众声喧哗中，留住那一秒钟的寂静。", tag: "Music", cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1000" },
+  
+  // --- 武侠与侠义 (New) ---
+  { text: "侠之大者，不在于剑有多快，而在于心中的灯火从未熄灭。", tag: "武侠", cover: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000" },
+  { text: "仗剑走天涯的年纪过了，现在的剑是手中那支写给岁月的笔。", tag: "武侠", cover: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000" },
+  { text: "少年时的那场江湖梦，至今还湿在我的心底。", tag: "情怀", cover: "https://images.unsplash.com/photo-1437315306147-09239286039a?q=80&w=1000" },
+  { text: "归隐不是逃避，是带着满身风尘，去赴一场内心的约会。", tag: "武侠", cover: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000" },
+
+  // --- 亲情与家庭 (New) ---
+  { text: "父母在，人生尚有来处；父母去，人生只剩归途。", tag: "亲情", cover: "https://images.unsplash.com/photo-1507501336603-6e31db2be093?q=80&w=1000" },
+  { text: "所谓家，就是那个你走得再远，回头都能看见灯火的地方。", tag: "亲情", cover: "https://images.unsplash.com/photo-1513682121497-80211f36a7d3?q=80&w=1000" },
+  { text: "儿时不懂那碗热汤的重，等懂的时候，汤已在记忆里变凉。", tag: "亲情", cover: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1000" },
+  { text: "一壶浊酒，半生雪夜，名动四方不如归家团圆。", tag: "雪夜无名", cover: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1000" },
+
+  // --- 友情与生活 (Refined) ---
   { text: "所谓的避风港，不过是几个志同道合的朋友，和一顿冒着热气的火锅。", tag: "友情", cover: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000" },
+  { text: "在这个快节奏的世界里，想和老友慢条斯理地虚度光阴。", tag: "知己", cover: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=1000" },
   { text: "既然留不住时光，那就把最好的自己，留在每一个当下。", tag: "生活", cover: "https://images.unsplash.com/photo-1499209974431-9dac3adaf471?q=80&w=1000" },
-  { text: "世界很长，人生很短，我们要大步流星地奔向自己热爱的事物。", tag: "热爱", cover: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000" },
-  { text: "万物皆有裂痕，那是光照进来的地方。", tag: "微光", cover: "https://images.unsplash.com/photo-1470252649358-96f12ad7d9af?q=80&w=1000" },
-  { text: "哪怕是擦肩而过，也是这世界温柔的馈赠。", tag: "遇见", cover: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=1000" },
-  { text: "晚风路过窗口，带走了我没说出口的那句想念。", tag: "思念", cover: "https://images.unsplash.com/photo-1507501336603-6e31db2be093?q=80&w=1000" },
-  { text: "撑伞不是为了躲雨，是为了在雨中等那个一起淋湿的人。", tag: "守候", cover: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=1000" },
-  { text: "少年时的那场大雨，至今还湿在我的心底。", tag: "青春", cover: "https://images.unsplash.com/photo-1437315306147-09239286039a?q=80&w=1000" },
-  { text: "孤独不是没人陪，而是想说话时发现没人在听。", tag: "独白", cover: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?q=80&w=1000" },
-  { text: "所有的不期而遇，都是久别重逢。", tag: "缘分", cover: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000" },
-  { text: "今天的夕阳很美，可惜你不在我身边。", tag: "瞬时", cover: "https://images.unsplash.com/photo-1470252649358-96f12ad7d9af?q=80&w=1000" },
-  { text: "去远方不一定要见风景，有时候只是为了找回自己。", tag: "行者", cover: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1000" },
-  { text: "寄不出的信，最后都成了心里的朱砂痣。", tag: "旧信", cover: "https://images.unsplash.com/photo-1534531173927-aeb928d54385?q=80&w=1000" },
-  { text: "戴上耳机的那一刻，世界与我无关。", tag: "自由", cover: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000" },
-  { text: "梦里梦见的人，醒来记得去见见。", tag: "梦境", cover: "https://images.unsplash.com/photo-1513682121497-80211f36a7d3?q=80&w=1000" },
-  { text: "别走太快，等等那个还在原地发呆的灵魂。", tag: "慢活", cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000" },
-  { text: "哪怕世界荒芜，也要在心里开出一朵花来。", tag: "坚韧", cover: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=1000" },
+  { text: "万物皆有裂痕，那是光照进来的地方。", tag: "哲学", cover: "https://images.unsplash.com/photo-1470252649358-96f12ad7d9af?q=80&w=1000" },
+  { text: "老街的旧书店关了，却关不住那些在文字里躲雨的灵魂。", tag: "人文", cover: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?q=80&w=1000" },
   { text: "愿你遍历山河，觉得人间值得。", tag: "祝愿", cover: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000" }
 ]
 

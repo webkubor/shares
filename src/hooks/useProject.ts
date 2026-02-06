@@ -103,8 +103,8 @@ const projects = reactive({
     {
       pic:"/projects/bloom-theme.png",
       title: "Typora Bloom Theme",
-      descrition: "温润如玉的数字写作空间。专为长文创作者设计的 Typora 极简主题，追求极致的阅读舒适度与排版仪式感。",
-      tags: ["Typography", "Design", "Writing"],
+      descrition: "让写作回归平静。已被 Typora 官方主题商店 (theme.typora.io) 深度收录。专为长文创作者设计的极简主题，追求极致的阅读舒适度与排版仪式感。",
+      tags: ["Typography", "Design", "Official Featured"],
       source: "https://typora-bloom-theme.webkubor.online/",
       github: "https://github.com/webkubor/typora-Bloom-theme",
       time: '2026-01'

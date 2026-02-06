@@ -9,7 +9,7 @@
       "id": "collect",
       "title": "采集",
       "summary": "灵感捕捉与素材沉淀",
-      "toolIds": ["waytoagi", "anthropic-skills", "picx"]
+      "toolIds": ["typora", "waytoagi", "anthropic-skills", "picx"]
     },
     {
       "id": "generate",
@@ -29,6 +29,17 @@
     { "id": "dev-tools", "label": "研发工具", "summary": "纯粹、极客、无广告的开发者利器" }
   ],
   "tools": [
+    {
+      "id": "typora",
+      "name": "Typora",
+      "description": "老爹最推崇的极简 Markdown 编辑器。所见即所得的沉浸式体验，是创作的最佳伴侣。曾为其开发 Bloom Theme 极致主题，并已被 Typora 官方主题站 (theme.typora.io) 深度收录。",
+      "category": "curated",
+      "stage": "collect",
+      "flags": ["released", "featured"],
+      "tags": ["Writing", "Markdown", "Editor"],
+      "url": "https://typora.io/",
+      "time": "2025-08"
+    },
     {
       "id": "gemini-cli-ext",
       "name": "Gemini CLI Extensions",
