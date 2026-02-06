@@ -2,11 +2,11 @@ import { reactive } from "vue";
 const projects = reactive({
   list: [
     {
-      pic:"/projects/omni-chatbot-real.png",
-      title: "Omni Chatbot SDK",
-      descrition: "通用轻量级聊天机器人前端 UI SDK。支持流式输出、Markdown 渲染、多主题切换，可快速接入 DeepSeek, OpenAI 等主流模型。",
-      tags: ["SDK", "Chatbot", "React", "TypeScript", "AI"],
-      source: "https://omni-chatbot-sdk.vercel.app/",
+      pic:"/projects/lumiverse-real.png",
+      title: "LUMIVERSE AI Studio",
+      descrition: "定义下一代数字创意工作流。LUMIVERSE 是一个集 AI 驱动、设计稿自动化转化与多维视觉呈现于一体的创意工作室，致力于打破创意与工程之间的边界。",
+      tags: ["Creative", "Design Automation", "AIGC", "Studio"],
+      source: "https://lumiverse-ruby.vercel.app/",
       time: '2026-02'
     },
     {
@@ -18,11 +18,27 @@ const projects = reactive({
       time: '2026-02'
     },
     {
+      pic:"/projects/omni-chatbot-real.png",
+      title: "Omni Chatbot SDK",
+      descrition: "通用轻量级聊天机器人前端 UI SDK。支持流式输出、Markdown 渲染、多主题切换，可快速接入 DeepSeek, OpenAI 等主流模型。",
+      tags: ["SDK", "Chatbot", "React", "TypeScript", "AI"],
+      source: "https://omni-chatbot-sdk.vercel.app/",
+      time: '2026-02'
+    },
+    {
       pic:"/projects/ai-common.png",
       title: "AI Common Infrastructure",
       descrition: "One Context to Rule Them All. 标准化的 AI 上下文工程基建，为各种 Agent 提供统一的记忆、规则与技能路由。",
       tags: ["Context Engineering", "Protocol", "Memory", "Infra"],
       source: "https://webkubor.github.io/AI_Common/",
+      time: '2026-01'
+    },
+    {
+      pic:"/projects/milvus-tools.png",
+      title: "Milvus Tools 基建",
+      descrition: "专为 RAG 打造的向量工具箱。支持海量文档切片、向量化及 Milvus 数据库同步，是构建企业级知识库的基石。",
+      tags: ["RAG", "Milvus", "Vector DB", "Infra"],
+      source: "https://webkubor.github.io/milvus-tools/",
       time: '2026-01'
     },
     {
