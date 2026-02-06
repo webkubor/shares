@@ -1,29 +1,33 @@
 <template>
-  <section class="featured-section animate-fadeInUp animate-delay-200">
-    <div class="featured-container">
+  <section class="projects-section animate-fadeInUp">
+    <div class="projects-container">
       <div class="section-header">
-        <h2 class="section-title">Featured Tools</h2>
-        <p class="section-subtitle">最常用的核心工具，集中入口与清晰定位。</p>
+        <h2 class="section-title">My Lab Works</h2>
+        <p class="section-subtitle">从基建到应用，探索 AI 落地生产力的无限可能。</p>
       </div>
 
-      <div class="featured-grid">
-        <article v-for="tool in featuredTools" :key="tool.id" class="featured-card">
-          <div class="card-top">
-            <div class="card-title">{{ tool.name }}</div>
-            <span class="card-stage">{{ stageLabel[tool.stage] || tool.stage }}</span>
+      <div class="projects-grid">
+        <div v-for="item in featuredProjects" :key="item.title" class="project-card" @click="openUrl(item.source)">
+          <div class="project-image">
+            <img :src="item.pic" :alt="item.title" />
+            <div class="project-overlay">
+              <span class="view-btn">View Project →</span>
+            </div>
           </div>
-          <p class="card-desc">{{ tool.description }}</p>
-          <div class="card-tags">
-            <span v-for="tag in tool.tags" :key="tag" class="card-tag">{{ tag }}</span>
+          <div class="project-body">
+            <h3 class="project-title">{{ item.title }}</h3>
+            <p class="project-desc ellipsis-2">{{ item.descrition }}</p>
+            <div class="project-tags">
+              <span v-for="tag in item.tags.slice(0, 3)" :key="tag" class="tag">{{ tag }}</span>
+            </div>
           </div>
-          <div class="card-actions">
-            <a v-if="tool.url" :href="tool.url" target="_blank" rel="noopener noreferrer">
-              立即打开 →
-            </a>
-            <router-link v-else-if="tool.route" :to="tool.route">进入工具 →</router-link>
-            <span v-else class="card-empty">待补充链接</span>
-          </div>
-        </article>
+        </div>
+      </div>
+
+      <div class="section-footer">
+        <router-link to="/projects" class="all-projects-btn">
+          探索更多实验室成果 ({{ projects.list.length }}+) →
+        </router-link>
       </div>
     </div>
   </section>
@@ -31,33 +35,34 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import toolchain from '@/data/toolchain.json'
+import { useProject } from '@/hooks/useProject'
 
-const stageLabel: Record<string, string> = {
-  collect: '采集',
-  generate: '生成',
-  apply: '应用',
-  verify: '验证'
-}
+const { projects } = useProject()
 
-const featuredTools = computed(() => {
-  return toolchain.tools.filter((tool) => tool.flags?.includes('featured')).slice(0, 4)
+const featuredProjects = computed(() => {
+  // 只在首页展示前3个最硬核的自研项目
+  return projects.list.slice(0, 3)
 })
+
+const openUrl = (url: string) => {
+  if (url) window.open(url, '_blank')
+}
 </script>
 
 <style scoped lang="scss">
-.featured-section {
-  padding: 80px 24px 100px;
-  background: #ffffff;
+.projects-section {
+  padding: 80px 24px 120px;
+  background: #f2f8f7;
 }
 
-.featured-container {
+.projects-container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .section-header {
-  margin-bottom: 40px;
+  margin-bottom: 48px;
+  text-align: left;
 }
 
 .section-title {
@@ -67,80 +72,116 @@ const featuredTools = computed(() => {
 }
 
 .section-subtitle {
-  color: rgba(16, 20, 24, 0.7);
+  color: rgba(16, 20, 24, 0.6);
   font-size: 16px;
-  max-width: 520px;
-  line-height: 1.6;
 }
 
-.featured-grid {
+.projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
 }
 
-.featured-card {
-  padding: 24px;
+.project-card {
+  background: #fff;
   border-radius: 24px;
-  background: linear-gradient(135deg, rgba(32, 196, 182, 0.08) 0%, #fff 100%);
-  border: 1px solid rgba(32, 196, 182, 0.18);
-  box-shadow: 0 16px 32px rgba(32, 196, 182, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(32, 196, 182, 0.12);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(32, 196, 182, 0.15);
+    .project-image img { transform: scale(1.05); }
+    .project-overlay { opacity: 1; }
+  }
 }
 
-.card-top {
+.project-image {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(32, 196, 182, 0.6);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.card-title {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.card-stage {
-  font-size: 12px;
-  padding: 4px 10px;
+.view-btn {
+  padding: 10px 20px;
+  background: #fff;
+  color: #0f8f83;
   border-radius: 999px;
-  background: rgba(32, 196, 182, 0.2);
-  color: #11746a;
-  font-weight: 600;
-}
-
-.card-desc {
-  margin: 0;
-  color: rgba(16, 20, 24, 0.65);
+  font-weight: 700;
   font-size: 14px;
-  line-height: 1.5;
 }
 
-.card-tags {
+.project-body {
+  padding: 24px;
+}
+
+.project-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.project-desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.project-tags {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
 }
 
-.card-tag {
-  font-size: 12px;
+.tag {
+  font-size: 11px;
   padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(16, 20, 24, 0.04);
-  color: rgba(16, 20, 24, 0.6);
+  background: rgba(32, 196, 182, 0.08);
+  color: #0f8f83;
+  border-radius: 6px;
+  font-weight: 600;
 }
 
-.card-actions a,
-.card-actions a:visited {
+.section-footer {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.all-projects-btn {
+  display: inline-block;
   color: #20c4b6;
   font-weight: 700;
   text-decoration: none;
+  font-size: 16px;
+  transition: opacity 0.2s;
+  &:hover { opacity: 0.8; }
 }
 
-.card-empty {
-  font-size: 12px;
-  color: #888;
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>

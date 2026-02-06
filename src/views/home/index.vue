@@ -92,11 +92,11 @@
       </div>
     </section>
 
+    <AboutSection />
+
     <ToolchainSection />
 
     <FeaturedToolsSection />
-
-    <NavigationSection />
 
 
   </div>
@@ -105,9 +105,9 @@
 <script setup>
 import { useUser } from "@/hooks/useUser";
 import { computed, onMounted, ref } from 'vue'
+import AboutSection from './components/AboutSection.vue'
 import ToolchainSection from './components/ToolchainSection.vue'
 import FeaturedToolsSection from './components/FeaturedToolsSection.vue'
-import NavigationSection from './components/NavigationSection.vue'
 
 let { user, updateAge } = useUser();
 
