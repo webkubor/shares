@@ -2,137 +2,77 @@ import { reactive } from "vue";
 const projects = reactive({
   list: [
     {
-      pic:"https://github.com/webkubor/picx-images-hosting/raw/master/github/image.1vyo7wn7p9.png",
-      title: "Nex-lib",
-      descrition: "nex-lib 是一个前端工具库，包含了一些常用的工具函数和类，旨在提高你的开发效率。这个库提供了实用的功能，如时间格式化、URL 处理等。",
-      tags: ["npm库", "nex-lib", "前端工具链", "工具函数", "JS", "Node"],
-      source: "webkubor.github.io/nex-lib/",
-      time: '2024-11'
+      pic:"/projects/omni-chatbot-real.png",
+      title: "Omni Chatbot SDK",
+      descrition: "通用轻量级聊天机器人前端 UI SDK。支持流式输出、Markdown 渲染、多主题切换，可快速接入 DeepSeek, OpenAI 等主流模型。",
+      tags: ["SDK", "Chatbot", "React", "TypeScript", "AI"],
+      source: "https://omni-chatbot-sdk.vercel.app/",
+      time: '2026-02'
+    },
+    {
+      pic:"/projects/xhs-case.jpg",
+      title: "Gemini XHS Vision",
+      descrition: "📸 极致质感的 AI 人像生成。针对小红书审美优化，支持冷白皮、胶原蛋白感等特征锁定，自动 R2 上传并生成 Markdown 链接。",
+      tags: ["AI Gen", "Xiaohongshu", "AIGC", "Vision"],
+      source: "https://github.com/webkubor/gemini-xhs-vision",
+      time: '2026-02'
+    },
+    {
+      pic:"/projects/ai-common.png",
+      title: "AI Common Infrastructure",
+      descrition: "One Context to Rule Them All. 标准化的 AI 上下文工程基建，为各种 Agent 提供统一的记忆、规则与技能路由。",
+      tags: ["Context Engineering", "Protocol", "Memory", "Infra"],
+      source: "https://webkubor.github.io/AI_Common/",
+      time: '2026-01'
+    },
+    {
+      pic:"/projects/gemini-vercel.png",
+      title: "Gemini Skill: Vercel",
+      descrition: "全自动 Vercel 专家。支持一键部署、项目关联、域名配置以及多环境 Git 自动同步。",
+      tags: ["Gemini", "CLI", "Vercel", "Automation"],
+      source: "https://github.com/webkubor/gemini-skill-vercel",
+      time: '2026-02'
+    },
+    {
+      pic:"/projects/envai-system.png",
+      title: "envAI System",
+      descrition: "个人大脑的向量知识库。基于 Milvus 的 RAG 基础设施，支持海量本地文档的语义检索与 AI 增强。",
+      tags: ["RAG", "Knowledge Base", "Vector DB"],
+      source: "https://github.com/webkubor/envAI-System",
+      time: '2026-02'
+    },
+    {
+      pic:"/projects/remotion-studio.png",
+      title: "Remotion Studio",
+      descrition: "像写代码一样写视频。自动化视频生成流，可将 AI 逻辑直接转化为视觉内容，支持大规模视频渲染。",
+      tags: ["Video", "Remotion", "Automation"],
+      source: "https://github.com/webkubor/remotion-studio",
+      time: '2026-01'
+    },
+    {
+      pic:"/projects/bloom-theme.png",
+      title: "Typora Bloom Theme",
+      descrition: "让写作回归平静。一款温润如玉的 Typora 主题，针对长文排版深度优化，支持多种护眼模式。",
+      tags: ["Design", "Typora", "Theme"],
+      source: "https://typora-bloom-theme.webkubor.online/",
+      time: '2026-01'
     },
     {
       pic:"https://github.com/webkubor/picx-images-hosting/raw/master/blog/FigmaCover040bef78cc67e2feef02a5fee6a9ea4c.6m3ulu5n58.webp",
-      title: "XBox CsGo 皮肤",
-      descrition: "高爆率 Csgo 开箱网站(开箱玩法,无限欧皇,开箱神器)",
-      tags: ["开箱盲盒", "游戏", "开箱", "盲盒", "Csgo", "Vue3", "vant", "element-plus"],
+      title: "XBox CsGo 开箱模拟",
+      descrition: "沉浸式 CsGo 皮肤开箱体验，基于 Vue3 实现的高流畅度抽奖动画与盲盒算法。",
+      tags: ["Game", "Vue3", "Animation"],
       source: "https://csgo-api.tpservice.ai/#/p/home",
       time: '2023-11'
     },
     {
-      title: "midjourney 教程",
+      title: "midjourney 极简教程",
       pic: "https://github.com/webkubor/picx-images-hosting/raw/master/blog/image.pf9qhnl1w.webp",
-      descrition:
-        "AIGC 教程文档,基于 vitepress",
-      tags: ["vitepress", "AIGC", "midjourney", "persnal"],
-      source: "https://webkubor.github.io/midjourney/",
-      time: '2024-6'
-    },
-    {
-      title: "工作文档总结",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/下载-(10).7ax49qdkri.jpeg",
-      descrition:
-        "基于vuePress和rollup打包搭建的静态工作博客,采用继承于Vue的风格,目录自动生成,markdown语法记录博客内容",
-      tags: ["vuepress", "自动生成目录", "persnal"],
-      source: "https://gitee.com/webkubor/vue-blog",
-      time: '2020-6'
-    },
-    {
-      title: "在线简历项目(支持下载PDF)",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/下载-(6).1e8k2px1sm.jpeg",
-      descrition:
-        "简约大气风格的在线简历,支持自定义样式修改以及PDF导出功能,响应式布局做了PC和移动端的适配, 内部集成了puppeteer无头浏览器支持长图快照等功能",
-      tags: ["persnal", "screenshot", "puppeteer", "webpack"],
-      source: "https://webkubor.github.io/resume",
-      time: '2020-1'
-    },
-    {
-      title: "blibli桌面客户端(Windows/Mac OS)",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/CDXUijOr7H92kBW.pfaip7h8l.png",
-      descrition:
-        "基于Electron开发, 结合其强大的Native API和引擎, 开发的可在MAC OS和windows上的客户端应用",
-      tags: ["persnal", "persnal", "Electron", "APP"],
-      source: "https://gitee.com/webkubor/blibli-desktop-app",
-      time: '2023-6'
-    },
-    {
-      title: "工业可视化页面总结",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/下载-(9).67xeyuhqvx.jpeg",
-      descrition:
-        "当前工业可视化在前端的解决方案落地, 不同尺寸超大屏适配等功能,图表可视化",
-      tags: ["persnal", "工业可视化的探索", "echarts"],
-      source: "https://webkubor.gitee.io/vue-echarts",
-      time: '2020-6'
-    },
-    {
-      title: "原生TS开发的音视频组件",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/下载-(5).54xpnyngz6.jpeg",
-      descrition: "基于webpack构建的 ,使用ts开发的视频组件",
-      tags: ["persnal", "TS", "video"],
-      source: "https://github.com/webkubor/ts-mi-video",
-      time: '2019-6'
-    },
-    {
-      title: "美控家小程序",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/下载-(12).4g4g3xzxys.jpeg",
-      tags: ["mpvue", "flyio", "vue", "vant", "weapp", "business"],
-      descrition:
-        "基于最初小程序混合框架Mpvue的精简构建版, 已经在线上运营2年多的电商小程序",
-      source: "微信小程序搜:美控星选",
-      time: '2018-12'
-    },
-    {
-      title: "原:海马体士多(海马体商城)小程序",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/下载-(1).13lq9kjdm7.jpeg",
-      tags: ["wepy", "fly", "原生开发", "weapp", "business"],
-      descrition:
-        "基于微信官方框架wepy开发的微信小程序, 已经在线上运营3年多的电商小程序",
-      source: "微信小程序搜:海马体商城",
-      time: '2018-8'
-    },
-    {
-      title: "eomai-工业可视化",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/下载-(7).73twearfbs.jpeg",
-      tags: ["wepy", "fly", "原生开发", "weapp", "business"],
-      time: '2021-8',
-      descrition:
-        "优麦是一款部署在优海云工业互联网平台上的——基于TOC及JIT、TQM等精益管理理论，将优海信息20多年的软件技术封装成适用于中小微型企业应用的工业APP, 是通过不断追求在制品的“快速流动、均衡生产、产能满负荷、质量可追溯性”，达到提高生产效率的目的。",
-    },
-    {
-      title: "Shorter",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/下载-(3).5c0xje9meo.jpeg",
-      tags: ["区块链", "web3", "以太坊", "metamsk", "wallect"],
-      time: '2022-8',
-      descrition:
-        "Shorter Finance is a 100% on-chain infrastructure comprising venues for 2,000+ altcoin single-sided farming and customized derivatives trading.",
-      source: "https://shorter.finance/",
-    },
-    {
-      title: "Shorter Docs",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/下载-(4).1e8k2pylrl.jpeg",
-      tags: ["Shorter", "vite-press", "vite", "blog"],
-      descrition: "document for Shorter",
-      source: "https://docs.shorter.finance/",
-    },
-    {
-      title: "Defipay",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/image.3uushnf3wg.png",
-      tags: ["区块链", "Defipay", "ethers", "web3", "usdt"],
-      descrition: "处理全球支付问题",
-      source: "https://www.defipay.biz/#/",
-    },
-    {
-      title: "Tarspay",
-      pic: "https://webkubor.github.io/picx-images-hosting/github/image.9rjf5774jq.png",
-      tags: ["美元", "一站式", "支付", "web3"],
-      descrition: "国际专业系统服务商",
-      source: "https://tarspay.com/#/home",
-    },
-    {
-      title: "Ricohuaso",
-      pic: "https://github.com/webkubor/picx-images-hosting/raw/master/blog/image.1lbr5xu3ax.webp",
-      tags: ["音视频", "流量变现", "分销", "电商"],
-      descrition: "智利-看视频流量变现",
-      // source: "https://www.ricohuaso.com/",
-    },
+      descrition: "AIGC 零基础入门手册。涵盖提示词工程、垫图技巧及 Midjourney 全场景实操案例。",
+      tags: ["AIGC", "Midjourney", "Guide"],
+      source: "https://webkubor.github.io/prompt-lab/",
+      time: '2026-01'
+    }
   ],
   detail: null,
 });
