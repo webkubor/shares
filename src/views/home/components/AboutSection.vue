@@ -19,7 +19,7 @@
         <!-- 核心技术 -->
         <a href="https://github.com/webkubor" target="_blank" class="social-card github">
           <div class="social-brand">
-            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" />
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/github.svg" alt="GitHub" />
           </div>
           <div class="social-info">
             <span class="social-name">GitHub</span>
@@ -30,7 +30,7 @@
         <!-- 文学创作 -->
         <a href="https://my.qidian.com/author/433262531/" target="_blank" class="social-card qidian">
           <div class="social-brand">
-            <img src="https://www.qidian.com/favicon.ico" alt="月栖洲" />
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/qidian.svg" alt="月栖洲" />
           </div>
           <div class="social-info">
             <span class="social-name">月栖洲</span>
@@ -41,7 +41,7 @@
         <!-- 知识分享 -->
         <a href="https://juejin.cn/user/2119514149631870" target="_blank" class="social-card juejin">
           <div class="social-brand">
-            <img src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/static/favicons/favicon-32x32.png" alt="掘金" />
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/juejin.svg" alt="掘金" />
           </div>
           <div class="social-info">
             <span class="social-name">掘金</span>
@@ -62,8 +62,8 @@
 
         <!-- 视觉审美 -->
         <a href="https://www.xiaohongshu.com/user/profile/5c3c1581000000000501835d" target="_blank" class="social-card xhs">
-          <div class="social-brand">
-            <img src="https://www.xiaohongshu.com/favicon.ico" alt="司南烛" />
+          <div class="social-brand xhs-brand">
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/xiaohongshu.svg" alt="司南烛" />
           </div>
           <div class="social-info">
             <span class="social-name">司南烛</span>
@@ -73,7 +73,7 @@
 
         <a href="https://huaban.com/user/webkubor" target="_blank" class="social-card huaban">
           <div class="social-brand">
-            <img src="https://huaban.com/favicon.ico" alt="司南烛" />
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/huaban.svg" alt="司南烛" />
           </div>
           <div class="social-info">
             <span class="social-name">司南烛</span>
@@ -83,25 +83,25 @@
 
         <a href="https://www.pinterest.com/webkubor" target="_blank" class="social-card pinterest">
           <div class="social-brand">
-            <img src="https://www.pinterest.com/favicon.ico" alt="苏梦城" />
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/pinterest.svg" alt="苏梦城" />
           </div>
           <div class="social-info">
             <span class="social-name">苏梦城</span>
             <span class="social-desc">Pinterest / Mood</span>
           </div>
         </a>
+      </div>
 
-        <!-- 音乐创作 -->
-        <div class="social-card music-group-v2">
-          <MusicPlayer />
-          <div class="music-links">
-            <a href="https://music.163.com/#/artist?id=32462959" target="_blank" title="网易云音乐">
-              <img src="https://music.163.com/favicon.ico" alt="NCM" />
-            </a>
-            <a href="#" title="QQ 音乐">
-              <img src="https://y.qq.com/favicon.ico" alt="QQ" />
-            </a>
-          </div>
+      <!-- 核心作品播放器 -->
+      <div class="featured-player">
+        <MusicPlayer />
+        <div class="player-external-links">
+          <a href="https://music.163.com/#/artist?id=32462959" target="_blank" title="网易云音乐">
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/neteasemusic.svg" alt="NCM" />
+          </a>
+          <a href="#" title="QQ 音乐">
+            <img src="https://raw.githubusercontent.com/webkubor/picx-images-hosting/master/icons/svg/qqmusic.svg" alt="QQ" />
+          </a>
         </div>
       </div>
     </div>
@@ -197,10 +197,25 @@ import MusicPlayer from './MusicPlayer.vue'
   overflow: hidden;
   border: 1px solid rgba(0,0,0,0.05);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+
+/* 小红书专项优化：红底白字 */
+.xhs-brand {
+  background-color: #ff2442;
+  border: none;
+  img {
+    width: 70%;
+    height: 70%;
+    filter: brightness(0) invert(1); /* 强制变白 */
+    object-fit: contain;
   }
 }
 
@@ -243,32 +258,32 @@ import MusicPlayer from './MusicPlayer.vue'
   }
 }
 
-/* 音乐组合卡片 V2 */
-.music-group-v2 {
+/* 核心作品播放器区域 */
+.featured-player {
   grid-column: span 2;
-  flex-direction: row !important;
-  justify-content: space-between;
+  margin-top: 40px;
+  display: flex;
   align-items: center;
-  padding: 12px 16px !important;
-  gap: 20px;
+  gap: 24px;
 }
 
-.music-links {
+.player-external-links {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 24px;
   border-left: 1px solid rgba(0,0,0,0.05);
-  padding-left: 20px;
   a {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
     overflow: hidden;
     transition: all 0.3s ease;
-    opacity: 0.6;
+    filter: grayscale(0.2) opacity(0.7);
     img { width: 100%; height: 100%; }
     &:hover {
-      opacity: 1;
-      transform: translateY(-2px);
+      filter: grayscale(0) opacity(1);
+      transform: scale(1.1) rotate(5deg);
     }
   }
 }
@@ -281,16 +296,16 @@ import MusicPlayer from './MusicPlayer.vue'
   .social-matrix {
     grid-template-columns: 1fr;
   }
-  .music-group-v2 {
+  .featured-player {
     grid-column: span 1;
-    flex-direction: column !important;
-    align-items: stretch;
-    .music-links {
+    flex-direction: column;
+    gap: 16px;
+    .player-external-links {
+      flex-direction: row;
       border-left: none;
       border-top: 1px solid rgba(0,0,0,0.05);
       padding-left: 0;
-      padding-top: 12px;
-      justify-content: center;
+      padding-top: 16px;
     }
   }
 }
