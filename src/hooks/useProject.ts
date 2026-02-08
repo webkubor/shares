@@ -2,6 +2,30 @@ import { reactive } from "vue";
 const projects = reactive({
   list: [
     {
+      pic: "/projects/google-flow.png",
+      title: "Google Flow - 沉浸式 AI 创作助手",
+      descrition: "Google Labs 推出的下一代创意写作工具。通过流式 AI 协作，将灵感碎片化为连贯的叙事，重塑人机协同的创作体验。",
+      tags: ["Creative", "Writing", "AI Labs", "Google", "Highly Recommended"],
+      source: "https://labs.google/flow/about",
+      time: '2026-02'
+    },
+    {
+      pic: "/projects/v0-dev.png",
+      title: "v0.dev - AI 驱动的 UI 工业化生成",
+      descrition: "Vercel 推出的生成式 UI 平台。只需自然语言描述，即可秒级生成高质量、可直接运行的 React/Tailwind 组件，定义前端开发新范式。",
+      tags: ["UI Generation", "React", "Vercel", "Frontend", "Highly Recommended"],
+      source: "https://v0.dev",
+      time: '2026-02'
+    },
+    {
+      pic: "/projects/cursor.png",
+      title: "Cursor - AI 原生编程编辑器",
+      descrition: "目前最顶尖的 AI 编程助手。深度集成 Claude 3.5 Sonnet 与 GPT-4o，支持全库代码索引与智能补全，是每一位开发者的提效神兵。",
+      tags: ["AI Editor", "Coding", "Productivity", "Highly Recommended"],
+      source: "https://cursor.com",
+      time: '2026-02'
+    },
+    {
       pic:"/projects/cogitator.png",
       title: "Cogitator - AI 辩论竞技场",
       descrition: "让顶尖 AI 模型在逻辑的荒原上交锋。一个全自动的 AI 辩论对战平台，支持多模型对抗、观点演化分析，探索大语言模型的思辨边界。",
@@ -38,7 +62,7 @@ const projects = reactive({
       time: '2026-02'
     },
     {
-      pic:"https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6",
+      pic:"/projects/bannerforge.png",
       title: "BannerForge AI",
       descrition: "专业级游戏资产生成平台。利用 Gemini AI 旗舰模型，一键生成高转化率、多尺寸的游戏营销 Banner，大幅缩短从创意到上线的周期。",
       tags: ["Game Assets", "AIGC", "Marketing", "Banner"],
@@ -56,7 +80,7 @@ const projects = reactive({
       time: '2026-02'
     },
     {
-      pic:"https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6",
+      pic:"/projects/dreamfit.png",
       title: "DreamFit AI",
       descrition: "深耕商业场景的精准 AI 出图工具。专注于人物换装与空间装修，探索极致的前端性能表现与现代化的 UI 交互范式。",
       tags: ["React 19", "Health", "Commercial Art"],

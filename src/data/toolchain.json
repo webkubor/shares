@@ -15,13 +15,13 @@
       "id": "generate",
       "title": "生成",
       "summary": "AI 驱动的视觉与创意产出",
-      "toolIds": ["midjourney", "suno", "figma-make", "lovart", "stitch"]
+      "toolIds": ["midjourney", "suno", "figma-make", "lovart", "stitch", "google-flow", "v0-dev"]
     },
     {
       "id": "apply",
       "title": "应用",
       "summary": "研发提效与全能工具箱",
-      "toolIds": ["gemini-cli-ext", "trae", "zed", "antigravity", "modelscope-mcp", "notebooklm", "ima", "opencode", "squoosh", "watermark-remover", "pixian", "mac-mouse-fix", "tunnelto", "clash-verge"]
+      "toolIds": ["gemini-cli-ext", "trae", "cursor", "zed", "antigravity", "modelscope-mcp", "notebooklm", "ima", "opencode", "squoosh", "watermark-remover", "pixian", "mac-mouse-fix", "tunnelto", "clash-verge"]
     }
   ],
   "categories": [
@@ -281,6 +281,39 @@
       "tags": ["Network", "Proxy", "Dev"],
       "url": "https://www.clashverge.dev/",
       "time": "2025-08"
+    },
+    {
+      "id": "google-flow",
+      "name": "Google Flow",
+      "description": "Google Labs 推出的下一代创意写作工具。通过流式 AI 协作，将灵感碎片化为连贯的叙事，重塑人机协同的创作体验。",
+      "category": "curated",
+      "stage": "generate",
+      "flags": ["released", "featured"],
+      "tags": ["Creative", "Writing", "AI Labs", "Google"],
+      "url": "https://labs.google/flow/about",
+      "time": "2026-02"
+    },
+    {
+      "id": "v0-dev",
+      "name": "v0.dev",
+      "description": "Vercel 推出的生成式 UI 平台。只需自然语言描述，即可秒级生成高质量、可直接运行的 React/Tailwind 组件，定义前端开发新范式。",
+      "category": "curated",
+      "stage": "generate",
+      "flags": ["released", "featured"],
+      "tags": ["UI Generation", "React", "Vercel", "Frontend"],
+      "url": "https://v0.dev",
+      "time": "2026-02"
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "description": "目前最顶尖的 AI 编程助手。深度集成 Claude 3.5 Sonnet 与 GPT-4o，支持全库代码索引与智能补全，是每一位开发者的提效神兵。",
+      "category": "dev-tools",
+      "stage": "apply",
+      "flags": ["released", "featured"],
+      "tags": ["AI Editor", "Coding", "Productivity"],
+      "url": "https://cursor.com",
+      "time": "2026-02"
     }
   ]
 }
