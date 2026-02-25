@@ -8,6 +8,10 @@ import globalComponents from "@/components";
 import "@/utils/rem"
 import 'core-js/stable';
 import "@/styles/index.scss";
+import { setupWebMCP } from "@/utils/webmcpTools";
+
+// 启动 WebMCP AI 工具链
+setupWebMCP({ enabled: true });
 
 createApp(App)
 
