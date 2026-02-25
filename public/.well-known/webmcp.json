@@ -1,0 +1,53 @@
+{
+  "name": "webkubor-shares-webmcp",
+  "version": "1.0.0",
+  "entry": "window.mcp",
+  "readyEvent": "webmcp:ready",
+  "discovery": {
+    "metaCapabilities": "ai:capabilities=webmcp",
+    "metaEntry": "webmcp:entry=window.mcp",
+    "metaReadyEvent": "webmcp:ready-event=webmcp:ready",
+    "alternateLink": "/.well-known/webmcp.json"
+  },
+  "tools": [
+    {
+      "name": "getPageContext",
+      "description": "获取当前页面核心上下文信息，包括标题、SEO 元数据及 URL。",
+      "schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "listPageLinks",
+      "description": "列出页面上的链接，供导航与扫描。",
+      "schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "capturePageSnapshot",
+      "description": "捕获页面截图（PNG base64），供视觉分析。",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "quality": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "bgcolor": {
+            "type": "string"
+          },
+          "includeData": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  ]
+}
