@@ -1,32 +1,79 @@
 {
   "filters": [
-    { "id": "all", "label": "全部" },
-    { "id": "featured", "label": "核心" },
-    { "id": "released", "label": "已发布" }
+    {
+      "id": "all",
+      "label": "全部"
+    },
+    {
+      "id": "featured",
+      "label": "核心"
+    },
+    {
+      "id": "released",
+      "label": "已发布"
+    }
   ],
   "stages": [
     {
       "id": "collect",
       "title": "采集",
       "summary": "灵感捕捉与素材沉淀",
-      "toolIds": ["typora", "waytoagi", "anthropic-skills", "picx"]
+      "toolIds": [
+        "typora",
+        "waytoagi",
+        "anthropic-skills",
+        "picx"
+      ]
     },
     {
       "id": "generate",
       "title": "生成",
       "summary": "AI 驱动的视觉与创意产出",
-      "toolIds": ["midjourney", "suno", "figma-make", "lovart", "stitch", "google-flow", "v0-dev"]
+      "toolIds": [
+        "midjourney",
+        "suno",
+        "figma-make",
+        "lovart",
+        "stitch",
+        "google-flow",
+        "v0-dev"
+      ]
     },
     {
       "id": "apply",
       "title": "应用",
       "summary": "研发提效与全能工具箱",
-      "toolIds": ["gemini-cli-ext", "trae", "cursor", "zed", "antigravity", "modelscope-mcp", "notebooklm", "ima", "opencode", "squoosh", "watermark-remover", "pixian", "mac-mouse-fix", "tunnelto", "clash-verge"]
+      "toolIds": [
+        "gemini-cli-ext",
+        "trae",
+        "cursor",
+        "zed",
+        "antigravity",
+        "modelscope-mcp",
+        "notebooklm",
+        "ima",
+        "opencode",
+        "squoosh",
+        "watermark-remover",
+        "pixian",
+        "mac-mouse-fix",
+        "tunnelto",
+        "clash-verge",
+        "webmcp-studio"
+      ]
     }
   ],
   "categories": [
-    { "id": "curated", "label": "精选收藏", "summary": "严选第三方顶尖 AI 与效能工具" },
-    { "id": "dev-tools", "label": "研发工具", "summary": "纯粹、极客、无广告的开发者利器" }
+    {
+      "id": "curated",
+      "label": "精选收藏",
+      "summary": "严选第三方顶尖 AI 与效能工具"
+    },
+    {
+      "id": "dev-tools",
+      "label": "研发工具",
+      "summary": "纯粹、极客、无广告的开发者利器"
+    }
   ],
   "tools": [
     {
@@ -35,8 +82,15 @@
       "description": "老爹最推崇的极简 Markdown 编辑器。所见即所得的沉浸式体验，是创作的最佳伴侣。曾为其开发 Bloom Theme 极致主题，并已被 Typora 官方主题站 (theme.typora.io) 深度收录。",
       "category": "curated",
       "stage": "collect",
-      "flags": ["released", "featured"],
-      "tags": ["Writing", "Markdown", "Editor"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Writing",
+        "Markdown",
+        "Editor"
+      ],
       "url": "https://typora.io/",
       "time": "2025-08"
     },
@@ -46,8 +100,15 @@
       "description": "Gemini CLI 官方扩展库。提供了涵盖浏览器自动化、文件处理、API 联动等多种能力的扩展插件，是定制化打造个人 AI 工作流、释放 Gemini 潜能的核心入口。",
       "category": "dev-tools",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["Gemini CLI", "Extensions", "Automation"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Gemini CLI",
+        "Extensions",
+        "Automation"
+      ],
       "url": "https://geminicli.com/extensions/",
       "time": "2026-02"
     },
@@ -57,8 +118,15 @@
       "description": "Anthropic 官方开源的内部 Skills 库。包含了其内部 Agent 使用的一系列标准化技能定义，是构建高质量 Claude Tool Use 链路、理解模型交互逻辑的绝佳参考范式。",
       "category": "curated",
       "stage": "collect",
-      "flags": ["released", "featured"],
-      "tags": ["Anthropic", "Agent Skills", "OpenSource"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Anthropic",
+        "Agent Skills",
+        "OpenSource"
+      ],
       "url": "https://github.com/anthropics/skills/tree/main/skills",
       "time": "2026-02"
     },
@@ -68,8 +136,15 @@
       "description": "由 ModelScope 社区推出的 MCP (Model Context Protocol) 插件集散地。汇集了海量第三方工具插件，是开发者快速扩展 AI Agent 能力、构建复杂自动化任务流的必备资源库。",
       "category": "curated",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["MCP", "Marketplace", "AI Agent"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "MCP",
+        "Marketplace",
+        "AI Agent"
+      ],
       "url": "https://modelscope.cn/mcp",
       "time": "2026-02"
     },
@@ -79,8 +154,15 @@
       "description": "字节跳动出品的自适应 AI 编程助手。专为国内开发者优化，提供全中文界面与沉浸式的 GUI 交互体验，深度集成高效的 AI 结对编程能力，是追求极致易用性的首选工具。",
       "category": "dev-tools",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["AI Editor", "ByteDance", "GUI"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "AI Editor",
+        "ByteDance",
+        "GUI"
+      ],
       "url": "https://www.trae.ai/",
       "time": "2026-02"
     },
@@ -90,8 +172,15 @@
       "description": "Google 推出的 UI 还原度对比工具。通过强大的像素级比对与差异分析，确保前端实现与原始设计稿达到完美的一致性，是打磨极致 UI 视觉体验的利器。",
       "category": "dev-tools",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["UI Fidelity", "Design", "Google"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "UI Fidelity",
+        "Design",
+        "Google"
+      ],
       "url": "https://antigravity.google/",
       "time": "2026-02"
     },
@@ -101,8 +190,15 @@
       "description": "下一代高性能编辑器。由 Atom 和 Tree-sitter 作者倾力打造，采用 Rust 编写，支持极致的渲染速度与原生 AI 编程协作体验，彻底告别卡顿。",
       "category": "dev-tools",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["Editor", "Rust", "Speed"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Editor",
+        "Rust",
+        "Speed"
+      ],
       "url": "https://zed.dev/download",
       "time": "2026-02"
     },
@@ -112,8 +208,15 @@
       "description": "Google 出品的个人 AI 研究助手。基于 Gemini 模型与 RAG 技术，能够精准溯源你上传的所有资料，是构建结构化知识库与深度解读文档的神器。",
       "category": "curated",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["AI Research", "RAG", "Google"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "AI Research",
+        "RAG",
+        "Google"
+      ],
       "url": "https://notebooklm.google.com/",
       "time": "2025-12"
     },
@@ -123,8 +226,15 @@
       "description": "腾讯推出的来源导向型 AI 智能工作台。深度整合微信公众号与本地文档，提供精准的语义搜索与深度解读，是国内环境下构建个人大脑的首选。",
       "category": "curated",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["Knowledge", "WeChat", "Tencent"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Knowledge",
+        "WeChat",
+        "Tencent"
+      ],
       "url": "https://ima.qq.com/",
       "time": "2026-01"
     },
@@ -134,19 +244,32 @@
       "description": "目前全球审美天花板级别的 AI 绘画工具。虽然随机性强，但其构图、光影与艺术张力无可替代，是 UI 灵感探索与视觉概念设计的核心生产力。",
       "category": "curated",
       "stage": "generate",
-      "flags": ["released", "featured"],
-      "tags": ["AIGC", "Design", "Art"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "AIGC",
+        "Design",
+        "Art"
+      ],
       "url": "https://www.midjourney.com/",
       "time": "2025-08"
     },
     {
       "id": "suno",
       "name": "Suno",
-      "description": "定义音乐创作新范式的 AI 平台。支持广播级音质的完整乐曲生成，通过简单的文字描述即可实现极具表现力的编曲与演唱，让创意不再受限于乐理。",
+      "description": "定义音乐创作新范式的 AI platform。支持广播级音质的完整乐曲生成，通过简单的文字描述即可实现极具表现力的编曲与演唱，让创意不再受限于乐理。",
       "category": "curated",
       "stage": "generate",
-      "flags": ["released"],
-      "tags": ["Music", "Audio", "GenAI"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "Music",
+        "Audio",
+        "GenAI"
+      ],
       "url": "https://suno.com/",
       "time": "2025-10"
     },
@@ -156,8 +279,15 @@
       "description": "Figma 原生集成的 AI 设计功能。支持从自然语言直接生成高还原度 UI 组件与布局，实现了从创意草图到生产级资产的无缝衔接。",
       "category": "curated",
       "stage": "generate",
-      "flags": ["released", "featured"],
-      "tags": ["Figma", "UI/UX", "Automation"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Figma",
+        "UI/UX",
+        "Automation"
+      ],
       "url": "https://www.figma.com/",
       "time": "2025-11"
     },
@@ -167,8 +297,13 @@
       "description": "专为设计师打造的协作 Agent。支持对设计稿进行精准的二次编辑与风格迁移，大幅降低了从视觉灵感到最终交付的设计门槛。",
       "category": "curated",
       "stage": "generate",
-      "flags": ["released"],
-      "tags": ["Design Agent", "Editing"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "Design Agent",
+        "Editing"
+      ],
       "url": "https://www.lovart.ai/",
       "time": "2025-12"
     },
@@ -178,8 +313,14 @@
       "description": "Google 推出的 UI 界面优化利器。致力于通过极简的工作流解决 UI 还原度与设计一致性问题，是团队协作中打通设计到实现链路的关键节点。",
       "category": "curated",
       "stage": "generate",
-      "flags": ["released"],
-      "tags": ["Optimization", "DevOps", "UI"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "Optimization",
+        "DevOps",
+        "UI"
+      ],
       "url": "https://stitch.withgoogle.com",
       "time": "2025-09"
     },
@@ -189,8 +330,14 @@
       "description": "Google 出品的极致图片压缩工具。支持 WebP、AVIF 等现代格式，提供所见即所得的离线压缩预览，在保护隐私的同时将前端性能优化到极限。",
       "category": "dev-tools",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["Compression", "Performance"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Compression",
+        "Performance"
+      ],
       "url": "https://squoosh.app/",
       "time": "2025-09"
     },
@@ -200,8 +347,14 @@
       "description": "国内 AGI 领域的百科全书。涵盖了从基础模型到垂直应用的海量导航信息，是实时追踪全球 AI 技术演进与工具更迭的最佳窗口。",
       "category": "curated",
       "stage": "collect",
-      "flags": ["released", "featured"],
-      "tags": ["Navigation", "Encyclopedia"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Navigation",
+        "Encyclopedia"
+      ],
       "url": "https://www.waytoagi.com/",
       "time": "2025-08"
     },
@@ -211,8 +364,15 @@
       "description": "隐私优先的开源 AI 编程智能体。支持跨 IDE 与多模型协作，集成了 LSP 智能补全，是打造个人专属 AI 结对编程环境的极客首选。",
       "category": "dev-tools",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["Coding", "Agent", "OpenSource"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Coding",
+        "Agent",
+        "OpenSource"
+      ],
       "url": "https://opencode.ai/",
       "time": "2026-01"
     },
@@ -222,8 +382,13 @@
       "description": "基于深度学习的图像修复工具。能自动识别并无痕移除图像中的复杂水印与遮挡物，是处理营销素材与电商主图的高效利器。",
       "category": "curated",
       "stage": "apply",
-      "flags": ["released"],
-      "tags": ["Image Fix", "AI Utility"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "Image Fix",
+        "AI Utility"
+      ],
       "url": "https://www.watermarkremover.io/",
       "time": "2025-09"
     },
@@ -233,8 +398,13 @@
       "description": "高质量 AI 自动抠图工具。无需手动干预即可产出边缘细腻的透明背景图，极大提升了多物料合成与平面设计的效率。",
       "category": "curated",
       "stage": "apply",
-      "flags": ["released"],
-      "tags": ["Remove BG", "Design"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "Remove BG",
+        "Design"
+      ],
       "url": "https://pixian.ai/",
       "time": "2025-09"
     },
@@ -244,8 +414,14 @@
       "description": "让普通鼠标拥有妙控鼠标般的丝滑体验。通过平滑滚动算法与多手势映射，彻底解决了外接鼠标在 macOS 上的操控痛点。",
       "category": "curated",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["Efficiency", "Mac Helper"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Efficiency",
+        "Mac Helper"
+      ],
       "url": "https://macmousefix.com/",
       "time": "2025-08"
     },
@@ -255,8 +431,13 @@
       "description": "基于 GitHub 的全能图床管理利器。支持一键上传、CDN 自动加速与 Markdown 实时预览，是个人博客与技术写作的黄金搭档。",
       "category": "dev-tools",
       "stage": "collect",
-      "flags": ["released"],
-      "tags": ["Image Hosting", "GitHub"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "Image Hosting",
+        "GitHub"
+      ],
       "url": "https://picx.xpoet.cn/",
       "time": "2025-08"
     },
@@ -266,8 +447,13 @@
       "description": "极简的本地服务内网穿透工具。只需一行命令即可将本地开发环境映射至公网，支持自定义域名，是微信开发与远程演示的必备工具。",
       "category": "dev-tools",
       "stage": "apply",
-      "flags": ["released"],
-      "tags": ["Network", "Proxy"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "Network",
+        "Proxy"
+      ],
       "url": "https://tunnelto.dev/",
       "time": "2025-10"
     },
@@ -277,8 +463,14 @@
       "description": "现代化的代理规则管理器。提供强大的流量分流、订阅管理与可视化监控功能，是开发者进行跨境协作与保障稳定网络环境的基石。",
       "category": "dev-tools",
       "stage": "apply",
-      "flags": ["released"],
-      "tags": ["Network", "Proxy", "Dev"],
+      "flags": [
+        "released"
+      ],
+      "tags": [
+        "Network",
+        "Proxy",
+        "Dev"
+      ],
       "url": "https://www.clashverge.dev/",
       "time": "2025-08"
     },
@@ -288,8 +480,16 @@
       "description": "Google Labs 推出的下一代创意写作工具。通过流式 AI 协作，将灵感碎片化为连贯的叙事，重塑人机协同的创作体验。",
       "category": "curated",
       "stage": "generate",
-      "flags": ["released", "featured"],
-      "tags": ["Creative", "Writing", "AI Labs", "Google"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "Creative",
+        "Writing",
+        "AI Labs",
+        "Google"
+      ],
       "url": "https://labs.google/flow/about",
       "time": "2026-02"
     },
@@ -299,8 +499,16 @@
       "description": "Vercel 推出的生成式 UI 平台。只需自然语言描述，即可秒级生成高质量、可直接运行的 React/Tailwind 组件，定义前端开发新范式。",
       "category": "curated",
       "stage": "generate",
-      "flags": ["released", "featured"],
-      "tags": ["UI Generation", "React", "Vercel", "Frontend"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "UI Generation",
+        "React",
+        "Vercel",
+        "Frontend"
+      ],
       "url": "https://v0.dev",
       "time": "2026-02"
     },
@@ -310,9 +518,34 @@
       "description": "目前最顶尖的 AI 编程助手。深度集成 Claude 3.5 Sonnet 与 GPT-4o，支持全库代码索引与智能补全，是每一位开发者的提效神兵。",
       "category": "dev-tools",
       "stage": "apply",
-      "flags": ["released", "featured"],
-      "tags": ["AI Editor", "Coding", "Productivity"],
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "AI Editor",
+        "Coding",
+        "Productivity"
+      ],
       "url": "https://cursor.com",
+      "time": "2026-02"
+    },
+    {
+      "id": "webmcp-studio",
+      "name": "WebMCP Studio",
+      "description": "老爹亲自操刀实现的 WebMCP 2.0 协议层。遵循 webmcp.dev 规范，为网页注入“AI 原生感官”。通过静态发现、运行时 API 与异步事件，让网页从被动展示转为 AI 代理可直接调用的功能节点。",
+      "category": "dev-tools",
+      "stage": "apply",
+      "flags": [
+        "released",
+        "featured"
+      ],
+      "tags": [
+        "WebMCP",
+        "AI Protocol",
+        "Agentic Web"
+      ],
+      "url": "https://www.webkubor.online/home",
       "time": "2026-02"
     }
   ]

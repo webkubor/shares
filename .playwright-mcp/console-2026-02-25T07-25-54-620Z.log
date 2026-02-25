@@ -1,0 +1,13 @@
+[    1013ms] [ERROR] TypeError: Cannot read properties of null (reading 'avatar_large')
+    at o.avatarUrl (https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/app.12c77646.js:2:320091)
+    at nr.get (https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/chunk-vendors.e059ddb2.js:19:30684)
+    at nr.evaluate (https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/chunk-vendors.e059ddb2.js:19:31685)
+    at o.avatarUrl (https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/chunk-vendors.e059ddb2.js:19:33378)
+    at o.i (https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/app.12c77646.js:2:314775)
+    at https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/chunk-vendors.e059ddb2.js:27:452191
+    at We (https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/chunk-vendors.e059ddb2.js:27:451543)
+    at r.render (https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/chunk-vendors.e059ddb2.js:27:452162)
+    at e._render (https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/chunk-vendors.e059ddb2.js:19:23733)
+    at o.r (https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/chunk-vendors.e059ddb2.js:19:27824) @ https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web_editor/js/chunk-vendors.e059ddb2.js:18
+[   16048ms] [WARNING] 全局错误捕获: null @ https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/421a960.js:2
+[   16057ms] Failed to read a named property 'search' from 'Location': Blocked a frame with origin "https://juejin.cn" from accessing a frame with origin "https://github.com". Protocols, domains, and ports must match.
