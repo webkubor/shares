@@ -1,0 +1,51 @@
+# Webkubor - AI Toolchain Full Documentation
+
+> This file provides comprehensive technical context for the Share WebUI project (Webkubor - AI Toolchain Studio).
+
+## 项目全貌 (Project Overview)
+
+Share WebUI 是一个极简、炫酷且实用的前端工具集合与 UI 实验室。它基于现代化的前端技术栈，不仅展示了视觉动效，还集成了复杂的业务逻辑如 WebRTC 视频通话、自研验证系统、小说封面生成等。
+
+## 核心业务模块 (Core Modules)
+
+### 1. 视频通话与交互 (WebRTC & Interaction)
+- **WebRTC 实现**: 纯前端点对点视频通话，支持媒体协商与流控。
+- **弹幕与字幕系统**: 支持弹幕发射、字幕展示与同步，适用于视频流与直播场景。
+
+### 2. 多媒体与图形处理 (Multimedia & Graphics)
+- **Canvas 动画**: 包含蜘蛛网 (`Spider.vue`)、Apple 风格过渡、以及复杂的粒子系统。
+- **图片处理**: 动态水印生成 (`watermarkUtils.ts`)、图片封面排版与生成。
+
+### 3. 工具与实验室 (Tools & Lab)
+- **房贷计算器**: 精确计算商贷、公积金贷款及组合贷款，支持等额本息与等额本金切换。
+- **安全验证系统**: 融合了 Google ReCaptcha 与 Cloudflare Turnstile，提供多层级的无感知安全策略。
+- **小说系统**: 包含排版引擎、封面生成以及离线存储支持。
+
+## 技术深度 (Technical Depth)
+
+### 状态管理与业务 Hooks
+项目抛弃了 Vuex/Pinia 等全局 Store，采用 **Composable Hooks** 模式：
+- `useMusic.ts`: 全局音频控制，支持音效播放（点击、消息、通知等）。
+- `useNotice.ts`: 全局通知系统集成。
+- `useProject.ts`: 动态加载与筛选展示项目数据。
+- `useUser.ts`: 管理用户鉴权、偏好与会话。
+- `useWallpaper.ts`: 动态背景与壁纸主题控制。
+
+### 核心组件库 (`src/components`)
+- **SpotlightCard**: 具备跟随鼠标的高亮聚光灯效果的卡片容器。
+- **ColorBorder/ColorBtn**: 基于 CSS 变量与动画的渐变边框与按钮。
+- **KButton/KInput/KCard**: 深度定制的基础 UI 组件，符合项目视觉风格。
+- **Loading 动画**: 多种基于 SVG 与 CSS 动画的加载态实现。
+
+### 工具函数 (`src/utils`)
+- `IndexedDBHelper.ts`: 对浏览器原生 IndexedDB 的封装，支持大数据量离线存储。
+- `http.ts`: 基于 Axios 的请求封装，包含拦截器、错误处理与 Mock 支持。
+- `watermarkUtils.ts`: 高性能的水印合成工具，支持多种叠加模式。
+- `rem.ts`: 动态响应式适配方案。
+
+## 基础设施与配置 (Infrastructure)
+
+- **Vite 5 配置**: 开启 `import.meta.glob` 自动化路由注入，极大降低手动配置成本。
+- **SCSS 样式系统**: 基于 `variables.scss` 的主题系统，通过 `mixins.scss` 快速复用样式逻辑。
+- **多平台部署**: 完美兼容 Vercel、Netlify 等边缘托管平台。
+- **i18n 国际化**: 深度集成，确保所有交互均支持多语言切换。

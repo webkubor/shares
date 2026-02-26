@@ -1,0 +1,29 @@
+# Webkubor - AI Toolchain Studio
+
+> 一个基于 Vue 3 + TypeScript + Vite 的多功能前端工具箱与 AI 创意实验室。由老爹 (@webkubor) 维护，聚焦 AI 工作流、工具集合与 WebMCP 协议实验。
+
+## 核心模块 (Core Modules)
+
+- **AI 工具链 (Toolchain)**: 涵盖“采集 (Collect)”、“生成 (Generate)”与“应用 (Apply)”三大阶段的 AI 工具精选与研发利器。
+- **WebMCP Studio**: 遵循 WebMCP 2.0 协议的实验性功能层，为网页注入 AI 代理可直接调用的“原生感官”。
+- **前端实验室 (Frontend Lab)**: 集成 WebRTC 视频通话、Canvas 艺术动效、安全验证（Turnstile/ReCaptcha）及房贷计算器等实用工具。
+- **创意资产**: 包含 Bloom Theme (Typora 主题)、《沸腾之雪》微电影配套音效与视觉组件。
+
+## 关键链接 (Key Links)
+
+- [官网首页](https://webkubor.online): 访问入口与工具导航。
+- [GitHub 仓库](https://github.com/webkubor/shares): 核心代码实现。
+- [WebMCP 配置](https://webkubor.online/.well-known/webmcp.json): 机器可读的协议定义。
+- [更新日志](https://github.com/webkubor/shares/releases): 记录 WebMCP Studio 与工具链的迭代。
+
+## 技术概览 (Tech Stack)
+
+- **核心**: Vue 3, Vite 5, TypeScript, WebRTC, Web Workers.
+- **协议**: WebMCP (webmcp.dev), JSON-LD (Schema.org).
+- **视觉**: SCSS Mixins, Canvas API, SVG Animations.
+
+## 开发导向 (Developer Info)
+
+- 项目采用 Hooks-first 架构，业务逻辑集中在 `/src/hooks`。
+- 静态配置数据存储在 `/src/data/toolchain.json`。
+- 支持 PWA 与离线存储 (IndexedDB)。

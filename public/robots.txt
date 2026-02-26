@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# LLM support
+# For more info see https://llms-txt.org/
+llms: /llms.txt
+llms-full: /llms-full.txt
+
+Sitemap: https://webkubor.online/sitemap.xml
