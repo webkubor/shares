@@ -14,23 +14,6 @@ const RouterMap = [
     component: () => import('@/views/home/index.vue')
   },
   {
-    path: '/vertify/google',
-    name: 'google',
-    meta: {
-      title: "Google"
-    },
-    component: () => import("@/views/vertify/google.vue")
-  },
-  {
-    path: '/vertify/cloudflare',
-    name: 'Cloudflare',
-    meta: {
-      title: "Cloudflare"
-    },
-    component: () => import("@/views/vertify/cloudflare.vue")
-  },
-
-  {
     path: '/book/share',
     name: 'BookShare',
     meta: {
@@ -78,8 +61,7 @@ const RouterMap = [
 const routes = [
   {
     path: '/:pathMatch(.*)*',
-    redirect: 'Home',
-    component: () => import('@/views/notFound.vue')
+    redirect: { name: 'Home' }
   },
   ...RouterMap
 ];

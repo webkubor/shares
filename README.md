@@ -108,9 +108,6 @@ src/
 const routesModules = import.meta.glob('../views/**/router/*.js', { eager: true });
 ```
 
-### 部署脚本
-项目包含自定义 Shell 脚本 `build_depoly.sh`，用于自动化构建与部署。
-
 ## 🤝 贡献 (Contribution)
 
 欢迎提交 Issue 和 Pull Request！

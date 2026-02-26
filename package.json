@@ -1,10 +1,9 @@
 {
-  "name": "share WebUI",
+  "name": "share-webui",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --host --open",
     "build": "vite build",
-    "depoly": "sh -x ./build_depoly.sh ",
     "dev-check": "npx depcheck",
     "ts-check": "npx vue-tsc --noEmit",
     "show": "vite preview"

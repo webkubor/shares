@@ -4,3 +4,6 @@ dist
 dist-ssr
 *.local
 .env.development.local
+.playwright-mcp/
+temp_*
+temp_icons/

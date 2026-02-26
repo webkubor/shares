@@ -1,9 +1,0 @@
-[    4161ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://giscus.app/api/discussions?repo=webkubor%2Fshares&term=home&category=General&number=0&strict=false&last=15:0
-[    4266ms] [WARNING] [giscus] Discussion not found. A new discussion will be created if a comment/reaction is submitted. @ https://giscus.app/client.js:6
-[    4297ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://giscus.app/api/discussions?repo=webkubor%2Fshares&term=home&category=General&number=0&strict=false&first=15:0
-[    4400ms] [WARNING] [giscus] Discussion not found. A new discussion will be created if a comment/reaction is submitted. @ https://giscus.app/client.js:6
-[    4161ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://giscus.app/api/discussions?repo=webkubor%2Fshares&term=home&category=General&number=0&strict=false&last=15:0
-[    4297ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://giscus.app/api/discussions?repo=webkubor%2Fshares&term=home&category=General&number=0&strict=false&first=15:0
-[   26651ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://giscus.app/api/discussions?repo=webkubor%2Fshares&term=home&category=General&number=0&strict=false&first=15:0
-[   26719ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://giscus.app/api/discussions?repo=webkubor%2Fshares&term=home&category=General&number=0&strict=false&last=15:0
-[   26721ms] [WARNING] [giscus] Discussion not found. A new discussion will be created if a comment/reaction is submitted. @ https://giscus.app/client.js:6
